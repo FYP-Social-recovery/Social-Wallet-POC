@@ -6,10 +6,10 @@ from solcx import compile_standard, install_solc
 # publicContractAddress=""
 class NodeModel:
     #node constants 
-    myPrivateAddress=""
-    myPublicAddress=""
-    myContractAddress=""
-    myABI=""
+    myPrivateAddress="8dbfc464a00316c6adf2b09775c12f0e23b570bd51a6babbc5214386dde3911b"
+    myPublicAddress="0x4dAD3EDcA924D144464E623DBd158D23e66B4575"
+    myContractAddress="0xa8356aBA19f43B4875F8380274d163D125dB7554"
+    myABI='[ { "inputs": [ { "internalType": "address", "name": "secretOwner", "type": "address" } ], "name": "acceptInvitation", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "string[]", "name": "myShares", "type": "string[]" } ], "name": "addMyShares", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "address payable", "name": "shareHolder", "type": "address" } ], "name": "addTemporaryShareHolders", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [], "name": "distribute", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [], "name": "makeShareHoldersListToDistribute", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [], "name": "makingHolderRequests", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "string", "name": "name", "type": "string" } ], "name": "registerToPublicContract", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "address", "name": "secretOwner", "type": "address" } ], "name": "rejectInvitation", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "address", "name": "secretOwnerAddress", "type": "address" } ], "name": "releaseSecret", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "uint256", "name": "index", "type": "uint256" } ], "name": "remove", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "address payable", "name": "shareHolder", "type": "address" } ], "name": "removeShareHolders", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [], "name": "repayGasFee", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "string", "name": "name", "type": "string" } ], "name": "requestSharesFromHolders", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "string", "name": "share", "type": "string" } ], "name": "saveToRegeneratedShares", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "address", "name": "ownerAddress", "type": "address" }, { "internalType": "string", "name": "sharedString", "type": "string" } ], "name": "takeTheSecretFromTheOwner", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [], "stateMutability": "nonpayable", "type": "constructor" }, { "inputs": [], "name": "checkRequestsForBeAHolder", "outputs": [ { "internalType": "address[]", "name": "", "type": "address[]" } ], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "checkRequestsForShare", "outputs": [ { "internalType": "address[]", "name": "", "type": "address[]" } ], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "getMyShares", "outputs": [ { "internalType": "string[]", "name": "", "type": "string[]" } ], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "getShareHolders", "outputs": [ { "internalType": "address[]", "name": "", "type": "address[]" } ], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "isRegistered", "outputs": [ { "internalType": "bool", "name": "", "type": "bool" } ], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "myContractAddress", "outputs": [ { "internalType": "address", "name": "", "type": "address" } ], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "owner", "outputs": [ { "internalType": "address", "name": "", "type": "address" } ], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "regenerate", "outputs": [ { "internalType": "string[]", "name": "", "type": "string[]" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ], "name": "regeneratedShares", "outputs": [ { "internalType": "string", "name": "", "type": "string" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ], "name": "requestedShareHolders", "outputs": [ { "internalType": "address payable", "name": "", "type": "address" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ], "name": "secretOwners", "outputs": [ { "internalType": "address", "name": "", "type": "address" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ], "name": "shareHolders", "outputs": [ { "internalType": "address", "name": "", "type": "address" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "address", "name": "", "type": "address" } ], "name": "shareHoldersMap", "outputs": [ { "internalType": "string", "name": "", "type": "string" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ], "name": "shares", "outputs": [ { "internalType": "string", "name": "", "type": "string" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "address", "name": "", "type": "address" } ], "name": "sharesMap", "outputs": [ { "internalType": "string", "name": "", "type": "string" } ], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "userName", "outputs": [ { "internalType": "string", "name": "", "type": "string" } ], "stateMutability": "view", "type": "function" } ]'
     w3 = Web3(Web3.HTTPProvider("http://127.0.0.1:7545"))
 
     # deploy the node smart contract
@@ -52,8 +52,7 @@ class NodeModel:
         # get bytecode
         bytecode = compiled_sol["contracts"]["Node.sol"]["Node"]["evm"]["bytecode"]["object"]
         # get abi
-        abi = json.loads(compiled_sol["contracts"]["Node.sol"]
-                        ["Node"]["metadata"])["output"]["abi"]
+        abi = json.loads(compiled_sol["contracts"]["Node.sol"]["Node"]["metadata"])["output"]["abi"]
         NodeModel.myABI=abi
 
         # For connecting to ganache
@@ -94,69 +93,71 @@ class NodeModel:
     
     #establish the connection to call the smart contract functions 
     def connection(abi,contract_addr,owner_addr,p_key):
-        NodeModel.myABI=abi
-        NodeModel.myContractAddress=contract_addr
-        NodeModel.myPublicAddress=owner_addr
-        NodeModel.myPrivateAddress=p_key
+        # NodeModel.myABI=abi
+        # NodeModel.myContractAddress=contract_addr
+        # NodeModel.myPublicAddress=owner_addr
+        # NodeModel.myPrivateAddress=p_key
+
         #abi = "[ { \"inputs\": [ { \"internalType\": \"uint256[]\", \"name\": \"share_value\", \"type\": \"uint256[]\" } ], \"name\": \"add_share\", \"outputs\": [], \"stateMutability\": \"nonpayable\", \"type\": \"function\" }, { \"inputs\": [], \"name\": \"give_share\", \"outputs\": [], \"stateMutability\": \"nonpayable\", \"type\": \"function\" }, { \"inputs\": [ { \"internalType\": \"address\", \"name\": \"to\", \"type\": \"address\" } ], \"name\": \"set_share\", \"outputs\": [], \"stateMutability\": \"nonpayable\", \"type\": \"function\" }, { \"inputs\": [ { \"internalType\": \"string\", \"name\": \"value_str\", \"type\": \"string\" } ], \"name\": \"store_hash\", \"outputs\": [], \"stateMutability\": \"nonpayable\", \"type\": \"function\" }, { \"inputs\": [], \"stateMutability\": \"nonpayable\", \"type\": \"constructor\" }, { \"inputs\": [], \"name\": \"get\", \"outputs\": [ { \"internalType\": \"uint256[]\", \"name\": \"\", \"type\": \"uint256[]\" } ], \"stateMutability\": \"view\", \"type\": \"function\" }, { \"inputs\": [], \"name\": \"return_hash\", \"outputs\": [ { \"internalType\": \"string\", \"name\": \"\", \"type\": \"string\" } ], \"stateMutability\": \"view\", \"type\": \"function\" } ]"
         # contract_addr='0x2e169D7e39789D1a0d47EeD58A140D78A1D9B39d'
         # owner_addr='0x3Efdd722056D61C7A77619e2D556927a5467D30D'
         # p_key='a0809ede87de80864e3aaad330d8ae0129a454c9c16000003e1ddc80df960cf3'
-        c = NodeModel.w3.eth.contract(address=NodeModel.myContractAddress, abi=NodeModel.myABI)
+        c = NodeModel.w3.eth.contract(address=contract_addr, abi=abi)
         return c
 
-    def registerToPublicContract(userName):
-        c= NodeModel.connection(NodeModel.myABI,NodeModel.myContractAddress,NodeModel.myPublicAddress,NodeModel.myPrivateAddress)
-
-        nonce = NodeModel.w3.eth.getTransactionCount(NodeModel.myPublicAddress)
-        store_contact = c.functions.registerToPublicContract(userName).buildTransaction({"from": NodeModel.myPublicAddress, "gasPrice": NodeModel.w3.eth.gas_price, "nonce": nonce})
+    def registerToPublicContract(userName,owner_addr,private_addr):
+        c= NodeModel.connection(NodeModel.myABI,NodeModel.myContractAddress,owner_addr,private_addr)
+        print(owner_addr,"Registering for ",NodeModel.myContractAddress)
+        nonce = NodeModel.w3.eth.getTransactionCount(owner_addr)
+        store_contact = c.functions.registerToPublicContract(userName).buildTransaction({"from": owner_addr, "gasPrice": NodeModel.w3.eth.gas_price, "nonce": nonce})
         # Sign the transaction
-        sign_store_contact = NodeModel.w3.eth.account.sign_transaction(store_contact, private_key=NodeModel.myPrivateAddress)
+        sign_store_contact = NodeModel.w3.eth.account.sign_transaction(store_contact, private_key=private_addr)
         # Send the transaction
         send_store_contact = NodeModel.w3.eth.send_raw_transaction(sign_store_contact.rawTransaction)
         transaction_receipt = NodeModel.w3.eth.wait_for_transaction_receipt(send_store_contact)
-        print("Successfully registered to the public contract",transaction_receipt)
+        print("Successfully registered to the public contract!!")
         return
+#Share holder's role ----------------------------------------------------------------------
 
-
-
-    #sending the shares to the smart contract
-    def send_shares_smartContact(shares):
-        c= NodeModel.connection(NodeModel.myABI,NodeModel.myContractAddress,NodeModel.myPublicAddress,NodeModel.myPrivateAddress)
-        nonce = NodeModel.w3.eth.getTransactionCount(NodeModel.myPublicAddress)
-        store_contact = c.functions.add_share(shares).buildTransaction({"from": NodeModel.myPublicAddress, "gasPrice": NodeModel.w3.eth.gas_price, "nonce": nonce})
+    def checkRequestsForBeAHolder(owner_addr,private_addr):
+        c= NodeModel.connection(NodeModel.myABI,NodeModel.myContractAddress,owner_addr,private_addr)
+        print(owner_addr,"checking Requests for ",NodeModel.myContractAddress)
+        nonce = NodeModel.w3.eth.getTransactionCount(owner_addr)
+        returnVal = c.functions.checkRequestsForBeAHolder().buildTransaction({"from": owner_addr, "gasPrice": NodeModel.w3.eth.gas_price, "nonce": nonce})
         # Sign the transaction
-        sign_store_contact =NodeModel. w3.eth.account.sign_transaction(store_contact, private_key=NodeModel.myPrivateAddress)
+        sign_store_contact = NodeModel.w3.eth.account.sign_transaction(returnVal, private_key=private_addr)
         # Send the transaction
         send_store_contact = NodeModel.w3.eth.send_raw_transaction(sign_store_contact.rawTransaction)
         transaction_receipt = NodeModel.w3.eth.wait_for_transaction_receipt(send_store_contact)
-        print("shares send to the smart contract")
-
-    #set the hash value in the smart contract
-    def set_hash(hash_str):
-        c= NodeModel.connection(NodeModel.myABI,NodeModel.myContractAddress,NodeModel.myPublicAddress,NodeModel.myPrivateAddress)
-        nonce = NodeModel.w3.eth.getTransactionCount(NodeModel.myPublicAddress)
-        store_contact = c.functions.store_hash(hash_str).buildTransaction({"from": NodeModel.myPublicAddress, "gasPrice": NodeModel.w3.eth.gas_price, "nonce": nonce})
-        # Sign the transaction
-        sign_store_contact = NodeModel.w3.eth.account.sign_transaction(store_contact, private_key=NodeModel.myPrivateAddress)
-        # Send the transaction
-        send_store_contact = NodeModel.w3.eth.send_raw_transaction(sign_store_contact.rawTransaction)
-        transaction_receipt = NodeModel.w3.eth.wait_for_transaction_receipt(send_store_contact)
-        print("Hash send to the smart contract")
-
-    #request shares from the smart contract
-    def get_shares():
-        c= NodeModel.connection(NodeModel.myABI,NodeModel.myContractAddress,NodeModel.myPublicAddress,NodeModel.myPrivateAddress)
-        rtn = c.caller().get()
-        share_list = rtn
-        collected_shares = []
+        # returnVal = c.caller().checkRequestsForBeAHolder()
+        # ownerAddressList = returnVal
+        OwnersList = transaction_receipt["contractAddress"]
         #generate a list of tuples
-        for i in range(0, len(share_list)-1, 2):
-            temp_tuple = tuple((share_list[i], share_list[i+1]))
-            collected_shares.append(temp_tuple)
-        print("shares retrieved")
-        print("collected_shares:", collected_shares)
-        return collected_shares
+       
+        print("Addresses retrieved")
+        print("OwnersList:", OwnersList)
+        return OwnersList
+     
+
+    def acceptInvitation(owner_addr,private_addr,share_owner):
+        c= NodeModel.connection(NodeModel.myABI,NodeModel.myContractAddress,owner_addr,private_addr)
+        print(owner_addr,"Accepting Request ",share_owner)
+        nonce = NodeModel.w3.eth.getTransactionCount(owner_addr)
+        returnVal = c.functions.acceptInvitation(share_owner).buildTransaction({"from": owner_addr, "gasPrice": NodeModel.w3.eth.gas_price, "nonce": nonce})
+        # Sign the transaction
+        sign_store_contact = NodeModel.w3.eth.account.sign_transaction(returnVal, private_key=private_addr)
+        # Send the transaction
+        send_store_contact = NodeModel.w3.eth.send_raw_transaction(sign_store_contact.rawTransaction)
+        transaction_receipt = NodeModel.w3.eth.wait_for_transaction_receipt(send_store_contact)
+        # returnVal = c.caller().checkRequestsForBeAHolder()
+        # ownerAddressList = returnVal
+        status = transaction_receipt["status"]
+        #generate a list of tuples
+       
+        print("Successfully  accepted",status)
+        
+        return status
+     
 
 
         

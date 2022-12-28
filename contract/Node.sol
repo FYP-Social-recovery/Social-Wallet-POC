@@ -24,7 +24,7 @@ contract Node {
     constructor() { // ["(5,6)","(2,5)"]
         owner = msg.sender;
         //Hard coded deployment of the public contract
-        contract_new=PublicContract(0x060780c3d405B9B7cE1D219840Dc32795225819c);
+        contract_new=PublicContract(0x6fb96DaA05723502D684ea8591530acBadd16a9F);
         myContractAddress = address(this);
 
     }

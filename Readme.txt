@@ -1,4 +1,4 @@
-first run :  python setup.py install 
+first run :  python setup.py clean install 
 
 
 -----------------------------------

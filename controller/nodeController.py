@@ -1,22 +1,22 @@
 from model.nodeModel import NodeModel
 
 # nodeObject =nodeModel.NodeModel()
-
-
-
+publicKey="0x4dAD3EDcA924D144464E623DBd158D23e66B4575"
+privateKey="8dbfc464a00316c6adf2b09775c12f0e23b570bd51a6babbc5214386dde3911b"
 def deploy():
-    NodeModel.deploy("0x305eC56922EDcF716F12C7a5c5961147933C0c41","2e4d7319aad09af344608bde9dee0aa5a8243f847dc004545927a3488c0f8338")
+    NodeModel.deploy(publicKey,privateKey)
     return
 
-def register():
-    NodeModel.registerToPublicContract("Alice")
+def register(userName):
+    NodeModel.registerToPublicContract(userName,owner_addr=publicKey,private_addr=privateKey)
     return
-deploy()
-register()
 
 def checkRequestsForBeAHolder():
-    return
-
+    addresses=NodeModel.checkRequestsForBeAHolder(owner_addr=publicKey,private_addr=privateKey)
+    return addresses
+# deploy()
+# register("David")
+checkRequestsForBeAHolder()
 def acceptInvitation(address):
     return
 def rejectInvitation(address):
