@@ -1,3 +1,7 @@
+first run :  python setup.py install 
+
+
+-----------------------------------
 Public Contract 
 
 
