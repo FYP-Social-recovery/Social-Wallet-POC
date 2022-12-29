@@ -119,6 +119,7 @@ class NodeModel:
         return
 #Share holder's role ----------------------------------------------------------------------
 
+#check the requests for be a holder 
     def checkRequestsForBeAHolder(owner_addr,private_addr):
         c= NodeModel.connection(NodeModel.myABI,NodeModel.myContractAddress,owner_addr,private_addr)
         print(owner_addr,"checking Requests for ",NodeModel.myContractAddress)
@@ -138,7 +139,7 @@ class NodeModel:
         print("OwnersList:", OwnersList)
         return OwnersList
      
-
+#accept the holder request
     def acceptInvitation(owner_addr,private_addr,share_owner):
         c= NodeModel.connection(NodeModel.myABI,NodeModel.myContractAddress,owner_addr,private_addr)
         print(owner_addr,"Accepting Request ",share_owner)
@@ -160,8 +161,236 @@ class NodeModel:
      
 
 
+# reject the holder request 
+    def rejectInvitation(owner_addr,private_addr,share_owner):
+        c= NodeModel.connection(NodeModel.myABI,NodeModel.myContractAddress,owner_addr,private_addr)
+        print(owner_addr,"Rejecting Request ",share_owner)
+        nonce = NodeModel.w3.eth.getTransactionCount(owner_addr)
+        returnVal = c.functions.rejectInvitation(share_owner).buildTransaction({"from": owner_addr, "gasPrice": NodeModel.w3.eth.gas_price, "nonce": nonce})
+        # Sign the transaction
+        sign_store_contact = NodeModel.w3.eth.account.sign_transaction(returnVal, private_key=private_addr)
+        # Send the transaction
+        send_store_contact = NodeModel.w3.eth.send_raw_transaction(sign_store_contact.rawTransaction)
+        transaction_receipt = NodeModel.w3.eth.wait_for_transaction_receipt(send_store_contact)
+        # returnVal = c.caller().checkRequestsForBeAHolder()
+        # ownerAddressList = returnVal
+        status = transaction_receipt["status"]
+        #generate a list of tuples
+       
+        print("Successfully  rejected",status)
         
+        return status
 
+#check the share requests from me
+    def checkRequestsForShare(owner_addr,private_addr):
+        c= NodeModel.connection(NodeModel.myABI,NodeModel.myContractAddress,owner_addr,private_addr)
+        print(owner_addr,"checking Share requests ",NodeModel.myContractAddress)
+        nonce = NodeModel.w3.eth.getTransactionCount(owner_addr)
+        returnVal = c.functions.checkRequestsForShare().buildTransaction({"from": owner_addr, "gasPrice": NodeModel.w3.eth.gas_price, "nonce": nonce})
+        # Sign the transaction
+        sign_store_contact = NodeModel.w3.eth.account.sign_transaction(returnVal, private_key=private_addr)
+        # Send the transaction
+        send_store_contact = NodeModel.w3.eth.send_raw_transaction(sign_store_contact.rawTransaction)
+        transaction_receipt = NodeModel.w3.eth.wait_for_transaction_receipt(send_store_contact)
+        # returnVal = c.caller().checkRequestsForBeAHolder()
+        # ownerAddressList = returnVal
+        OwnersList = transaction_receipt["contractAddress"]
+        #generate a list of tuples
+       
+        print("Addresses retrieved")
+        print("OwnersList:", OwnersList)
+        return OwnersList
+     
+# release the secret
+    def releaseSecret(owner_addr,private_addr,share_owner):
+        c= NodeModel.connection(NodeModel.myABI,NodeModel.myContractAddress,owner_addr,private_addr)
+        print(owner_addr,"Releasing the secret of  ",share_owner)
+        nonce = NodeModel.w3.eth.getTransactionCount(owner_addr)
+        returnVal = c.functions.releaseSecret(share_owner).buildTransaction({"from": owner_addr, "gasPrice": NodeModel.w3.eth.gas_price, "nonce": nonce})
+        # Sign the transaction
+        sign_store_contact = NodeModel.w3.eth.account.sign_transaction(returnVal, private_key=private_addr)
+        # Send the transaction
+        send_store_contact = NodeModel.w3.eth.send_raw_transaction(sign_store_contact.rawTransaction)
+        transaction_receipt = NodeModel.w3.eth.wait_for_transaction_receipt(send_store_contact)
+        # returnVal = c.caller().checkRequestsForBeAHolder()
+        # ownerAddressList = returnVal
+        status = transaction_receipt["status"]
+        #generate a list of tuples
+       
+        print("Successfully  released",status)
         
+        return status
 
+#secret owner's role ----------------------------------------------------------------------------
 
+# add a temporary share holder
+    def addTemporaryShareHolder(owner_addr,private_addr,share_holder):
+        c= NodeModel.connection(NodeModel.myABI,NodeModel.myContractAddress,owner_addr,private_addr)
+        print(owner_addr,"Adding as a share holder  ",share_holder)
+        nonce = NodeModel.w3.eth.getTransactionCount(owner_addr)
+        returnVal = c.functions.addTemporaryShareHolders(share_holder).buildTransaction({"from": owner_addr, "gasPrice": NodeModel.w3.eth.gas_price, "nonce": nonce})
+        # Sign the transaction
+        sign_store_contact = NodeModel.w3.eth.account.sign_transaction(returnVal, private_key=private_addr)
+        # Send the transaction
+        send_store_contact = NodeModel.w3.eth.send_raw_transaction(sign_store_contact.rawTransaction)
+        transaction_receipt = NodeModel.w3.eth.wait_for_transaction_receipt(send_store_contact)
+        # returnVal = c.caller().checkRequestsForBeAHolder()
+        # ownerAddressList = returnVal
+        status = transaction_receipt["status"]
+        #generate a list of tuples
+       
+        print("Successfully  added",status)
+        
+        return status
+#remove a temporary share holder
+    def removeTemporaryShareHolder(owner_addr,private_addr,share_holder):
+        c= NodeModel.connection(NodeModel.myABI,NodeModel.myContractAddress,owner_addr,private_addr)
+        print(owner_addr,"Removing as a share holder  ",share_holder)
+        nonce = NodeModel.w3.eth.getTransactionCount(owner_addr)
+        returnVal = c.functions.removeShareHolders(share_holder).buildTransaction({"from": owner_addr, "gasPrice": NodeModel.w3.eth.gas_price, "nonce": nonce})
+        # Sign the transaction
+        sign_store_contact = NodeModel.w3.eth.account.sign_transaction(returnVal, private_key=private_addr)
+        # Send the transaction
+        send_store_contact = NodeModel.w3.eth.send_raw_transaction(sign_store_contact.rawTransaction)
+        transaction_receipt = NodeModel.w3.eth.wait_for_transaction_receipt(send_store_contact)
+        # returnVal = c.caller().checkRequestsForBeAHolder()
+        # ownerAddressList = returnVal
+        status = transaction_receipt["status"]
+        #generate a list of tuples
+       
+        print("Successfully  removed",status)
+        
+        return status
+# add my shares
+    def addMyShares(owner_addr,private_addr,shares):
+        c= NodeModel.connection(NodeModel.myABI,NodeModel.myContractAddress,owner_addr,private_addr)
+        print(owner_addr,"Adding shares  ",shares)
+        nonce = NodeModel.w3.eth.getTransactionCount(owner_addr)
+        returnVal = c.functions.addMyShares(shares).buildTransaction({"from": owner_addr, "gasPrice": NodeModel.w3.eth.gas_price, "nonce": nonce})
+        # Sign the transaction
+        sign_store_contact = NodeModel.w3.eth.account.sign_transaction(returnVal, private_key=private_addr)
+        # Send the transaction
+        send_store_contact = NodeModel.w3.eth.send_raw_transaction(sign_store_contact.rawTransaction)
+        transaction_receipt = NodeModel.w3.eth.wait_for_transaction_receipt(send_store_contact)
+        # returnVal = c.caller().checkRequestsForBeAHolder()
+        # ownerAddressList = returnVal
+        status = transaction_receipt["status"]
+        #generate a list of tuples
+       
+        print("Successfully  added shares",status)
+        
+        return status
+#Get my shares 
+    def getMyShares(owner_addr,private_addr):
+        c= NodeModel.connection(NodeModel.myABI,NodeModel.myContractAddress,owner_addr,private_addr)
+        print(owner_addr,"Getting my shares  ",NodeModel.myContractAddress)
+        nonce = NodeModel.w3.eth.getTransactionCount(owner_addr)
+        returnVal = c.functions.getMyShares().buildTransaction({"from": owner_addr, "gasPrice": NodeModel.w3.eth.gas_price, "nonce": nonce})
+        # Sign the transaction
+        sign_store_contact = NodeModel.w3.eth.account.sign_transaction(returnVal, private_key=private_addr)
+        # Send the transaction
+        send_store_contact = NodeModel.w3.eth.send_raw_transaction(sign_store_contact.rawTransaction)
+        transaction_receipt = NodeModel.w3.eth.wait_for_transaction_receipt(send_store_contact)
+        # returnVal = c.caller().checkRequestsForBeAHolder()
+        # ownerAddressList = returnVal
+        sharesList = transaction_receipt["shares"]
+        #generate a list of tuples
+       
+        print("My shares  retrieved")
+        print("OwnersList:", sharesList)
+        return sharesList
+
+#get My share holders
+    def getMyShareHolders(owner_addr,private_addr):
+        c= NodeModel.connection(NodeModel.myABI,NodeModel.myContractAddress,owner_addr,private_addr)
+        print(owner_addr,"checking Share holders ",NodeModel.myContractAddress)
+        nonce = NodeModel.w3.eth.getTransactionCount(owner_addr)
+        returnVal = c.functions.getShareHolders().buildTransaction({"from": owner_addr, "gasPrice": NodeModel.w3.eth.gas_price, "nonce": nonce})
+        # Sign the transaction
+        sign_store_contact = NodeModel.w3.eth.account.sign_transaction(returnVal, private_key=private_addr)
+        # Send the transaction
+        send_store_contact = NodeModel.w3.eth.send_raw_transaction(sign_store_contact.rawTransaction)
+        transaction_receipt = NodeModel.w3.eth.wait_for_transaction_receipt(send_store_contact)
+        # returnVal = c.caller().checkRequestsForBeAHolder()
+        # ownerAddressList = returnVal
+        holdersList = transaction_receipt["contractAddress"]
+        #generate a list of tuples
+       
+        print("Addresses retrieved")
+        print("holdersList:", holdersList)
+        return holdersList
+#Get the acceptance of the shareholders 
+    def getAcceptedShareHoldersList(owner_addr,private_addr):
+        c= NodeModel.connection(NodeModel.myABI,NodeModel.myContractAddress,owner_addr,private_addr)
+        print(owner_addr,"checking acceptance of Share holders ",NodeModel.myContractAddress)
+        nonce = NodeModel.w3.eth.getTransactionCount(owner_addr)
+        returnVal = c.functions.makeShareHoldersListToDistribute().buildTransaction({"from": owner_addr, "gasPrice": NodeModel.w3.eth.gas_price, "nonce": nonce})
+        # Sign the transaction
+        sign_store_contact = NodeModel.w3.eth.account.sign_transaction(returnVal, private_key=private_addr)
+        # Send the transaction
+        send_store_contact = NodeModel.w3.eth.send_raw_transaction(sign_store_contact.rawTransaction)
+        transaction_receipt = NodeModel.w3.eth.wait_for_transaction_receipt(send_store_contact)
+        # returnVal = c.caller().checkRequestsForBeAHolder()
+        # ownerAddressList = returnVal
+        holdersList = transaction_receipt["contractAddress"]
+        #generate a list of tuples
+       
+        print("Addresses retrieved")
+        print("Accepted holdersList:", holdersList)
+        return holdersList
+    
+#Get the acceptance of the shareholders 
+    def distributeShares(owner_addr,private_addr):
+        c= NodeModel.connection(NodeModel.myABI,NodeModel.myContractAddress,owner_addr,private_addr)
+        print(owner_addr,"Distributing the shares ",NodeModel.myContractAddress)
+        nonce = NodeModel.w3.eth.getTransactionCount(owner_addr)
+        returnVal = c.functions.distribute().buildTransaction({"from": owner_addr, "gasPrice": NodeModel.w3.eth.gas_price, "nonce": nonce})
+        # Sign the transaction
+        sign_store_contact = NodeModel.w3.eth.account.sign_transaction(returnVal, private_key=private_addr)
+        # Send the transaction
+        send_store_contact = NodeModel.w3.eth.send_raw_transaction(sign_store_contact.rawTransaction)
+        transaction_receipt = NodeModel.w3.eth.wait_for_transaction_receipt(send_store_contact)
+
+        status = transaction_receipt["status"]
+        #generate a list of tuples
+       
+        print("Shares distributed:", status)
+        return status
+     
+ #Request shares from holders 
+    def requestShares(owner_addr,private_addr,user_name):
+        c= NodeModel.connection(NodeModel.myABI,NodeModel.myContractAddress,owner_addr,private_addr)
+        print(owner_addr,"Requesting the shares ",NodeModel.myContractAddress)
+        nonce = NodeModel.w3.eth.getTransactionCount(owner_addr)
+        returnVal = c.functions.requestSharesFromHolders(user_name).buildTransaction({"from": owner_addr, "gasPrice": NodeModel.w3.eth.gas_price, "nonce": nonce})
+        # Sign the transaction
+        sign_store_contact = NodeModel.w3.eth.account.sign_transaction(returnVal, private_key=private_addr)
+        # Send the transaction
+        send_store_contact = NodeModel.w3.eth.send_raw_transaction(sign_store_contact.rawTransaction)
+        transaction_receipt = NodeModel.w3.eth.wait_for_transaction_receipt(send_store_contact)
+
+        status = transaction_receipt["status"]
+        #generate a list of tuples
+       
+        print("Shares requested:", status)
+        return status
+     
+#Get received shares 
+    def getReceivedShares(owner_addr,private_addr):
+        c= NodeModel.connection(NodeModel.myABI,NodeModel.myContractAddress,owner_addr,private_addr)
+        print(owner_addr,"Getting received shares  ",NodeModel.myContractAddress)
+        nonce = NodeModel.w3.eth.getTransactionCount(owner_addr)
+        returnVal = c.functions.regenerate().buildTransaction({"from": owner_addr, "gasPrice": NodeModel.w3.eth.gas_price, "nonce": nonce})
+        # Sign the transaction
+        sign_store_contact = NodeModel.w3.eth.account.sign_transaction(returnVal, private_key=private_addr)
+        # Send the transaction
+        send_store_contact = NodeModel.w3.eth.send_raw_transaction(sign_store_contact.rawTransaction)
+        transaction_receipt = NodeModel.w3.eth.wait_for_transaction_receipt(send_store_contact)
+        # returnVal = c.caller().checkRequestsForBeAHolder()
+        # ownerAddressList = returnVal
+        sharesList = transaction_receipt["shares"]
+        #generate a list of tuples
+       
+        print("Received shares  retrieved")
+        print("Shares List:", sharesList)
+        return sharesList
