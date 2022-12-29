@@ -69,5 +69,9 @@ def getReceivedShares():
     shares =NodeModel.getReceivedShares(owner_addr=publicKey,private_addr=privateKey)
     return shares
 # deploy()
-# register("David")
+# register("Alice")
 # checkRequestsForBeAHolder()
+#addTemporaryShareHolder("0x1F8558989122D1ecF159Ab5855dBEAe88345360f")
+#removeTemporaryShareHolder("0x1F8558989122D1ecF159Ab5855dBEAe88345360f")
+#addMyShares(["share1","share2","share3"])
+getMyShares()
