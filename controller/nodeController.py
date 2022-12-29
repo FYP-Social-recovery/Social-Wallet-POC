@@ -3,6 +3,7 @@ from model.nodeModel import NodeModel
 # nodeObject =nodeModel.NodeModel()
 publicKey="0x4dAD3EDcA924D144464E623DBd158D23e66B4575"
 privateKey="8dbfc464a00316c6adf2b09775c12f0e23b570bd51a6babbc5214386dde3911b"
+
 def deploy():
     NodeModel.deploy(publicKey,privateKey)
     return
@@ -11,34 +12,62 @@ def register(userName):
     NodeModel.registerToPublicContract(userName,owner_addr=publicKey,private_addr=privateKey)
     return
 
+#share holder Role  
 def checkRequestsForBeAHolder():
     addresses=NodeModel.checkRequestsForBeAHolder(owner_addr=publicKey,private_addr=privateKey)
     return addresses
-# deploy()
-# register("David")
-checkRequestsForBeAHolder()
+
 def acceptInvitation(address):
-    return
+    status=NodeModel.acceptInvitation(owner_addr=publicKey,private_addr=privateKey,share_owner=address)
+    return status
 def rejectInvitation(address):
-    return
+    status=NodeModel.rejectInvitation(owner_addr=publicKey,private_addr=privateKey,share_owner=address)
+    return status
+    
 def checkRequestsForShare():
-    return
+    ownersList=NodeModel.checkRequestsForShare(owner_addr=publicKey,private_addr=privateKey)
+    return ownersList
+
 def releaseShare(address):
-    return
+    status=NodeModel.releaseSecret(owner_addr=publicKey,private_addr=privateKey,share_owner=address)
+    return status
+
+
+#secret owner's role 
 def addTemporaryShareHolder(address):
-    return
+    status =NodeModel.addTemporaryShareHolder(owner_addr=publicKey,private_addr=privateKey,share_holder=address)
+    return status
 
 def removeTemporaryShareHolder(address):
-    return
+    status =NodeModel.removeTemporaryShareHolder(owner_addr=publicKey,private_addr=privateKey,share_holder=address)
+    return status
+def addMyShares(shares):
+    status =NodeModel.addMyShares(owner_addr=publicKey,private_addr=privateKey,shares=shares)
+    return status
+
 def getMyShares():
-    return
+    shares =NodeModel.getMyShares(owner_addr=publicKey,private_addr=privateKey)
+    return shares
 def getShareHolders():
-    return
+    shareHolders =NodeModel.getMyShareHolders(owner_addr=publicKey,private_addr=privateKey)
+    return shareHolders
 
-def getAcceptStatus():
-    return
+def getAcceptedShareHoldersList():
+    shareHolders =NodeModel.getAcceptedShareHoldersList(owner_addr=publicKey,private_addr=privateKey)
+    return shareHolders
+
 def distribute():
-    return
+    status =NodeModel.distributeShares(owner_addr=publicKey,private_addr=privateKey)
+    return status
+    
 
-
-
+def requestShares(userName):
+    status =NodeModel.requestShares(owner_addr=publicKey,private_addr=privateKey,user_name=userName)
+    return status
+    
+def getReceivedShares():
+    shares =NodeModel.getReceivedShares(owner_addr=publicKey,private_addr=privateKey)
+    return shares
+# deploy()
+# register("David")
+# checkRequestsForBeAHolder()

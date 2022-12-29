@@ -170,7 +170,7 @@ contract PublicContract {
     }
 
 //remove from holder request list 
-function removeFromHolderRequestList(uint256 index) public {
+    function removeFromHolderRequestList(uint256 index) public {
         // Move the last element into the place to delete
         holderRequests[index] = holderRequests[holderRequests.length - 1];
         // Remove the last element
@@ -253,12 +253,7 @@ function removeFromHolderRequestList(uint256 index) public {
         return;
 
     }
-//Regenerate the shares from released shares 
-    function regenerateSecret(string memory name)public view returns (string[] memory){
-        // Node myNode= nodesMap[name];
-        // string[] memory shares_new=myNode.regenerate();
-        // return shares_new;
-    }
+
 
     
 }

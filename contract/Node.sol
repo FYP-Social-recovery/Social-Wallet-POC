@@ -204,10 +204,10 @@ function addTemporaryShareHolders(address payable shareHolder) public onlyOwner 
         //This should generate from the other nodes 
         return regeneratedShares;
     }
-//Repay the gas fee to the holders 
-    function repayGasFee()public onlyOwner{
+// //Repay the gas fee to the holders 
+//     function repayGasFee()public onlyOwner{
 
-    }
+//     }
 
 }
 
