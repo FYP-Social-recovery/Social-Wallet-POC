@@ -41,6 +41,11 @@ def addTemporaryShareHolder(address):
 def removeTemporaryShareHolder(address):
     status =NodeModel.removeTemporaryShareHolder(owner_addr=publicKey,private_addr=privateKey,share_holder=address)
     return status
+
+def requestForTheHolders():
+    status =NodeModel.makeHolderRequests(owner_addr=publicKey,private_addr=privateKey)
+    return status
+
 def addMyShares(shares):
     status =NodeModel.addMyShares(owner_addr=publicKey,private_addr=privateKey,shares=shares)
     return status
@@ -70,8 +75,15 @@ def getReceivedShares():
     return shares
 #deploy()
 #register("Bob")
-# checkRequestsForBeAHolder()
-#addTemporaryShareHolder("0x1F8558989122D1ecF159Ab5855dBEAe88345360f")
+#checkRequestsForBeAHolder()
+#addTemporaryShareHolder("0x09D962CA1caAf625964FB88aEAb0C3657e985d67")
 #removeTemporaryShareHolder("0x1F8558989122D1ecF159Ab5855dBEAe88345360f")
 #addMyShares(["share1","share2","share3"])
-getMyShares()
+#getMyShares()
+#getShareHolders()
+#getAcceptedShareHoldersList()
+#distribute()
+#requestShares("Bob")
+#getReceivedShares()
+#checkRequestsForBeAHolder()
+#acceptInvitation("0x305eC56922EDcF716F12C7a5c5961147933C0c41")

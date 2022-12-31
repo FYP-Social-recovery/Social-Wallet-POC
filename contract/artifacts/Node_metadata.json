@@ -458,11 +458,11 @@
 	},
 	"sources": {
 		"contract/Node.sol": {
-			"keccak256": "0x6eeaa3c0842d193801c7ccbd0ea3a5098aecc39475e5a44cb9346a115bbeac54",
+			"keccak256": "0x19a9a7cd7d8da6d9379a326813a75109a32adacca4d81a6abd2dfc71ff2e959f",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://2725f86886b3c9f7cb680aec67c8dbaff8af818f3cb76a60d6320644d1ed4032",
-				"dweb:/ipfs/QmU5UWV7hTVDDRBGf7w18HxuhVVsEaqJZF8sLJiiGd62jG"
+				"bzz-raw://504381fb61efe9eddd224736a969d23cc7c5a74bda938ab0ece49d77e5bc97a4",
+				"dweb:/ipfs/QmdqMQo67sSeTH9Knz2qdR8vLCXrF7e2Xm3LzGYeo2uSF4"
 			]
 		},
 		"contract/PublicContract.sol": {
