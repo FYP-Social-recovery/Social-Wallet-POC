@@ -24,7 +24,7 @@ contract Node {
     constructor() { // ["(5,6)","(2,5)"]
         owner = msg.sender;
         //Hard coded deployment of the public contract
-        contract_new=PublicContract(0x3cC143Cee587e329e07262702Bbb983E2cfa6C52);
+        contract_new=PublicContract(0xdf6Eb05014eD4fd3288300AFFF7A7d2961B34FD0);
         myContractAddress = address(this);
 
     }
@@ -121,7 +121,7 @@ function addTemporaryShareHolders(address payable shareHolder) public onlyOwner 
     }
 
 //get my shares 
-    function getMyShares() public view onlyOwner returns(string[] memory){
+    function getMyShares() public onlyOwner view returns(string[] memory){
         return shares;
     }
 
