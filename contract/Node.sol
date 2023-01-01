@@ -4,11 +4,17 @@ pragma solidity ^0.8.17;
 import "./PublicContract.sol";
 // contract of a node
 contract Node {
-    address public owner;
+
+    address public owner;  //Owner address
+
     string public userName; //my user name after registering
+
     address payable[] public requestedShareHolders; //temporary list of share holders
+
     address[] public  shareHolders; //My secret holders
+
     string[] public shares;    //Shares list belonging to the user 
+
     mapping(address => string) public shareHoldersMap; //My secret baring holders
 
     mapping(address => string) public sharesMap; //The secrets I'm holding
@@ -19,19 +25,22 @@ contract Node {
     
     address public myContractAddress; //mycontract address 
 
-    PublicContract contract_new; 
+    PublicContract contract_new; //Public contract obeject
 
-    constructor() { // ["(5,6)","(2,5)"]
+    string public myState;
+
+    constructor() { 
         owner = msg.sender;
         //Hard coded deployment of the public contract
-        contract_new=PublicContract(0x4BCbCcb7fE3a1Cbbf3C7569a47C801541Bb15ECd);
+        contract_new=PublicContract(0xd9145CCE52D386f254917e481eB44e9943F39138);
         myContractAddress = address(this);
+        myState="NODE_CREATED";
 
     }
-    struct AddHolderRequest{
-        address secretOwner;
-        address shareHolder;
-    }
+    // struct AddHolderRequest{
+    //     address secretOwner;
+    //     address shareHolder;
+    // }
 
     // msg.data (bytes): complete calldata
     // msg.gas (uint): remaining gas
@@ -39,7 +48,7 @@ contract Node {
     // msg.sig (bytes4): first four bytes of the calldata (i.e. function identifier)
     // msg.value (uint): number of wei sent with the message
 
-
+//modifiers 
     modifier onlyOwner() {
         require(msg.sender == owner, "Only owner has the privilege");
         _;
@@ -47,9 +56,9 @@ contract Node {
     modifier checkIsRegistered() {
 	require(isRegistered(), "Owner has to register to public contract");
 	_;
-}
+    }
 
-    //function to check the user is registered or not 
+//function to check the user is registered or not 
     function isRegistered()public view returns(bool){
        return  contract_new.isExists(userName);
     }
@@ -71,17 +80,18 @@ contract Node {
     return _requestsForMe;
     }
 
-
+//Accept the share holder invitation
     function acceptInvitation(address secretOwner) public onlyOwner  {
         contract_new.respondToBeShareHolder(owner,secretOwner,true);
     }
+//Reject the share holder invitation
     function rejectInvitation(address secretOwner) public onlyOwner {
        contract_new.respondToBeShareHolder(owner,secretOwner,true);
         
     }
 
-    //Take the secret form the secret owner and write the share in the shares map 
-    //( this is access though the public contract by the secret owner ) 
+//Take the secret form the secret owner and write the share in the shares map 
+//( this is access though the public contract by the secret owner ) 
 
     function takeTheSecretFromTheOwner(address ownerAddress,string memory sharedString) public{
         secretOwners.push(ownerAddress);
@@ -89,13 +99,13 @@ contract Node {
     }
 
 
-    //Check the requests from the requester to release the secret
+//Check the requests from the requester to release the secret
     function checkRequestsForShare()public onlyOwner view returns (address[] memory){
     address[] memory _shareRequests = contract_new.checkRequestsForTheSeceret(secretOwners);
     return _shareRequests;
     }
 
-    //release the secret to the requester
+//release the secret to the requester
     function releaseSecret(address secretOwnerAddress) public onlyOwner checkIsRegistered {
         string memory myShare =sharesMap[secretOwnerAddress];
         contract_new.releaseTheSecret(secretOwnerAddress,myShare);
@@ -107,13 +117,32 @@ contract Node {
     
 
 //!Secret owners role----------------------------------------------------------------------//
+//Check all the temporary holders have accepted 
+    function checkAcceptance()public onlyOwner returns(bool){
+        makeShareHoldersListToDistribute();
+        if(shareHolders.length>=requestedShareHolders.length){
+            return true;
+        }
+        return false;
+    }
 
-
+//Get my state
+    function getMyState()public onlyOwner returns(string memory){
+        //FUNCTION TO   check all the shareholders accepted 
+        //if(myState =="SHAREHOLDER_REQUESTED"){
+        if(keccak256(bytes(myState)) == keccak256(bytes("SHAREHOLDER_REQUESTED"))){
+            if(checkAcceptance()){
+                myState="SHAREHOLDER_ACCEPTED";
+                return myState;
+            }
+        }
+        return myState;
+    }
 //Addiing a share holder to a temporary list
-function addTemporaryShareHolders(address payable shareHolder) public onlyOwner checkIsRegistered {
-    requestedShareHolders.push(shareHolder);
-    
-}
+    function addTemporaryShareHolders(address payable shareHolder) public onlyOwner checkIsRegistered {
+        requestedShareHolders.push(shareHolder);
+        
+    }
 
 //add my shares to the contract 
     function addMyShares(string[] memory myShares)public onlyOwner{
@@ -154,6 +183,7 @@ function addTemporaryShareHolders(address payable shareHolder) public onlyOwner 
 
 //Make the be holder requests 
     function makingHolderRequests() public onlyOwner checkIsRegistered{
+        myState="SHAREHOLDER_REQUESTED";
         uint256 i = 0;
         for (i; i<requestedShareHolders.length; i++){
             address temporaryHolder= requestedShareHolders[i];
@@ -177,6 +207,7 @@ function addTemporaryShareHolders(address payable shareHolder) public onlyOwner 
 //Distribute the share function 
 //Need to improve this with validations 
     function distribute() public onlyOwner checkIsRegistered{
+        myState="SHARES_DISTRIBUTED";
         require(shares.length <= shareHolders.length, "Not enough share holders!!");
         if (shares.length <= shareHolders.length) {
             for (uint256 i = 0; i < shares.length; i++) {

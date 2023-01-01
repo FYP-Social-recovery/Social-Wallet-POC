@@ -51,6 +51,19 @@
 			},
 			{
 				"inputs": [],
+				"name": "checkAcceptance",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
 				"name": "checkRequestsForBeAHolder",
 				"outputs": [
 					{
@@ -93,6 +106,19 @@
 					}
 				],
 				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getMyState",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -143,6 +169,19 @@
 						"internalType": "address",
 						"name": "",
 						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "myState",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
 					}
 				],
 				"stateMutability": "view",
@@ -458,19 +497,19 @@
 	},
 	"sources": {
 		"contract/Node.sol": {
-			"keccak256": "0x19a9a7cd7d8da6d9379a326813a75109a32adacca4d81a6abd2dfc71ff2e959f",
+			"keccak256": "0x57aae5d5705033f51ca337035bdd048e90cab94211df15f4590cbe80acd21888",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://504381fb61efe9eddd224736a969d23cc7c5a74bda938ab0ece49d77e5bc97a4",
-				"dweb:/ipfs/QmdqMQo67sSeTH9Knz2qdR8vLCXrF7e2Xm3LzGYeo2uSF4"
+				"bzz-raw://0d8007a1cea3f1fb93265410670e2e1a239812a78926951736d5721af9edd219",
+				"dweb:/ipfs/QmXmJWxNeMGcEwo58bewcmQ6qSynvpfmXVM8uQnxnxiVdY"
 			]
 		},
 		"contract/PublicContract.sol": {
-			"keccak256": "0x2be399c2c2a792032118b4bb4f608d899a05425929c126e440a4319bfb029b67",
+			"keccak256": "0x08cb3980a3828f2d149306b42ec5590ecd7e2086a837ab64318b7667ef252053",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://3e8ac9fdc6b3323337c95d6142fc7cf03e4a6a7af9692ee0a709dae87be50f24",
-				"dweb:/ipfs/QmYSe75s9eGppqbVNbf1UjZ3jehQLmbhWJ6eZUgUmvsEVY"
+				"bzz-raw://25aa5401a0b28ae30893fc83a14d46e61f22fb9af583f7783b829b5fc35c28ae",
+				"dweb:/ipfs/QmR4cLKabNYjCnceH2X5x4oVeotBxKTJFgkN73wC6WAUC6"
 			]
 		}
 	},

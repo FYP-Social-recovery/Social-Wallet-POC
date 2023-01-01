@@ -43,11 +43,11 @@ contract PublicContract {
     //secret requesting list original owner's address and requester's address mapping
     ShareRequest[] public secretRequests;
 
-    //Released shares for holders
-    Share[] assignedSharesForHolders;
+    // //Released shares for holders
+    // Share[] assignedSharesForHolders;
 
-    //Released Shares for owners 
-    Share[] releasedSharesByHolders;
+    // //Released Shares for owners 
+    // Share[] releasedSharesByHolders;
 
     //accepted requests to bea share holder 
     //Request[] public acceptedBeShareHolderRequests;
