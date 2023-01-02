@@ -14,9 +14,10 @@ from flet import (
 
 
 class HomeScreen(UserControl):
-    def __init__(self, on_back_click):
+    def __init__(self, on_back_click, on_social_recovery_menu_click):
         super().__init__()
         self.on_back_click = on_back_click
+        self.on_social_recovery_menu_click = on_social_recovery_menu_click
 
     def build(self):
         return Column(
@@ -41,6 +42,6 @@ class HomeScreen(UserControl):
                     height=100,
                 ),
                 ElevatedButton("Social Recovery Menu", bgcolor="0xFFFFAB2E",
-                               color="0xFF986D34", width=300),
+                               color="0xFF986D34", width=300, on_click=self.on_social_recovery_menu_click),
             ],
         )

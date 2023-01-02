@@ -10,7 +10,7 @@ class NodeController:
 
     def __init__(self) -> None:
         self.NodeModel = NodeModel()
-        
+
     def deploy(self):
         self.NodeModel.deploy(self.__class__.publicKey,self.__class__.privateKey)
         return
