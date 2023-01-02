@@ -74,6 +74,10 @@ class NodeController:
     def getReceivedShares():
         shares =NodeModel.getReceivedShares(owner_addr=publicKey,private_addr=privateKey)
         return shares
+
+    def checkUserExists(userName):
+        val=NodeModel.checkUserNameExist(userName)
+        return val
 #deploy()
 #register("Bob")
 #checkRequestsForBeAHolder()

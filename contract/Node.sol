@@ -58,6 +58,11 @@ contract Node {
 	_;
     }
 
+//function to check the userName is already registered 
+    function isUserNameExist(string memory tempUserName)public view returns(bool){
+        return  contract_new.isExists(tempUserName);
+    }
+
 //function to check the user is registered or not 
     function isRegistered()public view returns(bool){
        return  contract_new.isExists(userName);

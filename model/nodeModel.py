@@ -104,7 +104,16 @@ class NodeModel:
         # p_key='a0809ede87de80864e3aaad330d8ae0129a454c9c16000003e1ddc80df960cf3'
         c = NodeModel.w3.eth.contract(address=contract_addr, abi=abi)
         return c
-
+#check the username is exists 
+    def checkUserNameExist(userName,owner_addr,private_addr):
+        c= NodeModel.connection(NodeModel.myABI,NodeModel.myContractAddress,owner_addr,private_addr)
+        print(owner_addr,"checking user name validity for ",NodeModel.myContractAddress)
+        nonce = NodeModel.w3.eth.getTransactionCount(owner_addr)
+        result = c.caller({"from": owner_addr, "gasPrice": NodeModel.w3.eth.gas_price, "nonce": nonce}).isUserNameExist(userName)
+        print("UserName  checked")
+        print("Value:", result)
+        return result
+#register to the public contract
     def registerToPublicContract(userName,owner_addr,private_addr):
         c= NodeModel.connection(NodeModel.myABI,NodeModel.myContractAddress,owner_addr,private_addr)
         print(owner_addr,"Registering for ",NodeModel.myContractAddress)

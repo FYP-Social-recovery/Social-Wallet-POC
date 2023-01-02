@@ -136,3 +136,8 @@ class KeyGenerationController:
         privatekey=KeyGenerationController.getPrivateKeyFromPath(bip32,"m/44'/60'/0'/0/0")
         publicKey=KeyGenerationController.getPublicKeyFromPath(bip32,"m/44'/60'/0'/0/0")
         return privatekey,publicKey
+    
+    def generateMnemonicForNewAccount():
+        entropy=KeyGenerationController.generateEntropy()
+        mnemonic=KeyGenerationController.generateMnemonic(entropy)
+        return mnemonic
