@@ -1,4 +1,5 @@
-# from Controller.distribution_controller import DistributionController
+from controller.keyGenerationController import KeyGenerationController
+
 
 from flet import (
     UserControl,
@@ -18,10 +19,13 @@ class MnemonicPhraseScreen(UserControl):
         super().__init__()
         self.on_back_click = on_back_click
         self.on_continue_click = on_continue_click
-        
+        mnemonic=KeyGenerationController.generateMnemonicForNewAccount()
+        privateKey,publicKey=KeyGenerationController.importWalletFromMnemonic(mnemonic)
+        print("privatekey: ",privateKey)
+        print("Public key: ",publicKey)
         # distribution_controller=DistributionController()
         # distribution_controller.sendShares(email.value)
-        self.mnemonic_phrase = "mnemonic phrase"
+        self.mnemonic_phrase = mnemonic
         
     def continue_click(self,e):
         self.on_continue_click(self)
