@@ -76,7 +76,7 @@ class NodeController:
         return shares
 
     def checkUserExists(userName):
-        val=NodeModel.checkUserNameExist(userName)
+        val=NodeModel.checkUserNameExist(userName=userName,owner_addr=publicKey,private_addr=privateKey)
         return val
 #deploy()
 #register("Bob")
