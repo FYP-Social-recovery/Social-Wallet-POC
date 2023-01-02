@@ -1,4 +1,4 @@
-# from Controller.distribution_controller import DistributionController
+from controller.keyGenerationController import KeyGenerationController
 
 from flet import (
     UserControl,
@@ -24,8 +24,11 @@ class WalletImportScreen(UserControl):
     
     
     def continue_click(self,e):
+        privateKey,publicKey=KeyGenerationController.importWalletFromMnemonic(self.mnemonic_phrase.value)
         print(self.mnemonic_phrase.value)
-        
+        print("privatekey: ",privateKey)
+        print("Public key: ",publicKey)
+
         # distribution_controller=DistributionController()
         # distribution_controller.sendShares(email.value)
         
