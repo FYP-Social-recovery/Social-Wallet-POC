@@ -12,9 +12,10 @@ from flet import (
 )
 
 class MnemonicPhraseScreen(UserControl):
-    def __init__(self, on_back_click):
+    def __init__(self, on_back_click, on_continue_click):
         super().__init__()
         self.on_back_click = on_back_click
+        self.on_continue_click = on_continue_click
         
     def build(self):
         return Column(
@@ -34,6 +35,6 @@ class MnemonicPhraseScreen(UserControl):
                     Container(
                         height=100,
                     ),
-                    ElevatedButton("Continue",bgcolor="0xFFFFAB2E", color="0xFF986D34", width=300),  
+                    ElevatedButton("Continue",bgcolor="0xFFFFAB2E", color="0xFF986D34",on_click=self.on_continue_click , width=300),  
                 ],
             )

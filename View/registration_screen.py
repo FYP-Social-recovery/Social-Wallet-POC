@@ -14,9 +14,10 @@ from flet import (
 
 
 class RegistrationScreen(UserControl):
-    def __init__(self, on_back_click):
+    def __init__(self, on_back_click, on_submit_click):
         super().__init__()
         self.on_back_click = on_back_click
+        self.on_submit_click = on_submit_click
 
     def build(self):
         return Column(
@@ -42,6 +43,6 @@ class RegistrationScreen(UserControl):
                     height=100,
                 ),
                 ElevatedButton("Submit", bgcolor="0xFFFFAB2E",
-                               color="0xFF986D34", width=300),
+                               color="0xFF986D34",on_click=self.on_submit_click, width=300),
             ],
         )

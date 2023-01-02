@@ -10,9 +10,10 @@ from flet import (
 )
 
 class OnboardingScreen(UserControl):
-    def __init__(self, on_new_wallet_click):
+    def __init__(self, on_new_wallet_click, on_import_wallet_click):
         super().__init__()
         self.on_new_wallet_click = on_new_wallet_click
+        self.on_import_wallet_click = on_import_wallet_click
         
     def build(self):
         return Column(
@@ -23,6 +24,6 @@ class OnboardingScreen(UserControl):
                     height=100,
                 ),
                 ElevatedButton("New Wallet",bgcolor="0xFFFFAB2E", color="0xFF986D34", width=300, on_click=self.on_new_wallet_click), 
-                ElevatedButton("Import Wallet",bgcolor="0xFFFFAB2E", color="0xFF986D34", width=300),
+                ElevatedButton("Import Wallet",bgcolor="0xFFFFAB2E", color="0xFF986D34", width=300, on_click=self.on_import_wallet_click),
             ],
         )
