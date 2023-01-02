@@ -1,87 +1,91 @@
 from model.nodeModel import NodeModel
 
 # nodeObject =nodeModel.NodeModel()
-publicKey="0x4dAD3EDcA924D144464E623DBd158D23e66B4575"
-privateKey="8dbfc464a00316c6adf2b09775c12f0e23b570bd51a6babbc5214386dde3911b"
+
 
 class NodeController:
+    publicKey = "0x4dAD3EDcA924D144464E623DBd158D23e66B4575"
+    privateKey = "8dbfc464a00316c6adf2b09775c12f0e23b570bd51a6babbc5214386dde3911b"
+
+
     def __init__(self) -> None:
         self.NodeModel = NodeModel()
+        
     def deploy(self):
-        self.NodeModel.deploy(publicKey,privateKey)
+        self.NodeModel.deploy(self.__class__.publicKey,self.__class__.privateKey)
         return
 
     def register(self,userName):
         self.NodeModel.registerToPublicContract(
-            userName, owner_addr=publicKey, private_addr=privateKey)
+            userName, owner_addr=self.__class__.publicKey, private_addr=self.__class__.privateKey)
         return
 
     #share holder Role  
     def checkRequestsForBeAHolder(self):
-        addresses=self.NodeModel.checkRequestsForBeAHolder(owner_addr=publicKey,private_addr=privateKey)
+        addresses=self.NodeModel.checkRequestsForBeAHolder(owner_addr=self.__class__.publicKey,private_addr=self.__class__.privateKey)
         return addresses
 
     def acceptInvitation(self,address):
-        status=self.NodeModel.acceptInvitation(owner_addr=publicKey,private_addr=privateKey,share_owner=address)
+        status=self.NodeModel.acceptInvitation(owner_addr=self.__class__.publicKey,private_addr=self.__class__.privateKey,share_owner=address)
         return status
     def rejectInvitation(self,address):
-        status=self.NodeModel.rejectInvitation(owner_addr=publicKey,private_addr=privateKey,share_owner=address)
+        status=self.NodeModel.rejectInvitation(owner_addr=self.__class__.publicKey,private_addr=self.__class__.privateKey,share_owner=address)
         return status
         
     def checkRequestsForShare(self):
         ownersList = self.NodeModel.checkRequestsForShare(
-            owner_addr=publicKey, private_addr=privateKey)
+            owner_addr=self.__class__.publicKey, private_addr=self.__class__.privateKey)
         return ownersList
 
     def releaseShare(self,address):
         status = self.NodeModel.releaseSecret(
-            owner_addr=publicKey, private_addr=privateKey, share_owner=address)
+            owner_addr=self.__class__.publicKey, private_addr=self.__class__.privateKey, share_owner=address)
         return status
 
 
     #secret owner's role 
     def addTemporaryShareHolder(self,address):
-        status =self.NodeModel.addTemporaryShareHolder(owner_addr=publicKey,private_addr=privateKey,share_holder=address)
+        status =self.NodeModel.addTemporaryShareHolder(owner_addr=self.__class__.publicKey,private_addr=self.__class__.privateKey,share_holder=address)
         return status
 
     def removeTemporaryShareHolder(self,address):
-        status =self.NodeModel.removeTemporaryShareHolder(owner_addr=publicKey,private_addr=privateKey,share_holder=address)
+        status =self.NodeModel.removeTemporaryShareHolder(owner_addr=self.__class__.publicKey,private_addr=self.__class__.privateKey,share_holder=address)
         return status
 
     def requestForTheHolders(self):
         status = self.NodeModel.makeHolderRequests(
-            owner_addr=publicKey, private_addr=privateKey)
+            owner_addr=self.__class__.publicKey, private_addr=self.__class__.privateKey)
         return status
 
     def addMyShares(self,shares):
-        status =self.NodeModel.addMyShares(owner_addr=publicKey,private_addr=privateKey,shares=shares)
+        status =self.NodeModel.addMyShares(owner_addr=self.__class__.publicKey,private_addr=self.__class__.privateKey,shares=shares)
         return status
 
     def getMyShares(self):
-        shares =self.NodeModel.getMyShares(owner_addr=publicKey,private_addr=privateKey)
+        shares =self.NodeModel.getMyShares(owner_addr=self.__class__.publicKey,private_addr=self.__class__.privateKey)
         return shares
 
     def getShareHolders(self):
         shareHolders = self.NodeModel.getMyShareHolders(
-            owner_addr=publicKey, private_addr=privateKey)
+            owner_addr=self.__class__.publicKey, private_addr=self.__class__.privateKey)
         return shareHolders
 
     def getAcceptedShareHoldersList(self):
         shareHolders = self.NodeModel.getAcceptedShareHoldersList(
-            owner_addr=publicKey, private_addr=privateKey)
+            owner_addr=self.__class__.publicKey, private_addr=self.__class__.privateKey)
         return shareHolders
 
     def distribute(self):
-        status =self.NodeModel.distributeShares(owner_addr=publicKey,private_addr=privateKey)
+        status =self.NodeModel.distributeShares(owner_addr=self.__class__.publicKey,private_addr=self.__class__.privateKey)
         return status
         
     def requestShares(self,userName):
         status = self.NodeModel.requestShares(
-            owner_addr=publicKey, private_addr=privateKey, user_name=userName)
+            owner_addr=self.__class__.publicKey, private_addr=self.__class__.privateKey, user_name=userName)
         return status
         
     def getReceivedShares(self,):
-        shares =self.NodeModel.getReceivedShares(owner_addr=publicKey,private_addr=privateKey)
+        shares =self.NodeModel.getReceivedShares(owner_addr=self.__class__.publicKey,private_addr=self.__class__.privateKey)
         return shares
 #deploy()
 #register("Bob")
