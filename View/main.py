@@ -16,7 +16,11 @@ from registration_screen import RegistrationScreen
 from home_screen import HomeScreen
 from wallet_import_screen import WalletImportScreen
 
+import state
+
 def main(page: Page):
+    state.init()
+    
     page.title = "Phoenix Wallet"
     page.horizontal_alignment = "center"
     page.vertical_alignment = "center"
@@ -37,7 +41,7 @@ def main(page: Page):
     
     # MnemonicPhraseScreen "Continue" button click action
     def on_mnemonic_continue_click(self):
-        self.page.go("/registration")
+        self.page.go("/home")
     
     # WalletImportScreen "Continue" button click action
     def on_import_continue_click(self):

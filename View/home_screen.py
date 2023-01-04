@@ -12,11 +12,15 @@ from flet import (
     Container,
 )
 
+import state
 
 class HomeScreen(UserControl):
     def __init__(self, on_back_click):
         super().__init__()
         self.on_back_click = on_back_click
+        
+        print(state.PRIVATE_KEY)
+        print(state.PUBLIC_KEY)
 
     def build(self):
         return Column(
