@@ -1,12 +1,5 @@
 import bip39 
 import random
-from coincurve import PrivateKey
-from bip44 import Wallet
-from bip44.utils import get_eth_addr
-from bip32 import BIP32, HARDENED_INDEX
-from tkinter import *
-from tkinter import ttk
-import tkinter as tk
 from web3 import Web3
 import web3
 import binascii
