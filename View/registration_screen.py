@@ -13,6 +13,7 @@ from flet import (
     Container,
 )
 
+import state
 
 class RegistrationScreen(UserControl):
     def __init__(self, on_back_click, on_submit_click):
@@ -24,6 +25,9 @@ class RegistrationScreen(UserControl):
         userNameExistence=NodeController.checkUserExists(self.user_name.value)
         print("Is user Exists : ",userNameExistence)
         self.on_submit_click(self)
+        
+        # state.NODE_CONTRACT_ADDRESS = nodeContractAddress
+        # state.USERNAME = username
     
     def build(self):
         self.user_name = TextField(label="Enter a username", hint_text="Please enter a username here",color="0xFF000000",width=600)
