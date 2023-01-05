@@ -16,12 +16,13 @@ from flet import (
 
 
 class RecoveryHomeScreen(UserControl):
-    def __init__(self, on_back_click, on_add_shareholders_click, on_shareholders_status_click, on_distribute_shares_click):
+    def __init__(self, on_back_click, on_add_shareholders_click, on_shareholders_status_click, on_distribute_shares_click, on_registration_click):
         super().__init__()
         self.on_back_click = on_back_click
         self.on_add_shareholders_click = on_add_shareholders_click
         self.on_shareholders_status_click = on_shareholders_status_click
         self.on_distribute_shares_click = on_distribute_shares_click
+        self.on_registration_click = on_registration_click
 
     def build(self):
         return Column(
@@ -37,6 +38,10 @@ class RecoveryHomeScreen(UserControl):
                      size=24, color="0xFFA36D1D"),
                 Container(
                     height=20,
+                ),
+                ElevatedButton(text="registration", on_click=self.on_registration_click),
+                Container(
+                    height=10,
                 ),
                 ElevatedButton(text="Add Shareholders", on_click=self.on_add_shareholders_click),
                 Container(

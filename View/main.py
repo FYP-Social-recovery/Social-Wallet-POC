@@ -65,6 +65,10 @@ def main(page: Page):
     # HomeScreen "Social Recovery Menu" button click action 
     def on_menue_button_click(self):
         self.page.go("/recovery/home")
+    
+    # RecoveryHomeScreen "Registration" button click action 
+    def on_registration_click(self):
+        self.page.go("/recovery/home/registration")
         
     # RecoveryHomeScreen "Add Shareholders" button click action 
     def on_add_shareholders_click(self):
@@ -115,18 +119,6 @@ def main(page: Page):
                     horizontal_alignment=CrossAxisAlignment.CENTER,
                 )
             )
-        if page.route == "/registration":
-            page.views.append(
-                View(
-                    "/registration",
-                    [
-                        RegistrationScreen(on_back_click=lambda _: page.go("/"), on_submit_click=on_submit_click),
-                    ],
-                    bgcolor="0xFFFFF9F2",
-                    vertical_alignment=MainAxisAlignment.CENTER,
-                    horizontal_alignment=CrossAxisAlignment.CENTER,
-                )
-            )
         if page.route == "/home":
             page.views.append(
                 View(
@@ -156,7 +148,19 @@ def main(page: Page):
                 View(
                     "/recovery/home",
                     [
-                        RecoveryHomeScreen(on_back_click=lambda _: page.go("/home"), on_add_shareholders_click=on_add_shareholders_click, on_shareholders_status_click=on_shareholders_status_click, on_distribute_shares_click=on_distribute_shares_click)
+                        RecoveryHomeScreen(on_back_click=lambda _: page.go("/home"), on_registration_click=on_registration_click, on_add_shareholders_click=on_add_shareholders_click, on_shareholders_status_click=on_shareholders_status_click, on_distribute_shares_click=on_distribute_shares_click)
+                    ],
+                    bgcolor="0xFFFFF9F2",
+                    vertical_alignment=MainAxisAlignment.CENTER,
+                    horizontal_alignment=CrossAxisAlignment.CENTER,
+                )
+            )
+        if page.route == "/recovery/home/registration":
+            page.views.append(
+                View(
+                    "/recovery/home/registration",
+                    [
+                        RegistrationScreen(on_back_click=lambda _: page.go("/recovery/home"), on_submit_click=on_submit_click),
                     ],
                     bgcolor="0xFFFFF9F2",
                     vertical_alignment=MainAxisAlignment.CENTER,
