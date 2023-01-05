@@ -14,6 +14,7 @@ from flet import (
     Container,
 )
 
+import state
 
 class WalletImportScreen(UserControl):
     def __init__(self, on_back_click, on_continue_click):
@@ -31,6 +32,9 @@ class WalletImportScreen(UserControl):
 
         # distribution_controller=DistributionController()
         # distribution_controller.sendShares(email.value)
+        
+        state.PRIVATE_KEY = privateKey
+        state.PUBLIC_KEY = publicKey
         
         self.on_continue_click(self)
         
