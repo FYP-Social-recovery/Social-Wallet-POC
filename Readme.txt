@@ -4,7 +4,7 @@ Steps to run the application
 --------------------------------------
 
 Step 1 : Install external libraries
-pip3 install coincurve bip39 bip44 bip32 web3 py-solc-x
+pip3 install coincurve bip39 bip44 bip32 web3 py-solc-x pyperclip xclip
 
 Step 2 : Setup packages
 python setup.py clean install or python3 setup.py clean install

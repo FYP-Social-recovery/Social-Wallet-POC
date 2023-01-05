@@ -8,6 +8,8 @@ from flet import (
     colors,
     MainAxisAlignment,
     CrossAxisAlignment,
+    IconButton,
+    icons,
 )
 
 from onboarding_screen import OnboardingScreen
@@ -15,6 +17,7 @@ from mnemonic_phrase_screen import MnemonicPhraseScreen
 from registration_screen import RegistrationScreen
 from home_screen import HomeScreen
 from wallet_import_screen import WalletImportScreen
+from loading_screen import LoadingScreen
 
 import state
 
@@ -49,6 +52,10 @@ def main(page: Page):
        
     # RegistrationScreen "Submit" button click action 
     def on_submit_click(self):
+        self.page.go("/home")
+        
+    def on_click_reload(self):
+        # self.page.go("/home/loading")
         self.page.go("/home")
     
     def route_change(route):
@@ -105,7 +112,19 @@ def main(page: Page):
                 View(
                     "/home",
                     [
-                        HomeScreen(on_back_click=lambda _: page.go("/")),
+                        HomeScreen(on_back_click=lambda _: page.go("/"), on_click_reload=on_click_reload),
+                    ],
+                    bgcolor="0xFFFFF9F2",
+                    vertical_alignment=MainAxisAlignment.CENTER,
+                    horizontal_alignment=CrossAxisAlignment.CENTER,
+                )
+            )
+        if page.route == "/home/loading":
+            page.views.append(
+                View(
+                    "/home/loading",
+                    [
+                        LoadingScreen(on_back_click=lambda _: page.go("/"))
                     ],
                     bgcolor="0xFFFFF9F2",
                     vertical_alignment=MainAxisAlignment.CENTER,
