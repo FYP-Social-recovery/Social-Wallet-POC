@@ -22,10 +22,11 @@ import pyperclip
 from web3 import Web3
 
 class HomeScreen(UserControl):
-    def __init__(self, on_back_click, on_click_reload):
+    def __init__(self, on_back_click, on_click_reload, on_menue_button_click):
         super().__init__()
         self.on_back_click = on_back_click
         self.on_click_reload = on_click_reload
+        self.on_menue_button_click = on_menue_button_click
         
         print(state.PRIVATE_KEY)
         print(state.PUBLIC_KEY)
@@ -112,6 +113,6 @@ class HomeScreen(UserControl):
                     height=100,
                 ),
                 ElevatedButton("Social Recovery Menu", bgcolor="0xFFFFAB2E",
-                               color="0xFF986D34", width=300),
+                               color="0xFF986D34",on_click=self.on_menue_button_click, width=300),
             ],
         )
