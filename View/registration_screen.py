@@ -20,6 +20,8 @@ class RegistrationScreen(UserControl):
         super().__init__()
         self.on_back_click = on_back_click
         self.on_submit_click = on_submit_click
+        contractAddress=NodeController.deploy()
+        print("Contract address is : ",contractAddress)
     
     def checkValidity(self,e):
         userNameExistence=NodeController.checkUserExists(self.user_name.value)
