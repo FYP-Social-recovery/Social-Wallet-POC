@@ -1,13 +1,13 @@
 from model.nodeModel import NodeModel
 
 # nodeObject =nodeModel.NodeModel()
-publicKey="0x4dAD3EDcA924D144464E623DBd158D23e66B4575"
-privateKey="8dbfc464a00316c6adf2b09775c12f0e23b570bd51a6babbc5214386dde3911b"
+publicKey="0x66585dDdD3424fe130115bc49b5a635D07aE8a52"
+privateKey="0x0a25a4569bf35238552a87d700a0a5967f350bae1564c855a3b5cfbea615dff8"
 
 class NodeController:
     def deploy():
-        NodeModel.deploy(publicKey,privateKey)
-        return
+        contractAddress=NodeModel.deploy(publicKey,privateKey)
+        return contractAddress
 
     def register(userName):
         NodeModel.registerToPublicContract(userName,owner_addr=publicKey,private_addr=privateKey)
@@ -78,7 +78,7 @@ class NodeController:
     def checkUserExists(userName):
         val=NodeModel.checkUserNameExist(userName=userName,owner_addr=publicKey,private_addr=privateKey)
         return val
-#deploy()
+NodeController.deploy()
 #register("Bob")
 #checkRequestsForBeAHolder()
 #addTemporaryShareHolder("0x09D962CA1caAf625964FB88aEAb0C3657e985d67")

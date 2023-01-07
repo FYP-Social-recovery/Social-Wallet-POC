@@ -148,6 +148,25 @@
 				"type": "function"
 			},
 			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "tempUserName",
+						"type": "string"
+					}
+				],
+				"name": "isUserNameExist",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [],
 				"name": "makeShareHoldersListToDistribute",
 				"outputs": [],
@@ -497,11 +516,11 @@
 	},
 	"sources": {
 		"contract/Node.sol": {
-			"keccak256": "0x57aae5d5705033f51ca337035bdd048e90cab94211df15f4590cbe80acd21888",
+			"keccak256": "0x37d1996999692ea7b8c63b571cbd742fd3585f910769db856700861468d536cf",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://0d8007a1cea3f1fb93265410670e2e1a239812a78926951736d5721af9edd219",
-				"dweb:/ipfs/QmXmJWxNeMGcEwo58bewcmQ6qSynvpfmXVM8uQnxnxiVdY"
+				"bzz-raw://8f460fdbc9da7b4c4befac940f56a798a5a5206d9d5a89794c52eb556688fd72",
+				"dweb:/ipfs/QmXUEmPgmvETLCJPnqopHRpeNUBYmdJkiEdntTpvWcA7tV"
 			]
 		},
 		"contract/PublicContract.sol": {
