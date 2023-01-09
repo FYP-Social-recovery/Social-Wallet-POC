@@ -26,7 +26,7 @@ class RegistrationScreen(UserControl):
     def checkValidity(self,e):
         userNameExistence=NodeController.checkUserExists(self.user_name.value)
         print("Is user Exists : ",userNameExistence)
-        self.on_submit_click(self)
+        #self.on_submit_click(self)
         
         # state.NODE_CONTRACT_ADDRESS = nodeContractAddress
         # state.USERNAME = username

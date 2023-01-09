@@ -1,8 +1,8 @@
 from model.nodeModel import NodeModel
 
 # nodeObject =nodeModel.NodeModel()
-publicKey="0x66585dDdD3424fe130115bc49b5a635D07aE8a52"
-privateKey="0x0a25a4569bf35238552a87d700a0a5967f350bae1564c855a3b5cfbea615dff8"
+publicKey="0x20543FD8D854d500121215Abc542531987f6bc2e"
+privateKey="58d0efedba9a8a61b2ac3f188dd079782e07aed904cdbc0e3340e073e85c7655"
 
 class NodeController:
     def deploy():
@@ -79,7 +79,8 @@ class NodeController:
         val=NodeModel.checkUserNameExist(userName=userName,owner_addr=publicKey,private_addr=privateKey)
         return val
 NodeController.deploy()
-#register("Bob")
+#NodeController.checkUserExists("Alice")
+#NodeController.register("Bob")
 #checkRequestsForBeAHolder()
 #addTemporaryShareHolder("0x09D962CA1caAf625964FB88aEAb0C3657e985d67")
 #removeTemporaryShareHolder("0x1F8558989122D1ecF159Ab5855dBEAe88345360f")
