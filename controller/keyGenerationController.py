@@ -50,7 +50,7 @@ class KeyGenerationController:
 
         temp=KeyGenerationController.byte_to_hex(account.privateKey)
         temp2=str(temp).split("'")
-        privateKey="0x"+temp2[1]
+        privateKey=temp2[1]
         publicKey=account.address
         print("Private Key ",privateKey)
         print("Address ",publicKey)
