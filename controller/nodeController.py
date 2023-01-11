@@ -1,8 +1,8 @@
 from model.nodeModel import NodeModel
 
 # nodeObject =nodeModel.NodeModel()
-publicKey="0x305eC56922EDcF716F12C7a5c5961147933C0c41"
-privateKey="2e4d7319aad09af344608bde9dee0aa5a8243f847dc004545927a3488c0f8338"
+publicKey="0x20543FD8D854d500121215Abc542531987f6bc2e"
+privateKey="58d0efedba9a8a61b2ac3f188dd079782e07aed904cdbc0e3340e073e85c7655"
 
 class NodeController:
     def deploy():
@@ -84,10 +84,10 @@ class NodeController:
 #NodeController.checkRequestsForBeAHolder()
 #NodeController.addTemporaryShareHolder("0x09D962CA1caAf625964FB88aEAb0C3657e985d67")
 #removeTemporaryShareHolder("0x1F8558989122D1ecF159Ab5855dBEAe88345360f")
-#addMyShares(["share1","share2","share3"])
-#getMyShares()
-#getShareHolders()
-#getAcceptedShareHoldersList()
+#NodeController.addMyShares(["share1","share2","share3"])
+#NodeController.getMyShares()
+#NodeController.getShareHolders()
+NodeController.getAcceptedShareHoldersList()
 #distribute()
 #requestShares("Bob")
 #getReceivedShares()
