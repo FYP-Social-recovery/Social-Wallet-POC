@@ -87,7 +87,7 @@ class NodeController:
 #NodeController.addMyShares(["share1","share2","share3"])
 #NodeController.getMyShares()
 #NodeController.getShareHolders()
-NodeController.getAcceptedShareHoldersList()
+#NodeController.getAcceptedShareHoldersList()
 #distribute()
 #requestShares("Bob")
 #getReceivedShares()

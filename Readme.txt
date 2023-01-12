@@ -9,6 +9,9 @@ pip3 install coincurve bip39 bip44 bip32 web3 py-solc-x pyperclip xclip
 Step 2 : Setup packages
 python setup.py clean install or python3 setup.py clean install
 
+Step 3 : compile the solidity contracts 
+
+
 Step 3 : Run flutter-python desktop app
 Go to view folder : cd View/
 Run main file :  flet main.py -d

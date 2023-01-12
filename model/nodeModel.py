@@ -1,7 +1,7 @@
 #imports 
 from web3 import Web3
 from solcx import compile_standard, install_solc
-
+import json 
 #c = w3.eth.contract(address=myContractAddress, abi=myABI)
 # publicContractAddress=""
 class NodeModel:
@@ -19,39 +19,10 @@ class NodeModel:
     def deployPublicContract():
         publicContractPrivateAddress="58d0efedba9a8a61b2ac3f188dd079782e07aed904cdbc0e3340e073e85c7655"
         publicContractPublicAddress="0x20543FD8D854d500121215Abc542531987f6bc2e"
-        # location for the contracts 
-        with open(r"F:\Sadaru Kavisha\Semester 7\Fyp\Final Project\Social-Wallet-POC\contract\Node.sol","r") as file:
-            node_file = file.read()
 
-        with open(r"F:\Sadaru Kavisha\Semester 7\Fyp\Final Project\Social-Wallet-POC\contract\PublicContract.sol","r") as file:
-            public_contract_file = file.read()
-
-        import json  # to save the output in a JSON file
-        install_solc("0.8.0")
-
-        compiled_sol = compile_standard(
-            {
-                "language": "Solidity",
-                "sources": {
-                    "Node.sol": {"content": node_file},
-                    "PublicContract.sol":{"content":public_contract_file}
-                },
-                "settings": {
-                    "outputSelection": {
-                        "*": {
-                            # output needed to interact with and deploy contract
-                            "*": ["abi", "metadata", "evm.bytecode", "evm.bytecode.sourceMap"]
-                        }
-                    }
-                },
-            },
-            solc_version="0.8.17",
-        )
-        # print(compiled_sol)     #compiled solidity file 
-        with open("compiled_code.json", "w") as file:
-            json.dump(compiled_sol, file)
-
-
+        with open(r"contract/compiled_code.json","r") as file:
+            compiled_sol = json.loads(file.read())
+           
         # get bytecode
         bytecode = compiled_sol["contracts"]["PublicContract.sol"]["PublicContract"]["evm"]["bytecode"]["object"]
         # get abi
@@ -97,38 +68,9 @@ class NodeModel:
     def deploy(publicAddress,privateAddress):
         NodeModel.myPrivateAddress=privateAddress
         NodeModel.myPublicAddress=publicAddress
-        # location for the contracts 
-        with open(r"F:\Sadaru Kavisha\Semester 7\Fyp\Final Project\Social-Wallet-POC\contract\Node.sol","r") as file:
-            node_file = file.read()
 
-        with open(r"F:\Sadaru Kavisha\Semester 7\Fyp\Final Project\Social-Wallet-POC\contract\PublicContract.sol","r") as file:
-            public_contract_file = file.read()
-
-        import json  # to save the output in a JSON file
-        install_solc("0.8.0")
-
-        compiled_sol = compile_standard(
-            {
-                "language": "Solidity",
-                "sources": {
-                    "Node.sol": {"content": node_file},
-                    "PublicContract.sol":{"content":public_contract_file}
-                },
-                "settings": {
-                    "outputSelection": {
-                        "*": {
-                            # output needed to interact with and deploy contract
-                            "*": ["abi", "metadata", "evm.bytecode", "evm.bytecode.sourceMap"]
-                        }
-                    }
-                },
-            },
-            solc_version="0.8.17",
-        )
-        # print(compiled_sol)     #compiled solidity file 
-        with open("compiled_code.json", "w") as file:
-            json.dump(compiled_sol, file)
-
+        with open(r"../contract/compiled_code.json","r") as file:
+            compiled_sol = json.loads(file.read())
 
         # get bytecode
         bytecode = compiled_sol["contracts"]["Node.sol"]["Node"]["evm"]["bytecode"]["object"]
@@ -453,4 +395,4 @@ class NodeModel:
         print("Shares List:", sharesList)
         return sharesList
 
-#NodeModel.deployPublicContract()
+NodeModel.deployPublicContract()
