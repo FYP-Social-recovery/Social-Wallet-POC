@@ -30,8 +30,10 @@ class WalletImportScreen(UserControl):
         print("privatekey: ",privateKey)
         print("Public key: ",publicKey)
 
-        # distribution_controller=DistributionController()
-        # distribution_controller.sendShares(email.value)
+        # TODO
+        # If there is a user node registerd for the public key set state variables for that
+        # state.NODE_CONTRACT_ADDRESS = contractAddress
+        # state.USERNAME = self.user_name.value 
         
         state.PRIVATE_KEY = privateKey
         state.PUBLIC_KEY = publicKey

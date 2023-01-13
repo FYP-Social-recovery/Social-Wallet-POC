@@ -14,6 +14,7 @@ from flet import (
     Container,
 )
 
+import state
 
 class RecoveryHomeScreen(UserControl):
     def __init__(self, on_back_click, on_add_shareholders_click, on_shareholders_status_click, on_distribute_shares_click, on_registration_click):
@@ -23,6 +24,9 @@ class RecoveryHomeScreen(UserControl):
         self.on_shareholders_status_click = on_shareholders_status_click
         self.on_distribute_shares_click = on_distribute_shares_click
         self.on_registration_click = on_registration_click
+        
+        print("Contract address is : ", state.NODE_CONTRACT_ADDRESS)
+        print("Contract address is : ", state.USERNAME)
 
     def build(self):
         return Column(

@@ -395,4 +395,4 @@ class NodeModel:
         print("Shares List:", sharesList)
         return sharesList
 
-NodeModel.deployPublicContract()
+# NodeModel.deployPublicContract()

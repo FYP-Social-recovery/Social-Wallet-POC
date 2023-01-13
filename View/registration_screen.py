@@ -20,16 +20,28 @@ class RegistrationScreen(UserControl):
         super().__init__()
         self.on_back_click = on_back_click
         self.on_submit_click = on_submit_click
-        contractAddress=NodeController.deploy()
-        print("Contract address is : ",contractAddress)
-    
+
     def checkValidity(self,e):
         userNameExistence=NodeController.checkUserExists(self.user_name.value)
         print("Is user Exists : ",userNameExistence)
-        #self.on_submit_click(self)
+    
+    def checkValidity_fn(self, e):
+        userNameExistence= False #NodeController.checkUserExists(self.user_name.value)
+        print("Is user Exists : ",userNameExistence)
         
-        # state.NODE_CONTRACT_ADDRESS = nodeContractAddress
-        # state.USERNAME = username
+        return userNameExistence
+        
+    def on_submit_click_fn(self,e):
+        userNameExistence= NodeController.checkUserExists(self.user_name.value)
+        print("Is user Exists : ",userNameExistence)
+        if(not userNameExistence):
+            print(state.PRIVATE_KEY)
+            contractAddress=NodeController.deploy(state.PUBLIC_KEY, state.PRIVATE_KEY)
+            print("Contract address is : ",contractAddress)
+            state.NODE_CONTRACT_ADDRESS = contractAddress
+            state.USERNAME = self.user_name.value
+        
+            self.on_submit_click(self)
     
     def build(self):
         self.user_name = TextField(label="Enter a username", hint_text="Please enter a username here",color="0xFF000000",width=600)
@@ -56,6 +68,6 @@ class RegistrationScreen(UserControl):
                     height=100,
                 ),
                 ElevatedButton("Submit", bgcolor="0xFFFFAB2E",
-                               color="0xFF986D34",on_click=self.on_submit_click, width=300),
+                               color="0xFF986D34",on_click=self.on_submit_click_fn, width=300),
             ],
         )
