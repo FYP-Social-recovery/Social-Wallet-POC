@@ -12,6 +12,8 @@ from flet import (
     icons,
     CrossAxisAlignment,
     Container,
+    Row,
+    MainAxisAlignment,
 )
 
 
@@ -19,6 +21,36 @@ class ShareholderStatusScreen(UserControl):
     def __init__(self, on_back_click):
         super().__init__()
         self.on_back_click = on_back_click
+        
+        PENDING = "Pending"
+        ACCEPTED = "Accepted"
+        REJECTED = "Rejected"
+        
+        # TODO
+        # Load shareholder list for the user
+        self.shareholders = ["0x1", "0x2", "0x3", "0x4", "0x5"]
+        # Get status of each shareholder and display
+        self.status = [PENDING, ACCEPTED, REJECTED, PENDING, REJECTED]
+        
+        self.TextArray=[]
+        for i in range(5):
+            if(self.status[i]==PENDING):
+                color = "0xFFD9BE38"
+            elif(self.status[i]==ACCEPTED):
+                color = "0xFF33A64C"
+            elif(self.status[i]==REJECTED):
+                color = "0xFFA62E2E"
+
+            textRow=Row(
+                        vertical_alignment= CrossAxisAlignment.CENTER,
+                        alignment = MainAxisAlignment.CENTER,
+                        controls=[
+                                Text(value=self.shareholders[i], text_align="center", size=24, color="0xFF000000"),
+                                ElevatedButton(text=self.status[i], bgcolor=color, color="0xFFFFFFFF", elevation=0,),
+                            ],
+                    )
+
+            self.TextArray.append(textRow)
 
     def build(self):
         return Column(
@@ -30,37 +62,32 @@ class ShareholderStatusScreen(UserControl):
                     on_click=self.on_back_click,
                     icon_size=30,
                 ),
-                Text(value="Shareholder Status", text_align="center",
-                     size=24, color="0xFFA36D1D"),
+                Text(value="Shareholder Status", text_align="center", size=24, color="0xFFA36D1D"),
                 Container(
                     height=20,
                 ),
-                TextField(label="Share Holder 1",
-                          hint_text="Please enter an address", color="0xFF000000", width=600),
+                self.TextArray[0],
                 Container(
                     height=10,
                 ),
-                TextField(label="Share Holder 2",
-                          hint_text="Please enter an address", color="0xFF000000", width=600),
+                self.TextArray[1],
                 Container(
                     height=10,
                 ),
-                TextField(label="Share Holder 3",
-                          hint_text="Please enter an address", color="0xFF000000", width=600),
+                self.TextArray[2],
                 Container(
                     height=10,
                 ),
-                TextField(label="Share Holder 4",
-                          hint_text="Please enter an address", color="0xFF000000", width=600),
+                self.TextArray[3],
                 Container(
                     height=10,
                 ),
-                TextField(label="Share Holder 5",
-                          hint_text="Please enter an address", color="0xFF000000", width=600),
-                Container(
-                    height=10,
-                ),
-                ElevatedButton("Request", bgcolor="0xFFFFAB2E",
-                               color="0xFF986D34", width=300),
+                self.TextArray[4],
+                # Container(
+                #     height=10,
+                # ),
+                # ElevatedButton("Request", bgcolor="0xFFFFAB2E",
+                #                color="0xFF986D34", width=300,),
+                
             ],
         )

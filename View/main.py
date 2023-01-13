@@ -160,7 +160,7 @@ def main(page: Page):
                 View(
                     "/recovery/home/registration",
                     [
-                        RegistrationScreen(on_back_click=lambda _: page.go("/recovery/home"), on_submit_click=on_submit_click),
+                        RegistrationScreen(on_back_click=lambda _: page.go("/recovery/home"), on_submit_click=on_submit_click, page=page),
                     ],
                     bgcolor="0xFFFFF9F2",
                     vertical_alignment=MainAxisAlignment.CENTER,
@@ -172,7 +172,7 @@ def main(page: Page):
                 View(
                     "/recovery/home/addShareholders",
                     [
-                        AddShareholderScreen(on_back_click=lambda _: page.go("/recovery/home"))
+                        AddShareholderScreen(on_back_click=lambda _: page.go("/recovery/home"), on_request_click=on_submit_click)
                     ],
                     bgcolor="0xFFFFF9F2",
                     vertical_alignment=MainAxisAlignment.CENTER,
@@ -184,7 +184,7 @@ def main(page: Page):
                 View(
                     "/recovery/home/shareholderStatus",
                     [
-                        ShareholderStatusScreen(on_back_click=lambda _: page.go("/recovery/home"),)
+                        ShareholderStatusScreen(on_back_click=lambda _: page.go("/recovery/home"))
                     ],
                     bgcolor="0xFFFFF9F2",
                     vertical_alignment=MainAxisAlignment.CENTER,

@@ -17,15 +17,16 @@ from controller.nodeController import NodeController
 
 
 class AddShareholderScreen(UserControl):
-    def __init__(self, on_back_click):
+    def __init__(self, on_back_click, on_request_click):
         super().__init__()
         self.on_back_click = on_back_click
+        self.on_request_click = on_request_click
 
     def request_click(self, e):
         nodeController=NodeController()
         for i in range(5):
             nodeController.addTemporaryShareHolder(self.__class__.TextFieldArray[i].value)
-        #self.on_request_click(self)
+        self.on_request_click(self)
 
     TextFieldArray=[]
     for i in range(5):
