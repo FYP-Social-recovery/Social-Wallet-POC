@@ -5,8 +5,8 @@ publicKey="0x20543FD8D854d500121215Abc542531987f6bc2e"
 privateKey="58d0efedba9a8a61b2ac3f188dd079782e07aed904cdbc0e3340e073e85c7655"
 
 class NodeController:
-    def deploy(publicKey, privateKey):
-        contractAddress=NodeModel.deploy(publicKey,privateKey)
+    def deploy():
+        contractAddress=NodeModel.deploy(publicAddress=publicKey,privateAddress=privateKey)
         return contractAddress
 
     def register(userName):
@@ -43,7 +43,7 @@ class NodeController:
         status =NodeModel.removeTemporaryShareHolder(owner_addr=publicKey,private_addr=privateKey,share_holder=address)
         return status
 
-    def requestForTheHolders():
+    def makeHolderRequests():
         status =NodeModel.makeHolderRequests(owner_addr=publicKey,private_addr=privateKey)
         return status
 
@@ -58,8 +58,12 @@ class NodeController:
         shareHolders =NodeModel.getMyShareHolders(owner_addr=publicKey,private_addr=privateKey)
         return shareHolders
 
-    def getAcceptedShareHoldersList():
-        shareHolders =NodeModel.getAcceptedShareHoldersList(owner_addr=publicKey,private_addr=privateKey)
+    def getRequestedShareHolders():
+        shareHolders =NodeModel.getRequestedShareHolders(owner_addr=publicKey,private_addr=privateKey)
+        return shareHolders
+    
+    def getRejectedShareHolders():
+        shareHolders =NodeModel.getRejectedShareHolders(owner_addr=publicKey,private_addr=privateKey)
         return shareHolders
 
     def distribute():
@@ -78,11 +82,27 @@ class NodeController:
     def checkUserExists(userName):
         val=NodeModel.checkUserNameExist(userName=userName,owner_addr=publicKey,private_addr=privateKey)
         return val
+    
+    def getHolderStatus():
+        #NodeModel.refreshShareHoldersLists(owner_addr=publicKey,private_addr=privateKey)
+        temporaryHolders=NodeController.getRequestedShareHolders()
+        acceptedHolders=NodeController.getShareHolders()
+        rejectedHolders=NodeController.getRejectedShareHolders()
+        holderLi=[]
+        for holder in temporaryHolders:
+            if (holder in acceptedHolders):
+                holderLi.append([holder,"ACCEPTED"])
+            elif(holder in rejectedHolders):
+                holderLi.append([holder,"REJECTED"])
+            else:
+                holderLi.append([holder,"PENDING"])
+        print(holderLi)
+        return holderLi
 #NodeController.deploy()
 #NodeController.checkUserExists("Alice")
 #NodeController.register("Alice")
 #NodeController.checkRequestsForBeAHolder()
-#NodeController.addTemporaryShareHolder("0x09D962CA1caAf625964FB88aEAb0C3657e985d67")
+#NodeController.addTemporaryShareHolder("0x617F2E2fD72FD9D5503197092aC168c91465E7f2")
 #removeTemporaryShareHolder("0x1F8558989122D1ecF159Ab5855dBEAe88345360f")
 #NodeController.addMyShares(["share1","share2","share3"])
 #NodeController.getMyShares()
@@ -93,3 +113,5 @@ class NodeController:
 #getReceivedShares()
 #checkRequestsForBeAHolder()
 #acceptInvitation("0x305eC56922EDcF716F12C7a5c5961147933C0c41")
+#NodeController.getHolderStatus()
+#NodeController.makeHolderRequests()

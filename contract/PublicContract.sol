@@ -236,6 +236,36 @@ contract PublicContract {
         }
      return _shareHolderAddresses;
     }
+    //get the count of the accepted holders list 
+    function getSecretHolderAddressesCountInRejectedHoldersList(address ownerAddress)public view returns(uint256) {
+        uint256  count = 0;
+        uint256 i = 0;
+        for (i; i<rejectedShareHolderRequests.length; i++){
+            Request memory request= rejectedShareHolderRequests[i];
+            if (request.secretOwner==ownerAddress){
+                count = count + 1;
+            }
+
+        }
+        return count;
+    }
+    //get the be holder request rejected holders list 
+    function getRequestRejectedHoldersList(address secretOwner)public view returns(address[] memory) {
+        uint256 tot = getSecretHolderAddressesCountInRejectedHoldersList(secretOwner); // write a method named getSecretOwnerAddressesCount() to get secretOwnerAddresses count
+        uint256 count = 0;
+        address[] memory _shareHolderAddresses = new address[](tot);
+        
+
+        for (uint256 i = 0; i<rejectedShareHolderRequests.length; i++){
+            Request memory request= rejectedShareHolderRequests[i];
+            if (request.secretOwner==secretOwner){
+                _shareHolderAddresses[count] = request.shareHolder;
+                count = count + 1;
+            }
+
+        }
+     return _shareHolderAddresses;
+    }
 
 // Make shares accessible to the share holders 
     function makeSharesAccessibleToTheHolders(address secretOwner,address holder,string memory sharedString) public{

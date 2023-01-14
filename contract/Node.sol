@@ -9,9 +9,11 @@ contract Node {
 
     string public userName; //my user name after registering
 
-    address payable[] public requestedShareHolders; //temporary list of share holders
+    address[] public requestedShareHolders; //temporary list of share holders
 
-    address[] public  shareHolders; //My secret holders
+    address[] public  shareHolders; //My secret holders who accepted the invitation
+
+    address[]public rejectedShareHolders;  //the holders who rejected the invitation
 
     string[] public shares;    //Shares list belonging to the user 
 
@@ -32,7 +34,7 @@ contract Node {
     constructor() { 
         owner = msg.sender;
         //Hard coded deployment of the public contract
-        contract_new=PublicContract(0x71404eaFfCFCb4678e79479c1Da26608623b963e);
+        contract_new=PublicContract(0x4D1B2AD715789b0f36D77cC736352b16BD326a10);
         myContractAddress = address(this);
         myState="NODE_CREATED";
 
@@ -159,11 +161,20 @@ contract Node {
         return shares;
     }
 
-
-//get my share holders 
+//Regenerate the secret after the responses from the holders 
+    function getRequestedShareHolders() public view checkIsRegistered onlyOwner returns (address[] memory){
+        return requestedShareHolders;
+    }
+//get my share holders who accepted the request 
     function getShareHolders() public view returns (address[] memory)  {
         return shareHolders;
+    }
+
+    //get my share holders who rejected the request 
+    function getRejectedShareHolders() public view returns (address[] memory)  {
+        return rejectedShareHolders;
     } 
+
 
 
     function remove(uint256 index) public {
@@ -199,11 +210,18 @@ contract Node {
 
 //check the holder request acceptance and make the share holders list 
     function makeShareHoldersListToDistribute()public  onlyOwner checkIsRegistered{
-        address[] memory _requestAcceptedHolders=contract_new.getRequestAcceptedHoldersList(owner);  
+        address[] memory _requestAcceptedHolders=contract_new.getRequestAcceptedHoldersList(owner);
+        address[] memory _requestRejectedHolders=contract_new.getRequestRejectedHoldersList(owner);  
 
         for (uint256 i = 0; i<_requestAcceptedHolders.length; i++){
             address temporaryHolder= _requestAcceptedHolders[i];
             shareHolders.push(temporaryHolder);
+            //shareHolders[i]=temporaryHolder;
+
+        }
+        for (uint256 i = 0; i<_requestRejectedHolders.length; i++){
+            address temporaryHolder= _requestRejectedHolders[i];
+            rejectedShareHolders.push(temporaryHolder);
             //shareHolders[i]=temporaryHolder;
 
         }
@@ -244,6 +262,7 @@ contract Node {
 //     function repayGasFee()public onlyOwner{
 
 //     }
+
 
 }
 
