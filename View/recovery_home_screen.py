@@ -25,6 +25,9 @@ class RecoveryHomeScreen(UserControl):
         self.on_distribute_shares_click = on_distribute_shares_click
         self.on_registration_click = on_registration_click
         
+        # TODO
+        # method(NODE_CONTRACT_ADDRESS) -> return state
+        
         print("Contract address is : ", state.NODE_CONTRACT_ADDRESS)
         print("Contract address is : ", state.USERNAME)
 

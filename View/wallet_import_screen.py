@@ -32,6 +32,8 @@ class WalletImportScreen(UserControl):
 
         # TODO
         # If there is a user node registerd for the public key set state variables for that
+        # method(pubkey) 
+        #   if registerd values else False
         # state.NODE_CONTRACT_ADDRESS = contractAddress
         # state.USERNAME = self.user_name.value 
         

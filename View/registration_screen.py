@@ -43,6 +43,8 @@ class RegistrationScreen(UserControl):
             print("Contract address is : ",contractAddress)
             state.NODE_CONTRACT_ADDRESS = contractAddress
             state.USERNAME = self.user_name.value
+            
+            # TODO NodeController.register(username)
         
             self.on_submit_click(self)
         else:
