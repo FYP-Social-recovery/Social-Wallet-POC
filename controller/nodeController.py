@@ -102,9 +102,13 @@ class NodeController:
                 holderLi.append([holder,"PENDING"])
         print(holderLi)
         return holderLi
+
+    def getContractAddressOfPublicAddress():
+        contractAddress=NodeModel.getContractAddressOfPrivateAddress(owner_addr=publicKey,private_addr=privateKey)
+        return contractAddress
 #NodeController.deploy()
 #NodeController.checkUserExists("Alice")
-#NodeController.register("Charlie")
+#NodeController.register("Alice")
 #NodeController.checkRequestsForBeAHolder()
 #NodeController.addTemporaryShareHolder("0x617F2E2fD72FD9D5503197092aC168c91465E7f2")
 #removeTemporaryShareHolder("0x1F8558989122D1ecF159Ab5855dBEAe88345360f")
@@ -119,5 +123,6 @@ class NodeController:
 #acceptInvitation("0x305eC56922EDcF716F12C7a5c5961147933C0c41")
 #NodeController.getHolderStatus()
 #NodeController.makeHolderRequests()
-NodeController.getMyState()
+#NodeController.getMyState()
 #NodeController.makeHolderRequests()
+#NodeController.getContractAddressOfPublicAddress()

@@ -1,5 +1,5 @@
 from controller.keyGenerationController import KeyGenerationController
-
+from controller.nodeController import NodeController
 from flet import (
     UserControl,
     Text,
@@ -30,10 +30,12 @@ class WalletImportScreen(UserControl):
         print("privatekey: ",privateKey)
         print("Public key: ",publicKey)
 
-        # TODO
-        # If there is a user node registerd for the public key set state variables for that
+
+        
+        # If there is a user node registered for the public key set state variables for that
+        contractAddress=NodeController.getContractAddressOfPublicAddress() #if not registered - contractAddress=0x0000000000000000000000000000000000000000
         # method(pubkey) 
-        #   if registerd values else False
+        #   if registered values else False
         # state.NODE_CONTRACT_ADDRESS = contractAddress
         # state.USERNAME = self.user_name.value 
         

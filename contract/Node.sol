@@ -34,7 +34,7 @@ contract Node {
     constructor() { 
         owner = msg.sender;
         //Hard coded deployment of the public contract
-        contract_new=PublicContract(0x1C247C1210122C318a46bFeB14313fd3f50f95c0);
+        contract_new=PublicContract(0x662b6FF14318e6d967A9eD9EaD45cac322756f8b);
         myContractAddress = address(this);
         myState="NODE_CREATED";
 
@@ -77,7 +77,11 @@ contract Node {
         return;
 
     }
-
+//get contract address when knowing the public address
+    function getContractAddressOfPublicAddress(address publicAddress)public view onlyOwner returns (address){
+       address contractAddress= contract_new.getContractAddressByPublicAddress(publicAddress);
+       return contractAddress;
+    }
 
 //!Share Holder's role-------------------------------------------------------------------------//
 
