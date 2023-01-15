@@ -100,7 +100,7 @@ class NodeController:
         return holderLi
 #NodeController.deploy()
 #NodeController.checkUserExists("Alice")
-#NodeController.register("Alice")
+#NodeController.register("Bob")
 #NodeController.checkRequestsForBeAHolder()
 #NodeController.addTemporaryShareHolder("0x617F2E2fD72FD9D5503197092aC168c91465E7f2")
 #removeTemporaryShareHolder("0x1F8558989122D1ecF159Ab5855dBEAe88345360f")

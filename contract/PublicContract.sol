@@ -176,6 +176,20 @@ contract PublicContract {
         // Remove the last element
         holderRequests.pop();
     }
+//remove from holder accepted list 
+    function removeFromHolderAcceptedList(uint256 index) public {
+        // Move the last element into the place to delete
+        acceptedShareHolderRequests[index] = acceptedShareHolderRequests[acceptedShareHolderRequests.length - 1];
+        // Remove the last element
+        acceptedShareHolderRequests.pop();
+    }
+//remove from holder rejected list 
+    function removeFromHolderRejectedList(uint256 index) public {
+        // Move the last element into the place to delete
+        rejectedShareHolderRequests[index] = rejectedShareHolderRequests[rejectedShareHolderRequests.length - 1];
+        // Remove the last element
+        rejectedShareHolderRequests.pop();
+    }
 
 //Respond to be the share holder 
     function respondToBeShareHolder(address shareHolder,address secretOwner,bool  acceptance)public {
@@ -220,7 +234,7 @@ contract PublicContract {
     }
 
 //get the be holder request accepted holders list 
-    function getRequestAcceptedHoldersList(address secretOwner)public view returns(address[] memory) {
+    function getRequestAcceptedHoldersList(address secretOwner)public returns(address[] memory) {
         uint256 tot = getSecretHolderAddressesCountInAcceptedHoldersList(secretOwner); // write a method named getSecretOwnerAddressesCount() to get secretOwnerAddresses count
         uint256 count = 0;
         address[] memory _shareHolderAddresses = new address[](tot);
@@ -229,6 +243,7 @@ contract PublicContract {
         for (uint256 i = 0; i<acceptedShareHolderRequests.length; i++){
             Request memory request= acceptedShareHolderRequests[i];
             if (request.secretOwner==secretOwner){
+                removeFromHolderAcceptedList(i);
                 _shareHolderAddresses[count] = request.shareHolder;
                 count = count + 1;
             }
@@ -250,7 +265,7 @@ contract PublicContract {
         return count;
     }
     //get the be holder request rejected holders list 
-    function getRequestRejectedHoldersList(address secretOwner)public view returns(address[] memory) {
+    function getRequestRejectedHoldersList(address secretOwner)public returns(address[] memory) {
         uint256 tot = getSecretHolderAddressesCountInRejectedHoldersList(secretOwner); // write a method named getSecretOwnerAddressesCount() to get secretOwnerAddresses count
         uint256 count = 0;
         address[] memory _shareHolderAddresses = new address[](tot);
@@ -259,6 +274,7 @@ contract PublicContract {
         for (uint256 i = 0; i<rejectedShareHolderRequests.length; i++){
             Request memory request= rejectedShareHolderRequests[i];
             if (request.secretOwner==secretOwner){
+                removeFromHolderRejectedList(i);
                 _shareHolderAddresses[count] = request.shareHolder;
                 count = count + 1;
             }

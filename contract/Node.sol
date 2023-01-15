@@ -93,7 +93,7 @@ contract Node {
     }
 //Reject the share holder invitation
     function rejectInvitation(address secretOwner) public onlyOwner {
-       contract_new.respondToBeShareHolder(owner,secretOwner,true);
+       contract_new.respondToBeShareHolder(owner,secretOwner,false);
         
     }
 
