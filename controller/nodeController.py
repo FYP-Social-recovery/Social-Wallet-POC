@@ -84,11 +84,11 @@ class NodeController:
         return val
     
     def getMyState():
-        #NodeModel.refreshStatus(owner_addr=publicKey,private_addr=privateKey)
+        NodeModel.refreshStatus(owner_addr=publicKey,private_addr=privateKey)
         val=NodeModel.getMyState(owner_addr=publicKey,private_addr=privateKey)
         return val
     def getHolderStatus():
-        #NodeModel.refreshShareHoldersLists(owner_addr=publicKey,private_addr=privateKey)
+        NodeModel.refreshShareHoldersLists(owner_addr=publicKey,private_addr=privateKey)
         temporaryHolders=NodeController.getRequestedShareHolders()
         acceptedHolders=NodeController.getShareHolders()
         rejectedHolders=NodeController.getRejectedShareHolders()
