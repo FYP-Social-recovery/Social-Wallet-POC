@@ -44,7 +44,7 @@ class RegistrationScreen(UserControl):
             state.NODE_CONTRACT_ADDRESS = contractAddress
             state.USERNAME = self.user_name.value
             
-            # TODO NodeController.register(username)
+            NodeController.register(self.user_name.value)
         
             self.on_submit_click(self)
         else:

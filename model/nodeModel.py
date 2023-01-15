@@ -439,7 +439,6 @@ class NodeModel:
 
 #get my state 
     def getMyState(owner_addr,private_addr):
-        #NodeModel.refreshStatus(owner_addr,private_addr)
         c= NodeModel.connection(NodeModel.myABI,NodeModel.myContractAddress,owner_addr,private_addr)
         print(owner_addr,"Getting my status  ",NodeModel.myContractAddress)
         nonce = NodeModel.w3.eth.getTransactionCount(owner_addr)

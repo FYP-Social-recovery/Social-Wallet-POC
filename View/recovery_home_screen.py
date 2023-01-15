@@ -1,3 +1,4 @@
+from controller.nodeController import NodeController
 from flet import (
     UserControl,
     Tabs,
@@ -25,8 +26,8 @@ class RecoveryHomeScreen(UserControl):
         self.on_distribute_shares_click = on_distribute_shares_click
         self.on_registration_click = on_registration_click
         
-        # TODO
-        # method(NODE_CONTRACT_ADDRESS) -> return state
+        myState= NodeController.getMyState()
+        print(myState)
         
         print("Contract address is : ", state.NODE_CONTRACT_ADDRESS)
         print("Contract address is : ", state.USERNAME)

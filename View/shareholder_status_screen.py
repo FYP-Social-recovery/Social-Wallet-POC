@@ -1,3 +1,4 @@
+from controller.nodeController import NodeController
 from flet import (
     UserControl,
     Tabs,
@@ -26,7 +27,8 @@ class ShareholderStatusScreen(UserControl):
         ACCEPTED = "Accepted"
         REJECTED = "Rejected"
         
-        # TODO
+        shareHolderStatus=NodeController.getHolderStatus()
+        print(shareHolderStatus)
         # Load shareholder list for the user
         # getShareholders(pubkey,privkey) -> [["0xa","Pending"],]
         self.shareholders = ["0x1", "0x2", "0x3", "0x4", "0x5"]
