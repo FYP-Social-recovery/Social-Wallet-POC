@@ -15,56 +15,6 @@ class NodeModel:
     w3 = Web3(Web3.HTTPProvider("https://eth-goerli.g.alchemy.com/v2/8L-St1WDAiIktazEqEolQfntGghuPR94"))
     
 
-
- # deploy the node smart contract
-    def deployPublicContract():
-        publicContractPrivateAddress="58d0efedba9a8a61b2ac3f188dd079782e07aed904cdbc0e3340e073e85c7655"
-        publicContractPublicAddress="0x20543FD8D854d500121215Abc542531987f6bc2e"
-
-        with open(r"contract/compiled_code.json","r") as file:
-            compiled_sol = json.loads(file.read())
-           
-        # get bytecode
-        bytecode = compiled_sol["contracts"]["PublicContract.sol"]["PublicContract"]["evm"]["bytecode"]["object"]
-        # get abi
-        abi = json.loads(compiled_sol["contracts"]["PublicContract.sol"]["PublicContract"]["metadata"])["output"]["abi"]
-        NodeModel.publicContractABI=abi
-
-        # For connecting to ganache
-        #w3 = Web3(Web3.HTTPProvider("http://127.0.0.1:7545"))
-        w3 = Web3(Web3.HTTPProvider("https://eth-goerli.g.alchemy.com/v2/8L-St1WDAiIktazEqEolQfntGghuPR94"))
-        chain_id = 5
-        #chain_id =1337
-        address = publicContractPublicAddress
-        # leaving the private key like this is very insecure if you are working on real world project
-        private_key = publicContractPrivateAddress
-        # Create the contract in Python
-        ContactList = w3.eth.contract(abi=abi, bytecode=bytecode)
-        # Get the number of latest transaction
-        nonce = w3.eth.getTransactionCount(address)
-
-
-        # build transaction
-        transaction = ContactList.constructor().buildTransaction(
-            {
-                "chainId": chain_id,
-                #"gasPrice": w3.eth.gas_price,
-                "from": address,
-                "nonce": nonce,
-            }
-        )
-        # Sign the transaction
-        sign_transaction = w3.eth.account.sign_transaction(
-            transaction, private_key=private_key)
-        print("Deploying public Contract !")
-        # Send the transaction
-        transaction_hash = w3.eth.send_raw_transaction(sign_transaction.rawTransaction)
-        # Wait for the transaction to be mined, and get the transaction receipt
-        print("Waiting for transaction to finish...")
-        transaction_receipt = w3.eth.wait_for_transaction_receipt(transaction_hash)
-        print(f"Done! Public Contract deployed to {transaction_receipt.contractAddress}")
-        #setting my contract address to deployed address  
-        return 
     # deploy the node smart contract
     def deploy(publicAddress,privateAddress):
         NodeModel.myPrivateAddress=privateAddress
@@ -458,5 +408,4 @@ class NodeModel:
         print("My Contract Address  retrieved")
         print("Contract Address:", contractAddress)
         return contractAddress
-#NodeModel.deployPublicContract()
-#NodeModel.refreshShareHoldersLists(owner_addr=NodeModel.myPublicAddress,private_addr=NodeModel.myPrivateAddress)
+
