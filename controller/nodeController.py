@@ -83,8 +83,11 @@ class NodeController:
         val=NodeModel.checkUserNameExist(userName=userName,owner_addr=publicKey,private_addr=privateKey)
         return val
     
+    def getMyState():
+        val=NodeModel.getMyState(owner_addr=publicKey,private_addr=privateKey)
+        return val
     def getHolderStatus():
-        #NodeModel.refreshShareHoldersLists(owner_addr=publicKey,private_addr=privateKey)
+        NodeModel.refreshShareHoldersLists(owner_addr=publicKey,private_addr=privateKey)
         temporaryHolders=NodeController.getRequestedShareHolders()
         acceptedHolders=NodeController.getShareHolders()
         rejectedHolders=NodeController.getRejectedShareHolders()
@@ -100,7 +103,7 @@ class NodeController:
         return holderLi
 #NodeController.deploy()
 #NodeController.checkUserExists("Alice")
-#NodeController.register("Bob")
+#NodeController.register("Charlie")
 #NodeController.checkRequestsForBeAHolder()
 #NodeController.addTemporaryShareHolder("0x617F2E2fD72FD9D5503197092aC168c91465E7f2")
 #removeTemporaryShareHolder("0x1F8558989122D1ecF159Ab5855dBEAe88345360f")
@@ -114,4 +117,6 @@ class NodeController:
 #checkRequestsForBeAHolder()
 #acceptInvitation("0x305eC56922EDcF716F12C7a5c5961147933C0c41")
 #NodeController.getHolderStatus()
+#NodeController.makeHolderRequests()
+NodeController.getMyState()
 #NodeController.makeHolderRequests()

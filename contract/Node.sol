@@ -34,7 +34,7 @@ contract Node {
     constructor() { 
         owner = msg.sender;
         //Hard coded deployment of the public contract
-        contract_new=PublicContract(0x4D1B2AD715789b0f36D77cC736352b16BD326a10);
+        contract_new=PublicContract(0x1C247C1210122C318a46bFeB14313fd3f50f95c0);
         myContractAddress = address(this);
         myState="NODE_CREATED";
 
@@ -126,7 +126,7 @@ contract Node {
 //!Secret owners role----------------------------------------------------------------------//
 //Check all the temporary holders have accepted 
     function checkAcceptance()public onlyOwner returns(bool){
-        makeShareHoldersListToDistribute();
+        refreshHolderLists();
         if(shareHolders.length>=requestedShareHolders.length){
             return true;
         }
@@ -134,16 +134,19 @@ contract Node {
     }
 
 //Get my state
-    function getMyState()public onlyOwner returns(string memory){
+    function getMyState()public view onlyOwner returns(string memory){
+        return myState;
+    }
+
+//refresh my state
+    function refreshState()public onlyOwner {
         //FUNCTION TO   check all the shareholders accepted 
         //if(myState =="SHAREHOLDER_REQUESTED"){
         if(keccak256(bytes(myState)) == keccak256(bytes("SHAREHOLDER_REQUESTED"))){
             if(checkAcceptance()){
                 myState="SHAREHOLDER_ACCEPTED";
-                return myState;
             }
         }
-        return myState;
     }
 //Addiing a share holder to a temporary list
     function addTemporaryShareHolders(address payable shareHolder) public onlyOwner checkIsRegistered {
@@ -209,7 +212,7 @@ contract Node {
     }
 
 //check the holder request acceptance and make the share holders list 
-    function makeShareHoldersListToDistribute()public  onlyOwner checkIsRegistered{
+    function refreshHolderLists()public  onlyOwner checkIsRegistered{
         address[] memory _requestAcceptedHolders=contract_new.getRequestAcceptedHoldersList(owner);
         address[] memory _requestRejectedHolders=contract_new.getRequestRejectedHoldersList(owner);  
 
