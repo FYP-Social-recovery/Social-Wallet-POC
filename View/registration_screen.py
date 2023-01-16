@@ -1,4 +1,5 @@
 from controller.nodeController import NodeController
+from controller.publicContractController import PublicContractController
 from flet import (
     UserControl,
     Text,
@@ -26,10 +27,11 @@ class RegistrationScreen(UserControl):
         self.page = page
         
         print(state.USERNAME)
+        
             
 
     def checkValidity(self,e):
-        userNameExistence=NodeController.checkUserExists(self.user_name.value)
+        userNameExistence=PublicContractController.checkUserExists(self.user_name.value, state.PUBLIC_KEY, state.PRIVATE_KEY)
         print("Is user Exists : ",userNameExistence)
         if(userNameExistence):
             self.open_err_dlg()
@@ -37,16 +39,16 @@ class RegistrationScreen(UserControl):
             self.open_suc_dlg()
         
     def on_submit_click_fn(self,e):
-        userNameExistence= NodeController.checkUserExists(self.user_name.value)
+        userNameExistence= PublicContractController.checkUserExists(self.user_name.value, state.PUBLIC_KEY, state.PRIVATE_KEY)
         print("Is user Exists : ",userNameExistence)
         if(not userNameExistence):
             print(state.PRIVATE_KEY)
             contractAddress=NodeController.deploy(state.PUBLIC_KEY, state.PRIVATE_KEY)
-            print("Contract address is : ",contractAddress)
+            print("Node Contract address is : ",contractAddress)
             state.NODE_CONTRACT_ADDRESS = contractAddress
             state.USERNAME = self.user_name.value
             
-            NodeController.register(self.user_name.value, state.PUBLIC_KEY, state.PRIVATE_KEY)
+            NodeController.register(self.user_name.value, state.PUBLIC_KEY, state.PRIVATE_KEY, contractAddress)
         
             self.on_submit_click(self)
         else:

@@ -24,8 +24,9 @@ class NodeModel:
     def deploy(publicAddress,privateAddress):
         NodeModel.myPrivateAddress=privateAddress
         NodeModel.myPublicAddress=publicAddress
-
-        with open(r"contract/compiled_code.json","r") as file:
+        
+        # with open(r"contract/compiled_code.json","r") as file: # for windows
+        with open("../contract/compiled_code.json","r") as file: # for ubuntu
             compiled_sol = json.loads(file.read())
 
         # get bytecode
@@ -86,9 +87,9 @@ class NodeModel:
         print("Value:", result)
         return result
 #register to the public contract
-    def registerToPublicContract(userName,owner_addr,private_addr):
-        c= NodeModel.connection(NodeModel.nodeContractABI,NodeModel.myContractAddress,owner_addr,private_addr)
-        print(owner_addr,"Registering for ",NodeModel.myContractAddress)
+    def registerToPublicContract(userName,owner_addr,private_addr,nodeContractAddressLocal):
+        c= NodeModel.connection(NodeModel.nodeContractABI,nodeContractAddressLocal,owner_addr,private_addr)
+        print(owner_addr,"Registering for ",nodeContractAddressLocal)
         nonce = NodeModel.w3.eth.getTransactionCount(owner_addr)
         store_contact = c.functions.registerToPublicContract(userName).buildTransaction({"from": owner_addr, "nonce": nonce})
         # Sign the transaction
@@ -327,9 +328,9 @@ class NodeModel:
         return status
 
 #refresh the share holders status
-    def refreshStatus(owner_addr,private_addr):
-        c= NodeModel.connection(NodeModel.nodeContractABI,NodeModel.myContractAddress,owner_addr,private_addr)
-        print(owner_addr,"Refreshing status  ",NodeModel.myContractAddress)
+    def refreshStatus(owner_addr,private_addr, nodeContractAddressLocal):
+        c= NodeModel.connection(NodeModel.nodeContractABI,nodeContractAddressLocal,owner_addr,private_addr)
+        print(owner_addr,"Refreshing status  ",nodeContractAddressLocal)
         nonce = NodeModel.w3.eth.getTransactionCount(owner_addr)
         returnVal = c.functions.refreshState().buildTransaction({"from": owner_addr,"nonce": nonce})
         # Sign the transaction
@@ -393,9 +394,9 @@ class NodeModel:
         return sharesList
 
 #get my state 
-    def getMyState(owner_addr,private_addr):
-        c= NodeModel.connection(NodeModel.nodeContractABI,NodeModel.myContractAddress,owner_addr,private_addr)
-        print(owner_addr,"Getting my status  ",NodeModel.myContractAddress)
+    def getMyState(owner_addr,private_addr, nodeContractAddressLocal):
+        c= NodeModel.connection(NodeModel.nodeContractABI,nodeContractAddressLocal,owner_addr,private_addr)
+        print(owner_addr,"Getting my status  ",nodeContractAddressLocal)
         nonce = NodeModel.w3.eth.getTransactionCount(owner_addr)
         myState = c.caller({"from": owner_addr, "nonce": nonce}).getMyState()
        

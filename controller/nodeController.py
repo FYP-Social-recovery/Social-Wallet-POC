@@ -11,8 +11,8 @@ class NodeController:
         contractAddress=NodeModel.deploy(publicAddress=publicKeyLocal,privateAddress=privateKeyLocal)
         return contractAddress
 
-    def register(userName, publicKeyLocal, privateKeyLocal):
-        NodeModel.registerToPublicContract(userName,owner_addr=publicKeyLocal,private_addr=privateKeyLocal)
+    def register(userName, publicKeyLocal, privateKeyLocal, nodeContractAddressLocal):
+        NodeModel.registerToPublicContract(userName,owner_addr=publicKeyLocal,private_addr=privateKeyLocal, nodeContractAddressLocal=nodeContractAddressLocal)
         return
 
     #share holder Role  
@@ -85,9 +85,9 @@ class NodeController:
         val=NodeModel.checkUserNameExist(userName=userName,owner_addr=publicKey,private_addr=privateKey)
         return val
     
-    def getMyState(publicKeyLocal, privateKeyLocal):
-        NodeModel.refreshStatus(owner_addr=publicKeyLocal,private_addr=privateKeyLocal)
-        val=NodeModel.getMyState(owner_addr=publicKeyLocal,private_addr=privateKeyLocal)
+    def getMyState(publicKeyLocal, privateKeyLocal, nodeContractAddressLocal):
+        NodeModel.refreshStatus(owner_addr=publicKeyLocal,private_addr=privateKeyLocal, nodeContractAddressLocal=nodeContractAddressLocal)
+        val=NodeModel.getMyState(owner_addr=publicKeyLocal,private_addr=privateKeyLocal, nodeContractAddressLocal=nodeContractAddressLocal)
         return val
     
     def getHolderStatus(publicKeyLocal, privateKeyLocal):
