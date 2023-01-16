@@ -77,6 +77,14 @@ class PublicContractModel:
         print("Contract retrieved")
         print("Contract:", contract)
         return contract
-
+#check the username is exists 
+    def checkUserNameExist(userName,owner_addr,private_addr):
+        c= PublicContractModel.connection(PublicContractModel.publicContractABI,PublicContractModel.myContractAddress,owner_addr,private_addr)
+        print(owner_addr,"checking user name validity for ",PublicContractModel.myContractAddress)
+        nonce = PublicContractModel.w3.eth.getTransactionCount(owner_addr)
+        result = c.caller({"from": owner_addr,"nonce":nonce}).isExists(userName)
+        print("UserName  checked")
+        print("Value:", result)
+        return result
 #PublicContractModel.deployPublicContract()
 #PublicContractModel.getContractAddressFromPublicKey(owner_addr=PublicContractModel.myPublicAddress,private_addr=PublicContractModel.myPrivateAddress)

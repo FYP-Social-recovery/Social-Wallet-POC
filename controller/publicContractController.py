@@ -13,5 +13,8 @@ class PublicContractController:
         contractAddress=PublicContractModel.getContractAddressFromPublicKey(owner_addr=publicKeyLocal,private_addr=privateKeyLocal)
         return contractAddress
 
+    def checkUserExists(userName):
+        val=PublicContractModel.checkUserNameExist(userName=userName,owner_addr=publicKey,private_addr=privateKey)
+        return val
 
 # PublicContractController.getContractAddressByPublicAddress()
