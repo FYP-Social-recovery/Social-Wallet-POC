@@ -15,6 +15,7 @@ from flet import (
 )
 from controller.nodeController import NodeController
 
+import state
 
 class AddShareholderScreen(UserControl):
     def __init__(self, on_back_click, on_request_click):
@@ -23,13 +24,15 @@ class AddShareholderScreen(UserControl):
         self.on_request_click = on_request_click
 
     def request_click(self, e):
-        nodeController=NodeController()
-        for i in range(5):
-            nodeController.addTemporaryShareHolder(self.__class__.TextFieldArray[i].value)
+        for i in range(3):
+            NodeController.addTemporaryShareHolder(share_holder= self.__class__.TextFieldArray[i].value, publicKeyLocal= state.PUBLIC_KEY,privateKeyLocal= state.PRIVATE_KEY,nodeContractAddressLocal= state.NODE_CONTRACT_ADDRESS)
+        
+        NodeController.makeHolderRequests(publicKeyLocal= state.PUBLIC_KEY,privateKeyLocal= state.PRIVATE_KEY,nodeContractAddressLocal= state.NODE_CONTRACT_ADDRESS)
+        
         self.on_request_click(self)
 
     TextFieldArray=[]
-    for i in range(5):
+    for i in range(3):
         textFiled=TextField(label="Share Holder "+str(i+1),
                   hint_text="Please enter an address", color="0xFF000000", width=600)
         TextFieldArray.append(textFiled)
@@ -58,14 +61,14 @@ class AddShareholderScreen(UserControl):
                     height=10,
                 ),
                 self.__class__.TextFieldArray[2],
-                Container(
-                    height=10,
-                ),
-                self.__class__.TextFieldArray[3],
-                Container(
-                    height=10,
-                ),
-                self.__class__.TextFieldArray[4],
+                # Container(
+                #     height=10,
+                # ),
+                # self.__class__.TextFieldArray[3],
+                # Container(
+                #     height=10,
+                # ),
+                # self.__class__.TextFieldArray[4],
                 Container(
                     height=10,
                 ),

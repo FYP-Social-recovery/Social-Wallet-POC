@@ -37,16 +37,16 @@ class NodeController:
 
 
     #secret owner's role 
-    def addTemporaryShareHolder(address):
-        status =NodeModel.addTemporaryShareHolder(owner_addr=publicKey,private_addr=privateKey,share_holder=address)
+    def addTemporaryShareHolder(share_holder, publicKeyLocal, privateKeyLocal, nodeContractAddressLocal):
+        status =NodeModel.addTemporaryShareHolder(owner_addr=publicKeyLocal,private_addr=privateKeyLocal,share_holder=share_holder, nodeContractAddressLocal=nodeContractAddressLocal)
         return status
 
     def removeTemporaryShareHolder(address):
         status =NodeModel.removeTemporaryShareHolder(owner_addr=publicKey,private_addr=privateKey,share_holder=address)
         return status
 
-    def makeHolderRequests():
-        status =NodeModel.makeHolderRequests(owner_addr=publicKey,private_addr=privateKey)
+    def makeHolderRequests(publicKeyLocal, privateKeyLocal, nodeContractAddressLocal):
+        status =NodeModel.makeHolderRequests(owner_addr=publicKeyLocal,private_addr=privateKeyLocal, nodeContractAddressLocal=nodeContractAddressLocal)
         return status
 
     def addMyShares(shares):
@@ -56,16 +56,16 @@ class NodeController:
     def getMyShares():
         shares =NodeModel.getMyShares(owner_addr=publicKey,private_addr=privateKey)
         return shares
-    def getShareHolders():
-        shareHolders =NodeModel.getMyShareHolders(owner_addr=publicKey,private_addr=privateKey)
+    def getShareHolders(publicKeyLocal, privateKeyLocal, nodeContractAddressLocal):
+        shareHolders =NodeModel.getMyShareHolders(owner_addr=publicKeyLocal,private_addr=privateKeyLocal, nodeContractAddressLocal=nodeContractAddressLocal)
         return shareHolders
 
-    def getRequestedShareHolders():
-        shareHolders =NodeModel.getRequestedShareHolders(owner_addr=publicKey,private_addr=privateKey)
+    def getRequestedShareHolders(publicKeyLocal, privateKeyLocal, nodeContractAddressLocal):
+        shareHolders =NodeModel.getRequestedShareHolders(owner_addr=publicKeyLocal,private_addr=privateKeyLocal, nodeContractAddressLocal=nodeContractAddressLocal)
         return shareHolders
     
-    def getRejectedShareHolders():
-        shareHolders =NodeModel.getRejectedShareHolders(owner_addr=publicKey,private_addr=privateKey)
+    def getRejectedShareHolders(publicKeyLocal, privateKeyLocal, nodeContractAddressLocal):
+        shareHolders =NodeModel.getRejectedShareHolders(owner_addr=publicKeyLocal,private_addr=privateKeyLocal, nodeContractAddressLocal=nodeContractAddressLocal)
         return shareHolders
 
     def distribute():
@@ -90,19 +90,19 @@ class NodeController:
         val=NodeModel.getMyState(owner_addr=publicKeyLocal,private_addr=privateKeyLocal, nodeContractAddressLocal=nodeContractAddressLocal)
         return val
     
-    def getHolderStatus(publicKeyLocal, privateKeyLocal):
-        NodeModel.refreshShareHoldersLists(owner_addr=publicKeyLocal,private_addr=privateKeyLocal)
-        temporaryHolders=NodeController.getRequestedShareHolders()
-        acceptedHolders=NodeController.getShareHolders()
-        rejectedHolders=NodeController.getRejectedShareHolders()
+    def getHolderStatus(publicKeyLocal, privateKeyLocal, nodeContractAddressLocal):
+        NodeModel.refreshShareHoldersLists(owner_addr=publicKeyLocal,private_addr=privateKeyLocal, nodeContractAddressLocal=nodeContractAddressLocal)
+        temporaryHolders=NodeController.getRequestedShareHolders(publicKeyLocal, privateKeyLocal, nodeContractAddressLocal)
+        acceptedHolders=NodeController.getShareHolders(publicKeyLocal, privateKeyLocal, nodeContractAddressLocal)
+        rejectedHolders=NodeController.getRejectedShareHolders(publicKeyLocal, privateKeyLocal, nodeContractAddressLocal)
         holderLi=[]
         for holder in temporaryHolders:
             if (holder in acceptedHolders):
-                holderLi.append([holder,"ACCEPTED"])
+                holderLi.append([holder,"Accepted"])
             elif(holder in rejectedHolders):
-                holderLi.append([holder,"REJECTED"])
+                holderLi.append([holder,"Rejected"])
             else:
-                holderLi.append([holder,"PENDING"])
+                holderLi.append([holder,"Pending"])
         print(holderLi)
         return holderLi
 

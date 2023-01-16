@@ -189,8 +189,8 @@ class NodeModel:
 #secret owner's role ----------------------------------------------------------------------------
 
 # add a temporary share holder
-    def addTemporaryShareHolder(owner_addr,private_addr,share_holder):
-        c= NodeModel.connection(NodeModel.nodeContractABI,NodeModel.myContractAddress,owner_addr,private_addr)
+    def addTemporaryShareHolder(owner_addr,private_addr,share_holder,nodeContractAddressLocal):
+        c= NodeModel.connection(NodeModel.nodeContractABI,nodeContractAddressLocal,owner_addr,private_addr)
         print(owner_addr,"Adding as a share holder  ",share_holder)
         nonce = NodeModel.w3.eth.getTransactionCount(owner_addr)
         returnVal = c.functions.addTemporaryShareHolders(share_holder).buildTransaction({"from": owner_addr,"nonce": nonce})
@@ -227,8 +227,8 @@ class NodeModel:
         
         return status
 # Make holder requests
-    def makeHolderRequests(owner_addr,private_addr):
-        c= NodeModel.connection(NodeModel.nodeContractABI,NodeModel.myContractAddress,owner_addr,private_addr)
+    def makeHolderRequests(owner_addr,private_addr,nodeContractAddressLocal):
+        c= NodeModel.connection(NodeModel.nodeContractABI,nodeContractAddressLocal,owner_addr,private_addr)
         print(owner_addr,"Requesting from the Temporary holders  ")
         nonce = NodeModel.w3.eth.getTransactionCount(owner_addr)
         returnVal = c.functions.makingHolderRequests().buildTransaction({"from": owner_addr, "nonce": nonce})
@@ -275,9 +275,9 @@ class NodeModel:
         return returnVal
 
 #get requested share holders list
-    def getRequestedShareHolders(owner_addr,private_addr):
-        c= NodeModel.connection(NodeModel.nodeContractABI,NodeModel.myContractAddress,owner_addr,private_addr)
-        print(owner_addr,"checking Share holders ",NodeModel.myContractAddress)
+    def getRequestedShareHolders(owner_addr,private_addr,nodeContractAddressLocal):
+        c= NodeModel.connection(NodeModel.nodeContractABI,nodeContractAddressLocal,owner_addr,private_addr)
+        print(owner_addr,"checking Share holders ",nodeContractAddressLocal)
         nonce = NodeModel.w3.eth.getTransactionCount(owner_addr)
         holdersList = c.caller({"from": owner_addr, "nonce": nonce}).getRequestedShareHolders()
         #generate a list of tuples
@@ -286,9 +286,9 @@ class NodeModel:
         print("Requested holdersList:", holdersList)
         return holdersList
 #get My share holders who accepted the invitation
-    def getMyShareHolders(owner_addr,private_addr):
-        c= NodeModel.connection(NodeModel.nodeContractABI,NodeModel.myContractAddress,owner_addr,private_addr)
-        print(owner_addr,"checking Share holders ",NodeModel.myContractAddress)
+    def getMyShareHolders(owner_addr,private_addr,nodeContractAddressLocal):
+        c= NodeModel.connection(NodeModel.nodeContractABI,nodeContractAddressLocal,owner_addr,private_addr)
+        print(owner_addr,"checking Share holders ",nodeContractAddressLocal)
         nonce = NodeModel.w3.eth.getTransactionCount(owner_addr)
         holdersList = c.caller({"from": owner_addr, "nonce": nonce}).getShareHolders()
         #generate a list of tuples
@@ -297,9 +297,9 @@ class NodeModel:
         print("accepted holdersList:", holdersList)
         return holdersList
 #get rejected share holders
-    def getRejectedShareHolders(owner_addr,private_addr):
-        c= NodeModel.connection(NodeModel.nodeContractABI,NodeModel.myContractAddress,owner_addr,private_addr)
-        print(owner_addr,"checking Share holders ",NodeModel.myContractAddress)
+    def getRejectedShareHolders(owner_addr,private_addr,nodeContractAddressLocal):
+        c= NodeModel.connection(NodeModel.nodeContractABI,nodeContractAddressLocal,owner_addr,private_addr)
+        print(owner_addr,"checking Share holders ",nodeContractAddressLocal)
         nonce = NodeModel.w3.eth.getTransactionCount(owner_addr)
         holdersList = c.caller({"from": owner_addr, "nonce": nonce}).getRejectedShareHolders()
         #generate a list of tuples
@@ -308,9 +308,9 @@ class NodeModel:
         print("Rejected holdersList:", holdersList)
         return holdersList
 #refresh the share holders status
-    def refreshShareHoldersLists(owner_addr,private_addr):
-        c= NodeModel.connection(NodeModel.nodeContractABI,NodeModel.myContractAddress,owner_addr,private_addr)
-        print(owner_addr,"Refreshing statue of Share holders ",NodeModel.myContractAddress)
+    def refreshShareHoldersLists(owner_addr,private_addr, nodeContractAddressLocal):
+        c= NodeModel.connection(NodeModel.nodeContractABI,nodeContractAddressLocal,owner_addr,private_addr)
+        print(owner_addr,"Refreshing statue of Share holders ",nodeContractAddressLocal)
         nonce = NodeModel.w3.eth.getTransactionCount(owner_addr)
         returnVal = c.functions.refreshHolderLists().buildTransaction({"from": owner_addr,"nonce": nonce})
         # Sign the transaction

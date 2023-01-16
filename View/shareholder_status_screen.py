@@ -17,6 +17,7 @@ from flet import (
     MainAxisAlignment,
 )
 
+import state
 
 class ShareholderStatusScreen(UserControl):
     def __init__(self, on_back_click):
@@ -27,16 +28,22 @@ class ShareholderStatusScreen(UserControl):
         ACCEPTED = "Accepted"
         REJECTED = "Rejected"
         
-        shareHolderStatus=NodeController.getHolderStatus()
+        self.shareholders = []
+        self.status = []
+        
+        shareHolderStatus=NodeController.getHolderStatus(state.PUBLIC_KEY, state.PRIVATE_KEY, state.NODE_CONTRACT_ADDRESS)
         print(shareHolderStatus)
+        for shareholder in shareHolderStatus:
+            self.shareholders.append(shareholder[0])
+            self.status.append(shareholder[1])
         # Load shareholder list for the user
         # getShareholders(pubkey,privkey) -> [["0xa","Pending"],]
-        self.shareholders = ["0x1", "0x2", "0x3", "0x4", "0x5"]
+        # self.shareholders = ["0x1", "0x2", "0x3", "0x4", "0x5"]
         # Get status of each shareholder and display
-        self.status = [PENDING, ACCEPTED, REJECTED, PENDING, REJECTED]
+        # self.status = [PENDING, ACCEPTED, REJECTED, PENDING, REJECTED]
         
         self.TextArray=[]
-        for i in range(5):
+        for i in range(3):
             if(self.status[i]==PENDING):
                 color = "0xFFD9BE38"
             elif(self.status[i]==ACCEPTED):
@@ -78,14 +85,14 @@ class ShareholderStatusScreen(UserControl):
                     height=10,
                 ),
                 self.TextArray[2],
-                Container(
-                    height=10,
-                ),
-                self.TextArray[3],
-                Container(
-                    height=10,
-                ),
-                self.TextArray[4],
+                # Container(
+                #     height=10,
+                # ),
+                # self.TextArray[3],
+                # Container(
+                #     height=10,
+                # ),
+                # self.TextArray[4],
                 # Container(
                 #     height=10,
                 # ),
