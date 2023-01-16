@@ -30,6 +30,7 @@ class HomeScreen(UserControl):
         
         print(state.PRIVATE_KEY)
         print(state.PUBLIC_KEY)
+        print(state.NODE_CONTRACT_ADDRESS)
         
         self.public_key = state.PUBLIC_KEY
         
@@ -43,6 +44,14 @@ class HomeScreen(UserControl):
         balance = web3_instance.eth.getBalance(wallet_address)
         balance_from_wei = web3_instance.fromWei(balance,"ether")
         self.balance = str(balance_from_wei)
+        
+        if(state.NODE_CONTRACT_ADDRESS!=""):
+            if(state.USERNAME!=""):
+                self.username = state.USERNAME
+            else:
+                self.username = state.NODE_CONTRACT_ADDRESS[0:5] + "..." + state.NODE_CONTRACT_ADDRESS[-4:-1]
+        else:
+            self.username = "Not Registered"
         
     def copyToClipboard(self, e):
         pyperclip.copy(state.PUBLIC_KEY)
@@ -69,6 +78,19 @@ class HomeScreen(UserControl):
                     icon_color=colors.GREEN,
                     on_click=self.on_back_click,
                     icon_size=30,
+                ),
+                Row(
+                    vertical_alignment= CrossAxisAlignment.CENTER,
+                    alignment = MainAxisAlignment.CENTER,
+                    controls=[
+                        IconButton(
+                            icon=icons.PERSON,
+                            icon_color=colors.BLACK38,
+                            icon_size=30,
+                        ),
+                        Text(value=self.username, text_align="center",
+                                size=20, color="Black"),
+                    ],
                 ),
                 Text(value="Phoenix Wallet", text_align="center", size=36, color="0xFFA36D1D"),
                 Container(

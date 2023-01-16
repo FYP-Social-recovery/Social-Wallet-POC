@@ -24,6 +24,8 @@ class RegistrationScreen(UserControl):
         self.on_back_click = on_back_click
         self.on_submit_click = on_submit_click
         self.page = page
+        
+        print(state.USERNAME)
             
 
     def checkValidity(self,e):
@@ -44,7 +46,7 @@ class RegistrationScreen(UserControl):
             state.NODE_CONTRACT_ADDRESS = contractAddress
             state.USERNAME = self.user_name.value
             
-            NodeController.register(self.user_name.value)
+            NodeController.register(self.user_name.value, state.PUBLIC_KEY, state.PRIVATE_KEY)
         
             self.on_submit_click(self)
         else:

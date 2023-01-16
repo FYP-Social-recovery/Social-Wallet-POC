@@ -1,16 +1,18 @@
 from model.nodeModel import NodeModel
 
+# TODO Sandaru - Change this controller name to nodeContractController (Match names with other controller)
+
 # nodeObject =nodeModel.NodeModel()
 publicKey="0x20543FD8D854d500121215Abc542531987f6bc2e"
 privateKey="58d0efedba9a8a61b2ac3f188dd079782e07aed904cdbc0e3340e073e85c7655"
 
 class NodeController:
-    def deploy():
-        contractAddress=NodeModel.deploy(publicAddress=publicKey,privateAddress=privateKey)
+    def deploy(publicKeyLocal, privateKeyLocal):
+        contractAddress=NodeModel.deploy(publicAddress=publicKeyLocal,privateAddress=privateKeyLocal)
         return contractAddress
 
-    def register(userName):
-        NodeModel.registerToPublicContract(userName,owner_addr=publicKey,private_addr=privateKey)
+    def register(userName, publicKeyLocal, privateKeyLocal):
+        NodeModel.registerToPublicContract(userName,owner_addr=publicKeyLocal,private_addr=privateKeyLocal)
         return
 
     #share holder Role  
@@ -83,12 +85,13 @@ class NodeController:
         val=NodeModel.checkUserNameExist(userName=userName,owner_addr=publicKey,private_addr=privateKey)
         return val
     
-    def getMyState():
-        NodeModel.refreshStatus(owner_addr=publicKey,private_addr=privateKey)
-        val=NodeModel.getMyState(owner_addr=publicKey,private_addr=privateKey)
+    def getMyState(publicKeyLocal, privateKeyLocal):
+        NodeModel.refreshStatus(owner_addr=publicKeyLocal,private_addr=privateKeyLocal)
+        val=NodeModel.getMyState(owner_addr=publicKeyLocal,private_addr=privateKeyLocal)
         return val
-    def getHolderStatus():
-        NodeModel.refreshShareHoldersLists(owner_addr=publicKey,private_addr=privateKey)
+    
+    def getHolderStatus(publicKeyLocal, privateKeyLocal):
+        NodeModel.refreshShareHoldersLists(owner_addr=publicKeyLocal,private_addr=privateKeyLocal)
         temporaryHolders=NodeController.getRequestedShareHolders()
         acceptedHolders=NodeController.getShareHolders()
         rejectedHolders=NodeController.getRejectedShareHolders()

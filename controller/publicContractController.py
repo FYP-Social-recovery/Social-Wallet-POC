@@ -9,9 +9,9 @@ class PublicContractController:
         PublicContractModel.deployPublicContract()
         return
     
-    def getContractAddressByPublicAddress():
-        contractAddress=PublicContractModel.getContractAddressFromPublicKey(owner_addr=publicKey,private_addr=privateKey)
+    def getContractAddressByPublicAddress(publicKeyLocal, privateKeyLocal):
+        contractAddress=PublicContractModel.getContractAddressFromPublicKey(owner_addr=publicKeyLocal,private_addr=privateKeyLocal)
         return contractAddress
 
 
-PublicContractController.getContractAddressByPublicAddress()
+# PublicContractController.getContractAddressByPublicAddress()

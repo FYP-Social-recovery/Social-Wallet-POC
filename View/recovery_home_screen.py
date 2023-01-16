@@ -26,11 +26,15 @@ class RecoveryHomeScreen(UserControl):
         self.on_distribute_shares_click = on_distribute_shares_click
         self.on_registration_click = on_registration_click
         
-        myState= NodeController.getMyState()
-        print(myState)
+        self.state = "NOT_REGISTERED"
+        
+        if(state.NODE_CONTRACT_ADDRESS!=""):
+            self.state= NodeController.getMyState(state.PUBLIC_KEY, state.PRIVATE_KEY)
+        
+        print(self.state)
         
         print("Contract address is : ", state.NODE_CONTRACT_ADDRESS)
-        print("Contract address is : ", state.USERNAME)
+        print("Username is : ", state.USERNAME)
 
     def build(self):
         return Column(
