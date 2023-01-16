@@ -109,9 +109,9 @@ class NodeController:
     def getContractAddressOfPublicAddress():
         contractAddress=NodeModel.getContractAddressOfPrivateAddress(owner_addr=publicKey,private_addr=privateKey)
         return contractAddress
-#NodeController.deploy()
+#NodeController.deploy(publicKeyLocal= publicKey,privateKeyLocal=privateKey)
 #NodeController.checkUserExists("Alice")
-#NodeController.register("Alice")
+#NodeController.register(publicKeyLocal= publicKey,privateKeyLocal=privateKey,userName= "Alice")
 #NodeController.checkRequestsForBeAHolder()
 #NodeController.addTemporaryShareHolder("0x617F2E2fD72FD9D5503197092aC168c91465E7f2")
 #removeTemporaryShareHolder("0x1F8558989122D1ecF159Ab5855dBEAe88345360f")
