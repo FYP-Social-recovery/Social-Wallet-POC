@@ -28,7 +28,12 @@ class RegistrationScreen(UserControl):
         
         print(state.USERNAME)
         
-            
+        self.user_name_text = ""
+        
+        if(state.USERNAME!="" or state.NODE_CONTRACT_ADDRESS !=""):
+            self.user_name_text = "Username :\n" + state.USERNAME + "\n\n" + "Node Contract address :\n" + state.NODE_CONTRACT_ADDRESS
+        
+        print(self.user_name_text)
 
     def checkValidity(self,e):
         userNameExistence=PublicContractController.checkUserExists(self.user_name.value, state.PUBLIC_KEY, state.PRIVATE_KEY)
@@ -74,7 +79,7 @@ class RegistrationScreen(UserControl):
         
     def build(self):
         
-        if (state.USERNAME!=""):
+        if (self.user_name_text):
             return Column(
                 horizontal_alignment=CrossAxisAlignment.CENTER,
                 controls=[
@@ -89,8 +94,8 @@ class RegistrationScreen(UserControl):
                     Container(
                         height=100,
                     ),
-                    Text(value=state.USERNAME, text_align="center",
-                            size=24, color="0xFFFFFFFF"),
+                    Text(value=self.user_name_text, text_align="center",
+                            size=24, color="0xFF000000"),
                     Container(
                         height=10,
                     ),
