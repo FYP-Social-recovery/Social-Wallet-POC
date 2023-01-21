@@ -82,7 +82,10 @@ contract Node {
        address contractAddress= contract_new.getContractAddressByPublicAddress(publicAddress);
        return contractAddress;
     }
-
+//get my user name 
+    function getUserName()public view onlyOwner returns(string memory){
+        return userName;
+    }
 //!Share Holder's role-------------------------------------------------------------------------//
 
 //Check the requests from the secret owner to a node to add as a share holder
