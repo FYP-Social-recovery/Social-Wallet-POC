@@ -110,8 +110,8 @@ class NodeController:
         contractAddress=NodeModel.getContractAddressOfPrivateAddress(owner_addr=publicKey,private_addr=privateKey)
         return contractAddress
     
-    def getUserName():
-        userName=NodeModel.getUserName(owner_addr=publicKey,private_addr=privateKey)
+    def getUserName(publicKeyLocal, privateKeyLocal):
+        userName=NodeModel.getUserName(owner_addr=publicKeyLocal,private_addr=privateKeyLocal)
         return userName
 #NodeController.deploy(publicKeyLocal= publicKey,privateKeyLocal=privateKey)
 #NodeController.checkUserExists("Alice")
