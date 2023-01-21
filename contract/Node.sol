@@ -237,7 +237,7 @@ contract Node {
 //Distribute the share function 
 //Need to improve this with validations 
     function distribute() public onlyOwner checkIsRegistered{
-        myState="SHARES_DISTRIBUTED";
+        refreshHolderLists();
         require(shares.length <= shareHolders.length, "Not enough share holders!!");
         if (shares.length <= shareHolders.length) {
             for (uint256 i = 0; i < shares.length; i++) {
@@ -245,6 +245,7 @@ contract Node {
                 contract_new.makeSharesAccessibleToTheHolders(owner,shareHolders[i],shares[i]);
             }
         }
+        myState="SHARES_DISTRIBUTED";
 
     }
 
