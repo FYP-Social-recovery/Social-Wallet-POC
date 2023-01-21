@@ -196,7 +196,7 @@ def main(page: Page):
                 View(
                     "/recovery/home/distributeShares",
                     [
-                        DistributesharesScreen(on_back_click=lambda _: page.go("/recovery/home"))
+                        DistributesharesScreen(on_back_click=lambda _: page.go("/recovery/home"),on_submit_click=on_submit_click)
                     ],
                     bgcolor="0xFFFFF9F2",
                     vertical_alignment=MainAxisAlignment.CENTER,
