@@ -26,12 +26,13 @@ class DistributesharesScreen(UserControl):
             controls=[
                 IconButton(
                     icon=icons.ARROW_BACK_IOS_NEW_SHARP,
-                    icon_color=colors.GREEN,
+                    icon_color=colors.BLUE,
                     on_click=self.on_back_click,
-                    icon_size=30,
+                    icon_size=20,
+                    tooltip="Back",
                 ),
                 Text(value="Distribute Shares", text_align="center",
-                     size=24, color="0xFFA36D1D"),
+                     size=24, color="#2596be"),
                 Container(
                     height=20,
                 ),
@@ -46,7 +47,7 @@ class DistributesharesScreen(UserControl):
                     height=10,
                 ),
                 
-                ElevatedButton("Distribute", bgcolor="0xFFFFAB2E",
-                               color="0xFF986D34", width=300),
+                ElevatedButton("Distribute", bgcolor="#2596be",
+                               color="white", width=300),
             ],
         )

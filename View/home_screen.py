@@ -75,9 +75,9 @@ class HomeScreen(UserControl):
             controls=[
                 IconButton(
                     icon=icons.ARROW_BACK_IOS_NEW_SHARP,
-                    icon_color=colors.GREEN,
+                    icon_color=colors.BLUE,
                     on_click=self.on_back_click,
-                    icon_size=30,
+                    icon_size=20,
                 ),
                 Row(
                     vertical_alignment= CrossAxisAlignment.CENTER,
@@ -86,13 +86,13 @@ class HomeScreen(UserControl):
                         IconButton(
                             icon=icons.PERSON,
                             icon_color=colors.BLACK38,
-                            icon_size=30,
+                            icon_size=20,
                         ),
                         Text(value=self.username, text_align="center",
                                 size=20, color="Black"),
                     ],
                 ),
-                Text(value="Phoenix Wallet", text_align="center", size=36, color="0xFFA36D1D"),
+                Text(value="Phoenix Wallet", text_align="center", size=36, color="#2596be"),
                 Container(
                     height=50,
                 ),
@@ -102,12 +102,13 @@ class HomeScreen(UserControl):
                     alignment = MainAxisAlignment.CENTER,
                     controls=[
                         Text(value=self.public_key[0:5] + "..." + self.public_key[-4:-1], text_align="center",
-                                size=20, color="Black"),
+                                size=20, color="Black",tooltip="Public Key"),
                         IconButton(
                             icon=icons.COPY,
                             icon_color=colors.BLACK38,
                             on_click=self.copyToClipboard,
                             icon_size=20,
+                            tooltip="Back",
                         ),
                     ],
                 ),
@@ -120,7 +121,7 @@ class HomeScreen(UserControl):
                     alignment = MainAxisAlignment.CENTER,
                     controls=[
                         Text(value=self.balance + " ETH", text_align="center",
-                                size=24, color="Black"),
+                                size=24, color="Black",tooltip="Balance"),
                         # IconButton(
                         #     icon=icons.REFRESH_ROUNDED,
                         #     icon_color=colors.BLACK38,
@@ -130,11 +131,11 @@ class HomeScreen(UserControl):
                     ],
                 ),
                 Text(value="Geroli Network", text_align="center",
-                     size=20, color="0xFFA36D1D"),
+                     size=20, color="#2596be",tooltip="Blockchain Network"),
                 Container(
                     height=100,
                 ),
-                ElevatedButton("Social Recovery Menu", bgcolor="0xFFFFAB2E",
-                               color="0xFF986D34",on_click=self.on_menue_button_click, width=300),
+                ElevatedButton("Social Recovery Menu", bgcolor="#2596be",
+                               color="white",on_click=self.on_menue_button_click, width=300,tooltip="Configuration Menu"),
             ],
         )
