@@ -5,36 +5,36 @@ import "./PublicContract.sol";
 // contract of a node
 contract Node {
 
-    address public owner;  //Owner address
+    address private owner;  //Owner address
 
-    string public userName; //my user name after registering
+    string private userName; //my user name after registering
 
-    address[] public requestedShareHolders; //temporary list of share holders
+    address[] private requestedShareHolders; //temporary list of share holders
 
-    address[] public  shareHolders; //My secret holders who accepted the invitation
+    address[] private  shareHolders; //My secret holders who accepted the invitation
 
-    address[]public rejectedShareHolders;  //the holders who rejected the invitation
+    address[]private rejectedShareHolders;  //the holders who rejected the invitation
 
-    string[] public shares;    //Shares list belonging to the user 
+    string[] private shares;    //Shares list belonging to the user 
 
-    mapping(address => string) public shareHoldersMap; //My secret baring holders
+    mapping(address => string) private shareHoldersMap; //My secret baring holders
 
-    mapping(address => string) public sharesMap; //The secrets I'm holding
+    mapping(address => string) private sharesMap; //The secrets I'm holding
 
-    address[] public secretOwners;  //The owners of the secrets that I'm holding 
+    address[] private secretOwners;  //The owners of the secrets that I'm holding 
 
-    string[] public regeneratedShares;      //regenerated shares as a requester
+    string[] private regeneratedShares;      //regenerated shares as a requester
     
-    address public myContractAddress; //mycontract address 
+    address private myContractAddress; //mycontract address 
 
-    PublicContract contract_new; //Public contract obeject
+    PublicContract private contract_new; //Public contract obeject
 
     string public myState;
 
     constructor() { 
         owner = msg.sender;
         //Hard coded deployment of the public contract
-        contract_new=PublicContract(0x21b7180b01dE7f6029cD2bBF196008dD1AcD8d70);
+        contract_new=PublicContract(0xd9145CCE52D386f254917e481eB44e9943F39138);
         myContractAddress = address(this);
         myState="NODE_CREATED";
 
@@ -65,7 +65,7 @@ contract Node {
         return  contract_new.isExists(tempUserName);
     }
 
-//function to check the user is registered or not 
+//function to check the user if this contract is registered or not 
     function isRegistered()public view returns(bool){
        return  contract_new.isExists(userName);
     }

@@ -8,30 +8,6 @@
 			{
 				"inputs": [
 					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"name": "acceptedShareHolderRequests",
-				"outputs": [
-					{
-						"internalType": "address",
-						"name": "secretOwner",
-						"type": "address"
-					},
-					{
-						"internalType": "address",
-						"name": "shareHolder",
-						"type": "address"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
 						"internalType": "address",
 						"name": "holderAddress",
 						"type": "address"
@@ -133,7 +109,26 @@
 						"type": "address[]"
 					}
 				],
-				"stateMutability": "view",
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "secretOwner",
+						"type": "address"
+					}
+				],
+				"name": "getRequestRejectedHoldersList",
+				"outputs": [
+					{
+						"internalType": "address[]",
+						"name": "",
+						"type": "address[]"
+					}
+				],
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -145,6 +140,25 @@
 					}
 				],
 				"name": "getSecretHolderAddressesCountInAcceptedHoldersList",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "ownerAddress",
+						"type": "address"
+					}
+				],
+				"name": "getSecretHolderAddressesCountInRejectedHoldersList",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -188,30 +202,6 @@
 						"internalType": "uint256",
 						"name": "",
 						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"name": "holderRequests",
-				"outputs": [
-					{
-						"internalType": "address",
-						"name": "secretOwner",
-						"type": "address"
-					},
-					{
-						"internalType": "address",
-						"name": "shareHolder",
-						"type": "address"
 					}
 				],
 				"stateMutability": "view",
@@ -298,25 +288,6 @@
 			{
 				"inputs": [
 					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"name": "myAddressToContractAddressMap",
-				"outputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
 						"internalType": "string",
 						"name": "name",
 						"type": "string"
@@ -340,30 +311,6 @@
 			{
 				"inputs": [
 					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"name": "rejectedShareHolderRequests",
-				"outputs": [
-					{
-						"internalType": "address",
-						"name": "secretOwner",
-						"type": "address"
-					},
-					{
-						"internalType": "address",
-						"name": "shareHolder",
-						"type": "address"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
 						"internalType": "address",
 						"name": "secretOwner",
 						"type": "address"
@@ -375,6 +322,32 @@
 					}
 				],
 				"name": "releaseTheSecret",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "index",
+						"type": "uint256"
+					}
+				],
+				"name": "removeFromHolderAcceptedList",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "index",
+						"type": "uint256"
+					}
+				],
+				"name": "removeFromHolderRejectedList",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -414,59 +387,6 @@
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "string",
-						"name": "",
-						"type": "string"
-					}
-				],
-				"name": "sampleNodesMap",
-				"outputs": [
-					{
-						"internalType": "address",
-						"name": "publicAddress",
-						"type": "address"
-					},
-					{
-						"internalType": "address",
-						"name": "contractAddress",
-						"type": "address"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"name": "secretRequests",
-				"outputs": [
-					{
-						"internalType": "address",
-						"name": "requesterAddress",
-						"type": "address"
-					},
-					{
-						"internalType": "string",
-						"name": "name",
-						"type": "string"
-					},
-					{
-						"internalType": "address",
-						"name": "ownerAddress",
-						"type": "address"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
 			}
 		],
 		"devdoc": {
@@ -497,19 +417,19 @@
 	},
 	"sources": {
 		"contract/Node.sol": {
-			"keccak256": "0xa203694bed0fbe8b99678584ceab8d419b3036a13373e59468628e16c64c3bbf",
+			"keccak256": "0x62081735b351879f3532491bcb64d40ab9108533a78881883542af3c4a90be9d",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://1ed435e764696e38ac53f5d5b65bda6924f48aa481879f3e8140bc4311eee98c",
-				"dweb:/ipfs/QmUUTpBk995g2m8Aj5o8TsXq1FJD52sD8XZHqQ99387nLB"
+				"bzz-raw://5c7d86964a94fdd82d838797208813812af49ff8af7b9d10344c192744882030",
+				"dweb:/ipfs/Qmd6TBgszGYSppH45XpTg8H5E4qD3Ay8dJjLGoxSAyxMut"
 			]
 		},
 		"contract/PublicContract.sol": {
-			"keccak256": "0x08cb3980a3828f2d149306b42ec5590ecd7e2086a837ab64318b7667ef252053",
+			"keccak256": "0x621411c4d077485b389909e82116530de343fc68ddc990ff1f2d3a1be9088545",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://25aa5401a0b28ae30893fc83a14d46e61f22fb9af583f7783b829b5fc35c28ae",
-				"dweb:/ipfs/QmR4cLKabNYjCnceH2X5x4oVeotBxKTJFgkN73wC6WAUC6"
+				"bzz-raw://08a2c34c4c8cc6999a1eea439a2f0e88fefa1f3b5fcfff10aa257b01f54f0092",
+				"dweb:/ipfs/QmWjjHPuQR4jSmxoCdF9A9Uo9n18aWDsbJWB8p9NLd6MVB"
 			]
 		}
 	},

@@ -96,6 +96,25 @@
 				"type": "function"
 			},
 			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "publicAddress",
+						"type": "address"
+					}
+				],
+				"name": "getContractAddressOfPublicAddress",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [],
 				"name": "getMyShares",
 				"outputs": [
@@ -118,7 +137,33 @@
 						"type": "string"
 					}
 				],
-				"stateMutability": "nonpayable",
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getRejectedShareHolders",
+				"outputs": [
+					{
+						"internalType": "address[]",
+						"name": "",
+						"type": "address[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getRequestedShareHolders",
+				"outputs": [
+					{
+						"internalType": "address[]",
+						"name": "",
+						"type": "address[]"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -129,6 +174,19 @@
 						"internalType": "address[]",
 						"name": "",
 						"type": "address[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getUserName",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
 					}
 				],
 				"stateMutability": "view",
@@ -164,13 +222,6 @@
 					}
 				],
 				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "makeShareHoldersListToDistribute",
-				"outputs": [],
-				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -217,6 +268,20 @@
 					}
 				],
 				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "refreshHolderLists",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "refreshState",
+				"outputs": [],
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -275,6 +340,25 @@
 				"name": "rejectInvitation",
 				"outputs": [],
 				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "rejectedShareHolders",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -340,7 +424,7 @@
 				"name": "requestedShareHolders",
 				"outputs": [
 					{
-						"internalType": "address payable",
+						"internalType": "address",
 						"name": "",
 						"type": "address"
 					}
@@ -516,19 +600,19 @@
 	},
 	"sources": {
 		"contract/Node.sol": {
-			"keccak256": "0x37d1996999692ea7b8c63b571cbd742fd3585f910769db856700861468d536cf",
+			"keccak256": "0x3fda4a8cc242551a74c526c81a8f9d30cc4fbe4b3996dae6d961c8f3accf964e",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://8f460fdbc9da7b4c4befac940f56a798a5a5206d9d5a89794c52eb556688fd72",
-				"dweb:/ipfs/QmXUEmPgmvETLCJPnqopHRpeNUBYmdJkiEdntTpvWcA7tV"
+				"bzz-raw://0a99667d59109755c7fcee652e5d745ee5476d5f987c83fc5106fb670e8d84bc",
+				"dweb:/ipfs/QmR8WBsQvLXAodv8diujnQCcXDonyKQQfTsYPbJoPqmhif"
 			]
 		},
 		"contract/PublicContract.sol": {
-			"keccak256": "0x08cb3980a3828f2d149306b42ec5590ecd7e2086a837ab64318b7667ef252053",
+			"keccak256": "0x1e0e18f1a834815067cbaddc6e7a52b45d6e35aeeae9c4aa37cd4cabd9ac92a0",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://25aa5401a0b28ae30893fc83a14d46e61f22fb9af583f7783b829b5fc35c28ae",
-				"dweb:/ipfs/QmR4cLKabNYjCnceH2X5x4oVeotBxKTJFgkN73wC6WAUC6"
+				"bzz-raw://3f0b4bc325d1906b785f08befdbe340d763f0f6e22b741b0c9ada1120a2ff4dd",
+				"dweb:/ipfs/QmYK6rwWQ9s1YP5khowKnwFmw66njH9TfYYqhPZqjubjX6"
 			]
 		}
 	},
