@@ -1,7 +1,7 @@
 This is the POC for the Social-Recovery-Wallet project
-
+===================================================================================================
 Steps to run the application
---------------------------------------
+===================================================================================================
 
 Step 1 : Install external libraries
 pip3 install coincurve bip39 bip44 bip32 web3 py-solc-x pyperclip xclip
@@ -16,7 +16,9 @@ Step 3 : Run flutter-python desktop app
 Go to view folder : cd View/
 Run main file :  flet main.py -d
 
------------------------------------
+========================================================================================================
+Default values for testing 
+========================================================================================================
 Public Contract address 0x71404eaFfCFCb4678e79479c1Da26608623b963e
 Test node contract address 0x90ebA7fCd273fB7A2EFE4BFf0c08064A219029BA
 
@@ -29,3 +31,12 @@ Bob -		Share holder
 Charlie -	share holder 
 David - 	Share holder
 Eve-		Share Requester
+
+
+========================================================================================================
+Versions 
+========================================================================================================
+
+0.0.1- Key generation part using mnemonic and random mnemonic generation
+0.0.2- Share holder request , show share holder acceptance distribute the secret
+0.0.3- Key recovery from the share holders ,Optimize the smart contract and eliminate the vulnerabilities 
