@@ -3,6 +3,7 @@ from flet import (
     Text,
     Column,
     ElevatedButton,
+    OutlinedButton,
     AppBar,
     colors,
     CrossAxisAlignment,
@@ -19,11 +20,11 @@ class OnboardingScreen(UserControl):
         return Column(
             horizontal_alignment=CrossAxisAlignment.CENTER,
             controls=[
-                Text(value="Phoenix\nWallet", text_align="center", size=36, color="0xFFA36D1D"), 
+                Text(value="Phoenix\nWallet", text_align="center", size=36,font_family="RobotoSlab", color="#2596be"), 
                 Container(
                     height=100,
                 ),
-                ElevatedButton("New Wallet",bgcolor="0xFFFFAB2E", color="0xFF986D34", width=300, on_click=self.on_new_wallet_click), 
-                ElevatedButton("Import Wallet",bgcolor="0xFFFFAB2E", color="0xFF986D34", width=300, on_click=self.on_import_wallet_click),
+                ElevatedButton("New Wallet",width=300,bgcolor="#2596be",color="white" ,on_click=self.on_new_wallet_click,tooltip="Create a new wallet"),
+                OutlinedButton("Import Wallet", width=300, on_click=self.on_import_wallet_click,tooltip="Import an existing wallet"),
             ],
         )

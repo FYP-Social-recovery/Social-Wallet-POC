@@ -41,6 +41,11 @@ class KeyGenerationController:
         print("mnemonic:",mnemonic)
         return mnemonic
 
+    #generate entropy from mnemonic phase
+    def mnemonicToEntropy(mnemonic):
+        entropy=bip39.decode_phrase(mnemonic)
+        print("Entropy for the mnemonic",entropy)
+        return entropy
 
     #import a Wallet
     def importWalletFromMnemonic(mnemonicString):

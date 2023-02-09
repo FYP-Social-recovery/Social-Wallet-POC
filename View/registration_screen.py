@@ -85,12 +85,12 @@ class RegistrationScreen(UserControl):
                 controls=[
                     IconButton(
                         icon=icons.ARROW_BACK_IOS_NEW_SHARP,
-                        icon_color=colors.GREEN,
+                        icon_color=colors.BLUE,
                         on_click=self.on_back_click,
-                        icon_size=30,
+                        icon_size=20,
                     ),
                     Text(value="Username", text_align="center",
-                            size=24, color="0xFFA36D1D"),
+                            size=24, color="#2596be"),
                     Container(
                         height=100,
                     ),
@@ -108,12 +108,13 @@ class RegistrationScreen(UserControl):
                 controls=[
                     IconButton(
                         icon=icons.ARROW_BACK_IOS_NEW_SHARP,
-                        icon_color=colors.GREEN,
+                        icon_color=colors.BLUE,
                         on_click=self.on_back_click,
-                        icon_size=30,
+                        icon_size=20,
+                        tooltip="Back",
                     ),
                     Text(value="Enter a username", text_align="center",
-                        size=24, color="0xFFA36D1D"),
+                        size=24, color="#2596be"),
                     Container(
                         height=100,
                     ),
@@ -125,7 +126,7 @@ class RegistrationScreen(UserControl):
                     Container(
                         height=100,
                     ),
-                    ElevatedButton("Submit", bgcolor="0xFFFFAB2E",
-                                color="0xFF986D34",on_click=self.on_submit_click_fn, width=300),
+                    ElevatedButton("Submit", bgcolor="#2596be",
+                                color="white",on_click=self.on_submit_click_fn, width=300),
                 ],
             )

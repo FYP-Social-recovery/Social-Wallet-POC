@@ -38,17 +38,18 @@ class MnemonicPhraseScreen(UserControl):
     
     
     def build(self):
-        mnemonic_phrase = Text(value=self.mnemonic_phrase, text_align="center", size=18, color="0xFF000000")
+        mnemonic_phrase = Text(value=self.mnemonic_phrase, text_align="center", size=18, color="0xFF000000",tooltip="Mnemonic Phrase",)
         return Column(
                 horizontal_alignment=CrossAxisAlignment.CENTER,
                 controls=[
                     IconButton(
                         icon=icons.ARROW_BACK_IOS_NEW_SHARP,
-                        icon_color=colors.GREEN,
+                        icon_color=colors.BLUE,
                         on_click=self.on_back_click,
-                        icon_size=30,
+                        icon_size=20,
+                        tooltip="Back",
                     ),
-                    Text(value="Mnemonic Phase", text_align="center", size=24, color="0xFFA36D1D"), 
+                    Text(value="Mnemonic Phase", text_align="center", size=24, color="#2596be"), 
                     Container(
                         height=100,
                     ),
@@ -56,6 +57,6 @@ class MnemonicPhraseScreen(UserControl):
                     Container(
                         height=100,
                     ),
-                    ElevatedButton("Continue",bgcolor="0xFFFFAB2E", color="0xFF986D34",on_click=self.continue_click , width=300),  
+                    ElevatedButton("Continue",bgcolor="#2596be", color="white",on_click=self.continue_click , width=300,tooltip="Continue to Wallet",),  
                 ],
             )

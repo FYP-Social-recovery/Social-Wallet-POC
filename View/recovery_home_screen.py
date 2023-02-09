@@ -42,32 +42,37 @@ class RecoveryHomeScreen(UserControl):
             controls=[
                 IconButton(
                     icon=icons.ARROW_BACK_IOS_NEW_SHARP,
-                    icon_color=colors.GREEN,
+                    icon_color=colors.BLUE,
                     on_click=self.on_back_click,
-                    icon_size=30,
+                    icon_size=20,
+                    tooltip="Back",
                 ),
                 Text(value="Social Recovery Menu", text_align="center",
-                     size=24, color="0xFFA36D1D"),
+                     size=24, color="#2596be"),
                 Container(
                     height=20,
                 ),
-                ElevatedButton(text="registration", on_click=self.on_registration_click),
+                ElevatedButton(text="registration", on_click=self.on_registration_click,bgcolor="#2596be",
+                                color="white",tooltip="social recovery registration"),
                 Container(
                     height=10,
                 ),
-                ElevatedButton(text="Add Shareholders", on_click=self.on_add_shareholders_click),
+                ElevatedButton(text="Add Shareholders", on_click=self.on_add_shareholders_click,bgcolor="#2596be",
+                                color="white",tooltip="Requst to add shareholders"),
                 Container(
                     height=10,
                 ),
-                ElevatedButton(text="Shareholder Status", on_click=self.on_shareholders_status_click),
+                ElevatedButton(text="Shareholder Status", on_click=self.on_shareholders_status_click,bgcolor="#2596be",
+                                color="white",tooltip="view accept/reject status of shareholders"),
                 Container(
                     height=10,
                 ),
-                ElevatedButton(text="Distribute Shares", on_click=self.on_distribute_shares_click),
+                ElevatedButton(text="Distribute Shares", on_click=self.on_distribute_shares_click,bgcolor="#2596be",
+                                color="white",tooltip="Distribute the shares"),
                 # Container(
                 #     height=10,
                 # ),
-                # ElevatedButton("Submit", bgcolor="0xFFFFAB2E",
-                #                color="0xFF986D34", width=300),
+                # ElevatedButton("Submit", bgcolor="#2596be",
+                #                color="white", width=300),
             ],
         )
