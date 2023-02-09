@@ -34,9 +34,9 @@ class LoadingScreen(UserControl):
             controls=[
                 IconButton(
                     icon=icons.ARROW_BACK_IOS_NEW_SHARP,
-                    icon_color=colors.GREEN,
+                    icon_color=colors.BLUE,
                     on_click=self.on_back_click,
-                    icon_size=30,
+                    icon_size=20,
                 ),
                 Text(value="Loading...", text_align="center",
                         size=20, color="Black"),

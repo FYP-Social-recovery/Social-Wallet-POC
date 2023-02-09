@@ -49,8 +49,8 @@ class NodeController:
         status =NodeModel.makeHolderRequests(owner_addr=publicKeyLocal,private_addr=privateKeyLocal, nodeContractAddressLocal=nodeContractAddressLocal)
         return status
 
-    def addMyShares(shares):
-        status =NodeModel.addMyShares(owner_addr=publicKey,private_addr=privateKey,shares=shares)
+    def addMyShares(shares,publicKeyLocal, privateKeyLocal, nodeContractAddressLocal):
+        status =NodeModel.addMyShares(owner_addr=publicKeyLocal,private_addr=privateKeyLocal,shares=shares,nodeContractAddressLocal=nodeContractAddressLocal)
         return status
 
     def getMyShares():
@@ -68,8 +68,8 @@ class NodeController:
         shareHolders =NodeModel.getRejectedShareHolders(owner_addr=publicKeyLocal,private_addr=privateKeyLocal, nodeContractAddressLocal=nodeContractAddressLocal)
         return shareHolders
 
-    def distribute():
-        status =NodeModel.distributeShares(owner_addr=publicKey,private_addr=privateKey)
+    def distribute(publicKeyLocal, privateKeyLocal, nodeContractAddressLocal):
+        status =NodeModel.distributeShares(owner_addr=publicKeyLocal,private_addr=privateKeyLocal, nodeContractAddressLocal=nodeContractAddressLocal)
         return status
         
 

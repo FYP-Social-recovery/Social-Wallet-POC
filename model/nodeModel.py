@@ -246,8 +246,8 @@ class NodeModel:
         
         return status
 # add my shares
-    def addMyShares(owner_addr,private_addr,shares):
-        c= NodeModel.connection(NodeModel.nodeContractABI,NodeModel.myContractAddress,owner_addr,private_addr)
+    def addMyShares(owner_addr,private_addr,shares,nodeContractAddressLocal):
+        c= NodeModel.connection(NodeModel.nodeContractABI,nodeContractAddressLocal,owner_addr,private_addr)
         print(owner_addr,"Adding shares  ",shares)
         nonce = NodeModel.w3.eth.getTransactionCount(owner_addr)
         returnVal = c.functions.addMyShares(shares).buildTransaction({"from": owner_addr,  "nonce": nonce})
@@ -347,9 +347,9 @@ class NodeModel:
         print("Accepted status:", status)
         return status
 #Get the acceptance of the shareholders 
-    def distributeShares(owner_addr,private_addr):
-        c= NodeModel.connection(NodeModel.nodeContractABI,NodeModel.myContractAddress,owner_addr,private_addr)
-        print(owner_addr,"Distributing the shares ",NodeModel.myContractAddress)
+    def distributeShares(owner_addr,private_addr, nodeContractAddressLocal):
+        c= NodeModel.connection(NodeModel.nodeContractABI,nodeContractAddressLocal,owner_addr,private_addr)
+        print(owner_addr,"Distributing the shares ",nodeContractAddressLocal)
         nonce = NodeModel.w3.eth.getTransactionCount(owner_addr)
         returnVal = c.functions.distribute().buildTransaction({"from": owner_addr, "nonce": nonce})
         # Sign the transaction

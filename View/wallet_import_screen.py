@@ -48,19 +48,20 @@ class WalletImportScreen(UserControl):
     
     def build(self):
         
-        self.mnemonic_phrase = TextField(label="Enter Mnemonic phrase", hint_text="Please enter Mnemonic phrase",color="0xFF000000",width=600)
+        self.mnemonic_phrase = TextField(label="Enter Mnemonic phrase", hint_text="Please enter Mnemonic phrase",color="0xFF000000",width=600,tooltip="Enter the Menmonic Phrase")
         
         return Column(
             horizontal_alignment=CrossAxisAlignment.CENTER,
             controls=[
                 IconButton(
                     icon=icons.ARROW_BACK_IOS_NEW_SHARP,
-                    icon_color=colors.GREEN,
+                    icon_color=colors.BLUE,
                     on_click=self.on_back_click,
-                    icon_size=30,
+                    icon_size=20,
+                    tooltip="Back",
                 ),
                 Text(value="Import Wallet", text_align="center",
-                     size=24, color="0xFFA36D1D"),
+                     size=24, color="#2596be"),
                 Container(
                     height=100,
                 ),
@@ -72,7 +73,7 @@ class WalletImportScreen(UserControl):
                 Container(
                     height=100,
                 ),
-                ElevatedButton("Continue", bgcolor="0xFFFFAB2E",
-                               color="0xFF986D34",on_click=self.continue_click, width=300),
+                ElevatedButton("Continue", bgcolor="#2596be",
+                               color="white",on_click=self.continue_click, width=300,tooltip="Import Wallet"),
             ],
         )
