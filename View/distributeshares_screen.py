@@ -15,7 +15,7 @@ from flet import (
 )
 from controller.email_controller import EmailController
 from controller.fvss_controller import VSS_Controller
-from controller.nodeController import NodeController
+from controller.nodeController import NodeContractController
 
 import state
 
@@ -33,8 +33,8 @@ class DistributesharesScreen(UserControl):
             VSS_client=VSS_Controller()
             #Emailclient.sendEmail("tharindathamaranga98@gmail.com","Successfullly added Email!")
             #shares=VSS_client.get_generated_shares(int("1222222222222222222222222"))
-            #NodeController.addMyShares(shares=[shares[0],shares[1],shares[3]],publicKeyLocal=state.PUBLIC_KEY,privateKeyLocal=state.PRIVATE_KEY,nodeContractAddressLocal=state.NODE_CONTRACT_ADDRESS)
-            NodeController.distribute(publicKeyLocal=state.PUBLIC_KEY,privateKeyLocal=state.PRIVATE_KEY,nodeContractAddressLocal=state.NODE_CONTRACT_ADDRESS)
+            #NodeContractController.addMyShares(shares=[shares[0],shares[1],shares[3]],publicKeyLocal=state.PUBLIC_KEY,privateKeyLocal=state.PRIVATE_KEY,nodeContractAddressLocal=state.NODE_CONTRACT_ADDRESS)
+            NodeContractController.distribute(publicKeyLocal=state.PUBLIC_KEY,privateKeyLocal=state.PRIVATE_KEY,nodeContractAddressLocal=state.NODE_CONTRACT_ADDRESS)
             self.on_submit_click(self)
         else:
             self.open_err_dlg()

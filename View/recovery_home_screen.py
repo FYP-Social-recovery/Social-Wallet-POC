@@ -1,4 +1,4 @@
-from controller.nodeController import NodeController
+from controller.nodeController import NodeContractController
 from flet import (
     UserControl,
     Tabs,
@@ -29,7 +29,7 @@ class RecoveryHomeScreen(UserControl):
         self.state = "NOT_REGISTERED"
         
         # if(state.NODE_CONTRACT_ADDRESS!=""):
-        #     self.state= NodeController.getMyState(state.PUBLIC_KEY, state.PRIVATE_KEY, state.NODE_CONTRACT_ADDRESS)
+        #     self.state= NodeContractController.getMyState(state.PUBLIC_KEY, state.PRIVATE_KEY, state.NODE_CONTRACT_ADDRESS)
         
         print(self.state)
         

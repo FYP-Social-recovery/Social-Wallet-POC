@@ -1,6 +1,6 @@
 from controller.keyGenerationController import KeyGenerationController
 from controller.publicContractController import PublicContractController
-from controller.nodeController import NodeController
+from controller.nodeController import NodeContractController
 from flet import (
     UserControl,
     Text,
@@ -32,7 +32,7 @@ class WalletImportScreen(UserControl):
         print("Public key: ",publicKey)
 
         contractAddress=PublicContractController.getContractAddressByPublicAddress(publicKey, privateKey)
-        userName=NodeController.getUserName(publicKey, privateKey)
+        userName=NodeContractController.getUserName(publicKey, privateKey)
        
         if(contractAddress!="0x0000000000000000000000000000000000000000"):
             state.NODE_CONTRACT_ADDRESS = contractAddress

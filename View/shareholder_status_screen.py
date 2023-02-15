@@ -1,4 +1,4 @@
-from controller.nodeController import NodeController
+from controller.nodeController import NodeContractController
 from flet import (
     UserControl,
     Tabs,
@@ -31,7 +31,7 @@ class ShareholderStatusScreen(UserControl):
         self.shareholders = []
         self.status = []
         
-        shareHolderStatus=NodeController.getHolderStatus(state.PUBLIC_KEY, state.PRIVATE_KEY, state.NODE_CONTRACT_ADDRESS)
+        shareHolderStatus=NodeContractController.getHolderStatus(state.PUBLIC_KEY, state.PRIVATE_KEY, state.NODE_CONTRACT_ADDRESS)
         print(shareHolderStatus)
         for shareholder in shareHolderStatus:
             self.shareholders.append(shareholder[0])

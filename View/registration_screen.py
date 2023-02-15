@@ -1,4 +1,4 @@
-from controller.nodeController import NodeController
+from controller.nodeController import NodeContractController
 from controller.publicContractController import PublicContractController
 from flet import (
     UserControl,
@@ -48,12 +48,12 @@ class RegistrationScreen(UserControl):
         print("Is user Exists : ",userNameExistence)
         if(not userNameExistence):
             print(state.PRIVATE_KEY)
-            contractAddress=NodeController.deploy(state.PUBLIC_KEY, state.PRIVATE_KEY)
+            contractAddress=NodeContractController.deploy(state.PUBLIC_KEY, state.PRIVATE_KEY)
             print("Node Contract address is : ",contractAddress)
             state.NODE_CONTRACT_ADDRESS = contractAddress
             state.USERNAME = self.user_name.value
             
-            NodeController.register(self.user_name.value, state.PUBLIC_KEY, state.PRIVATE_KEY, contractAddress)
+            NodeContractController.register(self.user_name.value, state.PUBLIC_KEY, state.PRIVATE_KEY, contractAddress)
         
             self.on_submit_click(self)
         else:

@@ -13,7 +13,7 @@ from flet import (
     CrossAxisAlignment,
     Container,
 )
-from controller.nodeController import NodeController
+from controller.nodeController import NodeContractController
 
 import state
 
@@ -25,9 +25,9 @@ class AddShareholderScreen(UserControl):
 
     def request_click(self, e):
         for i in range(3):
-            NodeController.addTemporaryShareHolder(share_holder= self.__class__.TextFieldArray[i].value, publicKeyLocal= state.PUBLIC_KEY,privateKeyLocal= state.PRIVATE_KEY,nodeContractAddressLocal= state.NODE_CONTRACT_ADDRESS)
+            NodeContractController.addTemporaryShareHolder(share_holder= self.__class__.TextFieldArray[i].value, publicKeyLocal= state.PUBLIC_KEY,privateKeyLocal= state.PRIVATE_KEY,nodeContractAddressLocal= state.NODE_CONTRACT_ADDRESS)
         
-        NodeController.makeHolderRequests(publicKeyLocal= state.PUBLIC_KEY,privateKeyLocal= state.PRIVATE_KEY,nodeContractAddressLocal= state.NODE_CONTRACT_ADDRESS)
+        NodeContractController.makeHolderRequests(publicKeyLocal= state.PUBLIC_KEY,privateKeyLocal= state.PRIVATE_KEY,nodeContractAddressLocal= state.NODE_CONTRACT_ADDRESS)
         
         self.on_request_click(self)
 

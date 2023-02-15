@@ -1,100 +1,99 @@
-from model.nodeModel import NodeModel
+from model.nodeModel import NodeContractModel
 
-# TODO Sandaru - Change this controller name to nodeContractController (Match names with other controller)
 
-# nodeObject =nodeModel.NodeModel()
+# nodeObject =nodeModel.NodeContractModel()
 publicKey="0x20543FD8D854d500121215Abc542531987f6bc2e"
 privateKey="58d0efedba9a8a61b2ac3f188dd079782e07aed904cdbc0e3340e073e85c7655"
 
-class NodeController:
+class NodeContractController:
     def deploy(publicKeyLocal, privateKeyLocal):
-        contractAddress=NodeModel.deploy(publicAddress=publicKeyLocal,privateAddress=privateKeyLocal)
+        contractAddress=NodeContractModel.deploy(publicAddress=publicKeyLocal,privateAddress=privateKeyLocal)
         return contractAddress
 
     def register(userName, publicKeyLocal, privateKeyLocal, nodeContractAddressLocal):
-        NodeModel.registerToPublicContract(userName,owner_addr=publicKeyLocal,private_addr=privateKeyLocal, nodeContractAddressLocal=nodeContractAddressLocal)
+        NodeContractModel.registerToPublicContract(userName,owner_addr=publicKeyLocal,private_addr=privateKeyLocal, nodeContractAddressLocal=nodeContractAddressLocal)
         return
 
     #share holder Role  
     def checkRequestsForBeAHolder():
-        addresses=NodeModel.checkRequestsForBeAHolder(owner_addr=publicKey,private_addr=privateKey)
+        addresses=NodeContractModel.checkRequestsForBeAHolder(owner_addr=publicKey,private_addr=privateKey)
         return addresses
 
     def acceptInvitation(address):
-        status=NodeModel.acceptInvitation(owner_addr=publicKey,private_addr=privateKey,share_owner=address)
+        status=NodeContractModel.acceptInvitation(owner_addr=publicKey,private_addr=privateKey,share_owner=address)
         return status
     def rejectInvitation(address):
-        status=NodeModel.rejectInvitation(owner_addr=publicKey,private_addr=privateKey,share_owner=address)
+        status=NodeContractModel.rejectInvitation(owner_addr=publicKey,private_addr=privateKey,share_owner=address)
         return status
         
     def checkRequestsForShare():
-        ownersList=NodeModel.checkRequestsForShare(owner_addr=publicKey,private_addr=privateKey)
+        ownersList=NodeContractModel.checkRequestsForShare(owner_addr=publicKey,private_addr=privateKey)
         return ownersList
 
     def releaseShare(address):
-        status=NodeModel.releaseSecret(owner_addr=publicKey,private_addr=privateKey,share_owner=address)
+        status=NodeContractModel.releaseSecret(owner_addr=publicKey,private_addr=privateKey,share_owner=address)
         return status
 
 
     #secret owner's role 
     def addTemporaryShareHolder(share_holder, publicKeyLocal, privateKeyLocal, nodeContractAddressLocal):
-        status =NodeModel.addTemporaryShareHolder(owner_addr=publicKeyLocal,private_addr=privateKeyLocal,share_holder=share_holder, nodeContractAddressLocal=nodeContractAddressLocal)
+        status =NodeContractModel.addTemporaryShareHolder(owner_addr=publicKeyLocal,private_addr=privateKeyLocal,share_holder=share_holder, nodeContractAddressLocal=nodeContractAddressLocal)
         return status
 
     def removeTemporaryShareHolder(address):
-        status =NodeModel.removeTemporaryShareHolder(owner_addr=publicKey,private_addr=privateKey,share_holder=address)
+        status =NodeContractModel.removeTemporaryShareHolder(owner_addr=publicKey,private_addr=privateKey,share_holder=address)
         return status
 
     def makeHolderRequests(publicKeyLocal, privateKeyLocal, nodeContractAddressLocal):
-        status =NodeModel.makeHolderRequests(owner_addr=publicKeyLocal,private_addr=privateKeyLocal, nodeContractAddressLocal=nodeContractAddressLocal)
+        status =NodeContractModel.makeHolderRequests(owner_addr=publicKeyLocal,private_addr=privateKeyLocal, nodeContractAddressLocal=nodeContractAddressLocal)
         return status
 
     def addMyShares(shares,publicKeyLocal, privateKeyLocal, nodeContractAddressLocal):
-        status =NodeModel.addMyShares(owner_addr=publicKeyLocal,private_addr=privateKeyLocal,shares=shares,nodeContractAddressLocal=nodeContractAddressLocal)
+        status =NodeContractModel.addMyShares(owner_addr=publicKeyLocal,private_addr=privateKeyLocal,shares=shares,nodeContractAddressLocal=nodeContractAddressLocal)
         return status
 
     def getMyShares():
-        shares =NodeModel.getMyShares(owner_addr=publicKey,private_addr=privateKey)
+        shares =NodeContractModel.getMyShares(owner_addr=publicKey,private_addr=privateKey)
         return shares
     def getShareHolders(publicKeyLocal, privateKeyLocal, nodeContractAddressLocal):
-        shareHolders =NodeModel.getMyShareHolders(owner_addr=publicKeyLocal,private_addr=privateKeyLocal, nodeContractAddressLocal=nodeContractAddressLocal)
+        shareHolders =NodeContractModel.getMyShareHolders(owner_addr=publicKeyLocal,private_addr=privateKeyLocal, nodeContractAddressLocal=nodeContractAddressLocal)
         return shareHolders
 
     def getRequestedShareHolders(publicKeyLocal, privateKeyLocal, nodeContractAddressLocal):
-        shareHolders =NodeModel.getRequestedShareHolders(owner_addr=publicKeyLocal,private_addr=privateKeyLocal, nodeContractAddressLocal=nodeContractAddressLocal)
+        shareHolders =NodeContractModel.getRequestedShareHolders(owner_addr=publicKeyLocal,private_addr=privateKeyLocal, nodeContractAddressLocal=nodeContractAddressLocal)
         return shareHolders
     
     def getRejectedShareHolders(publicKeyLocal, privateKeyLocal, nodeContractAddressLocal):
-        shareHolders =NodeModel.getRejectedShareHolders(owner_addr=publicKeyLocal,private_addr=privateKeyLocal, nodeContractAddressLocal=nodeContractAddressLocal)
+        shareHolders =NodeContractModel.getRejectedShareHolders(owner_addr=publicKeyLocal,private_addr=privateKeyLocal, nodeContractAddressLocal=nodeContractAddressLocal)
         return shareHolders
 
     def distribute(publicKeyLocal, privateKeyLocal, nodeContractAddressLocal):
-        status =NodeModel.distributeShares(owner_addr=publicKeyLocal,private_addr=privateKeyLocal, nodeContractAddressLocal=nodeContractAddressLocal)
+        status =NodeContractModel.distributeShares(owner_addr=publicKeyLocal,private_addr=privateKeyLocal, nodeContractAddressLocal=nodeContractAddressLocal)
         return status
         
 
     def requestShares(userName):
-        status =NodeModel.requestShares(owner_addr=publicKey,private_addr=privateKey,user_name=userName)
+        status =NodeContractModel.requestShares(owner_addr=publicKey,private_addr=privateKey,user_name=userName)
         return status
         
     def getReceivedShares():
-        shares =NodeModel.getReceivedShares(owner_addr=publicKey,private_addr=privateKey)
+        shares =NodeContractModel.getReceivedShares(owner_addr=publicKey,private_addr=privateKey)
         return shares
 
     def checkUserExists(userName):
-        val=NodeModel.checkUserNameExist(userName=userName,owner_addr=publicKey,private_addr=privateKey)
+        val=NodeContractModel.checkUserNameExist(userName=userName,owner_addr=publicKey,private_addr=privateKey)
         return val
     
     def getMyState(publicKeyLocal, privateKeyLocal, nodeContractAddressLocal):
-        NodeModel.refreshStatus(owner_addr=publicKeyLocal,private_addr=privateKeyLocal, nodeContractAddressLocal=nodeContractAddressLocal)
-        val=NodeModel.getMyState(owner_addr=publicKeyLocal,private_addr=privateKeyLocal, nodeContractAddressLocal=nodeContractAddressLocal)
+        NodeContractModel.refreshStatus(owner_addr=publicKeyLocal,private_addr=privateKeyLocal, nodeContractAddressLocal=nodeContractAddressLocal)
+        val=NodeContractModel.getMyState(owner_addr=publicKeyLocal,private_addr=privateKeyLocal, nodeContractAddressLocal=nodeContractAddressLocal)
         return val
     
     def getHolderStatus(publicKeyLocal, privateKeyLocal, nodeContractAddressLocal):
-        NodeModel.refreshShareHoldersLists(owner_addr=publicKeyLocal,private_addr=privateKeyLocal, nodeContractAddressLocal=nodeContractAddressLocal)
-        temporaryHolders=NodeController.getRequestedShareHolders(publicKeyLocal, privateKeyLocal, nodeContractAddressLocal)
-        acceptedHolders=NodeController.getShareHolders(publicKeyLocal, privateKeyLocal, nodeContractAddressLocal)
-        rejectedHolders=NodeController.getRejectedShareHolders(publicKeyLocal, privateKeyLocal, nodeContractAddressLocal)
+        NodeContractModel.refreshShareHoldersLists(owner_addr=publicKeyLocal,private_addr=privateKeyLocal, nodeContractAddressLocal=nodeContractAddressLocal)
+        temporaryHolders=NodeContractController.getRequestedShareHolders(publicKeyLocal, privateKeyLocal, nodeContractAddressLocal)
+        acceptedHolders=NodeContractController.getShareHolders(publicKeyLocal, privateKeyLocal, nodeContractAddressLocal)
+        rejectedHolders=NodeContractController.getRejectedShareHolders(publicKeyLocal, privateKeyLocal, nodeContractAddressLocal)
         holderLi=[]
         for holder in temporaryHolders:
             if (holder in acceptedHolders):
@@ -107,29 +106,29 @@ class NodeController:
         return holderLi
 
     def getContractAddressOfPublicAddress():
-        contractAddress=NodeModel.getContractAddressOfPrivateAddress(owner_addr=publicKey,private_addr=privateKey)
+        contractAddress=NodeContractModel.getContractAddressOfPrivateAddress(owner_addr=publicKey,private_addr=privateKey)
         return contractAddress
     
     def getUserName(publicKeyLocal, privateKeyLocal):
-        userName=NodeModel.getUserName(owner_addr=publicKeyLocal,private_addr=privateKeyLocal)
+        userName=NodeContractModel.getUserName(owner_addr=publicKeyLocal,private_addr=privateKeyLocal)
         return userName
-#NodeController.deploy(publicKeyLocal= publicKey,privateKeyLocal=privateKey)
-#NodeController.checkUserExists("Alice")
-#NodeController.register(publicKeyLocal= publicKey,privateKeyLocal=privateKey,userName= "Alice")
-#NodeController.checkRequestsForBeAHolder()
-#NodeController.addTemporaryShareHolder("0x617F2E2fD72FD9D5503197092aC168c91465E7f2")
+#NodeContractController.deploy(publicKeyLocal= publicKey,privateKeyLocal=privateKey)
+#NodeContractController.checkUserExists("Alice")
+#NodeContractController.register(publicKeyLocal= publicKey,privateKeyLocal=privateKey,userName= "Alice")
+#NodeContractController.checkRequestsForBeAHolder()
+#NodeContractController.addTemporaryShareHolder("0x617F2E2fD72FD9D5503197092aC168c91465E7f2")
 #removeTemporaryShareHolder("0x1F8558989122D1ecF159Ab5855dBEAe88345360f")
-#NodeController.addMyShares(["share1","share2","share3"])
-#NodeController.getMyShares()
-#NodeController.getShareHolders()
-#NodeController.getAcceptedShareHoldersList()
+#NodeContractController.addMyShares(["share1","share2","share3"])
+#NodeContractController.getMyShares()
+#NodeContractController.getShareHolders()
+#NodeContractController.getAcceptedShareHoldersList()
 #distribute()
 #requestShares("Bob")
 #getReceivedShares()
 #checkRequestsForBeAHolder()
 #acceptInvitation("0x305eC56922EDcF716F12C7a5c5961147933C0c41")
-#NodeController.getHolderStatus()
-#NodeController.makeHolderRequests()
-#NodeController.getMyState()
-#NodeController.makeHolderRequests()
-#NodeController.getContractAddressOfPublicAddress()
+#NodeContractController.getHolderStatus()
+#NodeContractController.makeHolderRequests()
+#NodeContractController.getMyState()
+#NodeContractController.makeHolderRequests()
+#NodeContractController.getContractAddressOfPublicAddress()

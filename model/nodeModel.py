@@ -1,4 +1,4 @@
-# TODO Sandaru - Change this Model name to nodeContractModel (Match names with other Model)
+
 
 #imports 
 from web3 import Web3
@@ -6,7 +6,7 @@ from solcx import compile_standard, install_solc
 import json 
 #c = w3.eth.contract(address=myContractAddress, abi=nodeContractABI)
 # publicContractAddress=""
-class NodeModel:
+class NodeContractModel:
     #node constants 
     myPrivateAddress="58d0efedba9a8a61b2ac3f188dd079782e07aed904cdbc0e3340e073e85c7655"
     myPublicAddress="0x20543FD8D854d500121215Abc542531987f6bc2e"
@@ -22,8 +22,8 @@ class NodeModel:
 
     # deploy the node smart contract
     def deploy(publicAddress,privateAddress):
-        NodeModel.myPrivateAddress=privateAddress
-        NodeModel.myPublicAddress=publicAddress
+        NodeContractModel.myPrivateAddress=privateAddress
+        NodeContractModel.myPublicAddress=publicAddress
         
         # with open(r"contract/compiled_code.json","r") as file: # for windows
         with open("../contract/compiled_code.json","r") as file: # for ubuntu
@@ -33,7 +33,7 @@ class NodeModel:
         bytecode = compiled_sol["contracts"]["Node.sol"]["Node"]["evm"]["bytecode"]["object"]
         # get abi
         abi = json.loads(compiled_sol["contracts"]["Node.sol"]["Node"]["metadata"])["output"]["abi"]
-        NodeModel.nodeContractABI=abi
+        NodeContractModel.nodeContractABI=abi
 
         # For connecting to ganache
         #w3 = Web3(Web3.HTTPProvider("http://127.0.0.1:7545"))
@@ -70,42 +70,42 @@ class NodeModel:
         print(f"Done! Contract deployed to {transaction_receipt.contractAddress}")
 
         #setting my contract address to deployed address  
-        NodeModel.myContractAddress=transaction_receipt.contractAddress
+        NodeContractModel.myContractAddress=transaction_receipt.contractAddress
         return transaction_receipt.contractAddress
     
     #establish the connection to call the smart contract functions 
     def connection(abi,contract_addr,owner_addr,p_key):
-        c = NodeModel.w3.eth.contract(address=contract_addr, abi=abi)
+        c = NodeContractModel.w3.eth.contract(address=contract_addr, abi=abi)
         return c
 #check the username is exists 
     def checkUserNameExist(userName,owner_addr,private_addr):
-        c= NodeModel.connection(NodeModel.nodeContractABI,NodeModel.myContractAddress,owner_addr,private_addr)
-        print(owner_addr,"checking user name validity for ",NodeModel.myContractAddress)
-        nonce = NodeModel.w3.eth.getTransactionCount(owner_addr)
+        c= NodeContractModel.connection(NodeContractModel.nodeContractABI,NodeContractModel.myContractAddress,owner_addr,private_addr)
+        print(owner_addr,"checking user name validity for ",NodeContractModel.myContractAddress)
+        nonce = NodeContractModel.w3.eth.getTransactionCount(owner_addr)
         result = c.caller({"from": owner_addr,"nonce":nonce}).isUserNameExist(userName)
         print("UserName  checked")
         print("Value:", result)
         return result
 #register to the public contract
     def registerToPublicContract(userName,owner_addr,private_addr,nodeContractAddressLocal):
-        c= NodeModel.connection(NodeModel.nodeContractABI,nodeContractAddressLocal,owner_addr,private_addr)
+        c= NodeContractModel.connection(NodeContractModel.nodeContractABI,nodeContractAddressLocal,owner_addr,private_addr)
         print(owner_addr,"Registering for ",nodeContractAddressLocal)
-        nonce = NodeModel.w3.eth.getTransactionCount(owner_addr)
+        nonce = NodeContractModel.w3.eth.getTransactionCount(owner_addr)
         store_contact = c.functions.registerToPublicContract(userName).buildTransaction({"from": owner_addr, "nonce": nonce})
         # Sign the transaction
-        sign_store_contact = NodeModel.w3.eth.account.sign_transaction(store_contact, private_key=private_addr)
+        sign_store_contact = NodeContractModel.w3.eth.account.sign_transaction(store_contact, private_key=private_addr)
         # Send the transaction
-        send_store_contact = NodeModel.w3.eth.send_raw_transaction(sign_store_contact.rawTransaction)
-        transaction_receipt = NodeModel.w3.eth.wait_for_transaction_receipt(send_store_contact)
+        send_store_contact = NodeContractModel.w3.eth.send_raw_transaction(sign_store_contact.rawTransaction)
+        transaction_receipt = NodeContractModel.w3.eth.wait_for_transaction_receipt(send_store_contact)
         print("Successfully registered to the public contract!!")
         return
 #Share holder's role ----------------------------------------------------------------------
 
 #check the requests for be a holder 
     def checkRequestsForBeAHolder(owner_addr,private_addr):
-        c= NodeModel.connection(NodeModel.nodeContractABI,NodeModel.myContractAddress,owner_addr,private_addr)
-        print(owner_addr,"checking Requests for ",NodeModel.myContractAddress)
-        nonce = NodeModel.w3.eth.getTransactionCount(owner_addr)
+        c= NodeContractModel.connection(NodeContractModel.nodeContractABI,NodeContractModel.myContractAddress,owner_addr,private_addr)
+        print(owner_addr,"checking Requests for ",NodeContractModel.myContractAddress)
+        nonce = NodeContractModel.w3.eth.getTransactionCount(owner_addr)
         ownersList = c.caller({"from": owner_addr, "nonce": nonce}).checkRequestsForBeAHolder()
        
         print("Addresses retrieved")
@@ -114,15 +114,15 @@ class NodeModel:
      
 #accept the holder request
     def acceptInvitation(owner_addr,private_addr,share_owner):
-        c= NodeModel.connection(NodeModel.nodeContractABI,NodeModel.myContractAddress,owner_addr,private_addr)
+        c= NodeContractModel.connection(NodeContractModel.nodeContractABI,NodeContractModel.myContractAddress,owner_addr,private_addr)
         print(owner_addr,"Accepting Request ",share_owner)
-        nonce = NodeModel.w3.eth.getTransactionCount(owner_addr)
+        nonce = NodeContractModel.w3.eth.getTransactionCount(owner_addr)
         returnVal = c.functions.acceptInvitation(share_owner).buildTransaction({"from": owner_addr, "nonce": nonce})
         # Sign the transaction
-        sign_store_contact = NodeModel.w3.eth.account.sign_transaction(returnVal, private_key=private_addr)
+        sign_store_contact = NodeContractModel.w3.eth.account.sign_transaction(returnVal, private_key=private_addr)
         # Send the transaction
-        send_store_contact = NodeModel.w3.eth.send_raw_transaction(sign_store_contact.rawTransaction)
-        transaction_receipt = NodeModel.w3.eth.wait_for_transaction_receipt(send_store_contact)
+        send_store_contact = NodeContractModel.w3.eth.send_raw_transaction(sign_store_contact.rawTransaction)
+        transaction_receipt = NodeContractModel.w3.eth.wait_for_transaction_receipt(send_store_contact)
         # returnVal = c.caller().checkRequestsForBeAHolder()
         # ownerAddressList = returnVal
         status = transaction_receipt["status"]
@@ -136,15 +136,15 @@ class NodeModel:
 
 # reject the holder request 
     def rejectInvitation(owner_addr,private_addr,share_owner):
-        c= NodeModel.connection(NodeModel.nodeContractABI,NodeModel.myContractAddress,owner_addr,private_addr)
+        c= NodeContractModel.connection(NodeContractModel.nodeContractABI,NodeContractModel.myContractAddress,owner_addr,private_addr)
         print(owner_addr,"Rejecting Request ",share_owner)
-        nonce = NodeModel.w3.eth.getTransactionCount(owner_addr)
+        nonce = NodeContractModel.w3.eth.getTransactionCount(owner_addr)
         returnVal = c.functions.rejectInvitation(share_owner).buildTransaction({"from": owner_addr, "nonce": nonce})
         # Sign the transaction
-        sign_store_contact = NodeModel.w3.eth.account.sign_transaction(returnVal, private_key=private_addr)
+        sign_store_contact = NodeContractModel.w3.eth.account.sign_transaction(returnVal, private_key=private_addr)
         # Send the transaction
-        send_store_contact = NodeModel.w3.eth.send_raw_transaction(sign_store_contact.rawTransaction)
-        transaction_receipt = NodeModel.w3.eth.wait_for_transaction_receipt(send_store_contact)
+        send_store_contact = NodeContractModel.w3.eth.send_raw_transaction(sign_store_contact.rawTransaction)
+        transaction_receipt = NodeContractModel.w3.eth.wait_for_transaction_receipt(send_store_contact)
         # returnVal = c.caller().checkRequestsForBeAHolder()
         # ownerAddressList = returnVal
         status = transaction_receipt["status"]
@@ -156,9 +156,9 @@ class NodeModel:
 
 #check the share requests from me
     def checkRequestsForShare(owner_addr,private_addr):
-        c= NodeModel.connection(NodeModel.nodeContractABI,NodeModel.myContractAddress,owner_addr,private_addr)
-        print(owner_addr,"checking Share requests ",NodeModel.myContractAddress)
-        nonce = NodeModel.w3.eth.getTransactionCount(owner_addr)
+        c= NodeContractModel.connection(NodeContractModel.nodeContractABI,NodeContractModel.myContractAddress,owner_addr,private_addr)
+        print(owner_addr,"checking Share requests ",NodeContractModel.myContractAddress)
+        nonce = NodeContractModel.w3.eth.getTransactionCount(owner_addr)
         ownersList = c.caller({"from": owner_addr, "nonce": nonce}).checkRequestsForShare()
         #generate a list of tuples
        
@@ -168,15 +168,15 @@ class NodeModel:
      
 # release the secret
     def releaseSecret(owner_addr,private_addr,share_owner):
-        c= NodeModel.connection(NodeModel.nodeContractABI,NodeModel.myContractAddress,owner_addr,private_addr)
+        c= NodeContractModel.connection(NodeContractModel.nodeContractABI,NodeContractModel.myContractAddress,owner_addr,private_addr)
         print(owner_addr,"Releasing the secret of  ",share_owner)
-        nonce = NodeModel.w3.eth.getTransactionCount(owner_addr)
+        nonce = NodeContractModel.w3.eth.getTransactionCount(owner_addr)
         returnVal = c.functions.releaseSecret(share_owner).buildTransaction({"from": owner_addr,  "nonce": nonce})
         # Sign the transaction
-        sign_store_contact = NodeModel.w3.eth.account.sign_transaction(returnVal, private_key=private_addr)
+        sign_store_contact = NodeContractModel.w3.eth.account.sign_transaction(returnVal, private_key=private_addr)
         # Send the transaction
-        send_store_contact = NodeModel.w3.eth.send_raw_transaction(sign_store_contact.rawTransaction)
-        transaction_receipt = NodeModel.w3.eth.wait_for_transaction_receipt(send_store_contact)
+        send_store_contact = NodeContractModel.w3.eth.send_raw_transaction(sign_store_contact.rawTransaction)
+        transaction_receipt = NodeContractModel.w3.eth.wait_for_transaction_receipt(send_store_contact)
         # returnVal = c.caller().checkRequestsForBeAHolder()
         # ownerAddressList = returnVal
         status = transaction_receipt["status"]
@@ -190,15 +190,15 @@ class NodeModel:
 
 # add a temporary share holder
     def addTemporaryShareHolder(owner_addr,private_addr,share_holder,nodeContractAddressLocal):
-        c= NodeModel.connection(NodeModel.nodeContractABI,nodeContractAddressLocal,owner_addr,private_addr)
+        c= NodeContractModel.connection(NodeContractModel.nodeContractABI,nodeContractAddressLocal,owner_addr,private_addr)
         print(owner_addr,"Adding as a share holder  ",share_holder)
-        nonce = NodeModel.w3.eth.getTransactionCount(owner_addr)
+        nonce = NodeContractModel.w3.eth.getTransactionCount(owner_addr)
         returnVal = c.functions.addTemporaryShareHolders(share_holder).buildTransaction({"from": owner_addr,"nonce": nonce})
         # Sign the transaction
-        sign_store_contact = NodeModel.w3.eth.account.sign_transaction(returnVal, private_key=private_addr)
+        sign_store_contact = NodeContractModel.w3.eth.account.sign_transaction(returnVal, private_key=private_addr)
         # Send the transaction
-        send_store_contact = NodeModel.w3.eth.send_raw_transaction(sign_store_contact.rawTransaction)
-        transaction_receipt = NodeModel.w3.eth.wait_for_transaction_receipt(send_store_contact)
+        send_store_contact = NodeContractModel.w3.eth.send_raw_transaction(sign_store_contact.rawTransaction)
+        transaction_receipt = NodeContractModel.w3.eth.wait_for_transaction_receipt(send_store_contact)
         # returnVal = c.caller().checkRequestsForBeAHolder()
         # ownerAddressList = returnVal
         status = transaction_receipt["status"]
@@ -209,15 +209,15 @@ class NodeModel:
         return status
 #remove a temporary share holder
     def removeTemporaryShareHolder(owner_addr,private_addr,share_holder):
-        c= NodeModel.connection(NodeModel.nodeContractABI,NodeModel.myContractAddress,owner_addr,private_addr)
+        c= NodeContractModel.connection(NodeContractModel.nodeContractABI,NodeContractModel.myContractAddress,owner_addr,private_addr)
         print(owner_addr,"Removing as a share holder  ",share_holder)
-        nonce = NodeModel.w3.eth.getTransactionCount(owner_addr)
+        nonce = NodeContractModel.w3.eth.getTransactionCount(owner_addr)
         returnVal = c.functions.removeShareHolders(share_holder).buildTransaction({"from": owner_addr,"nonce": nonce})
         # Sign the transaction
-        sign_store_contact = NodeModel.w3.eth.account.sign_transaction(returnVal, private_key=private_addr)
+        sign_store_contact = NodeContractModel.w3.eth.account.sign_transaction(returnVal, private_key=private_addr)
         # Send the transaction
-        send_store_contact = NodeModel.w3.eth.send_raw_transaction(sign_store_contact.rawTransaction)
-        transaction_receipt = NodeModel.w3.eth.wait_for_transaction_receipt(send_store_contact)
+        send_store_contact = NodeContractModel.w3.eth.send_raw_transaction(sign_store_contact.rawTransaction)
+        transaction_receipt = NodeContractModel.w3.eth.wait_for_transaction_receipt(send_store_contact)
         # returnVal = c.caller().checkRequestsForBeAHolder()
         # ownerAddressList = returnVal
         status = transaction_receipt["status"]
@@ -228,15 +228,15 @@ class NodeModel:
         return status
 # Make holder requests
     def makeHolderRequests(owner_addr,private_addr,nodeContractAddressLocal):
-        c= NodeModel.connection(NodeModel.nodeContractABI,nodeContractAddressLocal,owner_addr,private_addr)
+        c= NodeContractModel.connection(NodeContractModel.nodeContractABI,nodeContractAddressLocal,owner_addr,private_addr)
         print(owner_addr,"Requesting from the Temporary holders  ")
-        nonce = NodeModel.w3.eth.getTransactionCount(owner_addr)
+        nonce = NodeContractModel.w3.eth.getTransactionCount(owner_addr)
         returnVal = c.functions.makingHolderRequests().buildTransaction({"from": owner_addr, "nonce": nonce})
         # Sign the transaction
-        sign_store_contact = NodeModel.w3.eth.account.sign_transaction(returnVal, private_key=private_addr)
+        sign_store_contact = NodeContractModel.w3.eth.account.sign_transaction(returnVal, private_key=private_addr)
         # Send the transaction
-        send_store_contact = NodeModel.w3.eth.send_raw_transaction(sign_store_contact.rawTransaction)
-        transaction_receipt = NodeModel.w3.eth.wait_for_transaction_receipt(send_store_contact)
+        send_store_contact = NodeContractModel.w3.eth.send_raw_transaction(sign_store_contact.rawTransaction)
+        transaction_receipt = NodeContractModel.w3.eth.wait_for_transaction_receipt(send_store_contact)
         # returnVal = c.caller().checkRequestsForBeAHolder()
         # ownerAddressList = returnVal
         status = transaction_receipt["status"]
@@ -247,15 +247,15 @@ class NodeModel:
         return status
 # add my shares
     def addMyShares(owner_addr,private_addr,shares,nodeContractAddressLocal):
-        c= NodeModel.connection(NodeModel.nodeContractABI,nodeContractAddressLocal,owner_addr,private_addr)
+        c= NodeContractModel.connection(NodeContractModel.nodeContractABI,nodeContractAddressLocal,owner_addr,private_addr)
         print(owner_addr,"Adding shares  ",shares)
-        nonce = NodeModel.w3.eth.getTransactionCount(owner_addr)
+        nonce = NodeContractModel.w3.eth.getTransactionCount(owner_addr)
         returnVal = c.functions.addMyShares(shares).buildTransaction({"from": owner_addr,  "nonce": nonce})
         # Sign the transaction
-        sign_store_contact = NodeModel.w3.eth.account.sign_transaction(returnVal, private_key=private_addr)
+        sign_store_contact = NodeContractModel.w3.eth.account.sign_transaction(returnVal, private_key=private_addr)
         # Send the transaction
-        send_store_contact = NodeModel.w3.eth.send_raw_transaction(sign_store_contact.rawTransaction)
-        transaction_receipt = NodeModel.w3.eth.wait_for_transaction_receipt(send_store_contact)
+        send_store_contact = NodeContractModel.w3.eth.send_raw_transaction(sign_store_contact.rawTransaction)
+        transaction_receipt = NodeContractModel.w3.eth.wait_for_transaction_receipt(send_store_contact)
         # returnVal = c.caller().checkRequestsForBeAHolder()
         # ownerAddressList = returnVal
         status = transaction_receipt["status"]
@@ -266,9 +266,9 @@ class NodeModel:
         return status
 #Get my shares 
     def getMyShares(owner_addr,private_addr):
-        c= NodeModel.connection(NodeModel.nodeContractABI,NodeModel.myContractAddress,owner_addr,private_addr)
-        print(owner_addr,"Getting my shares  ",NodeModel.myContractAddress)
-        nonce = NodeModel.w3.eth.getTransactionCount(owner_addr)
+        c= NodeContractModel.connection(NodeContractModel.nodeContractABI,NodeContractModel.myContractAddress,owner_addr,private_addr)
+        print(owner_addr,"Getting my shares  ",NodeContractModel.myContractAddress)
+        nonce = NodeContractModel.w3.eth.getTransactionCount(owner_addr)
         returnVal = c.caller({"from": owner_addr,"nonce": nonce}).getMyShares()
         #generate a list of tuples
         print("My shares  retrieved",returnVal)
@@ -276,9 +276,9 @@ class NodeModel:
 
 #get requested share holders list
     def getRequestedShareHolders(owner_addr,private_addr,nodeContractAddressLocal):
-        c= NodeModel.connection(NodeModel.nodeContractABI,nodeContractAddressLocal,owner_addr,private_addr)
+        c= NodeContractModel.connection(NodeContractModel.nodeContractABI,nodeContractAddressLocal,owner_addr,private_addr)
         print(owner_addr,"checking Share holders ",nodeContractAddressLocal)
-        nonce = NodeModel.w3.eth.getTransactionCount(owner_addr)
+        nonce = NodeContractModel.w3.eth.getTransactionCount(owner_addr)
         holdersList = c.caller({"from": owner_addr, "nonce": nonce}).getRequestedShareHolders()
         #generate a list of tuples
        
@@ -287,9 +287,9 @@ class NodeModel:
         return holdersList
 #get My share holders who accepted the invitation
     def getMyShareHolders(owner_addr,private_addr,nodeContractAddressLocal):
-        c= NodeModel.connection(NodeModel.nodeContractABI,nodeContractAddressLocal,owner_addr,private_addr)
+        c= NodeContractModel.connection(NodeContractModel.nodeContractABI,nodeContractAddressLocal,owner_addr,private_addr)
         print(owner_addr,"checking Share holders ",nodeContractAddressLocal)
-        nonce = NodeModel.w3.eth.getTransactionCount(owner_addr)
+        nonce = NodeContractModel.w3.eth.getTransactionCount(owner_addr)
         holdersList = c.caller({"from": owner_addr, "nonce": nonce}).getShareHolders()
         #generate a list of tuples
        
@@ -298,9 +298,9 @@ class NodeModel:
         return holdersList
 #get rejected share holders
     def getRejectedShareHolders(owner_addr,private_addr,nodeContractAddressLocal):
-        c= NodeModel.connection(NodeModel.nodeContractABI,nodeContractAddressLocal,owner_addr,private_addr)
+        c= NodeContractModel.connection(NodeContractModel.nodeContractABI,nodeContractAddressLocal,owner_addr,private_addr)
         print(owner_addr,"checking Share holders ",nodeContractAddressLocal)
-        nonce = NodeModel.w3.eth.getTransactionCount(owner_addr)
+        nonce = NodeContractModel.w3.eth.getTransactionCount(owner_addr)
         holdersList = c.caller({"from": owner_addr, "nonce": nonce}).getRejectedShareHolders()
         #generate a list of tuples
        
@@ -309,15 +309,15 @@ class NodeModel:
         return holdersList
 #refresh the share holders status
     def refreshShareHoldersLists(owner_addr,private_addr, nodeContractAddressLocal):
-        c= NodeModel.connection(NodeModel.nodeContractABI,nodeContractAddressLocal,owner_addr,private_addr)
+        c= NodeContractModel.connection(NodeContractModel.nodeContractABI,nodeContractAddressLocal,owner_addr,private_addr)
         print(owner_addr,"Refreshing statue of Share holders ",nodeContractAddressLocal)
-        nonce = NodeModel.w3.eth.getTransactionCount(owner_addr)
+        nonce = NodeContractModel.w3.eth.getTransactionCount(owner_addr)
         returnVal = c.functions.refreshHolderLists().buildTransaction({"from": owner_addr,"nonce": nonce})
         # Sign the transaction
-        sign_store_contact = NodeModel.w3.eth.account.sign_transaction(returnVal, private_key=private_addr)
+        sign_store_contact = NodeContractModel.w3.eth.account.sign_transaction(returnVal, private_key=private_addr)
         # Send the transaction
-        send_store_contact = NodeModel.w3.eth.send_raw_transaction(sign_store_contact.rawTransaction)
-        transaction_receipt = NodeModel.w3.eth.wait_for_transaction_receipt(send_store_contact)
+        send_store_contact = NodeContractModel.w3.eth.send_raw_transaction(sign_store_contact.rawTransaction)
+        transaction_receipt = NodeContractModel.w3.eth.wait_for_transaction_receipt(send_store_contact)
         # returnVal = c.caller().checkRequestsForBeAHolder()
         # ownerAddressList = returnVal
         status = transaction_receipt["status"]
@@ -329,15 +329,15 @@ class NodeModel:
 
 #refresh the share holders status
     def refreshStatus(owner_addr,private_addr, nodeContractAddressLocal):
-        c= NodeModel.connection(NodeModel.nodeContractABI,nodeContractAddressLocal,owner_addr,private_addr)
+        c= NodeContractModel.connection(NodeContractModel.nodeContractABI,nodeContractAddressLocal,owner_addr,private_addr)
         print(owner_addr,"Refreshing status  ",nodeContractAddressLocal)
-        nonce = NodeModel.w3.eth.getTransactionCount(owner_addr)
+        nonce = NodeContractModel.w3.eth.getTransactionCount(owner_addr)
         returnVal = c.functions.refreshState().buildTransaction({"from": owner_addr,"nonce": nonce})
         # Sign the transaction
-        sign_store_contact = NodeModel.w3.eth.account.sign_transaction(returnVal, private_key=private_addr)
+        sign_store_contact = NodeContractModel.w3.eth.account.sign_transaction(returnVal, private_key=private_addr)
         # Send the transaction
-        send_store_contact = NodeModel.w3.eth.send_raw_transaction(sign_store_contact.rawTransaction)
-        transaction_receipt = NodeModel.w3.eth.wait_for_transaction_receipt(send_store_contact)
+        send_store_contact = NodeContractModel.w3.eth.send_raw_transaction(sign_store_contact.rawTransaction)
+        transaction_receipt = NodeContractModel.w3.eth.wait_for_transaction_receipt(send_store_contact)
         # returnVal = c.caller().checkRequestsForBeAHolder()
         # ownerAddressList = returnVal
         status = transaction_receipt["status"]
@@ -348,15 +348,15 @@ class NodeModel:
         return status
 #Get the acceptance of the shareholders 
     def distributeShares(owner_addr,private_addr, nodeContractAddressLocal):
-        c= NodeModel.connection(NodeModel.nodeContractABI,nodeContractAddressLocal,owner_addr,private_addr)
+        c= NodeContractModel.connection(NodeContractModel.nodeContractABI,nodeContractAddressLocal,owner_addr,private_addr)
         print(owner_addr,"Distributing the shares ",nodeContractAddressLocal)
-        nonce = NodeModel.w3.eth.getTransactionCount(owner_addr)
+        nonce = NodeContractModel.w3.eth.getTransactionCount(owner_addr)
         returnVal = c.functions.distribute().buildTransaction({"from": owner_addr, "nonce": nonce})
         # Sign the transaction
-        sign_store_contact = NodeModel.w3.eth.account.sign_transaction(returnVal, private_key=private_addr)
+        sign_store_contact = NodeContractModel.w3.eth.account.sign_transaction(returnVal, private_key=private_addr)
         # Send the transaction
-        send_store_contact = NodeModel.w3.eth.send_raw_transaction(sign_store_contact.rawTransaction)
-        transaction_receipt = NodeModel.w3.eth.wait_for_transaction_receipt(send_store_contact)
+        send_store_contact = NodeContractModel.w3.eth.send_raw_transaction(sign_store_contact.rawTransaction)
+        transaction_receipt = NodeContractModel.w3.eth.wait_for_transaction_receipt(send_store_contact)
 
         status = transaction_receipt["status"]
         #generate a list of tuples
@@ -366,15 +366,15 @@ class NodeModel:
      
  #Request shares from holders 
     def requestShares(owner_addr,private_addr,user_name):
-        c= NodeModel.connection(NodeModel.nodeContractABI,NodeModel.myContractAddress,owner_addr,private_addr)
-        print(owner_addr,"Requesting the shares ",NodeModel.myContractAddress)
-        nonce = NodeModel.w3.eth.getTransactionCount(owner_addr)
+        c= NodeContractModel.connection(NodeContractModel.nodeContractABI,NodeContractModel.myContractAddress,owner_addr,private_addr)
+        print(owner_addr,"Requesting the shares ",NodeContractModel.myContractAddress)
+        nonce = NodeContractModel.w3.eth.getTransactionCount(owner_addr)
         returnVal = c.functions.requestSharesFromHolders(user_name).buildTransaction({"from": owner_addr,"nonce": nonce})
         # Sign the transaction
-        sign_store_contact = NodeModel.w3.eth.account.sign_transaction(returnVal, private_key=private_addr)
+        sign_store_contact = NodeContractModel.w3.eth.account.sign_transaction(returnVal, private_key=private_addr)
         # Send the transaction
-        send_store_contact = NodeModel.w3.eth.send_raw_transaction(sign_store_contact.rawTransaction)
-        transaction_receipt = NodeModel.w3.eth.wait_for_transaction_receipt(send_store_contact)
+        send_store_contact = NodeContractModel.w3.eth.send_raw_transaction(sign_store_contact.rawTransaction)
+        transaction_receipt = NodeContractModel.w3.eth.wait_for_transaction_receipt(send_store_contact)
 
         status = transaction_receipt["status"]
         #generate a list of tuples
@@ -384,9 +384,9 @@ class NodeModel:
      
 #Get received shares 
     def getReceivedShares(owner_addr,private_addr):
-        c= NodeModel.connection(NodeModel.nodeContractABI,NodeModel.myContractAddress,owner_addr,private_addr)
-        print(owner_addr,"Getting received shares  ",NodeModel.myContractAddress)
-        nonce = NodeModel.w3.eth.getTransactionCount(owner_addr)
+        c= NodeContractModel.connection(NodeContractModel.nodeContractABI,NodeContractModel.myContractAddress,owner_addr,private_addr)
+        print(owner_addr,"Getting received shares  ",NodeContractModel.myContractAddress)
+        nonce = NodeContractModel.w3.eth.getTransactionCount(owner_addr)
         sharesList = c.caller({"from": owner_addr, "nonce": nonce}).regenerate()
        
         print("Received shares  retrieved")
@@ -395,9 +395,9 @@ class NodeModel:
 
 #get my state 
     def getMyState(owner_addr,private_addr, nodeContractAddressLocal):
-        c= NodeModel.connection(NodeModel.nodeContractABI,nodeContractAddressLocal,owner_addr,private_addr)
+        c= NodeContractModel.connection(NodeContractModel.nodeContractABI,nodeContractAddressLocal,owner_addr,private_addr)
         print(owner_addr,"Getting my status  ",nodeContractAddressLocal)
-        nonce = NodeModel.w3.eth.getTransactionCount(owner_addr)
+        nonce = NodeContractModel.w3.eth.getTransactionCount(owner_addr)
         myState = c.caller({"from": owner_addr, "nonce": nonce}).getMyState()
        
         print("My state  retrieved")
@@ -406,9 +406,9 @@ class NodeModel:
 
 #get contract address using public address 
     def getContractAddressOfPrivateAddress(owner_addr,private_addr):
-        c= NodeModel.connection(NodeModel.nodeContractABI,NodeModel.myContractAddress,owner_addr,private_addr)
-        print(owner_addr,"Getting my Contract Address  ",NodeModel.myContractAddress)
-        nonce = NodeModel.w3.eth.getTransactionCount(owner_addr)
+        c= NodeContractModel.connection(NodeContractModel.nodeContractABI,NodeContractModel.myContractAddress,owner_addr,private_addr)
+        print(owner_addr,"Getting my Contract Address  ",NodeContractModel.myContractAddress)
+        nonce = NodeContractModel.w3.eth.getTransactionCount(owner_addr)
         contractAddress = c.caller({"from": owner_addr, "nonce": nonce}).getContractAddressOfPublicAddress(owner_addr)
        
         print("My Contract Address  retrieved")
@@ -417,9 +417,9 @@ class NodeModel:
 
 #get contract address using public address 
     def getUserName(owner_addr,private_addr):
-        c= NodeModel.connection(NodeModel.nodeContractABI,NodeModel.myContractAddress,owner_addr,private_addr)
-        print(owner_addr,"Getting my userName  ",NodeModel.myContractAddress)
-        nonce = NodeModel.w3.eth.getTransactionCount(owner_addr)
+        c= NodeContractModel.connection(NodeContractModel.nodeContractABI,NodeContractModel.myContractAddress,owner_addr,private_addr)
+        print(owner_addr,"Getting my userName  ",NodeContractModel.myContractAddress)
+        nonce = NodeContractModel.w3.eth.getTransactionCount(owner_addr)
         userName = c.caller({"from": owner_addr, "nonce": nonce}).getUserName()
        
         print("My user name  retrieved")
