@@ -5,7 +5,7 @@ import "./PublicContract.sol";
 // contract of a node
 contract Node {
 
-    address private owner;  //Owner address
+    address immutable private owner;  //Owner address
 
     string private userName; //my user name after registering
 
@@ -25,9 +25,9 @@ contract Node {
 
     string[] private regeneratedShares;      //regenerated shares as a requester
     
-    address private myContractAddress; //mycontract address 
+    address immutable private myContractAddress; //mycontract address 
 
-    PublicContract private defaultPublicContract; //Public contract obeject
+    PublicContract immutable private defaultPublicContract; //Public contract obeject
 
     string public myState;
 
