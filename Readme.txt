@@ -10,7 +10,8 @@ Step 2 : Setup packages
 python setup.py clean install or python3 setup.py clean install
 
 Step 3 : compile the solidity contracts 
-
+Go to contract folder: cd contract
+Run the compiler file: python compiler.py  
 
 Step 3 : Run flutter-python desktop app
 Go to view folder : cd View/
