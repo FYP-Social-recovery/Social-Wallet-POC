@@ -29,7 +29,7 @@ def compile():
         solc_version="0.8.16",
     )
     # print(compiled_sol)     #compiled solidity file 
-    with open("contract/compiled_code.json", "w") as file:
+    with open("contract/compiled_code.json", "w") as file:  ##with open("./compiled_code.json", "w") as file:
         json.dump(compiled_sol, file)
 
 compile()
