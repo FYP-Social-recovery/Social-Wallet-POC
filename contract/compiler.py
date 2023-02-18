@@ -8,7 +8,7 @@ def compile():
         public_contract_file = file.read()
 
     import json  # to save the output in a JSON file
-    install_solc("0.8.17")
+    install_solc("0.8.16")
 
     compiled_sol = compile_standard(
         {
@@ -26,7 +26,7 @@ def compile():
                 }
             },
         },
-        solc_version="0.8.17",
+        solc_version="0.8.16",
     )
     # print(compiled_sol)     #compiled solidity file 
     with open("contract/compiled_code.json", "w") as file:
