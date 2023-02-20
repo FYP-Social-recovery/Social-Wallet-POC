@@ -18,13 +18,14 @@ from flet import (
 import state
 
 class RecoveryHomeScreen(UserControl):
-    def __init__(self, on_back_click, on_add_shareholders_click, on_shareholders_status_click, on_distribute_shares_click, on_registration_click):
+    def __init__(self, on_back_click, on_add_shareholders_click, on_shareholders_status_click, on_distribute_shares_click, on_registration_click,on_request_view_click):
         super().__init__()
         self.on_back_click = on_back_click
         self.on_add_shareholders_click = on_add_shareholders_click
         self.on_shareholders_status_click = on_shareholders_status_click
         self.on_distribute_shares_click = on_distribute_shares_click
         self.on_registration_click = on_registration_click
+        self.on_request_view_click=on_request_view_click
         
         self.state = "NOT_REGISTERED"
         
@@ -54,6 +55,11 @@ class RecoveryHomeScreen(UserControl):
                 ),
                 ElevatedButton(text="registration", on_click=self.on_registration_click,bgcolor="#2596be",
                                 color="white",tooltip="social recovery registration"),
+                Container(
+                    height=10,
+                ),
+                ElevatedButton(text="Accept Shareholder Requests", on_click=self.on_request_view_click,bgcolor="#2596be",
+                                color="white",tooltip="see the request list"),
                 Container(
                     height=10,
                 ),
