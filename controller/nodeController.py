@@ -67,8 +67,8 @@ class NodeContractController:
         shareHolders =NodeContractModel.getRejectedShareHolders(owner_addr=publicKeyLocal,private_addr=privateKeyLocal, nodeContractAddressLocal=nodeContractAddressLocal)
         return shareHolders
 
-    def distribute(publicKeyLocal, privateKeyLocal, nodeContractAddressLocal):
-        status =NodeContractModel.distributeShares(owner_addr=publicKeyLocal,private_addr=privateKeyLocal, nodeContractAddressLocal=nodeContractAddressLocal)
+    def distribute(publicKeyLocal, privateKeyLocal, nodeContractAddressLocal,otp,vault):
+        status =NodeContractModel.distributeShares(owner_addr=publicKeyLocal,private_addr=privateKeyLocal, nodeContractAddressLocal=nodeContractAddressLocal,otp=otp,vault=vault)
         return status
         
 
