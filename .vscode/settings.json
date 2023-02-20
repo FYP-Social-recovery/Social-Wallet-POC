@@ -1,0 +1,6 @@
+{
+    "python.analysis.extraPaths": [
+        "./utils",
+        "./utils/fp_preprocessing_utils"
+    ]
+}
