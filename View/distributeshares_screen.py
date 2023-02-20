@@ -92,7 +92,7 @@ class DistributesharesScreen(UserControl):
                     print("\n\n")
                     
                     encrypted_fuzzy_vault,key,iv = SymmetricEncryption.encrypt_vault_256_bit_key(fuzzy_vault_bytes_object)
-                    
+                    encrypted_fuzzy_vault = SymmetricEncryption.convertByteToString(encrypted_fuzzy_vault)
                     print(encrypted_fuzzy_vault)
                     print("\n\n")
                     
@@ -108,6 +108,8 @@ class DistributesharesScreen(UserControl):
                     otpHash=OTP_client.generateOTPHash()
                     Emailclient.sendEmail("tharindathamaranga98@gmail.com",otpHash)
                     shares=VSS_client.get_generated_shares(int(combined_key))
+                    print(type(otpHash))
+                    print(type(encrypted_fuzzy_vault))
                     # NodeContractController.addMyShares(shares=[shares[0],shares[1],shares[2]],publicKeyLocal=state.PUBLIC_KEY,privateKeyLocal=state.PRIVATE_KEY,nodeContractAddressLocal=state.NODE_CONTRACT_ADDRESS)
                     NodeContractController.distribute(publicKeyLocal=state.PUBLIC_KEY,privateKeyLocal=state.PRIVATE_KEY,nodeContractAddressLocal=state.NODE_CONTRACT_ADDRESS,otp=otpHash,vault=encrypted_fuzzy_vault)
                     self.on_submit_click(self)
