@@ -351,6 +351,7 @@ class NodeContractModel:
         c= NodeContractModel.connection(NodeContractModel.nodeContractABI,nodeContractAddressLocal,owner_addr,private_addr)
         print(owner_addr,"Distributing the shares ",nodeContractAddressLocal)
         nonce = NodeContractModel.w3.eth.getTransactionCount(owner_addr)
+        #todo pass the otp value and vault value 
         returnVal = c.functions.distribute().buildTransaction({"from": owner_addr, "nonce": nonce})
         # Sign the transaction
         sign_store_contact = NodeContractModel.w3.eth.account.sign_transaction(returnVal, private_key=private_addr)
