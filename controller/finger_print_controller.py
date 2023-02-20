@@ -118,18 +118,20 @@ class FingerPrintController:
 # Generate vault
     def enroll_new_fingerprint(xyt_path, secret):
         # calculate secret according to polynomial degree. secret has to be able to be encoded in bytes (*8)
-        secret_bytes = SecretGenerator.generate_smallest_secret_with_predefined_secret(POLY_DEGREE, CRC_LENGTH, secret, min_size=128, echo=True)
+        secret_bytes = SecretGenerator.generate_smallest_secret_with_predefined_secret(POLY_DEGREE, CRC_LENGTH, secret, min_size=128, echo=False)
         print(APP_FV_SECRET)
 
         fuzzy_vault = FingerPrintController.generate_vault(xyt_path, MINUTIAE_POINTS_AMOUNT, CHAFF_POINTS_AMOUNT, POLY_DEGREE,
                                     secret_bytes, CRC_LENGTH, GF_2_M, echo=False)
         
-        fuzzy_vault.log_vault()
+        vault = fuzzy_vault.log_vault()
         
         print(APP_FV_GENERATED)
 
         print('\n')
         print(APP_ENROLL_SUCCESS)
+        
+        return vault
 
     def generate_vault(xyt_input_path, minutiae_points_amount, chaff_points_amount, poly_degree, secret, crc_length,
                     gf_exp, echo=False):

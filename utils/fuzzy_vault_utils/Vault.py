@@ -145,10 +145,17 @@ class Vault:
         # clear the data in the info file
         with open(log_path,'w') as file:
             pass
-
+        
+        vault = ""
+        
         with open(log_path, 'a') as file:
             for vault_element in self.vault_final_elements_pairs:
+                if(vault != ""):
+                    vault = vault + "\n"
+                vault = vault + str(vault_element.x_rep) + " " + str(vault_element.y_rep)
                 file.write('{} {}\n'.format(vault_element.x_rep, vault_element.y_rep))
+        
+        return vault
                 
     def read_vault(self,log_path=VAULT_LOG_FOLDER + VAULT_LOG_FILENAME):
         """ read vault to file and populate vault object"""
