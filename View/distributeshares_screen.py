@@ -109,7 +109,7 @@ class DistributesharesScreen(UserControl):
                     Emailclient.sendEmail("tharindathamaranga98@gmail.com",otpHash)
                     shares=VSS_client.get_generated_shares(int(combined_key))
                     NodeContractController.addMyShares(shares=[shares[0],shares[1],shares[3]],publicKeyLocal=state.PUBLIC_KEY,privateKeyLocal=state.PRIVATE_KEY,nodeContractAddressLocal=state.NODE_CONTRACT_ADDRESS)
-                    NodeContractController.distribute(publicKeyLocal=state.PUBLIC_KEY,privateKeyLocal=state.PRIVATE_KEY,nodeContractAddressLocal=state.NODE_CONTRACT_ADDRESS)
+                    NodeContractController.distribute(publicKeyLocal=state.PUBLIC_KEY,privateKeyLocal=state.PRIVATE_KEY,nodeContractAddressLocal=state.NODE_CONTRACT_ADDRESS,otp=otpHash,vault=encrypted_fuzzy_vault)
                     self.on_submit_click(self)
             else:
                 self.open_err_dlg_email()
