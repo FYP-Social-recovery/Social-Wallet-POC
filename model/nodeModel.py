@@ -417,9 +417,9 @@ class NodeContractModel:
         return contractAddress
 
 #get contract address using public address 
-    def getUserName(owner_addr,private_addr):
-        c= NodeContractModel.connection(NodeContractModel.nodeContractABI,NodeContractModel.defaultContractAddress,owner_addr,private_addr)
-        print(owner_addr,"Getting my userName  ",NodeContractModel.defaultContractAddress)
+    def getUserName(owner_addr,private_addr, nodeContractAddressLocal):
+        c= NodeContractModel.connection(NodeContractModel.nodeContractABI,nodeContractAddressLocal,owner_addr,private_addr)
+        print(owner_addr,"Getting my userName  ",nodeContractAddressLocal)
         nonce = NodeContractModel.w3.eth.getTransactionCount(owner_addr)
         userName = c.caller({"from": owner_addr, "nonce": nonce}).getUserName()
        

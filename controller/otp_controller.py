@@ -3,7 +3,7 @@ import string
 from random import choice
 
 class OTPController:
-    def __init__(self) -> None:
+    def _init_(self) -> None:
         pass
     
     def random_OTP(self):
@@ -20,4 +20,4 @@ class OTPController:
         random_val=self.random_OTP()
         hash_val=self.convert_Hash(random_val)
         rtn=str(hash_val[1])
-        return rtn
+        return random_val,rtn
