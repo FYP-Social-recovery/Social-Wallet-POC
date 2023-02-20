@@ -13,6 +13,7 @@ from flet import (
     Container,
     MainAxisAlignment,
     Page,
+    Divider,
 )
 
 import state
@@ -96,6 +97,9 @@ class HomeScreen(UserControl):
                 Container(
                     height=50,
                 ),
+                Text(value="Public Key", text_align="center",
+                     size=15, color="Black"),
+                
                 Row(
                     
                     vertical_alignment= CrossAxisAlignment.CENTER,
@@ -115,6 +119,9 @@ class HomeScreen(UserControl):
                 Container(
                     height=100,
                 ),
+                Text(value="Balance", text_align="center",
+                     size=15, color="Black"),
+                
                 Row(
                     
                     vertical_alignment= CrossAxisAlignment.CENTER,
@@ -135,7 +142,7 @@ class HomeScreen(UserControl):
                 Container(
                     height=100,
                 ),
-                ElevatedButton("Social Recovery Menu", bgcolor="#2596be",
+                ElevatedButton("Setup Menu", bgcolor="#2596be",
                                color="white",on_click=self.on_menue_button_click, width=300,tooltip="Configuration Menu"),
             ],
         )
