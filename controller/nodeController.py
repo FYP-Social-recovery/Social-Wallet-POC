@@ -15,15 +15,15 @@ class NodeContractController:
         return
 
     #share holder Role  
-    def checkRequestsForBeAHolder():
-        addresses=NodeContractModel.checkRequestsForBeAHolder(owner_addr=publicKey,private_addr=privateKey)
+    def checkRequestsForBeAHolder(publicKeyLocal, privateKeyLocal, nodeContractAddressLocal):
+        addresses=NodeContractModel.checkRequestsForBeAHolder(owner_addr=publicKeyLocal,private_addr=privateKeyLocal,nodeContractAddressLocal=nodeContractAddressLocal)
         return addresses
 
-    def acceptInvitation(address):
-        status=NodeContractModel.acceptInvitation(owner_addr=publicKey,private_addr=privateKey,share_owner=address)
+    def acceptInvitation(address,publicKeyLocal, privateKeyLocal, nodeContractAddressLocal):
+        status=NodeContractModel.acceptInvitation(owner_addr=publicKeyLocal,private_addr=privateKeyLocal,share_owner=address,nodeContractAddressLocal=nodeContractAddressLocal)
         return status
-    def rejectInvitation(address):
-        status=NodeContractModel.rejectInvitation(owner_addr=publicKey,private_addr=privateKey,share_owner=address)
+    def rejectInvitation(address,publicKeyLocal, privateKeyLocal, nodeContractAddressLocal):
+        status=NodeContractModel.rejectInvitation(owner_addr=publicKeyLocal,private_addr=privateKeyLocal,share_owner=address,nodeContractAddressLocal=nodeContractAddressLocal)
         return status
         
     def checkRequestsForShare():

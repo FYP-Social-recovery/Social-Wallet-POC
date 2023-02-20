@@ -33,7 +33,7 @@ class DistributesharesScreen(UserControl):
             Emailclient=EmailController()
             VSS_client=VSS_Controller()
             OTP_client=OTPController()
-            otpHash=OTPController.generateOTPHash()
+            otpHash=OTP_client.generateOTPHash()
             Emailclient.sendEmail("tharindathamaranga98@gmail.com",otpHash)
             #Emailclient.sendEmail("tharindathamaranga98@gmail.com","Successfullly added Email!")
             shares=VSS_client.get_generated_shares(int("1222222222222222222222222"))

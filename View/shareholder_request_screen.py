@@ -24,21 +24,21 @@ class ShareHolderScreen(UserControl):
         super().__init__()
         self.on_back_click = on_back_click
         self.on_continue_click = on_continue_click
+        
+        
+        self.ShareOwnerAdresses=NodeContractController.checkRequestsForBeAHolder(publicKeyLocal=state.PUBLIC_KEY,privateKeyLocal=state.PRIVATE_KEY,nodeContractAddressLocal=state.NODE_CONTRACT_ADDRESS)
+        print(type(self.ShareOwnerAdresses))
 
-        
-        ShareOwnerAdresses=NodeContractController.checkRequestsForBeAHolder()
-        print(ShareOwnerAdresses)
-        
         self.TextArray=[]
         for i in range(3):
-            if (i<=ShareOwnerAdresses.length()):
+            if (i<len(self.ShareOwnerAdresses)):
                 textRow=Row(
                             vertical_alignment= CrossAxisAlignment.CENTER,
                             alignment = MainAxisAlignment.CENTER,
                             controls=[
-                                    Text(value=ShareOwnerAdresses[i], text_align="center", size=24, color="0xFF000000"),
-                                    ElevatedButton(text="Accepet", bgcolor="0xFFD9BE38", color="0xFFFFFFFF", elevation=0,on_click=self.accept(ShareOwnerAdresses[i])),
-                                    ElevatedButton(text="Reject", bgcolor="0xFFA62E2E", color="0xFFFFFFFF", elevation=0,on_click=self.reject(ShareOwnerAdresses[i])),
+                                    Text(value=self.ShareOwnerAdresses[i], text_align="center", size=24, color="0xFF000000"),
+                                    ElevatedButton(text="Accepet", bgcolor="0xFFD9BE38", color="0xFFFFFFFF", elevation=0,on_click=self.accept),
+                                    ElevatedButton(text="Reject", bgcolor="0xFFA62E2E", color="0xFFFFFFFF", elevation=0,on_click=self.reject),
                                 ],
                         )
             else:
@@ -51,11 +51,13 @@ class ShareHolderScreen(UserControl):
                         )
             self.TextArray.append(textRow)
 
-    def accept(self,e,ownerAddress):
-        NodeContractController.acceptInvitation(ownerAddress)
+    def accept(self,e):
+        NodeContractController.acceptInvitation(address=self.ShareOwnerAdresses[0],publicKeyLocal=state.PUBLIC_KEY,privateKeyLocal=state.PRIVATE_KEY,nodeContractAddressLocal=state.NODE_CONTRACT_ADDRESS)
+        self.on_back_click(self)
 
-    def reject(self,e,ownerAddress):
-        NodeContractController.rejectInvitation(ownerAddress)
+    def reject(self,e):
+        NodeContractController.rejectInvitation(address=self.ShareOwnerAdresses[0],publicKeyLocal=state.PUBLIC_KEY,privateKeyLocal=state.PRIVATE_KEY,nodeContractAddressLocal=state.NODE_CONTRACT_ADDRESS)
+        self.on_back_click(self)
 
     def build(self):
         return Column(

@@ -102,9 +102,9 @@ class NodeContractModel:
 #Share holder's role ----------------------------------------------------------------------
 
 #check the requests for be a holder 
-    def checkRequestsForBeAHolder(owner_addr,private_addr):
-        c= NodeContractModel.connection(NodeContractModel.nodeContractABI,NodeContractModel.defaultContractAddress,owner_addr,private_addr)
-        print(owner_addr,"checking Requests for ",NodeContractModel.defaultContractAddress)
+    def checkRequestsForBeAHolder(owner_addr,private_addr,nodeContractAddressLocal):
+        c= NodeContractModel.connection(NodeContractModel.nodeContractABI,nodeContractAddressLocal,owner_addr,private_addr)
+        print(owner_addr,"checking Requests for ",nodeContractAddressLocal)
         nonce = NodeContractModel.w3.eth.getTransactionCount(owner_addr)
         ownersList = c.caller({"from": owner_addr, "nonce": nonce}).checkRequestsForBeAHolder()
        
@@ -113,8 +113,8 @@ class NodeContractModel:
         return ownersList
      
 #accept the holder request
-    def acceptInvitation(owner_addr,private_addr,share_owner):
-        c= NodeContractModel.connection(NodeContractModel.nodeContractABI,NodeContractModel.defaultContractAddress,owner_addr,private_addr)
+    def acceptInvitation(owner_addr,private_addr,share_owner,nodeContractAddressLocal):
+        c= NodeContractModel.connection(NodeContractModel.nodeContractABI,nodeContractAddressLocal,owner_addr,private_addr)
         print(owner_addr,"Accepting Request ",share_owner)
         nonce = NodeContractModel.w3.eth.getTransactionCount(owner_addr)
         returnVal = c.functions.acceptInvitation(share_owner).buildTransaction({"from": owner_addr, "nonce": nonce})
@@ -135,8 +135,8 @@ class NodeContractModel:
 
 
 # reject the holder request 
-    def rejectInvitation(owner_addr,private_addr,share_owner):
-        c= NodeContractModel.connection(NodeContractModel.nodeContractABI,NodeContractModel.defaultContractAddress,owner_addr,private_addr)
+    def rejectInvitation(owner_addr,private_addr,share_owner,nodeContractAddressLocal):
+        c= NodeContractModel.connection(NodeContractModel.nodeContractABI,nodeContractAddressLocal,owner_addr,private_addr)
         print(owner_addr,"Rejecting Request ",share_owner)
         nonce = NodeContractModel.w3.eth.getTransactionCount(owner_addr)
         returnVal = c.functions.rejectInvitation(share_owner).buildTransaction({"from": owner_addr, "nonce": nonce})

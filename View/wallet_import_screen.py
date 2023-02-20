@@ -32,8 +32,8 @@ class WalletImportScreen(UserControl):
         print("Public key: ",publicKey)
 
         contractAddress=PublicContractController.getContractAddressByPublicAddress(publicKey, privateKey)
-        if(contractAddress!="0x0000000000000000000000000000000000000000"):
-            userName=NodeContractController.getUserName(publicKey, privateKey)
+        #if(contractAddress!="0x0000000000000000000000000000000000000000"):
+            #userName=NodeContractController.getUserName(publicKey, privateKey)
        
         if(contractAddress!="0x0000000000000000000000000000000000000000"):
             state.NODE_CONTRACT_ADDRESS = contractAddress

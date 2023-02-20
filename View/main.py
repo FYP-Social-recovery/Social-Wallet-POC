@@ -213,7 +213,7 @@ def main(page: Page):
                 View(
                     "/recovery/home/requestView",
                     [
-                        ShareHolderScreen(on_back_click=lambda _: page.go("/"), on_continue_click=on_import_continue_click),
+                        ShareHolderScreen(on_back_click=lambda _: page.go("/recovery/home"), on_continue_click=on_import_continue_click),
                     ],
                     bgcolor="0xFFFFF9F2",
                     vertical_alignment=MainAxisAlignment.CENTER,
