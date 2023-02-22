@@ -40,3 +40,4 @@ Versions
 0.0.1- Key generation part using mnemonic and random mnemonic generation
 0.0.2- Share holder request , show share holder acceptance distribute the secret
 0.0.3- Key recovery from the share holders ,Optimize the smart contract and eliminate the vulnerabilities 
+0.0.4- Screens and backend completed until the distribution eliminated vulnerabilities -name convention,immutable variables,redundant statements
