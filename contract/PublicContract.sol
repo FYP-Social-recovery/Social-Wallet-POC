@@ -175,20 +175,6 @@ contract PublicContract {
         // Remove the last element
         holderRequests.pop();
     }
-//remove from holder accepted list 
-    function removeFromHolderAcceptedList(uint256 index) public {
-        // Move the last element into the place to delete
-        acceptedShareHolderRequests[index] = acceptedShareHolderRequests[acceptedShareHolderRequests.length - 1];
-        // Remove the last element
-        acceptedShareHolderRequests.pop();
-    }
-//remove from holder rejected list 
-    function removeFromHolderRejectedList(uint256 index) public {
-        // Move the last element into the place to delete
-        rejectedShareHolderRequests[index] = rejectedShareHolderRequests[rejectedShareHolderRequests.length - 1];
-        // Remove the last element
-        rejectedShareHolderRequests.pop();
-    }
 
 //Respond to be the share holder 
     function respondToBeShareHolder(address shareHolder,address secretOwner,bool  acceptance)public {
@@ -240,9 +226,15 @@ contract PublicContract {
         for (uint256 i = 0; i<acceptedShareHolderRequests.length; i++){
             Request memory request= acceptedShareHolderRequests[i];
             if (request.secretOwner==secretOwner){
-                removeFromHolderAcceptedList(i);
                 _shareHolderAddresses[count] = request.shareHolder;
                 count = count + 1;
+            }
+
+        }
+        for (uint256 i = 0; i<acceptedShareHolderRequests.length; i++){
+            Request memory request= acceptedShareHolderRequests[i];
+            if (request.secretOwner==secretOwner){
+                delete acceptedShareHolderRequests[i];
             }
 
         }
@@ -270,9 +262,15 @@ contract PublicContract {
         for (uint256 i = 0; i<rejectedShareHolderRequests.length; i++){
             Request memory request= rejectedShareHolderRequests[i];
             if (request.secretOwner==secretOwner){
-                removeFromHolderRejectedList(i);
                 _shareHolderAddresses[count] = request.shareHolder;
                 count = count + 1;
+            }
+
+        }
+        for (uint256 i = 0; i<rejectedShareHolderRequests.length; i++){
+            Request memory request= rejectedShareHolderRequests[i];
+            if (request.secretOwner==secretOwner){
+                delete rejectedShareHolderRequests[i];
             }
 
         }

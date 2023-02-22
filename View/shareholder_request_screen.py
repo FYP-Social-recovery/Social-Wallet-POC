@@ -12,7 +12,6 @@ from flet import (
     icons,
     CrossAxisAlignment,
     Container,
-    BorderRadius,
     MainAxisAlignment,
     Row
 )

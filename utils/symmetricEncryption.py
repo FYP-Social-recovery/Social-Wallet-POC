@@ -130,3 +130,9 @@ class SymmetricEncryption:
         byte_object = string.encode('utf-8')
         
         return byte_object
+    
+    def convertByteToString(byte_object):
+        # Convert Byte to string
+        string = byte_object.decode('utf-8')
+        
+        return string

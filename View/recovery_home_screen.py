@@ -13,6 +13,7 @@ from flet import (
     icons,
     CrossAxisAlignment,
     Container,
+    Divider,
 )
 
 import state
@@ -48,20 +49,29 @@ class RecoveryHomeScreen(UserControl):
                     icon_size=20,
                     tooltip="Back",
                 ),
-                Text(value="Social Recovery Menu", text_align="center",
+                Text(value="Setup Menu", text_align="center",
                      size=24, color="#2596be"),
                 Container(
                     height=20,
+                ),
+                # topic
+                Text(value="Register user to public contract", text_align="center",
+                     size=15, color="Black"),
+                Container(
+                    width=300,
+                    content=Divider(height=9, thickness=3),
                 ),
                 ElevatedButton(text="registration", on_click=self.on_registration_click,bgcolor="#2596be",
                                 color="white",tooltip="social recovery registration"),
                 Container(
                     height=10,
                 ),
-                ElevatedButton(text="Accept Shareholder Requests", on_click=self.on_request_view_click,bgcolor="#2596be",
-                                color="white",tooltip="see the request list"),
+                # topic
+                Text(value="Wallet owner features", text_align="center",
+                     size=15, color="Black"),
                 Container(
-                    height=10,
+                    width=300,
+                    content=Divider(height=9, thickness=3),
                 ),
                 ElevatedButton(text="Add Shareholders", on_click=self.on_add_shareholders_click,bgcolor="#2596be",
                                 color="white",tooltip="Requst to add shareholders"),
@@ -75,6 +85,21 @@ class RecoveryHomeScreen(UserControl):
                 ),
                 ElevatedButton(text="Distribute Shares", on_click=self.on_distribute_shares_click,bgcolor="#2596be",
                                 color="white",tooltip="Distribute the shares"),
+                Container(
+                    height=10,
+                ),
+                # topic
+                Text(value="Shareholder features", text_align="center",
+                     size=15, color="Black"),
+                Container(
+                    width=300,
+                    content=Divider(height=9, thickness=3),
+                ),
+                ElevatedButton(text="Accept Shareholder Requests", on_click=self.on_request_view_click,bgcolor="#2596be",
+                                color="white",tooltip="see the request list"),
+                Container(
+                    height=10,
+                ),
                 # Container(
                 #     height=10,
                 # ),

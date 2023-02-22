@@ -1,10 +1,9 @@
-
 import hashlib
 import string
 from random import choice
 
 class OTPController:
-    def __init__(self) -> None:
+    def _init_(self) -> None:
         pass
     
     def random_OTP(self):
@@ -22,9 +21,3 @@ class OTPController:
         hash_val=self.convert_Hash(random_val)
         rtn=str(hash_val[1])
         return random_val,rtn
-
-
-# otp=OTPController()
-# random_val,hash=otp.generateOTPHash()
-# print(random_val)
-# print(hash)

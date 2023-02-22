@@ -7,7 +7,7 @@ simplicity. Used skimage Zha84 A fast parallel algorithm for thinning digital pa
 """
 import numpy as np
 import cv2 as cv
-from utils.crossing_number import calculate_minutiaes
+# from utils.crossing_number import calculate_minutiaes
 from skimage.morphology import skeletonize as skelt
 from skimage.morphology import thin
 def skeletonize(image_input):
