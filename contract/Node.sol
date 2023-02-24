@@ -13,6 +13,8 @@ contract Node {
 
     address[] private  shareHolders; //My secret holders who accepted the invitation
 
+    address[] private releaseAcceptedShareHolders; //After requesting the share - this is the list who has accepted to release the secret
+
     address[]private rejectedShareHolders;  //the holders who rejected the invitation
 
     string[] private shares;    //Shares list belonging to the user 
@@ -29,7 +31,7 @@ contract Node {
 
     PublicContract immutable private defaultPublicContract; //Public contract obeject
 
-    string public myState;     // States : NODE_CREATED/SHAREHOLDER_REQUESTED/SHAREHOLDER_ACCEPTED
+    string public myState;     // States : NODE_CREATED/SHAREHOLDER_REQUESTED/SHAREHOLDER_ACCEPTED/SHARES_DISTRIBUTED/READY_TO_RELEASE
 
     string  private otpHash;  //otp hash value to confirm the user 
 
@@ -152,6 +154,8 @@ contract Node {
     function releaseSecret(address secretOwnerAddress) public onlyOwner checkIsRegistered {
         string memory myShare =sharesMap[secretOwnerAddress];
         defaultPublicContract.releaseTheSecret(secretOwnerAddress,myShare);
+        defaultPublicContract.updateOwnersAcceptedToReleaseList(secretOwnerAddress,msg.sender);
+
         
     }
 
@@ -175,13 +179,20 @@ contract Node {
     }
 
 //refresh my state
-    function refreshState()public onlyOwner {
+    function refreshState()public {
         //FUNCTION TO   check all the shareholders accepted 
         //if(myState =="SHAREHOLDER_REQUESTED"){
         if(keccak256(bytes(myState)) == keccak256(bytes("SHAREHOLDER_REQUESTED"))){
             if(checkAcceptance()){
                 myState="SHAREHOLDER_ACCEPTED";
             }
+        }
+        if(keccak256(bytes(myState)) == keccak256(bytes("SHARES_DISTRIBUTED"))){
+            //check-function to all holders accepted to release default value of our function is 2
+            if(releaseAcceptedShareHolders.length>=2){
+                myState="READY_TO_RELEASE";
+            }
+
         }
     }
 //Addiing a share holder to a temporary list
@@ -272,6 +283,7 @@ contract Node {
         setOtpHash(otp);
         setEncryptedVault(vault);
         refreshHolderLists();
+        cleanReleaseAcceptedShareHolders();  // clean the array contains addresses that accepted to release the secret 
         require(shares.length <= shareHolders.length, "Not enough share holders!!");
         if (shares.length <= shareHolders.length) {
             for (uint256 i = 0; i < shares.length; i++) {
@@ -283,15 +295,45 @@ contract Node {
 
     }
 
-//requesting the shares from share holders 
-    function requestSharesFromHolders(string memory name) public  checkIsRegistered {
-        defaultPublicContract.makeARequestToGetShares(name,owner);
+//requesting the shares by the third party from share holders using otp and username
+    function requestSharesFromHolders(string memory name,string memory otp) public  checkIsRegistered {
+        defaultPublicContract.makeARequestToGetShares(name,owner,otp);
+        
         return ;
+    }
+
+//return the vaultHash to the third party
+    function returnMyVaultHash() public view checkIsRegistered returns(string memory){  //logic is wrong
+        if(keccak256(bytes(myState)) == keccak256(bytes("READY_TO_RELEASE"))){
+            //make the vaultHash accessible to the third party
+            return encryptedVault;
+        }
+        return "";
+    
+        
+    }
+
+//request the owner's vault hash
+    function requestVaultHashOfSecretOwner(string memory name,string memory otp)public view checkIsRegistered returns(string memory) {
+        return defaultPublicContract.makeARequestToGetVaultHash(name,otp);
     }
 
 //saves the share to the requested nodes regenerated shsres list
     function saveToRegeneratedShares(string memory share)public checkIsRegistered{
         regeneratedShares.push(share);
+        return;
+    }
+
+//saves the share holders address to the secret owner in releaseAcceptedShareHolders list 
+    function saveToReleaseAcceptedShareHolders(address shareHolder)public checkIsRegistered{
+        releaseAcceptedShareHolders.push(shareHolder);
+        refreshState();
+        return;
+    }
+
+//clean the releaseAcceptedShareHolders List
+    function cleanReleaseAcceptedShareHolders()public onlyOwner{
+        delete releaseAcceptedShareHolders;
         return;
     }
 

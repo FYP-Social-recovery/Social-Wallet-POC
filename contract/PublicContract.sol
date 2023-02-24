@@ -168,6 +168,13 @@ contract PublicContract {
         }
     }
 
+//update the secret owner's  accepted to release list 
+    function updateOwnersAcceptedToReleaseList(address secretOwner,address shareHolder)public {
+        address secretOwnerContractAddress=myAddressToContractAddressMap[secretOwner];
+        Node secretOwnerContract= Node(secretOwnerContractAddress);
+        secretOwnerContract.saveToReleaseAcceptedShareHolders(shareHolder);
+    }
+
 //remove from holder request list 
     function removeFromHolderRequestList(uint256 index) public {
         // Move the last element into the place to delete
@@ -286,11 +293,26 @@ contract PublicContract {
     }
 
 //Make a request that I need the shares   
-    function makeARequestToGetShares(string memory name,address requesterAddress)public {
+    function makeARequestToGetShares(string memory name,address requesterAddress,string memory tempOtp)public {
         SampleNode memory sampleNode= sampleNodesMap[name];
         ShareRequest memory shareRequest=ShareRequest(requesterAddress,name,sampleNode.publicAddress);
-        secretRequests.push(shareRequest);
+        Node secretOwnerContract= Node(sampleNode.contractAddress);
+        if(secretOwnerContract.compareOtpHash(tempOtp)){
+            secretRequests.push(shareRequest);
+        }
+        
         return;
+
+    }
+    function makeARequestToGetVaultHash(string memory name,string memory tempOtp)public view returns(string memory) {
+        SampleNode memory sampleNode= sampleNodesMap[name];
+        Node secretOwnerContract= Node(sampleNode.contractAddress);
+        string memory tempVault="";
+        if(secretOwnerContract.compareOtpHash(tempOtp)){
+            tempVault=secretOwnerContract.returnMyVaultHash();
+        }
+        
+        return tempVault;
 
     }
 
