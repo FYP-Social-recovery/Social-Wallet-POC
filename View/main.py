@@ -23,6 +23,9 @@ from add_shareholder_screen import AddShareholderScreen
 from shareholder_status_screen import ShareholderStatusScreen
 from distributeshares_screen import DistributesharesScreen
 from shareholder_request_screen import ShareHolderScreen
+from recovery_request_screen import RecoveryRequestScreen
+from shareholder_accept_recovery_screen import ShareHolderAcceptRecoveryScreen
+from wallet_recovery_screen import WalletRecoveryScreen
 
 import state
 
@@ -86,6 +89,18 @@ def main(page: Page):
     # RecoveryHomeScreen "Accept Request" button click action 
     def on_request_view_click(self):
         self.page.go("/recovery/home/requestView")
+    
+    # RecoveryHomeScreen "Wallet recovery request" button click action 
+    def on_wallet_recovery_request_click(self):
+        self.page.go("/recovery/home/walletRecoveryRequest")
+        
+    # RecoveryHomeScreen "Wallet recovery request view" button click action 
+    def on_wallet_recovery_request_view_click(self):
+        self.page.go("/recovery/home/walletRecoveryRequestView")
+        
+    # RecoveryHomeScreen "Wallet recovery" button click action 
+    def on_wallet_recovery_click(self):
+        self.page.go("/recovery/home/walletRecovery")
 
     def route_change(route):
         page.views.clear()
@@ -153,7 +168,7 @@ def main(page: Page):
                 View(
                     "/recovery/home",
                     [
-                        RecoveryHomeScreen(on_back_click=lambda _: page.go("/home"), on_registration_click=on_registration_click, on_add_shareholders_click=on_add_shareholders_click, on_shareholders_status_click=on_shareholders_status_click, on_distribute_shares_click=on_distribute_shares_click,on_request_view_click=on_request_view_click),
+                        RecoveryHomeScreen(on_back_click=lambda _: page.go("/home"), on_registration_click=on_registration_click, on_add_shareholders_click=on_add_shareholders_click, on_shareholders_status_click=on_shareholders_status_click, on_distribute_shares_click=on_distribute_shares_click,on_request_view_click=on_request_view_click, on_wallet_recovery_request_click=on_wallet_recovery_request_click, on_wallet_recovery_request_view_click=on_wallet_recovery_request_view_click, on_wallet_recovery_click=on_wallet_recovery_click),
                     ],
                     bgcolor="0xFFFFF9F2",
                     vertical_alignment=MainAxisAlignment.CENTER,
@@ -214,6 +229,42 @@ def main(page: Page):
                     "/recovery/home/requestView",
                     [
                         ShareHolderScreen(on_back_click=lambda _: page.go("/recovery/home"), on_continue_click=on_import_continue_click),
+                    ],
+                    bgcolor="0xFFFFF9F2",
+                    vertical_alignment=MainAxisAlignment.CENTER,
+                    horizontal_alignment=CrossAxisAlignment.CENTER,
+                )
+            )
+        if page.route == "/recovery/home/walletRecoveryRequest":
+            page.views.append(
+                View(
+                    "/recovery/home/walletRecoveryRequest",
+                    [
+                        RecoveryRequestScreen(on_back_click=lambda _: page.go("/recovery/home"), on_continue_click=on_import_continue_click),
+                    ],
+                    bgcolor="0xFFFFF9F2",
+                    vertical_alignment=MainAxisAlignment.CENTER,
+                    horizontal_alignment=CrossAxisAlignment.CENTER,
+                )
+            )
+        if page.route == "/recovery/home/walletRecoveryRequestView":
+            page.views.append(
+                View(
+                    "/recovery/home/walletRecoveryRequestView",
+                    [
+                        ShareHolderAcceptRecoveryScreen(on_back_click=lambda _: page.go("/recovery/home"), on_continue_click=on_import_continue_click),
+                    ],
+                    bgcolor="0xFFFFF9F2",
+                    vertical_alignment=MainAxisAlignment.CENTER,
+                    horizontal_alignment=CrossAxisAlignment.CENTER,
+                )
+            )
+        if page.route == "/recovery/home/walletRecovery":
+            page.views.append(
+                View(
+                    "/recovery/home/walletRecovery",
+                    [
+                        WalletRecoveryScreen(on_back_click=lambda _: page.go("/recovery/home"), on_submit_click=on_submit_click, page=page),
                     ],
                     bgcolor="0xFFFFF9F2",
                     vertical_alignment=MainAxisAlignment.CENTER,

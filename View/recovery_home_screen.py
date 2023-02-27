@@ -19,7 +19,7 @@ from flet import (
 import state
 
 class RecoveryHomeScreen(UserControl):
-    def __init__(self, on_back_click, on_add_shareholders_click, on_shareholders_status_click, on_distribute_shares_click, on_registration_click,on_request_view_click):
+    def __init__(self, on_back_click, on_add_shareholders_click, on_shareholders_status_click, on_distribute_shares_click, on_registration_click,on_request_view_click, on_wallet_recovery_request_click, on_wallet_recovery_request_view_click, on_wallet_recovery_click):
         super().__init__()
         self.on_back_click = on_back_click
         self.on_add_shareholders_click = on_add_shareholders_click
@@ -27,6 +27,9 @@ class RecoveryHomeScreen(UserControl):
         self.on_distribute_shares_click = on_distribute_shares_click
         self.on_registration_click = on_registration_click
         self.on_request_view_click=on_request_view_click
+        self.on_wallet_recovery_request_click = on_wallet_recovery_request_click
+        self.on_wallet_recovery_request_view_click = on_wallet_recovery_request_view_click
+        self.on_wallet_recovery_click = on_wallet_recovery_click
         
         self.state = "NOT_REGISTERED"
         
@@ -88,7 +91,7 @@ class RecoveryHomeScreen(UserControl):
                 Container(
                     height=10,
                 ),
-                # topic
+                
                 Text(value="Shareholder features", text_align="center",
                      size=15, color="Black"),
                 Container(
@@ -96,7 +99,29 @@ class RecoveryHomeScreen(UserControl):
                     content=Divider(height=9, thickness=3),
                 ),
                 ElevatedButton(text="Accept Shareholder Requests", on_click=self.on_request_view_click,bgcolor="#2596be",
-                                color="white",tooltip="see the request list"),
+                                color="white",tooltip=""),
+                Container(
+                    height=10,
+                ),
+                
+                Text(value="Wallet recovery features", text_align="center",
+                     size=15, color="Black"),
+                Container(
+                    width=300,
+                    content=Divider(height=9, thickness=3),
+                ),
+                ElevatedButton(text="Request for Wallet recovery", on_click=self.on_wallet_recovery_request_click,bgcolor="#2596be",
+                                color="white",tooltip=""),
+                Container(
+                    height=10,
+                ),
+                ElevatedButton(text="Recovery request view", on_click=self.on_wallet_recovery_request_view_click,bgcolor="#2596be",
+                                color="white",tooltip=""),
+                Container(
+                    height=10,
+                ),
+                ElevatedButton(text="Recover wallet", on_click=self.on_wallet_recovery_click,bgcolor="#2596be",
+                                color="white",tooltip=""),
                 Container(
                     height=10,
                 ),
