@@ -121,7 +121,8 @@ class VSS_Controller:
 
     def initial(self,Z_lower=100):
         #generate q bigger than z_lower
-        q = self.largePrime()
+        #q = self.largePrime()
+        q=12177970814788462225722397932809536582978922007233825435668944398772038540237943367024346718615054509679244625401755539608696773760613192429863080075705917
 
         print("q = " + str(q))
         print("\nq is prime\n")
@@ -235,7 +236,21 @@ class VSS_Controller:
             f'verifications: {", ".join(str(verification) for verification in verifications)}')
         return shares_str
             
+    def recoverSecret(self,string_list):
+        collected_shares = []
+        t=2
+        for i in string_list:
+            i=i.split("(")
+            i=i[1].split(")")
+            i=i[0].split(",")
+            share=tuple((int(i[0]),int(i[1])))
+            collected_shares.append(share)
+            #print(share)
+        pool = random.sample(collected_shares, t)
+        q=12177970814788462225722397932809536582978922007233825435668944398772038540237943367024346718615054509679244625401755539608696773760613192429863080075705917
+        secret_reconstructed = self.reconstruct_secret(pool, q)
+        print(secret_reconstructed)
 
-
-#vss=VSS_Controller()
+vss=VSS_Controller()
+vss.initial()
 #print(vss.get_generated_shares(10000))
