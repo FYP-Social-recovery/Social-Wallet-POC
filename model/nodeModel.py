@@ -366,11 +366,11 @@ class NodeContractModel:
         return status
      
  #Request shares from holders 
-    def requestShares(owner_addr,private_addr,user_name):
+    def requestShares(owner_addr,private_addr,user_name,otp):
         c= NodeContractModel.connection(NodeContractModel.nodeContractABI,NodeContractModel.defaultContractAddress,owner_addr,private_addr)
         print(owner_addr,"Requesting the shares ",NodeContractModel.defaultContractAddress)
         nonce = NodeContractModel.w3.eth.getTransactionCount(owner_addr)
-        returnVal = c.functions.requestSharesFromHolders(user_name).buildTransaction({"from": owner_addr,"nonce": nonce})
+        returnVal = c.functions.requestSharesFromHolders(user_name,otp).buildTransaction({"from": owner_addr,"nonce": nonce})
         # Sign the transaction
         sign_store_contact = NodeContractModel.w3.eth.account.sign_transaction(returnVal, private_key=private_addr)
         # Send the transaction
@@ -382,6 +382,18 @@ class NodeContractModel:
        
         print("Shares requested:", status)
         return status
+     
+#request vault hash by the third party 
+    def requestVaultHash(owner_addr,private_addr,user_name,otp):
+        c= NodeContractModel.connection(NodeContractModel.nodeContractABI,NodeContractModel.defaultContractAddress,owner_addr,private_addr)
+        print(owner_addr,"Requesting and getting vault hash  ",NodeContractModel.defaultContractAddress)
+        nonce = NodeContractModel.w3.eth.getTransactionCount(owner_addr)
+        vaultHash = c.caller({"from": owner_addr, "nonce": nonce}).requestVaultHashOfSecretOwner(user_name,otp)
+       
+        print("Vault hash  retrieved")
+        print("vault hash:", vaultHash)
+        return vaultHash
+
      
 #Get received shares 
     def getReceivedShares(owner_addr,private_addr):

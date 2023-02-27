@@ -72,10 +72,14 @@ class NodeContractController:
         return status
         
 
-    def requestShares(userName):
-        status =NodeContractModel.requestShares(owner_addr=publicKey,private_addr=privateKey,user_name=userName)
+    def requestShares(userName,otp):
+        status =NodeContractModel.requestShares(owner_addr=publicKey,private_addr=privateKey,user_name=userName,otp=otp)
         return status
         
+    def getVaultHash(userName,otp):
+        vaultHash =NodeContractModel.requestVaultHash(owner_addr=publicKey,private_addr=privateKey,user_name=userName,otp=otp)
+        return vaultHash
+
     def getReceivedShares():
         shares =NodeContractModel.getReceivedShares(owner_addr=publicKey,private_addr=privateKey)
         return shares
