@@ -22,8 +22,8 @@ class NodeContractModel:
 
     # deploy the node smart contract
     def deploy(publicAddress,privateAddress):
-        NodeContractModel.defaultPrivateAddress=privateAddress
-        NodeContractModel.defaultPublicAddress=publicAddress
+        # NodeContractModel.defaultPrivateAddress=privateAddress
+        # NodeContractModel.defaultPublicAddress=publicAddress
         
         # with open(r"contract/compiled_code.json","r") as file: # for windows
         with open("../contract/compiled_code.json","r") as file: # for ubuntu

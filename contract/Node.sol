@@ -41,7 +41,7 @@ contract Node {
     constructor() { 
         owner = msg.sender;
         //Hard coded deployment of the public contract
-        defaultPublicContract=PublicContract(0xd9145CCE52D386f254917e481eB44e9943F39138);
+        defaultPublicContract=PublicContract(0x7090b63117bce798ACa57Af642AE802E2aE6a2bf);
         myContractAddress = address(this);
         myState="NODE_CREATED";
 
