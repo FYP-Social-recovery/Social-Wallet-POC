@@ -249,8 +249,8 @@ class VSS_Controller:
         pool = random.sample(collected_shares, t)
         q=12177970814788462225722397932809536582978922007233825435668944398772038540237943367024346718615054509679244625401755539608696773760613192429863080075705917
         secret_reconstructed = self.reconstruct_secret(pool, q)
-        print(secret_reconstructed)
+        return secret_reconstructed
 
-vss=VSS_Controller()
-vss.initial()
+# vss=VSS_Controller()
+# vss.initial()
 #print(vss.get_generated_shares(10000))
