@@ -53,65 +53,56 @@ class WalletRecoveryScreen(UserControl):
     
     
     def on_submit_click_fn(self,e):
-        print(self.txt)
-        print(self.biometric.value)
         if(self.biometric.value):
-            print("Start Enrolling")
-            # Capture Enrolling fingerprint template
-            original_image_path = self.biometric.value #"../data/Original_fp.BMP"
-            original_image_template = FingerPrintController.read_image(original_image_path)
+            # TODO - Request to get shares 
+            shares = []
+            # TODO - Request to get encryptedVault
+            encryptedVault = ""
             
-            # Preprocessing Fingerprint
-            preprocessed_image_output_path = "../data/Preprocessed_fp.jpg"
+            # TODO - Generate combined key using shares
+            combined_key = ""
+            
+            key,iv = SymmetricEncryption.deConcatanate2UnknownLenthBytesObject(SymmetricEncryption.convertIntegerToBytesObject(combined_key))
+            
+            decryptedVault = SymmetricEncryption.decrypt_vault(encryptedVault,key,iv)
+            
+            print(decryptedVault)
+            
+            log_path=VAULT_LOG_FOLDER + VAULT_LOG_FILENAME
+            
+            with open(log_path, 'w') as file:
+                file.write(decryptedVault)
+            
+            if (len(shares)!=0 and encryptedVault == ""):
+            
+                print("Start Enrolling")
+                # Capture Enrolling fingerprint template
+                original_image_path = self.biometric.value #"../data/Original_fp.BMP"
+                original_image_template = FingerPrintController.read_image(original_image_path)
+                
+                # Preprocessing Fingerprint
+                preprocessed_image_output_path = "../data/Preprocessed_fp.jpg"
 
-            preprocessed_image = FingerPrintController.fingerprint_pipline(original_image_template, save_image=True, save_path=preprocessed_image_output_path)
-            
-            # Extract minutiea
-            print("Start minutiae extraction")
-            good_fp = False
-            
-            good_fp = FingerPrintController.capture_new_fp_xyt(preprocessed_image_output_path)
-            
-            ## If good fp enroll
-            ## else error
-            if not good_fp:
-                print(APP_RETRY_FP)
+                preprocessed_image = FingerPrintController.fingerprint_pipline(original_image_template, save_image=True, save_path=preprocessed_image_output_path)
+                
+                # Extract minutiea
+                print("Start minutiae extraction")
+                good_fp = False
+                
+                good_fp = FingerPrintController.capture_new_fp_xyt(preprocessed_image_output_path)
+                
+                ## If good fp enroll
+                ## else error
+                if not good_fp:
+                    print(APP_RETRY_FP)
+                    self.open_err_dlg_err()
+                else:
+                    print("Start Verifying")
+                    # Reveal Secret
+                    FingerPrintController.verify_fingerprint(FP_TEMP_FOLDER + FP_OUTPUT_NAME + '.xyt')
+                    self.on_submit_click(self)
             else:
-                print("Start vault generation")
-                # Generate vault
-                secret = 81985529216486895
-                fuzzy_vault = FingerPrintController.enroll_new_fingerprint(FP_TEMP_FOLDER + FP_OUTPUT_NAME + '.xyt', secret)
-                
-                print(fuzzy_vault)
-                print("\n\n")
-                
-                fuzzy_vault_bytes_object = SymmetricEncryption.convertStringToBytesObject(fuzzy_vault)
-                
-                print(fuzzy_vault_bytes_object)
-                print("\n\n")
-                
-                encrypted_fuzzy_vault,key,iv = SymmetricEncryption.encrypt_vault_256_bit_key(fuzzy_vault_bytes_object)
-                encrypted_fuzzy_vault = SymmetricEncryption.convertByteToString(encrypted_fuzzy_vault)
-                print(encrypted_fuzzy_vault)
-                print("\n\n")
-                
-                combined_key_bytes = SymmetricEncryption.concatanate2BytesObject(key,iv)
-                
-                combined_key = SymmetricEncryption.convertBytesObjectToInteger(combined_key_bytes)
-
-                # print(combined_key)
-                
-                # Emailclient=EmailController()
-                # VSS_client=VSS_Controller()
-                # OTP_client=OTPController()
-                # otp,otpHash=OTP_client.generateOTPHash()
-                # Emailclient.sendEmail(self.email.value,otp)
-                # shares=VSS_client.get_generated_shares(int(combined_key))
-                # print(type(otpHash))
-                # print(type(encrypted_fuzzy_vault))
-                # NodeContractController.addMyShares(shares=[shares[0],shares[1],shares[2]],publicKeyLocal=state.PUBLIC_KEY,privateKeyLocal=state.PRIVATE_KEY,nodeContractAddressLocal=state.NODE_CONTRACT_ADDRESS)
-                # NodeContractController.distribute(publicKeyLocal=state.PUBLIC_KEY,privateKeyLocal=state.PRIVATE_KEY,nodeContractAddressLocal=state.NODE_CONTRACT_ADDRESS,otp=otpHash,vault=encrypted_fuzzy_vault)
-                # self.on_submit_click(self)
+                self.open_err_dlg_err()
         else:
             self.open_err_dlg_fp()
     
@@ -122,6 +113,15 @@ class WalletRecoveryScreen(UserControl):
     def open_err_dlg_fp(self):
         self.page.dialog = self.err_dlg_fp
         self.err_dlg_fp.open = True
+        self.page.update()
+        
+    err_dlg_err = AlertDialog(
+        title=Text("Something is wrong please try again.", text_align=TextAlign.CENTER), on_dismiss=lambda e: print("Dialog dismissed!")
+    )
+    
+    def open_err_dlg_err(self):
+        self.page.dialog = self.err_dlg_err
+        self.err_dlg_err.open = True
         self.page.update()
         
         
@@ -157,52 +157,51 @@ class WalletRecoveryScreen(UserControl):
         )
 
 # if __name__ == '__main__':
-#     print("Start Enrolling")
-#     # Capture Enrolling fingerprint template
-#     original_image_path = "../data/Original_fp.BMP"
-#     original_image_template = FingerPrintController.read_image(original_image_path)
+    # print("Start Enrolling")
+    # # Capture Enrolling fingerprint template
+    # original_image_path = "../data/Original_fp.BMP"
+    # original_image_template = FingerPrintController.read_image(original_image_path)
     
-#     # Preprocessing Fingerprint
-#     preprocessed_image_output_path = "../data/Preprocessed_fp.jpg"
+    # # Preprocessing Fingerprint
+    # preprocessed_image_output_path = "../data/Preprocessed_fp.jpg"
 
-#     preprocessed_image = FingerPrintController.fingerprint_pipline(original_image_template, save_image=True, save_path=preprocessed_image_output_path)
+    # preprocessed_image = FingerPrintController.fingerprint_pipline(original_image_template, save_image=True, save_path=preprocessed_image_output_path)
     
-#     # Extract minutiea
-#     print("Start minutiae extraction")
-#     good_fp = False
+    # # Extract minutiea
+    # print("Start minutiae extraction")
+    # good_fp = False
     
-#     good_fp = FingerPrintController.capture_new_fp_xyt(preprocessed_image_output_path)
+    # good_fp = FingerPrintController.capture_new_fp_xyt(preprocessed_image_output_path)
     
-#     ## If good fp enroll
-#     ## else error
-#     if not good_fp:
-#         print(APP_RETRY_FP)
-#     else:
-#         print("Start vault generation")
-#         # Generate vault
-#         secret = 81985529216486895
-#         fuzzy_vault = FingerPrintController.enroll_new_fingerprint(FP_TEMP_FOLDER + FP_OUTPUT_NAME + '.xyt', secret)
+    # ## If good fp enroll
+    # ## else error
+    # if not good_fp:
+    #     print(APP_RETRY_FP)
+    # else:
+    #     print("Start vault generation")
+    #     # Generate vault
+    #     secret = 81985529216486895
+    #     fuzzy_vault = FingerPrintController.enroll_new_fingerprint(FP_TEMP_FOLDER + FP_OUTPUT_NAME + '.xyt', secret)
         
-#         print(fuzzy_vault)
-#         print("\n\n")
+    #     print(fuzzy_vault)
+    #     print("\n\n")
         
-#         fuzzy_vault_bytes_object = SymmetricEncryption.convertStringToBytesObject(fuzzy_vault)
+    #     fuzzy_vault_bytes_object = SymmetricEncryption.convertStringToBytesObject(fuzzy_vault)
         
-#         print(fuzzy_vault_bytes_object)
-#         print("\n\n")
+    #     print(fuzzy_vault_bytes_object)
+    #     print("\n\n")
         
-#         encrypted_fuzzy_vault,key,iv = SymmetricEncryption.encrypt_vault_256_bit_key(fuzzy_vault_bytes_object)
+    #     encrypted_fuzzy_vault,key,iv = SymmetricEncryption.encrypt_vault_256_bit_key(fuzzy_vault_bytes_object)
         
-#         print(encrypted_fuzzy_vault)
-#         print("\n\n")
+    #     print(encrypted_fuzzy_vault)
+    #     print("\n\n")
         
-#         combined_key_bytes = SymmetricEncryption.concatanate2BytesObject(key,iv)
+    #     combined_key_bytes = SymmetricEncryption.concatanate2BytesObject(key,iv)
         
-#         combined_key = SymmetricEncryption.convertBytesObjectToInteger(combined_key_bytes)
+    #     combined_key = SymmetricEncryption.convertBytesObjectToInteger(combined_key_bytes)
 
-#         print(combined_key)
+    #     print(combined_key)
         
-#         # print("Start Verifying")
-#         # # Reveal Secret
-#         # FingerPrintController.verify_fingerprint(FP_TEMP_FOLDER + FP_OUTPUT_NAME + '.xyt')
-    
+    #     # print("Start Verifying")
+    #     # # Reveal Secret
+    #     # FingerPrintController.verify_fingerprint(FP_TEMP_FOLDER + FP_OUTPUT_NAME + '.xyt')

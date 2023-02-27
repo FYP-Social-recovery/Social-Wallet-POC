@@ -24,7 +24,7 @@ class ShareHolderAcceptRecoveryScreen(UserControl):
         self.on_back_click = on_back_click
         self.on_continue_click = on_continue_click
         
-        #need to change this
+        # TODO - get wallet recovery requests for acceptance
         self.ShareOwnerAdresses=NodeContractController.checkRequestsForBeAHolder(publicKeyLocal=state.PUBLIC_KEY,privateKeyLocal=state.PRIVATE_KEY,nodeContractAddressLocal=state.NODE_CONTRACT_ADDRESS)
         print(type(self.ShareOwnerAdresses))
 

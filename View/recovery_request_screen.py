@@ -13,6 +13,8 @@ from flet import (
     icons,
     CrossAxisAlignment,
     Container,
+    AlertDialog,
+    TextAlign,
 )
 
 import state
@@ -26,10 +28,22 @@ class RecoveryRequestScreen(UserControl):
     
     
     def continue_click(self,e):
-        #otp vrification call
-        self.on_continue_click(self)
+        if(self.otp_value.value):
+            print("OTP : " , self.otp_value.value)
+            # TODO - Request to sent wallet recovery requests
+            self.on_continue_click(self)
+        else:
+            self.open_err_dlg_otp()
         
+        
+    err_dlg_otp = AlertDialog(
+        title=Text("Enter a valid OTP.", text_align=TextAlign.CENTER), on_dismiss=lambda e: print("Dialog dismissed!")
+    )
     
+    def open_err_dlg_otp(self):
+        self.page.dialog = self.err_dlg_otp
+        self.err_dlg_otp.open = True
+        self.page.update()
     
     def build(self):
         
