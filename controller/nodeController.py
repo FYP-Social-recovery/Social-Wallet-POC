@@ -26,12 +26,12 @@ class NodeContractController:
         status=NodeContractModel.rejectInvitation(owner_addr=publicKeyLocal,private_addr=privateKeyLocal,share_owner=address,nodeContractAddressLocal=nodeContractAddressLocal)
         return status
         
-    def checkRequestsForShare():
-        ownersList=NodeContractModel.checkRequestsForShare(owner_addr=publicKey,private_addr=privateKey)
+    def checkRequestsForShare(publicKeyLocal, privateKeyLocal, nodeContractAddressLocal):
+        ownersList=NodeContractModel.checkRequestsForShare(owner_addr=publicKeyLocal,private_addr=privateKeyLocal, nodeContractAddressLocal=nodeContractAddressLocal)
         return ownersList
 
-    def releaseShare(address):
-        status=NodeContractModel.releaseSecret(owner_addr=publicKey,private_addr=privateKey,share_owner=address)
+    def releaseShare(address,publicKeyLocal, privateKeyLocal, nodeContractAddressLocal):
+        status=NodeContractModel.releaseSecret(owner_addr=publicKeyLocal,private_addr=privateKeyLocal,share_owner=address,nodeContractAddressLocal=nodeContractAddressLocal)
         return status
 
 
@@ -72,16 +72,16 @@ class NodeContractController:
         return status
         
 
-    def requestShares(userName,otp):
-        status =NodeContractModel.requestShares(owner_addr=publicKey,private_addr=privateKey,user_name=userName,otp=otp)
+    def requestShares(publicKeyLocal, privateKeyLocal, nodeContractAddressLocal, userName,otp):
+        status =NodeContractModel.requestShares(owner_addr=publicKeyLocal,private_addr=privateKeyLocal,user_name=userName,otp=otp, nodeContractAddressLocal=nodeContractAddressLocal)
         return status
         
-    def getVaultHash(userName,otp):
-        vaultHash =NodeContractModel.requestVaultHash(owner_addr=publicKey,private_addr=privateKey,user_name=userName,otp=otp)
+    def getVaultHash(publicKeyLocal, privateKeyLocal, nodeContractAddressLocal,userName,otp):
+        vaultHash =NodeContractModel.requestVaultHash(owner_addr=publicKey,private_addr=privateKeyLocal,user_name=userName,otp=otp, nodeContractAddressLocal=nodeContractAddressLocal)
         return vaultHash
 
-    def getReceivedShares():
-        shares =NodeContractModel.getReceivedShares(owner_addr=publicKey,private_addr=privateKey)
+    def getReceivedShares(publicKeyLocal, privateKeyLocal, nodeContractAddressLocal):
+        shares =NodeContractModel.getReceivedShares(owner_addr=publicKeyLocal,private_addr=privateKeyLocal, nodeContractAddressLocal=nodeContractAddressLocal)
         return shares
 
     def checkUserExists(userName):

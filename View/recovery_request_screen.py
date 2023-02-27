@@ -1,6 +1,7 @@
 from controller.keyGenerationController import KeyGenerationController
 from controller.publicContractController import PublicContractController
 from controller.nodeController import NodeContractController
+from controller.otp_controller import OTPController
 from flet import (
     UserControl,
     Text,
@@ -29,9 +30,17 @@ class RecoveryRequestScreen(UserControl):
     
     def continue_click(self,e):
         if(self.otp_value.value):
-            print("OTP : " , self.otp_value.value)
-            # TODO - Request to sent wallet recovery requests
-            self.on_continue_click(self)
+            if(self.username.value):
+                print("OTP : " , self.otp_value.value)
+                print("Username : " , self.username.value)
+                # TODO - Request to sent wallet recovery requests
+                OTP_client=OTPController()
+                convertToHash=OTP_client.convert_Hash(self.otp_value.value)
+                otp_hash=str(convertToHash[1])
+                NodeContractController.requestShares(publicKeyLocal=state.PUBLIC_KEY,privateKeyLocal=state.PRIVATE_KEY,nodeContractAddressLocal=state.NODE_CONTRACT_ADDRESS, userName=self.username, otp=otp_hash)
+                self.on_continue_click(self)
+            else:
+                self.open_err_dlg_uname()
         else:
             self.open_err_dlg_otp()
         
@@ -44,10 +53,20 @@ class RecoveryRequestScreen(UserControl):
         self.page.dialog = self.err_dlg_otp
         self.err_dlg_otp.open = True
         self.page.update()
+        
+    err_dlg_uname = AlertDialog(
+        title=Text("Enter a valid Username.", text_align=TextAlign.CENTER), on_dismiss=lambda e: print("Dialog dismissed!")
+    )
+    
+    def open_err_dlg_uname(self):
+        self.page.dialog = self.err_dlg_uname
+        self.err_dlg_uname.open = True
+        self.page.update()
     
     def build(self):
         
         self.otp_value = TextField(label="Enter OTP", hint_text="Please enter Your OTP",color="0xFF000000",width=300,tooltip="Enter the OTP in your email")
+        self.username = TextField(label="Enter Username", hint_text="Please enter Your Username",color="0xFF000000",width=300,tooltip="Enter the Username")
         
         return Column(
             horizontal_alignment=CrossAxisAlignment.CENTER,
@@ -65,6 +84,11 @@ class RecoveryRequestScreen(UserControl):
                     height=100,
                 ),
                 self.otp_value,
+                Container(
+                    height=10,
+                ),
+                
+                self.username,
                 Container(
                     height=10,
                 ),

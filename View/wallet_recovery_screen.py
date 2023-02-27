@@ -55,10 +55,11 @@ class WalletRecoveryScreen(UserControl):
     def on_submit_click_fn(self,e):
         if(self.biometric.value):
             # TODO - Request to get shares 
-            shares = []
+            shares = NodeContractController.getReceivedShares(publicKeyLocal=state.PUBLIC_KEY,privateKeyLocal=state.PRIVATE_KEY,nodeContractAddressLocal=state.NODE_CONTRACT_ADDRESS)
             # TODO - Request to get encryptedVault
-            encryptedVault = ""
-            
+            encryptedVault = NodeContractController.getVaultHash(publicKeyLocal=state.PUBLIC_KEY,privateKeyLocal=state.PRIVATE_KEY,nodeContractAddressLocal=state.NODE_CONTRACT_ADDRESS)
+            print(shares)
+            print(encryptedVault)
             # TODO - Generate combined key using shares
             combined_key = ""
             
@@ -68,7 +69,7 @@ class WalletRecoveryScreen(UserControl):
             
             print(decryptedVault)
             
-            log_path=VAULT_LOG_FOLDER + VAULT_LOG_FILENAME
+            log_path = VAULT_LOG_FOLDER + VAULT_LOG_FILENAME
             
             with open(log_path, 'w') as file:
                 file.write(decryptedVault)

@@ -25,7 +25,7 @@ class ShareHolderAcceptRecoveryScreen(UserControl):
         self.on_continue_click = on_continue_click
         
         # TODO - get wallet recovery requests for acceptance
-        self.ShareOwnerAdresses=NodeContractController.checkRequestsForBeAHolder(publicKeyLocal=state.PUBLIC_KEY,privateKeyLocal=state.PRIVATE_KEY,nodeContractAddressLocal=state.NODE_CONTRACT_ADDRESS)
+        self.ShareOwnerAdresses=NodeContractController.checkRequestsForShare(publicKeyLocal=state.PUBLIC_KEY,privateKeyLocal=state.PRIVATE_KEY,nodeContractAddressLocal=state.NODE_CONTRACT_ADDRESS)
         print(type(self.ShareOwnerAdresses))
 
         self.TextArray=[]
@@ -37,7 +37,7 @@ class ShareHolderAcceptRecoveryScreen(UserControl):
                             controls=[
                                     Text(value=self.ShareOwnerAdresses[i], text_align="center", size=24, color="0xFF000000"),
                                     ElevatedButton(text="Accepet", bgcolor="0xFFD9BE38", color="0xFFFFFFFF", elevation=0,on_click=self.accept),
-                                    ElevatedButton(text="Reject", bgcolor="0xFFA62E2E", color="0xFFFFFFFF", elevation=0,on_click=self.reject),
+                                    # ElevatedButton(text="Reject", bgcolor="0xFFA62E2E", color="0xFFFFFFFF", elevation=0,on_click=self.reject),
                                 ],
                         )
             else:
@@ -51,12 +51,13 @@ class ShareHolderAcceptRecoveryScreen(UserControl):
             self.TextArray.append(textRow)
 
     def accept(self,e):
-        NodeContractController.acceptInvitation(address=self.ShareOwnerAdresses[0],publicKeyLocal=state.PUBLIC_KEY,privateKeyLocal=state.PRIVATE_KEY,nodeContractAddressLocal=state.NODE_CONTRACT_ADDRESS)
+        NodeContractController.releaseShare(address=self.ShareOwnerAdresses[0],publicKeyLocal=state.PUBLIC_KEY,privateKeyLocal=state.PRIVATE_KEY,nodeContractAddressLocal=state.NODE_CONTRACT_ADDRESS)
         self.on_back_click(self)
 
     def reject(self,e):
-        NodeContractController.rejectInvitation(address=self.ShareOwnerAdresses[0],publicKeyLocal=state.PUBLIC_KEY,privateKeyLocal=state.PRIVATE_KEY,nodeContractAddressLocal=state.NODE_CONTRACT_ADDRESS)
-        self.on_back_click(self)
+        # NodeContractController.rejectInvitation(address=self.ShareOwnerAdresses[0],publicKeyLocal=state.PUBLIC_KEY,privateKeyLocal=state.PRIVATE_KEY,nodeContractAddressLocal=state.NODE_CONTRACT_ADDRESS)
+        # self.on_back_click(self)
+        print("Not implemented")
 
     def build(self):
         return Column(

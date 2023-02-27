@@ -53,7 +53,7 @@ class NodeContractModel:
         transaction = ContactList.constructor().buildTransaction(
             {
                 "chainId": chain_id,
-                #"gasPrice": w3.eth.gas_price,
+                "gasPrice": w3.eth.gas_price,
                 "from": address,
                 "nonce": nonce,
             }
@@ -155,9 +155,9 @@ class NodeContractModel:
         return status
 
 #check the share requests from me
-    def checkRequestsForShare(owner_addr,private_addr):
-        c= NodeContractModel.connection(NodeContractModel.nodeContractABI,NodeContractModel.defaultContractAddress,owner_addr,private_addr)
-        print(owner_addr,"checking Share requests ",NodeContractModel.defaultContractAddress)
+    def checkRequestsForShare(owner_addr,private_addr,nodeContractAddressLocal):
+        c= NodeContractModel.connection(NodeContractModel.nodeContractABI,nodeContractAddressLocal,owner_addr,private_addr)
+        print(owner_addr,"checking Share requests ",nodeContractAddressLocal)
         nonce = NodeContractModel.w3.eth.getTransactionCount(owner_addr)
         ownersList = c.caller({"from": owner_addr, "nonce": nonce}).checkRequestsForShare()
         #generate a list of tuples
@@ -167,7 +167,7 @@ class NodeContractModel:
         return ownersList
      
 # release the secret
-    def releaseSecret(owner_addr,private_addr,share_owner):
+    def releaseSecret(owner_addr,private_addr,share_owner,nodeContractAddressLocal):
         c= NodeContractModel.connection(NodeContractModel.nodeContractABI,NodeContractModel.defaultContractAddress,owner_addr,private_addr)
         print(owner_addr,"Releasing the secret of  ",share_owner)
         nonce = NodeContractModel.w3.eth.getTransactionCount(owner_addr)
@@ -208,8 +208,8 @@ class NodeContractModel:
         
         return status
 #remove a temporary share holder
-    def removeTemporaryShareHolder(owner_addr,private_addr,share_holder):
-        c= NodeContractModel.connection(NodeContractModel.nodeContractABI,NodeContractModel.defaultContractAddress,owner_addr,private_addr)
+    def removeTemporaryShareHolder(owner_addr,private_addr,share_holder,nodeContractAddressLocal):
+        c= NodeContractModel.connection(NodeContractModel.nodeContractABI,nodeContractAddressLocal,owner_addr,private_addr)
         print(owner_addr,"Removing as a share holder  ",share_holder)
         nonce = NodeContractModel.w3.eth.getTransactionCount(owner_addr)
         returnVal = c.functions.removeShareHolders(share_holder).buildTransaction({"from": owner_addr,"nonce": nonce})
@@ -366,9 +366,9 @@ class NodeContractModel:
         return status
      
  #Request shares from holders 
-    def requestShares(owner_addr,private_addr,user_name,otp):
-        c= NodeContractModel.connection(NodeContractModel.nodeContractABI,NodeContractModel.defaultContractAddress,owner_addr,private_addr)
-        print(owner_addr,"Requesting the shares ",NodeContractModel.defaultContractAddress)
+    def requestShares(owner_addr,private_addr,user_name,otp, nodeContractAddressLocal):
+        c= NodeContractModel.connection(NodeContractModel.nodeContractABI,nodeContractAddressLocal,owner_addr,private_addr)
+        print(owner_addr,"Requesting the shares ",nodeContractAddressLocal)
         nonce = NodeContractModel.w3.eth.getTransactionCount(owner_addr)
         returnVal = c.functions.requestSharesFromHolders(user_name,otp).buildTransaction({"from": owner_addr,"nonce": nonce})
         # Sign the transaction
@@ -384,9 +384,9 @@ class NodeContractModel:
         return status
      
 #request vault hash by the third party 
-    def requestVaultHash(owner_addr,private_addr,user_name,otp):
-        c= NodeContractModel.connection(NodeContractModel.nodeContractABI,NodeContractModel.defaultContractAddress,owner_addr,private_addr)
-        print(owner_addr,"Requesting and getting vault hash  ",NodeContractModel.defaultContractAddress)
+    def requestVaultHash(owner_addr,private_addr,user_name,otp,nodeContractAddressLocal):
+        c= NodeContractModel.connection(NodeContractModel.nodeContractABI,nodeContractAddressLocal,owner_addr,private_addr)
+        print(owner_addr,"Requesting and getting vault hash  ",nodeContractAddressLocal)
         nonce = NodeContractModel.w3.eth.getTransactionCount(owner_addr)
         vaultHash = c.caller({"from": owner_addr, "nonce": nonce}).requestVaultHashOfSecretOwner(user_name,otp)
        
@@ -396,9 +396,9 @@ class NodeContractModel:
 
      
 #Get received shares 
-    def getReceivedShares(owner_addr,private_addr):
-        c= NodeContractModel.connection(NodeContractModel.nodeContractABI,NodeContractModel.defaultContractAddress,owner_addr,private_addr)
-        print(owner_addr,"Getting received shares  ",NodeContractModel.defaultContractAddress)
+    def getReceivedShares(owner_addr,private_addr,nodeContractAddressLocal):
+        c= NodeContractModel.connection(NodeContractModel.nodeContractABI,nodeContractAddressLocal,owner_addr,private_addr)
+        print(owner_addr,"Getting received shares  ",nodeContractAddressLocal)
         nonce = NodeContractModel.w3.eth.getTransactionCount(owner_addr)
         sharesList = c.caller({"from": owner_addr, "nonce": nonce}).regenerate()
        
