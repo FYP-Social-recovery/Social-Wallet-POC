@@ -168,7 +168,7 @@ class NodeContractModel:
      
 # release the secret
     def releaseSecret(owner_addr,private_addr,share_owner,nodeContractAddressLocal):
-        c= NodeContractModel.connection(NodeContractModel.nodeContractABI,NodeContractModel.defaultContractAddress,owner_addr,private_addr)
+        c= NodeContractModel.connection(NodeContractModel.nodeContractABI,nodeContractAddressLocal,owner_addr,private_addr)
         print(owner_addr,"Releasing the secret of  ",share_owner)
         nonce = NodeContractModel.w3.eth.getTransactionCount(owner_addr)
         returnVal = c.functions.releaseSecret(share_owner).buildTransaction({"from": owner_addr,  "nonce": nonce})
