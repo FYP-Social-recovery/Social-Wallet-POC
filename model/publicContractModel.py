@@ -85,5 +85,5 @@ class PublicContractModel:
         print("UserName  checked")
         print("Value:", result)
         return result
-PublicContractModel.deployPublicContract()
+#PublicContractModel.deployPublicContract()
 #PublicContractModel.getContractAddressFromPublicKey(owner_addr=PublicContractModel.defaultPublicAddress,private_addr=PublicContractModel.defaultPrivateAddress)
