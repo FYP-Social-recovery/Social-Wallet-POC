@@ -154,6 +154,17 @@ contract PublicContract {
         }
         return count;
     }
+//Delete the share request
+    function deleteShareRequest(address shareHolder,address ownerAddress)public{
+        for (uint256 i = 0; i<secretRequests.length; i++){
+            ShareRequest memory tempSecretRequest=secretRequests[i];
+            if(tempSecretRequest.requesterAddress ==shareHolder && tempSecretRequest.ownerAddress ==ownerAddress){
+                delete secretRequests[i];
+            }
+
+        }
+    }
+
 //Give my release to the public 
     function releaseTheSecret(address secretOwner,string memory sharedString)public {
          for (uint256 i = 0; i<secretRequests.length; i++){

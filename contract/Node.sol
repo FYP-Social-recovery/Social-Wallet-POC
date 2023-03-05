@@ -38,10 +38,10 @@ contract Node {
     string private encryptedVault; //encrypted vault releases when all shareholders accepted 
 
     //todo don't defined the public contract in the constructor
-    constructor() { 
+    constructor(address defaultPublicContractAddress) { 
         owner = msg.sender;
         //Hard coded deployment of the public contract
-        defaultPublicContract=PublicContract(0x7090b63117bce798ACa57Af642AE802E2aE6a2bf);
+        defaultPublicContract=PublicContract(defaultPublicContractAddress);  //0x7090b63117bce798ACa57Af642AE802E2aE6a2bf
         myContractAddress = address(this);
         myState="NODE_CREATED";
 
@@ -155,6 +155,7 @@ contract Node {
         string memory myShare =sharesMap[secretOwnerAddress];
         defaultPublicContract.releaseTheSecret(secretOwnerAddress,myShare);
         defaultPublicContract.updateOwnersAcceptedToReleaseList(secretOwnerAddress,msg.sender);
+        defaultPublicContract.deleteShareRequest(msg.sender,secretOwnerAddress);
 
         
     }
