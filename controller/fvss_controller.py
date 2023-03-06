@@ -2,6 +2,7 @@ import random
 import math
 from decimal import Decimal
 import time
+from Crypto.Util.number import *
 
 class VSS_Controller:
 
@@ -64,7 +65,7 @@ class VSS_Controller:
     
     def largePrime(self):
         while True:
-            n = 512
+            n = 128
             prime_candidate = self.getLowLevelPrime(n)
             if not self.isMillerRabinPassed(prime_candidate):
                 continue
@@ -119,10 +120,11 @@ class VSS_Controller:
         return True
 
 
-    def initial(self,Z_lower=100):
+    def initial(self,Z_lower=10000):
         #generate q bigger than z_lower
-        #q = self.largePrime()
-        q=12177970814788462225722397932809536582978922007233825435668944398772038540237943367024346718615054509679244625401755539608696773760613192429863080075705917
+        q = self.largePrime()
+        #q = 95575507822290034779886372913061420274676365488455261987395964641774104119687
+        
 
         print("q = " + str(q))
         print("\nq is prime\n")
@@ -182,22 +184,23 @@ class VSS_Controller:
         return temp % q
 
 
-    def reconstruct_secret(self,pool, q):
+    def reconstruct_secret(self, pool):
         sums = 0
 
         for j, share_j in enumerate(pool):
             xj, yj = share_j
-            prod = Decimal(1)
+            prod = 1
 
             for i, share_i in enumerate(pool):
                 xi, _ = share_i
                 if i != j:
-                    prod *= Decimal(Decimal(xi)/(xi-xj))
+                    prod *= ((xi)/(xi-xj))
 
             prod *= yj
-            sums += Decimal(prod)
-        return int(Decimal(sums))
-
+            sums += prod
+        return int(sums)
+    
+    
     def generate_shares(self,n, t, secret, p, q, r, g):
         FIELD_SIZE = q
         coefficients = self.coeff(t, secret, FIELD_SIZE)
@@ -214,15 +217,15 @@ class VSS_Controller:
             check1 = pow(g, shares[i-1][1], p)
             check2 = self.verification(g, commitments, i, p)
             verifications.append(check2)
-            print("i-th share:", check1)
-            print("i-th verification:", check2)
+            #print("i-th share:", check1)
+            #print("i-th verification:", check2)
 
         return shares, commitments, verifications
 
 
     def get_generated_shares(self,secret):
         shares_str=[]
-        t, n = 2, 9
+        t, n = 2,3
         p, q, r, g = self.initial(10**2)
         shares, commitments, verifications = self.generate_shares(
             n, t, secret, p, q, r, g)
@@ -230,10 +233,10 @@ class VSS_Controller:
         for share in shares:
             shares_str.append(str(share))
             
-        print(
-            f'Commitments: {", ".join(str(commitment) for commitment in commitments)}')
-        print(
-            f'verifications: {", ".join(str(verification) for verification in verifications)}')
+        #print(
+        #    f'Commitments: {", ".join(str(commitment) for commitment in commitments)}')
+        #print(
+        #    f'verifications: {", ".join(str(verification) for verification in verifications)}')
         return shares_str
             
     def recoverSecret(self,string_list):
@@ -246,11 +249,27 @@ class VSS_Controller:
             share=tuple((int(i[0]),int(i[1])))
             collected_shares.append(share)
             #print(share)
+        #print(collected_shares)
         pool = random.sample(collected_shares, t)
-        q=12177970814788462225722397932809536582978922007233825435668944398772038540237943367024346718615054509679244625401755539608696773760613192429863080075705917
-        secret_reconstructed = self.reconstruct_secret(pool, q)
+        #print(pool)
+        secret_reconstructed = self.reconstruct_secret(pool)
+        #secret_reconstructed=self.lagrange_interpolation(0, pool)
         return secret_reconstructed
 
 # vss=VSS_Controller()
-# vss.initial()
-#print(vss.get_generated_shares(10000))
+# # vss.initial()
+# share_list=vss.get_generated_shares(937129139155039330165631526289)
+
+
+# print(share_list)
+# #share_string=['(1, 6578889241063373618814799278512664690219537121584225863598628970422114152702603886643212322371345210913859819637819904480910953581820912982068141951166248)', '(2, 13157778482126747237629598557025329376490155668872822452625266156774410475273897597959090420158398714057036673020544992374569951038852261525525475598706453)',  '(3, 19736667723190120856444397835537994062760774216161419041651903343126706797845191309274968517945452217200213526403270080268228948495883610068982809246246658)']
+# #print(vss.recoverSecret(share_string))
+# #share_string=['(1, 3696617999365661557961716249366563061662254308441446999869622682127213008021963258188913203976722887593241958283255495337055053180849153492338578861194650)', '(2, 7393235998731323115923432498733126119375590042587264725167253580184608185912616341050492183369154067415800950311416174086858150236908742546066349418763257)', '(3, 11089853998096984673885148748099689177088925776733082450464884478242003363803269423912071162761585247238359942339576852836661247292968331599794119976331864)']
+# #print(vss.recoverSecret(share_string))
+# #share_list=['(1, 4579161071908851489075484130644360676566995852005110566289345384082348916622500115047754329072827157793370410890389004860498526806865911461266680764520800)', '(2, 9158322143817702978150968261288721352111341788996537832601688202765537320058993752705792202855659280579435675836770559425576159617223210684173081354811380)', '(3, 13737483215726554467226452391933082027655687725987965098914031021448725723495487390363830076638491403365500940783152113990653792427580509907079481945101960)']
+# #share_list=['(1, 1696900373914889897544161808588998043930134448040157988581313221054959977490919135637933369193696726459637166620314419374032983325234984615675864168607333)', '(2, 3393800747829779795088323617177996087860268896080315977162626442109919954981838271275866738387393452919274333240628838748065966650469969231351728337214656)', '(3, 5090701121744669692632485425766994131790403344120473965743939663164879932472757406913800107581090179378911499860943258122098949975704953847027592505821979)']
+# #share_list=['(1,1529358219)','(2,1804090979)','(3,2078823739)']
+# #share_list=['(1, 414598935588642357729835999113030879012)', '(2, 488915504256346251996297390794293546569)', '(3, 563232072924050146262758782475556214126)']
+# #share_list=['(1, 9676978131702039184437831297247410475604650385053423220777068846834730482968269438542594670357347552052011964691728943911511572853185166697586828635258071)', '(2, 35937666695192982314204421091316664169588482949197078473138363709094661409744362891694416750000409645508585069228046008706204656926308183452468891149595889)', '(3, 78782065690472829389299769382207761085900416266726595031655876370849610610459590534782800463513477988140402279864046010971331208344158614703256995846639497)']
+# #share_list=['(1, 142104309330931654732907379338)', '(2, 310754042463443741406853837841)', '(3, 585177361911800597615383325844)', '(4, 965374267676002223358495843347)']
+# print(vss.recoverSecret(share_list))
