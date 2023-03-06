@@ -154,11 +154,11 @@ contract PublicContract {
         }
         return count;
     }
-//Delete the share request
-    function deleteShareRequest(address shareHolder,address ownerAddress)public{
+//Delete the share request //Todo 
+    function deleteShareRequest(address requseterAddress,address secretOwnerAddress)public{
         for (uint256 i = 0; i<secretRequests.length; i++){
             ShareRequest memory tempSecretRequest=secretRequests[i];
-            if(tempSecretRequest.requesterAddress ==shareHolder && tempSecretRequest.ownerAddress ==ownerAddress){
+            if(tempSecretRequest.requesterAddress ==requseterAddress && tempSecretRequest.ownerAddress ==secretOwnerAddress){
                 delete secretRequests[i];
             }
 

@@ -37,11 +37,10 @@ contract Node {
 
     string private encryptedVault; //encrypted vault releases when all shareholders accepted 
 
-    //todo don't defined the public contract in the constructor
     constructor(address defaultPublicContractAddress) { 
         owner = msg.sender;
         //Hard coded deployment of the public contract
-        defaultPublicContract=PublicContract(defaultPublicContractAddress);  //0x7090b63117bce798ACa57Af642AE802E2aE6a2bf
+        defaultPublicContract=PublicContract(defaultPublicContractAddress);  
         myContractAddress = address(this);
         myState="NODE_CREATED";
 
@@ -150,12 +149,23 @@ contract Node {
     return _shareRequests;
     }
 
+//delete secret owner from the holding secret owners list 
+    function deleteSecretOwnerFromList(address secretOwnerAddress)public onlyOwner checkIsRegistered{
+        for (uint256 i = 0; i<secretOwners.length; i++){
+            if(secretOwners[i] ==secretOwnerAddress){
+                delete secretOwners[i];
+            }
+
+        }
+    }
+
 //release the secret to the requester
     function releaseSecret(address secretOwnerAddress) public onlyOwner checkIsRegistered {
         string memory myShare =sharesMap[secretOwnerAddress];
         defaultPublicContract.releaseTheSecret(secretOwnerAddress,myShare);
         defaultPublicContract.updateOwnersAcceptedToReleaseList(secretOwnerAddress,msg.sender);
-        defaultPublicContract.deleteShareRequest(msg.sender,secretOwnerAddress);
+        //defaultPublicContract.deleteShareRequest(msg.sender,secretOwnerAddress);
+        deleteSecretOwnerFromList(secretOwnerAddress);
 
         
     }
@@ -201,7 +211,7 @@ contract Node {
         requestedShareHolders.push(shareHolder);
         
     }
-
+//Todo combine this with distribute function 
 //add my shares to the contract 
     function addMyShares(string[] memory myShares)public onlyOwner{
        shares =myShares ;
