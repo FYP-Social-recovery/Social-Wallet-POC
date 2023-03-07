@@ -3,7 +3,7 @@
 # Constants variable
 POLY_DEGREE = 8
 MINUTIAE_POINTS_AMOUNT = 30
-CHAFF_POINTS_AMOUNT = 300
+CHAFF_POINTS_AMOUNT = 200
 
 # Constants fixed
 # Galois field exponent
