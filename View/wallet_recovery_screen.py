@@ -54,59 +54,88 @@ class WalletRecoveryScreen(UserControl):
     
     def on_submit_click_fn(self,e):
         if(self.biometric.value):
-            # TODO - Request to get shares 
-            shares = NodeContractController.getReceivedShares(publicKeyLocal=state.PUBLIC_KEY,privateKeyLocal=state.PRIVATE_KEY,nodeContractAddressLocal=state.NODE_CONTRACT_ADDRESS)
-            # TODO - Request to get encryptedVault
-            encryptedVault = NodeContractController.getVaultHash(publicKeyLocal=state.PUBLIC_KEY,privateKeyLocal=state.PRIVATE_KEY,nodeContractAddressLocal=state.NODE_CONTRACT_ADDRESS)
-            print(shares)
-            print(encryptedVault)
-            # TODO - Generate combined key using shares
-            combined_key = ""
-            
-            key,iv = SymmetricEncryption.deConcatanate2UnknownLenthBytesObject(SymmetricEncryption.convertIntegerToBytesObject(combined_key))
-            
-            decryptedVault = SymmetricEncryption.decrypt_vault(encryptedVault,key,iv)
-            
-            print(decryptedVault)
-            
-            log_path = VAULT_LOG_FOLDER + VAULT_LOG_FILENAME
-            
-            with open(log_path, 'w') as file:
-                file.write(decryptedVault)
-            
-            if (len(shares)!=0 and encryptedVault == ""):
-            
-                print("Start Enrolling")
-                # Capture Enrolling fingerprint template
-                original_image_path = self.biometric.value #"../data/Original_fp.BMP"
-                original_image_template = FingerPrintController.read_image(original_image_path)
-                
-                # Preprocessing Fingerprint
-                preprocessed_image_output_path = "../data/Preprocessed_fp.jpg"
+            if(self.otp_value.value):
+                if(self.username.value):
+                    # TODO - Request to get shares 
+                    shares = NodeContractController.getReceivedShares(publicKeyLocal=state.PUBLIC_KEY,privateKeyLocal=state.PRIVATE_KEY,nodeContractAddressLocal=state.NODE_CONTRACT_ADDRESS)
+                    # TODO - Request to get encryptedVault
+                    encryptedVault = NodeContractController.getVaultHash(publicKeyLocal=state.PUBLIC_KEY,privateKeyLocal=state.PRIVATE_KEY,nodeContractAddressLocal=state.NODE_CONTRACT_ADDRESS,otp=self.otp_value.value,userName=self.username.value)
+                    print(shares)
+                    print("encryptedVault")
+                    print(encryptedVault)
+                    # TODO - Generate combined key using shares
+                    VSS_client=VSS_Controller()
+                    combined_key = VSS_client.recoverSecret(shares)
+                    print(combined_key)
+                    
+                    # key,iv = SymmetricEncryption.deConcatanate2UnknownLenthBytesObject(SymmetricEncryption.convertIntegerToBytesObject(combined_key))
+                    key = SymmetricEncryption.convertIntegerToBytesObject(combined_key)
+                    
+                    decryptedVault = SymmetricEncryption.decrypt_vault_128(encryptedVault,key) # decryptedVault = SymmetricEncryption.decrypt_vault(encryptedVault,key,iv)
+                    
+                    print(decryptedVault)
+                    
+                    log_path = VAULT_LOG_FOLDER + VAULT_LOG_FILENAME
+                    
+                    with open(log_path, 'w') as file:
+                        file.write(decryptedVault)
+                    
+                    if (len(shares)!=0 and encryptedVault == ""):
+                    
+                        print("Start Enrolling")
+                        # Capture Enrolling fingerprint template
+                        original_image_path = self.biometric.value #"../data/Original_fp.BMP"
+                        original_image_template = FingerPrintController.read_image(original_image_path)
+                        
+                        # Preprocessing Fingerprint
+                        preprocessed_image_output_path = "../data/Preprocessed_fp.jpg"
 
-                preprocessed_image = FingerPrintController.fingerprint_pipline(original_image_template, save_image=True, save_path=preprocessed_image_output_path)
-                
-                # Extract minutiea
-                print("Start minutiae extraction")
-                good_fp = False
-                
-                good_fp = FingerPrintController.capture_new_fp_xyt(preprocessed_image_output_path)
-                
-                ## If good fp enroll
-                ## else error
-                if not good_fp:
-                    print(APP_RETRY_FP)
-                    self.open_err_dlg_err()
+                        preprocessed_image = FingerPrintController.fingerprint_pipline(original_image_template, save_image=True, save_path=preprocessed_image_output_path)
+                        
+                        # Extract minutiea
+                        print("Start minutiae extraction")
+                        good_fp = False
+                        
+                        good_fp = FingerPrintController.capture_new_fp_xyt(preprocessed_image_output_path)
+                        
+                        ## If good fp enroll
+                        ## else error
+                        if not good_fp:
+                            print(APP_RETRY_FP)
+                            self.open_err_dlg_err()
+                        else:
+                            print("Start Verifying")
+                            # Reveal Secret
+                            FingerPrintController.verify_fingerprint(FP_TEMP_FOLDER + FP_OUTPUT_NAME + '.xyt')
+                            self.on_submit_click(self)
+                    else:
+                        self.open_err_dlg_err()
                 else:
-                    print("Start Verifying")
-                    # Reveal Secret
-                    FingerPrintController.verify_fingerprint(FP_TEMP_FOLDER + FP_OUTPUT_NAME + '.xyt')
-                    self.on_submit_click(self)
+                    self.open_err_dlg_uname()
             else:
-                self.open_err_dlg_err()
+                self.open_err_dlg_otp()
         else:
             self.open_err_dlg_fp()
+        
+        
+    err_dlg_otp = AlertDialog(
+        title=Text("Enter a valid OTP.", text_align=TextAlign.CENTER), on_dismiss=lambda e: print("Dialog dismissed!")
+    )
     
+    def open_err_dlg_otp(self):
+        self.page.dialog = self.err_dlg_otp
+        self.err_dlg_otp.open = True
+        self.page.update()
+        
+    err_dlg_uname = AlertDialog(
+        title=Text("Enter a valid Username.", text_align=TextAlign.CENTER), on_dismiss=lambda e: print("Dialog dismissed!")
+    )
+    
+    def open_err_dlg_uname(self):
+        self.page.dialog = self.err_dlg_uname
+        self.err_dlg_uname.open = True
+        self.page.update()
+        
     err_dlg_fp = AlertDialog(
         title=Text("Choose a finger print.", text_align=TextAlign.CENTER), on_dismiss=lambda e: print("Dialog dismissed!")
     )
@@ -129,6 +158,9 @@ class WalletRecoveryScreen(UserControl):
     def build(self):
         self.biometric= TextField(label="Select a Fingerprint",
                           hint_text="Please select a fingerprint", color="0xFF000000", width=600)
+        
+        self.otp_value = TextField(label="Enter OTP", hint_text="Please enter Your OTP",color="0xFF000000",width=300,tooltip="Enter the OTP in your email")
+        self.username = TextField(label="Enter Username", hint_text="Please enter Your Username",color="0xFF000000",width=300,tooltip="Enter the Username")
                         
         return Column(
             horizontal_alignment=CrossAxisAlignment.CENTER,
@@ -151,8 +183,17 @@ class WalletRecoveryScreen(UserControl):
                 Container(
                     height=10,
                 ),
+                self.otp_value,
+                Container(
+                    height=10,
+                ),
                 
-                ElevatedButton("Distribute", bgcolor="#2596be",
+                self.username,
+                Container(
+                    height=10,
+                ),
+                
+                ElevatedButton("Recover", bgcolor="#2596be",
                                color="white",on_click=self.on_submit_click_fn, width=300,tooltip="Distribute Shares"),
             ],
         )
