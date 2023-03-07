@@ -78,7 +78,7 @@ class RecoveryRequestScreen(UserControl):
                     icon_size=20,
                     tooltip="Back",
                 ),
-                Text(value="OTP verification", text_align="center",
+                Text(value="Recovery Request", text_align="center",
                      size=24, color="#2596be"),
                 Container(
                     height=100,
@@ -96,7 +96,7 @@ class RecoveryRequestScreen(UserControl):
                 Container(
                     height=100,
                 ),
-                ElevatedButton("Verify", bgcolor="#2596be",
+                ElevatedButton("Request", bgcolor="#2596be",
                                color="white",on_click=self.continue_click, width=300,tooltip="Verify OTP"),
             ],
         )
