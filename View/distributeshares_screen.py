@@ -91,12 +91,12 @@ class DistributesharesScreen(UserControl):
                     print(fuzzy_vault_bytes_object)
                     print("\n\n")
                     
-                    encrypted_fuzzy_vault,key,iv = SymmetricEncryption.encrypt_vault_256_bit_key(fuzzy_vault_bytes_object)
+                    encrypted_fuzzy_vault,key  = SymmetricEncryption.encrypt_vault_128_bit_key(fuzzy_vault_bytes_object) # encrypted_fuzzy_vault,key,iv = SymmetricEncryption.encrypt_vault_256_bit_key(fuzzy_vault_bytes_object)
                     encrypted_fuzzy_vault = SymmetricEncryption.convertByteToString(encrypted_fuzzy_vault)
                     print(encrypted_fuzzy_vault)
                     print("\n\n")
                     
-                    combined_key_bytes = SymmetricEncryption.concatanate2BytesObject(key,iv)
+                    combined_key_bytes = key # SymmetricEncryption.concatanate2BytesObject(key,iv)
                     
                     combined_key = SymmetricEncryption.convertBytesObjectToInteger(combined_key_bytes)
 
