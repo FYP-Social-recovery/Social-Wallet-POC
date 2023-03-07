@@ -56,7 +56,7 @@ class VSS_Controller:
             return True
 
         # number of trials here
-        numberOfRabinTrials = 20
+        numberOfRabinTrials = 30
         for i in range(numberOfRabinTrials):
             round_tester = random.randrange(2, mrcandidate)
             if trialComposite(round_tester):
@@ -65,7 +65,7 @@ class VSS_Controller:
     
     def largePrime(self):
         while True:
-            n = 128
+            n = 512
             prime_candidate = self.getLowLevelPrime(n)
             if not self.isMillerRabinPassed(prime_candidate):
                 continue
@@ -122,8 +122,8 @@ class VSS_Controller:
 
     def initial(self,Z_lower=10000):
         #generate q bigger than z_lower
-        q = self.largePrime()
-        #q = 95575507822290034779886372913061420274676365488455261987395964641774104119687
+        #q = self.largePrime()
+        q=8999556512368032697017128097574374399769695316317344581789539102340039278190399662105641330020233699175672708836915655500977456233047846907971722612868077
         
 
         print("q = " + str(q))
@@ -157,7 +157,7 @@ class VSS_Controller:
         y = 0
         for coefficient_index, coefficient_value in enumerate(coefficients[::-1]):
             y += (x ** coefficient_index * coefficient_value)
-        return y
+        return int(y)%q
 
 
     def commitment(self,coefficients, g, p):
@@ -184,22 +184,68 @@ class VSS_Controller:
         return temp % q
 
 
-    def reconstruct_secret(self, pool):
-        sums = 0
+    # def reconstruct_secret(self, pool):
+    #     sums = 0
+    #     q=338860914350317570641740174226607162069
 
-        for j, share_j in enumerate(pool):
-            xj, yj = share_j
-            prod = 1
+    #     for j, share_j in enumerate(pool):
+    #         xj, yj = share_j
+    #         prod = 1
 
-            for i, share_i in enumerate(pool):
-                xi, _ = share_i
-                if i != j:
-                    prod *= ((xi)//(xi-xj))
+    #         for i, share_i in enumerate(pool):
+    #             xi, _ = share_i
+    #             if i != j:
+    #                 prod *= ((xi)//(xi-xj))
+    #                 print(prod)
             
-            prod *= yj
-            sums += prod
-        return int(sums)
-
+    #         prod *= yj
+    #         print(prod)
+    #         sums += prod
+    #     sums=sums%q
+    #     return int(sums)
+    def reconstruct_secret(self,pool):
+        x_s,y_s = [],[]
+        q=8999556512368032697017128097574374399769695316317344581789539102340039278190399662105641330020233699175672708836915655500977456233047846907971722612868077
+        for share in pool:
+            x_s.append(share[0])
+            y_s.append(share[1])
+        out = self._lagrange_interpolate(0, x_s, y_s, q)
+        return out
+    def _lagrange_interpolate(self,x, x_s, y_s, p):
+        k = len(x_s)
+        assert k == len(set(x_s)), "points must be distinct"
+        def PI(vals):  # upper-case PI -- product of inputs
+            accum = 1
+            for v in vals:
+                accum *= v
+            return accum
+        nums = []  # avoid inexact division
+        dens = []
+        for i in range(k):
+            others = list(x_s)
+            cur = others.pop(i)
+            nums.append(PI(x - o for o in others))
+            dens.append(PI(cur - o for o in others))
+        den = PI(dens)
+        num = sum([self._divmod(nums[i] * den * y_s[i] % p, dens[i], p)
+                for i in range(k)])
+        return (self._divmod(num, den, p) + p) % p
+    
+    def _divmod(self,num, den, p):
+        inv, _ = self._extended_gcd(den, p)
+        return num * inv
+    def _extended_gcd(self,a, b):
+        x = 0
+        last_x = 1
+        y = 1
+        last_y = 0
+        while b != 0:
+            quot = a // b
+            a, b = b, a % b
+            x, last_x = last_x - quot * x, x
+            y, last_y = last_y - quot * y, y
+        return last_x, last_y
+    
     def generate_shares(self,n, t, secret, p, q, r, g):
         FIELD_SIZE = q
         coefficients = self.coeff(t, secret, FIELD_SIZE)
@@ -250,24 +296,16 @@ class VSS_Controller:
             #print(share)
         #print(collected_shares)
         pool = random.sample(collected_shares, t)
-
+        # pool=[]
+        # pool.append(collected_shares[0])
+        # pool.append(collected_shares[1])
+        # print(pool)
         secret_reconstructed = self.reconstruct_secret(pool)
         return secret_reconstructed
 
-# vss=VSS_Controller()
-# # vss.initial()
-# share_list=vss.get_generated_shares(937129139155039330165631526289)
+vss=VSS_Controller()
+# vss.initial()
+share_list=vss.get_generated_shares(115792089237316195423570985008687907853269984665640564039457584007913129639936)
+#print(share_list)
 
-
-# print(share_list)
-# #share_string=['(1, 6578889241063373618814799278512664690219537121584225863598628970422114152702603886643212322371345210913859819637819904480910953581820912982068141951166248)', '(2, 13157778482126747237629598557025329376490155668872822452625266156774410475273897597959090420158398714057036673020544992374569951038852261525525475598706453)',  '(3, 19736667723190120856444397835537994062760774216161419041651903343126706797845191309274968517945452217200213526403270080268228948495883610068982809246246658)']
-# #print(vss.recoverSecret(share_string))
-# #share_string=['(1, 3696617999365661557961716249366563061662254308441446999869622682127213008021963258188913203976722887593241958283255495337055053180849153492338578861194650)', '(2, 7393235998731323115923432498733126119375590042587264725167253580184608185912616341050492183369154067415800950311416174086858150236908742546066349418763257)', '(3, 11089853998096984673885148748099689177088925776733082450464884478242003363803269423912071162761585247238359942339576852836661247292968331599794119976331864)']
-# #print(vss.recoverSecret(share_string))
-# #share_list=['(1, 4579161071908851489075484130644360676566995852005110566289345384082348916622500115047754329072827157793370410890389004860498526806865911461266680764520800)', '(2, 9158322143817702978150968261288721352111341788996537832601688202765537320058993752705792202855659280579435675836770559425576159617223210684173081354811380)', '(3, 13737483215726554467226452391933082027655687725987965098914031021448725723495487390363830076638491403365500940783152113990653792427580509907079481945101960)']
-# #share_list=['(1, 1696900373914889897544161808588998043930134448040157988581313221054959977490919135637933369193696726459637166620314419374032983325234984615675864168607333)', '(2, 3393800747829779795088323617177996087860268896080315977162626442109919954981838271275866738387393452919274333240628838748065966650469969231351728337214656)', '(3, 5090701121744669692632485425766994131790403344120473965743939663164879932472757406913800107581090179378911499860943258122098949975704953847027592505821979)']
-# #share_list=['(1,1529358219)','(2,1804090979)','(3,2078823739)']
-# #share_list=['(1, 414598935588642357729835999113030879012)', '(2, 488915504256346251996297390794293546569)', '(3, 563232072924050146262758782475556214126)']
-# #share_list=['(1, 9676978131702039184437831297247410475604650385053423220777068846834730482968269438542594670357347552052011964691728943911511572853185166697586828635258071)', '(2, 35937666695192982314204421091316664169588482949197078473138363709094661409744362891694416750000409645508585069228046008706204656926308183452468891149595889)', '(3, 78782065690472829389299769382207761085900416266726595031655876370849610610459590534782800463513477988140402279864046010971331208344158614703256995846639497)']
-# #share_list=['(1, 142104309330931654732907379338)', '(2, 310754042463443741406853837841)', '(3, 585177361911800597615383325844)', '(4, 965374267676002223358495843347)']
-# print(vss.recoverSecret(share_list))
+print(vss.recoverSecret(share_list))
