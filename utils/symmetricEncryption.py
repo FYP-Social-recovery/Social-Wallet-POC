@@ -76,13 +76,57 @@ class SymmetricEncryption:
             file.write(ciphertextBase.decode())
         
         return ciphertextBase,key,iv
-
+    
     def decrypt_vault(ciphertextBase,key,iv):
         
         # Decoding the ciphertext from base64
         ciphertext = base64.b64decode(ciphertextBase)
 
         cipher = AES.new(key, AES.MODE_CBC, iv)
+
+        # Decrypting the ciphertext
+        plaintext = cipher.decrypt(ciphertext)
+
+        # Removing the padding
+        padding = plaintext[-1]
+        plaintext = plaintext[:-padding]
+        
+        with open("../data/vault/decryptedVault.txt", 'w') as file:
+            file.write(plaintext.decode())  
+            
+    def encrypt_vault_128_bit_key(file_content):
+        # 256-bit key
+        key = os.urandom(16)
+
+        # # Generate a 16-byte initialization vector (IV)
+        # iv = os.urandom(16)
+
+        cipher = AES.new(key, AES.MODE_ECB)
+
+        # The string to be encrypted
+        plaintext = file_content
+
+        # Padding the plaintext to a multiple of 16 bytes
+        padding = 16 - (len(plaintext) % 16)
+        plaintext += bytes([padding]) * padding
+
+        # Encrypting the plaintext
+        ciphertext = cipher.encrypt(plaintext)
+        
+        # Encoding the ciphertext to base64
+        ciphertextBase = base64.b64encode(ciphertext)
+        
+        # with open("../data/vault/vault.txt", 'w') as file:
+        #     file.write(ciphertextBase.decode())
+        
+        return ciphertextBase,key
+    
+    def decrypt_vault_128(ciphertextBase,key):
+        
+        # Decoding the ciphertext from base64
+        ciphertext = base64.b64decode(ciphertextBase)
+
+        cipher = AES.new(key, AES.MODE_ECB)
 
         # Decrypting the ciphertext
         plaintext = cipher.decrypt(ciphertext)
@@ -121,7 +165,7 @@ class SymmetricEncryption:
 
     def convertIntegerToBytesObject(integer_value):
         # Convert integer back to binary data
-        byte_object = integer_value.to_bytes(len(integer_value), byteorder='big')
+        byte_object = integer_value.to_bytes(integer_value.bit_length(), byteorder='big')
         
         return byte_object 
     
