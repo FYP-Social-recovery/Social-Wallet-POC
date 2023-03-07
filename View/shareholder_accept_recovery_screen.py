@@ -71,7 +71,7 @@ class ShareHolderAcceptRecoveryScreen(UserControl):
                     icon_size=20,
                     tooltip="Back",
                 ),
-                Text(value="Share Holder Recovery Requests", text_align="center",
+                Text(value="Share Recovery Requests", text_align="center",
                      size=24, color="#2596be"),
                 Container(
                     height=20,
