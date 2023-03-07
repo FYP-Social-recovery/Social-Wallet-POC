@@ -194,13 +194,12 @@ class VSS_Controller:
             for i, share_i in enumerate(pool):
                 xi, _ = share_i
                 if i != j:
-                    prod *= ((xi)/(xi-xj))
-
+                    prod *= ((xi)//(xi-xj))
+            
             prod *= yj
             sums += prod
         return int(sums)
-    
-    
+
     def generate_shares(self,n, t, secret, p, q, r, g):
         FIELD_SIZE = q
         coefficients = self.coeff(t, secret, FIELD_SIZE)
@@ -251,9 +250,8 @@ class VSS_Controller:
             #print(share)
         #print(collected_shares)
         pool = random.sample(collected_shares, t)
-        #print(pool)
+
         secret_reconstructed = self.reconstruct_secret(pool)
-        #secret_reconstructed=self.lagrange_interpolation(0, pool)
         return secret_reconstructed
 
 # vss=VSS_Controller()
