@@ -64,7 +64,7 @@ class VSS_Controller:
     
     def largePrime(self):
         while True:
-            n = 512
+            n = 128
             prime_candidate = self.getLowLevelPrime(n)
             if not self.isMillerRabinPassed(prime_candidate):
                 continue
@@ -182,21 +182,21 @@ class VSS_Controller:
         return temp % q
 
 
-    def reconstruct_secret(self,pool, q):
+    def reconstruct_secret(self, pool):
         sums = 0
 
         for j, share_j in enumerate(pool):
             xj, yj = share_j
-            prod = Decimal(1)
+            prod = 1
 
             for i, share_i in enumerate(pool):
                 xi, _ = share_i
                 if i != j:
-                    prod *= Decimal(Decimal(xi)/(xi-xj))
-
+                    prod *= ((xi)//(xi-xj))
+            
             prod *= yj
-            sums += Decimal(prod)
-        return int(Decimal(sums))
+            sums += prod
+        return int(sums)
 
     def generate_shares(self,n, t, secret, p, q, r, g):
         FIELD_SIZE = q
@@ -247,8 +247,8 @@ class VSS_Controller:
             collected_shares.append(share)
             #print(share)
         pool = random.sample(collected_shares, t)
-        q=12177970814788462225722397932809536582978922007233825435668944398772038540237943367024346718615054509679244625401755539608696773760613192429863080075705917
-        secret_reconstructed = self.reconstruct_secret(pool, q)
+
+        secret_reconstructed = self.reconstruct_secret(pool)
         return secret_reconstructed
 
 # vss=VSS_Controller()
