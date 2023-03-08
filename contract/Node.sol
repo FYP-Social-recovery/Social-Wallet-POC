@@ -326,7 +326,8 @@ contract Node {
 
 //request the owner's vault hash
     function requestVaultHashOfSecretOwner(string memory name,string memory otp)public view checkIsRegistered returns(string memory) {
-        return defaultPublicContract.makeARequestToGetVaultHash(name,otp);
+        string memory tempVault =defaultPublicContract.makeARequestToGetVaultHash(name,otp);
+        return tempVault;
     }
 
 //saves the share to the requested nodes regenerated shsres list
