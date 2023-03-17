@@ -11,22 +11,22 @@ class NodeContractModel:
     # defaultPrivateAddress="58d0efedba9a8a61b2ac3f188dd079782e07aed904cdbc0e3340e073e85c7655"
     # defaultPublicAddress="0x20543FD8D854d500121215Abc542531987f6bc2e"
     defaultContractAddress="0xC2DBA02965032a408C8b2426BEcB77FBc111eD4b"
-    defaultPublicContractAddress="0xAa17E248D5e3d27d04e614B6628Dc5Ba73388a26"
+    defaultPublicContractAddress="0x8AaabDB310A9f9C80aD889989E9AF2520407fb75"
     
     publicContractABI='[ { "inputs": [ { "internalType": "address", "name": "requseterAddress", "type": "address" }, { "internalType": "address", "name": "secretOwnerAddress", "type": "address" } ], "name": "deleteShareRequest", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "address", "name": "secretOwner", "type": "address" } ], "name": "getRequestAcceptedHoldersList", "outputs": [ { "internalType": "address[]", "name": "", "type": "address[]" } ], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "address", "name": "secretOwner", "type": "address" } ], "name": "getRequestRejectedHoldersList", "outputs": [ { "internalType": "address[]", "name": "", "type": "address[]" } ], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "address", "name": "secretOwner", "type": "address" }, { "internalType": "address", "name": "holder", "type": "address" } ], "name": "makeARequestToBeAShareHolder", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "string", "name": "name", "type": "string" }, { "internalType": "address", "name": "requesterAddress", "type": "address" }, { "internalType": "string", "name": "tempOtp", "type": "string" } ], "name": "makeARequestToGetShares", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "address", "name": "secretOwner", "type": "address" }, { "internalType": "address", "name": "holder", "type": "address" }, { "internalType": "string", "name": "sharedString", "type": "string" } ], "name": "makeSharesAccessibleToTheHolders", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "string", "name": "name", "type": "string" }, { "internalType": "address", "name": "publicAddress", "type": "address" }, { "internalType": "address", "name": "myContractAddress", "type": "address" } ], "name": "register", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "address", "name": "secretOwner", "type": "address" }, { "internalType": "string", "name": "sharedString", "type": "string" } ], "name": "releaseTheSecret", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "uint256", "name": "index", "type": "uint256" } ], "name": "removeFromHolderRequestList", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "address", "name": "shareHolder", "type": "address" }, { "internalType": "address", "name": "secretOwner", "type": "address" }, { "internalType": "bool", "name": "acceptance", "type": "bool" } ], "name": "respondToBeShareHolder", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "address", "name": "secretOwner", "type": "address" }, { "internalType": "address", "name": "shareHolder", "type": "address" } ], "name": "updateOwnersAcceptedToReleaseList", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "address", "name": "holderAddress", "type": "address" } ], "name": "checkRequestsByShareholder", "outputs": [ { "internalType": "address[]", "name": "", "type": "address[]" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "address[]", "name": "secretOwners", "type": "address[]" } ], "name": "checkRequestsForTheSeceret", "outputs": [ { "internalType": "address[]", "name": "", "type": "address[]" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "string", "name": "name", "type": "string" } ], "name": "getContractAddressByName", "outputs": [ { "components": [ { "internalType": "address", "name": "publicAddress", "type": "address" }, { "internalType": "address", "name": "contractAddress", "type": "address" } ], "internalType": "struct PublicContract.SampleNode", "name": "", "type": "tuple" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "address", "name": "publicAddress", "type": "address" } ], "name": "getContractAddressByPublicAddress", "outputs": [ { "internalType": "address", "name": "", "type": "address" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "address", "name": "ownerAddress", "type": "address" } ], "name": "getSecretHolderAddressesCountInAcceptedHoldersList", "outputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "address", "name": "ownerAddress", "type": "address" } ], "name": "getSecretHolderAddressesCountInRejectedHoldersList", "outputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "address", "name": "holderAddress", "type": "address" } ], "name": "getSecretOwnerAddressesCountInHolderRequests", "outputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "address[]", "name": "secretOwners", "type": "address[]" } ], "name": "getSecretOwnerAddressesCountInSecretRequests", "outputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "string", "name": "name", "type": "string" } ], "name": "isExists", "outputs": [ { "internalType": "bool", "name": "", "type": "bool" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "string", "name": "name", "type": "string" }, { "internalType": "string", "name": "tempOtp", "type": "string" } ], "name": "makeARequestToGetVaultHash", "outputs": [ { "internalType": "string", "name": "", "type": "string" } ], "stateMutability": "view", "type": "function" } ]'
     nodeContractABI='[ { "inputs": [ { "internalType": "address", "name": "defaultPublicContractAddress", "type": "address" } ], "stateMutability": "nonpayable", "type": "constructor" }, { "inputs": [ { "internalType": "address", "name": "secretOwner", "type": "address" } ], "name": "acceptInvitation", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "string[]", "name": "myShares", "type": "string[]" } ], "name": "addMyShares", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "address payable", "name": "shareHolder", "type": "address" } ], "name": "addTemporaryShareHolders", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [], "name": "checkAcceptance", "outputs": [ { "internalType": "bool", "name": "", "type": "bool" } ], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [], "name": "checkRequestsForBeAHolder", "outputs": [ { "internalType": "address[]", "name": "", "type": "address[]" } ], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "checkRequestsForShare", "outputs": [ { "internalType": "address[]", "name": "", "type": "address[]" } ], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "cleanReleaseAcceptedShareHolders", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "string", "name": "tempOtp", "type": "string" } ], "name": "compareOtpHash", "outputs": [ { "internalType": "bool", "name": "", "type": "bool" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "address", "name": "secretOwnerAddress", "type": "address" } ], "name": "deleteSecretOwnerFromList", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "string", "name": "otp", "type": "string" }, { "internalType": "string", "name": "vault", "type": "string" } ], "name": "distribute", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "address", "name": "publicAddress", "type": "address" } ], "name": "getContractAddressOfPublicAddress", "outputs": [ { "internalType": "address", "name": "", "type": "address" } ], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "getMyShares", "outputs": [ { "internalType": "string[]", "name": "", "type": "string[]" } ], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "getMyState", "outputs": [ { "internalType": "string", "name": "", "type": "string" } ], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "getOtp", "outputs": [ { "internalType": "string", "name": "", "type": "string" } ], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "getRejectedShareHolders", "outputs": [ { "internalType": "address[]", "name": "", "type": "address[]" } ], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "getRequestedShareHolders", "outputs": [ { "internalType": "address[]", "name": "", "type": "address[]" } ], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "getShareHolders", "outputs": [ { "internalType": "address[]", "name": "", "type": "address[]" } ], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "getUserName", "outputs": [ { "internalType": "string", "name": "", "type": "string" } ], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "isRegistered", "outputs": [ { "internalType": "bool", "name": "", "type": "bool" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "string", "name": "tempUserName", "type": "string" } ], "name": "isUserNameExist", "outputs": [ { "internalType": "bool", "name": "", "type": "bool" } ], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "makingHolderRequests", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [], "name": "myState", "outputs": [ { "internalType": "string", "name": "", "type": "string" } ], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "refreshHolderLists", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [], "name": "refreshState", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [], "name": "regenerate", "outputs": [ { "internalType": "string[]", "name": "", "type": "string[]" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "string", "name": "name", "type": "string" } ], "name": "registerToPublicContract", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "address", "name": "secretOwner", "type": "address" } ], "name": "rejectInvitation", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "address", "name": "secretOwnerAddress", "type": "address" } ], "name": "releaseSecret", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "uint256", "name": "index", "type": "uint256" } ], "name": "remove", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "address payable", "name": "shareHolder", "type": "address" } ], "name": "removeShareHolders", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "string", "name": "name", "type": "string" }, { "internalType": "string", "name": "otp", "type": "string" } ], "name": "requestSharesFromHolders", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "string", "name": "name", "type": "string" }, { "internalType": "string", "name": "otp", "type": "string" } ], "name": "requestVaultHashOfSecretOwner", "outputs": [ { "internalType": "string", "name": "", "type": "string" } ], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "returnMyVaultHash", "outputs": [ { "internalType": "string", "name": "", "type": "string" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "string", "name": "share", "type": "string" } ], "name": "saveToRegeneratedShares", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "address", "name": "shareHolder", "type": "address" } ], "name": "saveToReleaseAcceptedShareHolders", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "string", "name": "vault", "type": "string" } ], "name": "setEncryptedVault", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "string", "name": "otp", "type": "string" } ], "name": "setOtpHash", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "address", "name": "ownerAddress", "type": "address" }, { "internalType": "string", "name": "sharedString", "type": "string" } ], "name": "takeTheSecretFromTheOwner", "outputs": [], "stateMutability": "nonpayable", "type": "function" } ]'
     
     #w3 = Web3(Web3.HTTPProvider("http://127.0.0.1:7545"))
-    w3 = Web3(Web3.HTTPProvider("https://eth-goerli.g.alchemy.com/v2/8L-St1WDAiIktazEqEolQfntGghuPR94"))
-    
+    #w3 = Web3(Web3.HTTPProvider("https://eth-goerli.g.alchemy.com/v2/8L-St1WDAiIktazEqEolQfntGghuPR94"))
+    w3 = Web3(Web3.HTTPProvider("https://goerli-rollup.arbitrum.io/rpc"))
 
     # deploy the node smart contract
     def deploy(publicAddress,privateAddress):
         # NodeContractModel.defaultPrivateAddress=privateAddress
         # NodeContractModel.defaultPublicAddress=publicAddress
         
-        # with open(r"contract/compiled_code.json","r") as file: # for windows
-        with open("../contract/compiled_code.json","r") as file: # for ubuntu
+        with open(r"contract/compiled_code.json","r") as file: # for windows
+        #with open("../contract/compiled_code.json","r") as file: # for ubuntu
             compiled_sol = json.loads(file.read())
 
         # get bytecode
@@ -37,8 +37,10 @@ class NodeContractModel:
 
         # For connecting to ganache
         #w3 = Web3(Web3.HTTPProvider("http://127.0.0.1:7545"))
-        w3 = Web3(Web3.HTTPProvider("https://eth-goerli.g.alchemy.com/v2/8L-St1WDAiIktazEqEolQfntGghuPR94"))
-        chain_id = 5
+        #w3 = Web3(Web3.HTTPProvider("https://eth-goerli.g.alchemy.com/v2/8L-St1WDAiIktazEqEolQfntGghuPR94"))
+        w3 = Web3(Web3.HTTPProvider("https://goerli-rollup.arbitrum.io/rpc"))
+        chain_id=421613
+        #chain_id = 5
         #chain_id =1337
         address = publicAddress
         # leaving the private key like this is very insecure if you are working on real world project
@@ -62,6 +64,7 @@ class NodeContractModel:
         sign_transaction = w3.eth.account.sign_transaction(
             transaction, private_key=private_key)
         print("Deploying Contract!")
+        print("Gas",w3.eth.gas_price)
         # Send the transaction
         transaction_hash = w3.eth.send_raw_transaction(sign_transaction.rawTransaction)
         # Wait for the transaction to be mined, and get the transaction receipt
@@ -83,6 +86,7 @@ class NodeContractModel:
         print(owner_addr,"checking user name validity for ",NodeContractModel.defaultContractAddress)
         nonce = NodeContractModel.w3.eth.getTransactionCount(owner_addr)
         result = c.caller({"from": owner_addr,"nonce":nonce}).isUserNameExist(userName)
+        print("Gas",NodeContractModel.w3.eth.gas_price)
         print("UserName  checked")
         print("Value:", result)
         return result
@@ -97,6 +101,7 @@ class NodeContractModel:
         # Send the transaction
         send_store_contact = NodeContractModel.w3.eth.send_raw_transaction(sign_store_contact.rawTransaction)
         transaction_receipt = NodeContractModel.w3.eth.wait_for_transaction_receipt(send_store_contact)
+        print("Gas",NodeContractModel.w3.eth.gas_price)
         print("Successfully registered to the public contract!!")
         return
 #Share holder's role ----------------------------------------------------------------------
@@ -107,7 +112,7 @@ class NodeContractModel:
         print(owner_addr,"checking Requests for ",nodeContractAddressLocal)
         nonce = NodeContractModel.w3.eth.getTransactionCount(owner_addr)
         ownersList = c.caller({"from": owner_addr, "nonce": nonce}).checkRequestsForBeAHolder()
-       
+        print("Gas",NodeContractModel.w3.eth.gas_price)
         print("Addresses retrieved")
         print("OwnersList:", ownersList)
         return ownersList
@@ -127,7 +132,7 @@ class NodeContractModel:
         # ownerAddressList = returnVal
         status = transaction_receipt["status"]
         #generate a list of tuples
-       
+        print("Gas",NodeContractModel.w3.eth.gas_price)
         print("Successfully  accepted",status)
         
         return status
@@ -149,7 +154,7 @@ class NodeContractModel:
         # ownerAddressList = returnVal
         status = transaction_receipt["status"]
         #generate a list of tuples
-       
+        print("Gas",NodeContractModel.w3.eth.gas_price)
         print("Successfully  rejected",status)
         
         return status
@@ -161,7 +166,7 @@ class NodeContractModel:
         nonce = NodeContractModel.w3.eth.getTransactionCount(owner_addr)
         ownersList = c.caller({"from": owner_addr, "nonce": nonce}).checkRequestsForShare()
         #generate a list of tuples
-       
+        print("Gas",NodeContractModel.w3.eth.gas_price)
         print("Addresses retrieved")
         print("OwnersList:", ownersList)
         return ownersList
@@ -181,7 +186,7 @@ class NodeContractModel:
         # ownerAddressList = returnVal
         status = transaction_receipt["status"]
         #generate a list of tuples
-       
+        print("Gas",NodeContractModel.w3.eth.gas_price)
         print("Successfully  released",status)
         
         return status
@@ -203,7 +208,7 @@ class NodeContractModel:
         # ownerAddressList = returnVal
         status = transaction_receipt["status"]
         #generate a list of tuples
-
+        print("Gas",NodeContractModel.w3.eth.gas_price)
         print("Successfully  added",status)
         
         return status
@@ -222,7 +227,7 @@ class NodeContractModel:
         # ownerAddressList = returnVal
         status = transaction_receipt["status"]
         #generate a list of tuples
-       
+        print("Gas",NodeContractModel.w3.eth.gas_price)
         print("Successfully  removed",status)
         
         return status
@@ -241,7 +246,7 @@ class NodeContractModel:
         # ownerAddressList = returnVal
         status = transaction_receipt["status"]
         #generate a list of tuples
-       
+        print("Gas",NodeContractModel.w3.eth.gas_price)
         print("Successfully  requested from the temporary holders",status)
         
         return status
@@ -260,7 +265,7 @@ class NodeContractModel:
         # ownerAddressList = returnVal
         status = transaction_receipt["status"]
         #generate a list of tuples
-       
+        print("Gas",NodeContractModel.w3.eth.gas_price)
         print("Successfully  added shares",status)
         
         return status
@@ -281,7 +286,7 @@ class NodeContractModel:
         nonce = NodeContractModel.w3.eth.getTransactionCount(owner_addr)
         holdersList = c.caller({"from": owner_addr, "nonce": nonce}).getRequestedShareHolders()
         #generate a list of tuples
-       
+        print("Gas",NodeContractModel.w3.eth.gas_price)
         print("Addresses retrieved")
         print("Requested holdersList:", holdersList)
         return holdersList
@@ -292,7 +297,7 @@ class NodeContractModel:
         nonce = NodeContractModel.w3.eth.getTransactionCount(owner_addr)
         holdersList = c.caller({"from": owner_addr, "nonce": nonce}).getShareHolders()
         #generate a list of tuples
-       
+        print("Gas",NodeContractModel.w3.eth.gas_price)
         print("Addresses retrieved")
         print("accepted holdersList:", holdersList)
         return holdersList
@@ -303,7 +308,7 @@ class NodeContractModel:
         nonce = NodeContractModel.w3.eth.getTransactionCount(owner_addr)
         holdersList = c.caller({"from": owner_addr, "nonce": nonce}).getRejectedShareHolders()
         #generate a list of tuples
-       
+        print("Gas",NodeContractModel.w3.eth.gas_price)
         print("Addresses retrieved")
         print("Rejected holdersList:", holdersList)
         return holdersList
@@ -322,7 +327,7 @@ class NodeContractModel:
         # ownerAddressList = returnVal
         status = transaction_receipt["status"]
         #generate a list of tuples
-       
+        print("Gas",NodeContractModel.w3.eth.gas_price)
         print("Refreshed Holder Status")
         print("Accepted status:", status)
         return status
@@ -342,7 +347,7 @@ class NodeContractModel:
         # ownerAddressList = returnVal
         status = transaction_receipt["status"]
         #generate a list of tuples
-       
+        print("Gas",NodeContractModel.w3.eth.gas_price)
         print("Refreshed Status")
         print("Accepted status:", status)
         return status
@@ -361,7 +366,7 @@ class NodeContractModel:
 
         status = transaction_receipt["status"]
         #generate a list of tuples
-       
+        print("Gas",NodeContractModel.w3.eth.gas_price)
         print("Shares distributed:", status)
         return status
      
@@ -379,7 +384,7 @@ class NodeContractModel:
 
         status = transaction_receipt["status"]
         #generate a list of tuples
-       
+        print("Gas",NodeContractModel.w3.eth.gas_price)
         print("Shares requested:", status)
         return status
      
@@ -389,7 +394,7 @@ class NodeContractModel:
         print(owner_addr,"Requesting and getting vault hash  ",nodeContractAddressLocal)
         nonce = NodeContractModel.w3.eth.getTransactionCount(owner_addr)
         vaultHash = c.caller({"from": owner_addr, "nonce": nonce}).requestVaultHashOfSecretOwner(user_name,otp)
-       
+        print("Gas",NodeContractModel.w3.eth.gas_price)
         print("Vault hash  retrieved")
         print("vault hash:", vaultHash)
         return vaultHash
@@ -401,7 +406,7 @@ class NodeContractModel:
         print(owner_addr,"Getting received shares  ",nodeContractAddressLocal)
         nonce = NodeContractModel.w3.eth.getTransactionCount(owner_addr)
         sharesList = c.caller({"from": owner_addr, "nonce": nonce}).regenerate()
-       
+        print("Gas",NodeContractModel.w3.eth.gas_price)
         print("Received shares  retrieved")
         print("Shares List:", sharesList)
         return sharesList
@@ -412,7 +417,7 @@ class NodeContractModel:
         print(owner_addr,"Getting my status  ",nodeContractAddressLocal)
         nonce = NodeContractModel.w3.eth.getTransactionCount(owner_addr)
         myState = c.caller({"from": owner_addr, "nonce": nonce}).getMyState()
-       
+        print("Gas",NodeContractModel.w3.eth.gas_price)
         print("My state  retrieved")
         print("State:", myState)
         return myState
@@ -423,7 +428,7 @@ class NodeContractModel:
         print(owner_addr,"Getting my Contract Address  ",NodeContractModel.defaultContractAddress)
         nonce = NodeContractModel.w3.eth.getTransactionCount(owner_addr)
         contractAddress = c.caller({"from": owner_addr, "nonce": nonce}).getContractAddressOfPublicAddress(owner_addr)
-       
+        print("Gas",NodeContractModel.w3.eth.gas_price)
         print("My Contract Address  retrieved")
         print("Contract Address:", contractAddress)
         return contractAddress
@@ -434,7 +439,7 @@ class NodeContractModel:
         print(owner_addr,"Getting my userName  ",nodeContractAddressLocal)
         nonce = NodeContractModel.w3.eth.getTransactionCount(owner_addr)
         userName = c.caller({"from": owner_addr, "nonce": nonce}).getUserName()
-       
+        print("Gas",NodeContractModel.w3.eth.gas_price)
         print("My user name  retrieved")
         print("Contract Address:", userName)
         return userName
