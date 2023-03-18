@@ -15,9 +15,13 @@ from flet import (
     AlertDialog,
     Page,
     TextAlign,
+    Row,
+    MainAxisAlignment,
 )
 
 from state import GlobalState
+
+import pyperclip
 
 class RegistrationScreen(UserControl):
     def __init__(self, on_back_click, on_submit_click, page:Page):
@@ -76,6 +80,9 @@ class RegistrationScreen(UserControl):
         self.page.dialog = self.suc_dlg
         self.suc_dlg.open = True
         self.page.update()
+    
+    def copyToClipboard(self, e):
+        pyperclip.copy(GlobalState.NODE_CONTRACT_ADDRESS)
         
     def build(self):
         
@@ -94,8 +101,22 @@ class RegistrationScreen(UserControl):
                     Container(
                         height=100,
                     ),
-                    Text(value=self.user_name_text, text_align="center",
-                            size=24, color="0xFF000000"),
+                    Row(
+                        vertical_alignment= CrossAxisAlignment.END,
+                        alignment = MainAxisAlignment.CENTER,
+                        controls=[
+                            Text(value=self.user_name_text, text_align="center",
+                                size=24, color="0xFF000000"),
+                            IconButton(
+                                icon=icons.COPY,
+                                icon_color=colors.BLACK38,
+                                on_click=self.copyToClipboard,
+                                icon_size=20,
+                                tooltip="Back",
+                            ),
+                        ],
+                    ),
+                    
                     Container(
                         height=10,
                     ),

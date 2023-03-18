@@ -12,9 +12,13 @@ from flet import (
     icons,
     CrossAxisAlignment,
     Container,
+    Row,
+    MainAxisAlignment,
 )
 
 from state import GlobalState
+
+import pyperclip
 
 class MnemonicPhraseScreen(UserControl):
     def __init__(self, on_back_click, on_continue_click):
@@ -44,7 +48,9 @@ class MnemonicPhraseScreen(UserControl):
     def continue_click(self,e):
         self.on_continue_click(self)
     
-    
+    def copyToClipboard(self, e):
+        pyperclip.copy(self.mnemonic_phrase)
+
     def build(self):
         mnemonic_phrase = Text(value=self.mnemonic_phrase, text_align="center", size=18, color="0xFF000000",tooltip="Mnemonic Phrase",)
         return Column(
@@ -61,7 +67,20 @@ class MnemonicPhraseScreen(UserControl):
                     Container(
                         height=100,
                     ),
-                    mnemonic_phrase, 
+                    Row(
+                        vertical_alignment= CrossAxisAlignment.CENTER,
+                        alignment = MainAxisAlignment.CENTER,
+                        controls=[
+                            mnemonic_phrase, 
+                            IconButton(
+                                icon=icons.COPY,
+                                icon_color=colors.BLACK38,
+                                on_click=self.copyToClipboard,
+                                icon_size=20,
+                                tooltip="Back",
+                            ),
+                        ],
+                    ),
                     Container(
                         height=100,
                     ),
