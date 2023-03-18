@@ -59,7 +59,10 @@ class WalletRecoveryScreen(UserControl):
                     # TODO - Request to get shares 
                     shares = NodeContractController.getReceivedShares(publicKeyLocal=state.PUBLIC_KEY,privateKeyLocal=state.PRIVATE_KEY,nodeContractAddressLocal=state.NODE_CONTRACT_ADDRESS)
                     # TODO - Request to get encryptedVault
-                    encryptedVault = NodeContractController.getVaultHash(publicKeyLocal=state.PUBLIC_KEY,privateKeyLocal=state.PRIVATE_KEY,nodeContractAddressLocal=state.NODE_CONTRACT_ADDRESS,otp=self.otp_value.value,userName=self.username.value)
+                    OTP_client=OTPController()
+                    convertToHash=OTP_client.convert_Hash(self.otp_value.value)
+                    otp_hash=str(convertToHash[1])
+                    encryptedVault = NodeContractController.getVaultHash(publicKeyLocal=state.PUBLIC_KEY,privateKeyLocal=state.PRIVATE_KEY,nodeContractAddressLocal=state.NODE_CONTRACT_ADDRESS,otp=otp_hash,userName=self.username.value)
                     print(shares)
                     print("encryptedVault")
                     print(encryptedVault)
