@@ -30,6 +30,7 @@ class MnemonicPhraseScreen(UserControl):
         
         mnemonic=KeyGenerationController.generateMnemonicForNewAccount()
         privateKey,publicKey=KeyGenerationController.importWalletFromMnemonic(mnemonic)
+        GlobalState.ENTROPHY_VALUE = KeyGenerationController.mnemonicToEntropy(mnemonic)
         print("privatekey: ",privateKey)
         print("Public key: ",publicKey)
         # distribution_controller=DistributionController()
