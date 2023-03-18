@@ -303,9 +303,9 @@ class VSS_Controller:
         secret_reconstructed = self.reconstruct_secret(pool)
         return secret_reconstructed
 
-vss=VSS_Controller()
-# vss.initial()
-share_list=vss.get_generated_shares(115792089237316195423570985008687907853269984665640564039457584007913129639936)
-#print(share_list)
+# vss=VSS_Controller()
+# # vss.initial()
+# share_list=vss.get_generated_shares(115792089237316195423570985008687907853269984665640564039457584007913129639936)
+# #print(share_list)
 
-print(vss.recoverSecret(share_list))
+# print(vss.recoverSecret(share_list))
