@@ -16,7 +16,7 @@ from flet import (
     Divider,
 )
 
-import state
+from state import GlobalState
 
 import pyperclip
 
@@ -29,46 +29,43 @@ class HomeScreen(UserControl):
         self.on_click_reload = on_click_reload
         self.on_menue_button_click = on_menue_button_click
         
-        print(state.PRIVATE_KEY)
-        print(state.PUBLIC_KEY)
-        print(state.NODE_CONTRACT_ADDRESS)
+        print(GlobalState.PRIVATE_KEY)
+        print(GlobalState.PUBLIC_KEY)
+        print(GlobalState.NODE_CONTRACT_ADDRESS)
         
-        self.public_key = state.PUBLIC_KEY
+        self.public_key = GlobalState.PUBLIC_KEY
         
-        # Update Georli Network balance from network
-        rpc_url = "https://eth-goerli.g.alchemy.com/v2/8L-St1WDAiIktazEqEolQfntGghuPR94"
-        web3_instance = Web3(Web3.HTTPProvider(rpc_url))
+        web3_instance = Web3(Web3.HTTPProvider(GlobalState.RPC_URL))
         print("Is web3 connected : " + str(web3_instance.isConnected()))
         
-        wallet_address = state.PUBLIC_KEY
+        wallet_address = GlobalState.PUBLIC_KEY
         
         balance = web3_instance.eth.getBalance(wallet_address)
         balance_from_wei = web3_instance.fromWei(balance,"ether")
         self.balance = str(balance_from_wei)
         
-        if(state.NODE_CONTRACT_ADDRESS!=""):
-            if(state.USERNAME!=""):
-                self.username = state.USERNAME
+        if(GlobalState.NODE_CONTRACT_ADDRESS!=""):
+            if(GlobalState.USERNAME!=""):
+                self.username = GlobalState.USERNAME
             else:
-                self.username = state.NODE_CONTRACT_ADDRESS[0:5] + "..." + state.NODE_CONTRACT_ADDRESS[-4:-1]
+                self.username = GlobalState.NODE_CONTRACT_ADDRESS[0:5] + "..." + GlobalState.NODE_CONTRACT_ADDRESS[-4:-1]
         else:
             self.username = "Not Registered"
         
     def copyToClipboard(self, e):
-        pyperclip.copy(state.PUBLIC_KEY)
+        pyperclip.copy(GlobalState.PUBLIC_KEY)
         
-    # def updateBalance(self, e):
-    #     rpc_url = "https://eth-goerli.g.alchemy.com/v2/8L-St1WDAiIktazEqEolQfntGghuPR94"
-    #     web3_instance = Web3(Web3.HTTPProvider(rpc_url))
-    #     print(web3_instance.isConnected())
+    def updateBalance(self, e):
+        web3_instance = Web3(Web3.HTTPProvider(GlobalState.RPC_URL))
+        print(web3_instance.isConnected())
         
-    #     wallet_address = "0x1c36c98DC9b260564F17817241fED3BBA1402059"
+        wallet_address = GlobalState.PUBLIC_KEY # "0x1c36c98DC9b260564F17817241fED3BBA1402059"
         
-    #     balance = web3_instance.eth.getBalance(wallet_address)
-    #     balance_from_wei = web3_instance.fromWei(balance,"ether")
-    #     self.balance_text.value = balance_from_wei
-    #     print(self.balance_text.value)
-    #     self.page.update()
+        balance = web3_instance.eth.getBalance(wallet_address)
+        balance_from_wei = web3_instance.fromWei(balance,"ether")
+        self.balance = str(balance_from_wei)
+        print(self.balance)
+        self.page.update()
 
     def build(self):
         return Column(
@@ -127,17 +124,17 @@ class HomeScreen(UserControl):
                     vertical_alignment= CrossAxisAlignment.CENTER,
                     alignment = MainAxisAlignment.CENTER,
                     controls=[
-                        Text(value=self.balance + " ETH", text_align="center",
+                        Text(value=self.balance + " " + GlobalState.NETWORK_CURRENCY_SYMBOL, text_align="center",
                                 size=24, color="Black",tooltip="Balance"),
-                        # IconButton(
-                        #     icon=icons.REFRESH_ROUNDED,
-                        #     icon_color=colors.BLACK38,
-                        #     on_click=self.on_click_reload,
-                        #     icon_size=20,
-                        # ),
+                        IconButton(
+                            icon=icons.REFRESH_ROUNDED,
+                            icon_color=colors.BLACK38,
+                            on_click=self.updateBalance,
+                            icon_size=20,
+                        ),
                     ],
                 ),
-                Text(value="Geroli Network", text_align="center",
+                Text(value=GlobalState.NETWORK_TYPE, text_align="center",
                      size=20, color="#2596be",tooltip="Blockchain Network"),
                 Container(
                     height=100,

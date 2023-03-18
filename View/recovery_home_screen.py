@@ -16,7 +16,7 @@ from flet import (
     Divider,
 )
 
-import state
+from state import GlobalState
 
 class RecoveryHomeScreen(UserControl):
     def __init__(self, on_back_click, on_add_shareholders_click, on_shareholders_status_click, on_distribute_shares_click, on_registration_click,on_request_view_click, on_wallet_recovery_request_click, on_wallet_recovery_request_view_click, on_wallet_recovery_click):
@@ -33,13 +33,13 @@ class RecoveryHomeScreen(UserControl):
         
         self.state = "NOT_REGISTERED"
         
-        # if(state.NODE_CONTRACT_ADDRESS!=""):
-        #     self.state= NodeContractController.getMyState(state.PUBLIC_KEY, state.PRIVATE_KEY, state.NODE_CONTRACT_ADDRESS)
+        # if(GlobalState.NODE_CONTRACT_ADDRESS!=""):
+        #     self.state= NodeContractController.getMyState(GlobalState.PUBLIC_KEY, GlobalState.PRIVATE_KEY, GlobalState.NODE_CONTRACT_ADDRESS)
         
         print(self.state)
         
-        print("Contract address is : ", state.NODE_CONTRACT_ADDRESS)
-        print("Username is : ", state.USERNAME)
+        print("Contract address is : ", GlobalState.NODE_CONTRACT_ADDRESS)
+        print("Username is : ", GlobalState.USERNAME)
 
     def build(self):
         return Column(

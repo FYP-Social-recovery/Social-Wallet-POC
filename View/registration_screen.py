@@ -17,7 +17,7 @@ from flet import (
     TextAlign,
 )
 
-import state
+from state import GlobalState
 
 class RegistrationScreen(UserControl):
     def __init__(self, on_back_click, on_submit_click, page:Page):
@@ -26,17 +26,17 @@ class RegistrationScreen(UserControl):
         self.on_submit_click = on_submit_click
         self.page = page
         
-        print(state.USERNAME)
+        print(GlobalState.USERNAME)
         
         self.user_name_text = ""
         
-        if(state.USERNAME!="" or state.NODE_CONTRACT_ADDRESS !=""):
-            self.user_name_text = "Username :\n" + state.USERNAME + "\n\n" + "Node Contract address :\n" + state.NODE_CONTRACT_ADDRESS
+        if(GlobalState.USERNAME!="" or GlobalState.NODE_CONTRACT_ADDRESS !=""):
+            self.user_name_text = "Username :\n" + GlobalState.USERNAME + "\n\n" + "Node Contract address :\n" + GlobalState.NODE_CONTRACT_ADDRESS
         
         print(self.user_name_text)
 
     def checkValidity(self,e):
-        userNameExistence=PublicContractController.checkUserExists(self.user_name.value, state.PUBLIC_KEY, state.PRIVATE_KEY)
+        userNameExistence=PublicContractController.checkUserExists(self.user_name.value, GlobalState.PUBLIC_KEY, GlobalState.PRIVATE_KEY)
         print("Is user Exists : ",userNameExistence)
         if(userNameExistence):
             self.open_err_dlg()
@@ -44,16 +44,16 @@ class RegistrationScreen(UserControl):
             self.open_suc_dlg()
         
     def on_submit_click_fn(self,e):
-        userNameExistence= PublicContractController.checkUserExists(self.user_name.value, state.PUBLIC_KEY, state.PRIVATE_KEY)
+        userNameExistence= PublicContractController.checkUserExists(self.user_name.value, GlobalState.PUBLIC_KEY, GlobalState.PRIVATE_KEY)
         print("Is user Exists : ",userNameExistence)
         if(not userNameExistence):
-            print(state.PRIVATE_KEY)
-            contractAddress=NodeContractController.deploy(state.PUBLIC_KEY, state.PRIVATE_KEY)
+            print(GlobalState.PRIVATE_KEY)
+            contractAddress=NodeContractController.deploy(GlobalState.PUBLIC_KEY, GlobalState.PRIVATE_KEY)
             print("Node Contract address is : ",contractAddress)
-            state.NODE_CONTRACT_ADDRESS = contractAddress
-            state.USERNAME = self.user_name.value
+            GlobalState.NODE_CONTRACT_ADDRESS = contractAddress
+            GlobalState.USERNAME = self.user_name.value
             
-            NodeContractController.register(self.user_name.value, state.PUBLIC_KEY, state.PRIVATE_KEY, contractAddress)
+            NodeContractController.register(self.user_name.value, GlobalState.PUBLIC_KEY, GlobalState.PRIVATE_KEY, contractAddress)
         
             self.on_submit_click(self)
         else:

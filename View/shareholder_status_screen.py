@@ -17,7 +17,7 @@ from flet import (
     MainAxisAlignment,
 )
 
-import state
+from state import GlobalState
 
 class ShareholderStatusScreen(UserControl):
     def __init__(self, on_back_click):
@@ -31,7 +31,7 @@ class ShareholderStatusScreen(UserControl):
         self.shareholders = []
         self.status = []
         
-        shareHolderStatus=NodeContractController.getHolderStatus(state.PUBLIC_KEY, state.PRIVATE_KEY, state.NODE_CONTRACT_ADDRESS)
+        shareHolderStatus=NodeContractController.getHolderStatus(GlobalState.PUBLIC_KEY, GlobalState.PRIVATE_KEY, GlobalState.NODE_CONTRACT_ADDRESS)
         print(shareHolderStatus)
         for shareholder in shareHolderStatus:
             self.shareholders.append(shareholder[0])

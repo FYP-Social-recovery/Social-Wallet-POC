@@ -15,7 +15,7 @@ from flet import (
     Page,
 )
 
-import state
+from state import GlobalState
 
 import pyperclip
 

@@ -15,7 +15,7 @@ from flet import (
 )
 from controller.nodeController import NodeContractController
 
-import state
+from state import GlobalState
 
 class AddShareholderScreen(UserControl):
     def __init__(self, on_back_click, on_request_click):
@@ -25,9 +25,9 @@ class AddShareholderScreen(UserControl):
 
     def request_click(self, e):
         for i in range(3):
-            NodeContractController.addTemporaryShareHolder(share_holder= self.__class__.TextFieldArray[i].value, publicKeyLocal= state.PUBLIC_KEY,privateKeyLocal= state.PRIVATE_KEY,nodeContractAddressLocal= state.NODE_CONTRACT_ADDRESS)
+            NodeContractController.addTemporaryShareHolder(share_holder= self.__class__.TextFieldArray[i].value, publicKeyLocal= GlobalState.PUBLIC_KEY,privateKeyLocal= GlobalState.PRIVATE_KEY,nodeContractAddressLocal= GlobalState.NODE_CONTRACT_ADDRESS)
         
-        NodeContractController.makeHolderRequests(publicKeyLocal= state.PUBLIC_KEY,privateKeyLocal= state.PRIVATE_KEY,nodeContractAddressLocal= state.NODE_CONTRACT_ADDRESS)
+        NodeContractController.makeHolderRequests(publicKeyLocal= GlobalState.PUBLIC_KEY,privateKeyLocal= GlobalState.PRIVATE_KEY,nodeContractAddressLocal= GlobalState.NODE_CONTRACT_ADDRESS)
         
         self.on_request_click(self)
 

@@ -14,13 +14,20 @@ from flet import (
     Container,
 )
 
-import state
+from state import GlobalState
 
 class MnemonicPhraseScreen(UserControl):
     def __init__(self, on_back_click, on_continue_click):
         super().__init__()
         self.on_back_click = on_back_click
         self.on_continue_click = on_continue_click
+        
+        GlobalState.ENTROPHY_VALUE = ""
+        GlobalState.PRIVATE_KEY = ""
+        GlobalState.PUBLIC_KEY = ""
+        GlobalState.USERNAME = ""
+        GlobalState.NODE_CONTRACT_ADDRESS = ""
+        
         mnemonic=KeyGenerationController.generateMnemonicForNewAccount()
         privateKey,publicKey=KeyGenerationController.importWalletFromMnemonic(mnemonic)
         print("privatekey: ",privateKey)
@@ -29,9 +36,9 @@ class MnemonicPhraseScreen(UserControl):
         # distribution_controller.sendShares(email.value)
         self.mnemonic_phrase = mnemonic
         
-        state.PRIVATE_KEY = privateKey
-        state.PUBLIC_KEY = publicKey
-        # state.ENTROPHY_VALUE = entrophyValue
+        GlobalState.PRIVATE_KEY = privateKey
+        GlobalState.PUBLIC_KEY = publicKey
+        # GlobalState.ENTROPHY_VALUE = entrophyValue
         
     def continue_click(self,e):
         self.on_continue_click(self)

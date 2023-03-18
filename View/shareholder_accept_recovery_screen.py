@@ -16,7 +16,7 @@ from flet import (
     Row
 )
 
-import state
+from state import GlobalState
 
 class ShareHolderAcceptRecoveryScreen(UserControl):
     def __init__(self, on_back_click, on_continue_click):
@@ -25,7 +25,7 @@ class ShareHolderAcceptRecoveryScreen(UserControl):
         self.on_continue_click = on_continue_click
         
         # TODO - get wallet recovery requests for acceptance
-        self.ShareOwnerAdresses=NodeContractController.checkRequestsForShare(publicKeyLocal=state.PUBLIC_KEY,privateKeyLocal=state.PRIVATE_KEY,nodeContractAddressLocal=state.NODE_CONTRACT_ADDRESS)
+        self.ShareOwnerAdresses=NodeContractController.checkRequestsForShare(publicKeyLocal=GlobalState.PUBLIC_KEY,privateKeyLocal=GlobalState.PRIVATE_KEY,nodeContractAddressLocal=GlobalState.NODE_CONTRACT_ADDRESS)
         print(type(self.ShareOwnerAdresses))
 
         self.TextArray=[]
@@ -51,11 +51,11 @@ class ShareHolderAcceptRecoveryScreen(UserControl):
             self.TextArray.append(textRow)
 
     def accept(self,e):
-        NodeContractController.releaseShare(address=self.ShareOwnerAdresses[0],publicKeyLocal=state.PUBLIC_KEY,privateKeyLocal=state.PRIVATE_KEY,nodeContractAddressLocal=state.NODE_CONTRACT_ADDRESS)
+        NodeContractController.releaseShare(address=self.ShareOwnerAdresses[0],publicKeyLocal=GlobalState.PUBLIC_KEY,privateKeyLocal=GlobalState.PRIVATE_KEY,nodeContractAddressLocal=GlobalState.NODE_CONTRACT_ADDRESS)
         self.on_back_click(self)
 
     def reject(self,e):
-        # NodeContractController.rejectInvitation(address=self.ShareOwnerAdresses[0],publicKeyLocal=state.PUBLIC_KEY,privateKeyLocal=state.PRIVATE_KEY,nodeContractAddressLocal=state.NODE_CONTRACT_ADDRESS)
+        # NodeContractController.rejectInvitation(address=self.ShareOwnerAdresses[0],publicKeyLocal=GlobalState.PUBLIC_KEY,privateKeyLocal=GlobalState.PRIVATE_KEY,nodeContractAddressLocal=GlobalState.NODE_CONTRACT_ADDRESS)
         # self.on_back_click(self)
         print("Not implemented")
 

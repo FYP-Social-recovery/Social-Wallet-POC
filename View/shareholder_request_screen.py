@@ -16,7 +16,7 @@ from flet import (
     Row
 )
 
-import state
+from state import GlobalState
 
 class ShareHolderScreen(UserControl):
     def __init__(self, on_back_click, on_continue_click):
@@ -25,7 +25,7 @@ class ShareHolderScreen(UserControl):
         self.on_continue_click = on_continue_click
         
         
-        self.ShareOwnerAdresses=NodeContractController.checkRequestsForBeAHolder(publicKeyLocal=state.PUBLIC_KEY,privateKeyLocal=state.PRIVATE_KEY,nodeContractAddressLocal=state.NODE_CONTRACT_ADDRESS)
+        self.ShareOwnerAdresses=NodeContractController.checkRequestsForBeAHolder(publicKeyLocal=GlobalState.PUBLIC_KEY,privateKeyLocal=GlobalState.PRIVATE_KEY,nodeContractAddressLocal=GlobalState.NODE_CONTRACT_ADDRESS)
         print(type(self.ShareOwnerAdresses))
 
         self.TextArray=[]
@@ -51,11 +51,11 @@ class ShareHolderScreen(UserControl):
             self.TextArray.append(textRow)
 
     def accept(self,e):
-        NodeContractController.acceptInvitation(address=self.ShareOwnerAdresses[0],publicKeyLocal=state.PUBLIC_KEY,privateKeyLocal=state.PRIVATE_KEY,nodeContractAddressLocal=state.NODE_CONTRACT_ADDRESS)
+        NodeContractController.acceptInvitation(address=self.ShareOwnerAdresses[0],publicKeyLocal=GlobalState.PUBLIC_KEY,privateKeyLocal=GlobalState.PRIVATE_KEY,nodeContractAddressLocal=GlobalState.NODE_CONTRACT_ADDRESS)
         self.on_back_click(self)
 
     def reject(self,e):
-        NodeContractController.rejectInvitation(address=self.ShareOwnerAdresses[0],publicKeyLocal=state.PUBLIC_KEY,privateKeyLocal=state.PRIVATE_KEY,nodeContractAddressLocal=state.NODE_CONTRACT_ADDRESS)
+        NodeContractController.rejectInvitation(address=self.ShareOwnerAdresses[0],publicKeyLocal=GlobalState.PUBLIC_KEY,privateKeyLocal=GlobalState.PRIVATE_KEY,nodeContractAddressLocal=GlobalState.NODE_CONTRACT_ADDRESS)
         self.on_back_click(self)
 
     def build(self):

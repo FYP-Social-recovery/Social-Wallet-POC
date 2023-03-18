@@ -27,7 +27,7 @@ from utils.fuzzy_vault_utils.Constants import *
 from utils.symmetricEncryption import SymmetricEncryption
 from controller.otp_controller import OTPController
 
-import state
+from state import GlobalState
 
 class WalletRecoveryScreen(UserControl):
     def __init__(self, on_back_click, on_submit_click, page):
@@ -57,12 +57,12 @@ class WalletRecoveryScreen(UserControl):
             if(self.otp_value.value):
                 if(self.username.value):
                     # TODO - Request to get shares 
-                    shares = NodeContractController.getReceivedShares(publicKeyLocal=state.PUBLIC_KEY,privateKeyLocal=state.PRIVATE_KEY,nodeContractAddressLocal=state.NODE_CONTRACT_ADDRESS)
+                    shares = NodeContractController.getReceivedShares(publicKeyLocal=GlobalState.PUBLIC_KEY,privateKeyLocal=GlobalState.PRIVATE_KEY,nodeContractAddressLocal=GlobalState.NODE_CONTRACT_ADDRESS)
                     # TODO - Request to get encryptedVault
                     OTP_client=OTPController()
                     convertToHash=OTP_client.convert_Hash(self.otp_value.value)
                     otp_hash=str(convertToHash[1])
-                    encryptedVault = NodeContractController.getVaultHash(publicKeyLocal=state.PUBLIC_KEY,privateKeyLocal=state.PRIVATE_KEY,nodeContractAddressLocal=state.NODE_CONTRACT_ADDRESS,otp=otp_hash,userName=self.username.value)
+                    encryptedVault = NodeContractController.getVaultHash(publicKeyLocal=GlobalState.PUBLIC_KEY,privateKeyLocal=GlobalState.PRIVATE_KEY,nodeContractAddressLocal=GlobalState.NODE_CONTRACT_ADDRESS,otp=otp_hash,userName=self.username.value)
                     print(shares)
                     print("encryptedVault")
                     print(encryptedVault)
