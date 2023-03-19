@@ -136,7 +136,9 @@ class SymmetricEncryption:
         plaintext = plaintext[:-padding]
         
         with open("../data/vault/decryptedVault.txt", 'w') as file:
-            file.write(plaintext.decode())   
+            file.write(plaintext.decode())  
+            
+        return plaintext.decode()
 
     def concatanate2BytesObject(object_1, object_2):
         # Use a known delimiter
@@ -163,9 +165,9 @@ class SymmetricEncryption:
         
         return integer_value
 
-    def convertIntegerToBytesObject(integer_value):
-        # Convert integer back to binary data
-        byte_object = integer_value.to_bytes(integer_value.bit_length(), byteorder='big')
+    def convertIntegerToBytesObject(integer_value, bytes_length):
+        # Convert integer back to bytes data
+        byte_object = integer_value.to_bytes(bytes_length, byteorder='big')
         
         return byte_object 
     

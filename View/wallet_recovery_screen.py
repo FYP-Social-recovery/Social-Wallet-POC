@@ -56,9 +56,7 @@ class WalletRecoveryScreen(UserControl):
         if(self.biometric.value):
             if(self.otp_value.value):
                 if(self.username.value):
-                    # TODO - Request to get shares 
                     shares = NodeContractController.getReceivedShares(publicKeyLocal=GlobalState.PUBLIC_KEY,privateKeyLocal=GlobalState.PRIVATE_KEY,nodeContractAddressLocal=GlobalState.NODE_CONTRACT_ADDRESS)
-                    # TODO - Request to get encryptedVault
                     OTP_client=OTPController()
                     convertToHash=OTP_client.convert_Hash(self.otp_value.value)
                     otp_hash=str(convertToHash[1])
@@ -66,15 +64,17 @@ class WalletRecoveryScreen(UserControl):
                     print(shares)
                     print("encryptedVault")
                     print(encryptedVault)
-                    # TODO - Generate combined key using shares
+
                     VSS_client=VSS_Controller()
                     combined_key = VSS_client.recoverSecret(shares)
                     print(combined_key)
                     
                     # key,iv = SymmetricEncryption.deConcatanate2UnknownLenthBytesObject(SymmetricEncryption.convertIntegerToBytesObject(combined_key))
-                    key = SymmetricEncryption.convertIntegerToBytesObject(combined_key)
-                    
-                    decryptedVault = SymmetricEncryption.decrypt_vault_128(encryptedVault,key) # decryptedVault = SymmetricEncryption.decrypt_vault(encryptedVault,key,iv)
+                    key = SymmetricEncryption.convertIntegerToBytesObject(combined_key,16)
+                    print(key)
+                    print(type(key))
+                    print(type(encryptedVault))
+                    decryptedVault = SymmetricEncryption.decrypt_vault_128(SymmetricEncryption.convertStringToBytesObject(encryptedVault),key) # decryptedVault = SymmetricEncryption.decrypt_vault(encryptedVault,key,iv)
                     
                     print(decryptedVault)
                     
@@ -83,7 +83,7 @@ class WalletRecoveryScreen(UserControl):
                     with open(log_path, 'w') as file:
                         file.write(decryptedVault)
                     
-                    if (len(shares)!=0 and encryptedVault == ""):
+                    if (len(shares)!=0 and encryptedVault != ""):
                     
                         print("Start Enrolling")
                         # Capture Enrolling fingerprint template
