@@ -80,7 +80,7 @@ class DistributesharesScreen(UserControl):
                 else:
                     print("Start vault generation")
                     # Generate vault
-                    secret = GlobalState.ENTROPHY_VALUE
+                    secret = int.from_bytes(GlobalState.ENTROPHY_VALUE, byteorder='big')
                     fuzzy_vault = FingerPrintController.enroll_new_fingerprint(FP_TEMP_FOLDER + FP_OUTPUT_NAME + '.xyt', secret)
                     
                     print(fuzzy_vault)
