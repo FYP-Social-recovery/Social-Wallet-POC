@@ -1,27 +1,25 @@
-Public Contract Deploy7.1728073000000006
-Secret Owner Deploy6.444383299999999
-Share Holder One Deploy5.3175031
-Share Holder Two deploy4.6254284000000006
-Share Holder Three Deploy5.8345208
-Third Party Deploy5.2694266
-Secret Owner Register4.7157933
-Share holder One Register 5.2086481
-Share holder Two Register6.1386498
-Share Holder Three register 6.4987667
-Third Party Register 4.852507699999999
-Add temporary Share Holders 17.4200948
-Adding My shares  4.8938953000000005
-Make Be a shareHolder requests  4.399127400000001
-Accept the holder Request By Share Holder One 5.025906400000004
-Accept The holder request by share Holder two4.803962200000001
-Accept The holder request by share Holder Three4.603621099999998
-Refresh The state6.444016900000001
-Distribute the shares 4.707921999999996
-Third Party request the shares 4.403066099999997
-Release the share By share holder one5.320796999999999
-Release the share By share holder two5.629055499999993
-Release the share By share holder three5.423542499999996
-Third Party get the released shares2.4626938999999908
-Third Party get vault Hash2.142184400000005
-Refresh The state7.739250800000001
-Refresh The state9.3046548
+Public Contract Deploy5.109373700000001
+Secret Owner Deploy6.0417749
+Share Holder One Deploy4.146157299999999
+Share Holder Two deploy4.4309241
+Share Holder Three Deploy4.0749624
+Third Party Deploy4.649435399999998
+Secret Owner Register4.324301500000001
+Share holder One Register 3.3905706
+Share holder Two Register3.671137799999997
+Share Holder Three register 3.6594355000000007
+Third Party Register 3.512273900000004
+Add temporary Share Holders 11.300887499999995
+Adding My shares  3.642242699999997
+Make Be a shareHolder requests  4.318583100000005
+Accept the holder Request By Share Holder One 3.705387899999991
+Accept The holder request by share Holder two3.5776737999999995
+Accept The holder request by share Holder Three3.4096885999999955
+Refresh The state4.675584499999999
+Distribute the shares 3.499688599999999
+Third Party request the shares 3.387609800000007
+Release the share By share holder one3.411988899999997
+Release the share By share holder two3.601465399999995
+Release the share By share holder three3.319867400000007
+Third Party get the released shares1.100069700000006
+Third Party get vault Hash1.1039593999999937
