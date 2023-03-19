@@ -13,8 +13,8 @@ class NodeContractModel:
         # NodeContractModel.defaultPrivateAddress=privateAddress
         # NodeContractModel.defaultPublicAddress=publicAddress
         
-        with open(r"contract/compiled_code.json","r") as file: # for windows
-        #with open("../contract/compiled_code.json","r") as file: # for ubuntu
+        # with open(r"contract/compiled_code.json","r") as file: # for windows
+        with open("../contract/compiled_code.json","r") as file: # for ubuntu
             compiled_sol = json.loads(file.read())
 
         # get bytecode
