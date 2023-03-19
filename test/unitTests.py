@@ -221,11 +221,11 @@ class Test:
 #shareHolderThreeContract=Test.deployShareHolderThree()
 #thirdPartyContract=Test.deployThirdParty()
 
-#secretOwnerContract="0x3866BA130c9ef5bdD38EAE1728DE5Bc1262406fD"
-# shareHolderOneContract="0xEc9497B111A26E8d71a215cb9Cd17CD4335364bC"
-# shareHolderTwoContract="0x44690bCB7E2B0503e2A57a5C1BdD18a6790f4762"
-# shareHolderThreeContract="0xf7b456c2D1f453B190c4CfEfC94c971F2C8C1BEC"
-# thirdPartyContract="0xF18f6308fF67D7211585fB65E8896a8e298710D0"
+# secretOwnerContract="0xb9a04778058f4c00C0F7164Bb9b3159b98Dc07FF"
+# shareHolderOneContract="0xA220553859477e8DF0b5140e6D8Af67bAFd6B546"
+# shareHolderTwoContract="0x2C5cDe621f5cDabF418C51e745f0bAc99c2ee9aA"
+# shareHolderThreeContract="0x1B83B0013A952686d44ebcaAc13d221a46A9Ac7e"
+# thirdPartyContract="0xCD7A136D402e325B083E5c3d3289E7dd29F83308"
 
 #Test.registerSecretOwner(secretOwnerContract)
 #Test.registerShareHolderOne(shareHolderOneContract)
@@ -233,22 +233,22 @@ class Test:
 #Test.registerShareHolderThree(shareHolderThreeContract)
 #Test.registerThirdParty(thirdPartyContract)
 
-#Test.addTempShareHolders(secretOwnerContract)
-#Test.addMyShares(secretOwnerContract)
-#Test.makeHolderRequests(secretOwnerContract)
+# Test.addTempShareHolders(secretOwnerContract)
+# Test.addMyShares(secretOwnerContract)
+# Test.makeHolderRequests(secretOwnerContract)
 
-#Test.acceptBeAHolderRequestBySHOne(shareHolderOneContract)
-#Test.acceptBeAHolderRequestBySHTwo(shareHolderTwoContract)
-#Test.acceptBeAHolderRequestBySHThree(shareHolderThreeContract)
+# Test.acceptBeAHolderRequestBySHOne(shareHolderOneContract)
+# Test.acceptBeAHolderRequestBySHTwo(shareHolderTwoContract)
+# Test.acceptBeAHolderRequestBySHThree(shareHolderThreeContract)
 
-#Test.refreshState(secretOwnerContract)
-#Test.distribute(secretOwnerContract)
+# Test.refreshState(secretOwnerContract)
+# Test.distribute(secretOwnerContract)
 
-#Test.thirdPartyRequestShares(thirdPartyContract)
-#Test.releaseSecretBySHOne(shareHolderOneContract)
-#Test.releaseSecretBySHTwo(shareHolderTwoContract)
-#Test.releaseSecretBySHThree(shareHolderThreeContract)
-#shares=Test.getReleasedShares(thirdPartyContract)
-#vault=Test.getVaultHash(thirdPartyContract)
-#print(shares)
-#print(vault)
+# Test.thirdPartyRequestShares(thirdPartyContract)
+# Test.releaseSecretBySHOne(shareHolderOneContract)
+# Test.releaseSecretBySHTwo(shareHolderTwoContract)
+# Test.releaseSecretBySHThree(shareHolderThreeContract)
+# shares=Test.getReleasedShares(thirdPartyContract)
+# vault=Test.getVaultHash(thirdPartyContract)
+# print(shares)
+# print(vault)
