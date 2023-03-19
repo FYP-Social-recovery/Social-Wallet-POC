@@ -41,3 +41,4 @@ Versions
 0.0.2- Share holder request , show share holder acceptance distribute the secret
 0.0.3- Key recovery from the share holders ,Optimize the smart contract and eliminate the vulnerabilities 
 0.0.4- Screens and backend completed until the distribution eliminated vulnerabilities -name convention,immutable variables,redundant statements
+1.0.0- Completed wallet release for layer 1
