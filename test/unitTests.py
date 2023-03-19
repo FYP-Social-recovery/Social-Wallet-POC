@@ -221,11 +221,11 @@ class Test:
 #shareHolderThreeContract=Test.deployShareHolderThree()
 #thirdPartyContract=Test.deployThirdParty()
 
-# secretOwnerContract="0xb9a04778058f4c00C0F7164Bb9b3159b98Dc07FF"
-# shareHolderOneContract="0xA220553859477e8DF0b5140e6D8Af67bAFd6B546"
-# shareHolderTwoContract="0x2C5cDe621f5cDabF418C51e745f0bAc99c2ee9aA"
-# shareHolderThreeContract="0x1B83B0013A952686d44ebcaAc13d221a46A9Ac7e"
-# thirdPartyContract="0xCD7A136D402e325B083E5c3d3289E7dd29F83308"
+secretOwnerContract="0xb9a04778058f4c00C0F7164Bb9b3159b98Dc07FF"
+shareHolderOneContract="0xA220553859477e8DF0b5140e6D8Af67bAFd6B546"
+shareHolderTwoContract="0x2C5cDe621f5cDabF418C51e745f0bAc99c2ee9aA"
+shareHolderThreeContract="0x1B83B0013A952686d44ebcaAc13d221a46A9Ac7e"
+thirdPartyContract="0xCD7A136D402e325B083E5c3d3289E7dd29F83308"
 
 #Test.registerSecretOwner(secretOwnerContract)
 #Test.registerShareHolderOne(shareHolderOneContract)
@@ -241,7 +241,7 @@ class Test:
 # Test.acceptBeAHolderRequestBySHTwo(shareHolderTwoContract)
 # Test.acceptBeAHolderRequestBySHThree(shareHolderThreeContract)
 
-# Test.refreshState(secretOwnerContract)
+Test.refreshState(secretOwnerContract)
 # Test.distribute(secretOwnerContract)
 
 # Test.thirdPartyRequestShares(thirdPartyContract)

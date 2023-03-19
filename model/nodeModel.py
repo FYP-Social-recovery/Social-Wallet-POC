@@ -88,7 +88,7 @@ class NodeContractModel:
         print(owner_addr,"checking user name validity for ",NodeContractModel.defaultContractAddress)
         nonce = NodeContractModel.w3.eth.getTransactionCount(owner_addr)
         result = c.caller({"from": owner_addr,"nonce":nonce}).isUserNameExist(userName)
-        print("Gas",NodeContractModel.w3.eth.gas_price)
+        #print("Gas",transaction_receipt["gasUsed"]/10000000000)
         print("UserName  checked")
         print("Value:", result)
         return result
@@ -103,7 +103,7 @@ class NodeContractModel:
         # Send the transaction
         send_store_contact = NodeContractModel.w3.eth.send_raw_transaction(sign_store_contact.rawTransaction)
         transaction_receipt = NodeContractModel.w3.eth.wait_for_transaction_receipt(send_store_contact)
-        print("Gas",NodeContractModel.w3.eth.gas_price)
+        print("Gas",transaction_receipt["gasUsed"]/10000000000)
         print("Successfully registered to the public contract!!")
         return
 #Share holder's role ----------------------------------------------------------------------
@@ -114,7 +114,7 @@ class NodeContractModel:
         print(owner_addr,"checking Requests for ",nodeContractAddressLocal)
         nonce = NodeContractModel.w3.eth.getTransactionCount(owner_addr)
         ownersList = c.caller({"from": owner_addr, "nonce": nonce}).checkRequestsForBeAHolder()
-        print("Gas",NodeContractModel.w3.eth.gas_price)
+        #print("Gas",transaction_receipt["gasUsed"]/10000000000)
         print("Addresses retrieved")
         print("OwnersList:", ownersList)
         return ownersList
@@ -134,7 +134,7 @@ class NodeContractModel:
         # ownerAddressList = returnVal
         status = transaction_receipt["status"]
         #generate a list of tuples
-        print("Gas",NodeContractModel.w3.eth.gas_price)
+        print("Gas",transaction_receipt["gasUsed"]/10000000000)
         print("Successfully  accepted",status)
         
         return status
@@ -156,7 +156,7 @@ class NodeContractModel:
         # ownerAddressList = returnVal
         status = transaction_receipt["status"]
         #generate a list of tuples
-        print("Gas",NodeContractModel.w3.eth.gas_price)
+        print("Gas",transaction_receipt["gasUsed"]/10000000000)
         print("Successfully  rejected",status)
         
         return status
@@ -168,7 +168,7 @@ class NodeContractModel:
         nonce = NodeContractModel.w3.eth.getTransactionCount(owner_addr)
         ownersList = c.caller({"from": owner_addr, "nonce": nonce}).checkRequestsForShare()
         #generate a list of tuples
-        print("Gas",NodeContractModel.w3.eth.gas_price)
+        #print("Gas",transaction_receipt["gasUsed"]/10000000000)
         print("Addresses retrieved")
         print("OwnersList:", ownersList)
         return ownersList
@@ -188,7 +188,7 @@ class NodeContractModel:
         # ownerAddressList = returnVal
         status = transaction_receipt["status"]
         #generate a list of tuples
-        print("Gas",NodeContractModel.w3.eth.gas_price)
+        print("Gas",transaction_receipt["gasUsed"]/10000000000)
         print("Successfully  released",status)
         
         return status
@@ -210,7 +210,7 @@ class NodeContractModel:
         # ownerAddressList = returnVal
         status = transaction_receipt["status"]
         #generate a list of tuples
-        print("Gas",NodeContractModel.w3.eth.gas_price)
+        print("Gas",transaction_receipt["gasUsed"]/10000000000)
         print("Successfully  added",status)
         
         return status
@@ -229,7 +229,7 @@ class NodeContractModel:
         # ownerAddressList = returnVal
         status = transaction_receipt["status"]
         #generate a list of tuples
-        print("Gas",NodeContractModel.w3.eth.gas_price)
+        print("Gas",transaction_receipt["gasUsed"]/10000000000)
         print("Successfully  removed",status)
         
         return status
@@ -248,7 +248,7 @@ class NodeContractModel:
         # ownerAddressList = returnVal
         status = transaction_receipt["status"]
         #generate a list of tuples
-        print("Gas",NodeContractModel.w3.eth.gas_price)
+        print("Gas",transaction_receipt["gasUsed"]/10000000000)
         print("Successfully  requested from the temporary holders",status)
         
         return status
@@ -267,7 +267,7 @@ class NodeContractModel:
         # ownerAddressList = returnVal
         status = transaction_receipt["status"]
         #generate a list of tuples
-        print("Gas",NodeContractModel.w3.eth.gas_price)
+        print("Gas",transaction_receipt["gasUsed"]/10000000000)
         print("Successfully  added shares",status)
         
         return status
@@ -288,7 +288,7 @@ class NodeContractModel:
         nonce = NodeContractModel.w3.eth.getTransactionCount(owner_addr)
         holdersList = c.caller({"from": owner_addr, "nonce": nonce}).getRequestedShareHolders()
         #generate a list of tuples
-        print("Gas",NodeContractModel.w3.eth.gas_price)
+        #print("Gas",transaction_receipt["gasUsed"]/10000000000)
         print("Addresses retrieved")
         print("Requested holdersList:", holdersList)
         return holdersList
@@ -299,7 +299,7 @@ class NodeContractModel:
         nonce = NodeContractModel.w3.eth.getTransactionCount(owner_addr)
         holdersList = c.caller({"from": owner_addr, "nonce": nonce}).getShareHolders()
         #generate a list of tuples
-        print("Gas",NodeContractModel.w3.eth.gas_price)
+        #print("Gas",transaction_receipt["gasUsed"]/10000000000)
         print("Addresses retrieved")
         print("accepted holdersList:", holdersList)
         return holdersList
@@ -310,7 +310,7 @@ class NodeContractModel:
         nonce = NodeContractModel.w3.eth.getTransactionCount(owner_addr)
         holdersList = c.caller({"from": owner_addr, "nonce": nonce}).getRejectedShareHolders()
         #generate a list of tuples
-        print("Gas",NodeContractModel.w3.eth.gas_price)
+        #print("Gas",transaction_receipt["gasUsed"]/10000000000)
         print("Addresses retrieved")
         print("Rejected holdersList:", holdersList)
         return holdersList
@@ -329,7 +329,7 @@ class NodeContractModel:
         # ownerAddressList = returnVal
         status = transaction_receipt["status"]
         #generate a list of tuples
-        print("Gas",NodeContractModel.w3.eth.gas_price)
+        print("Gas",transaction_receipt["gasUsed"]/10000000000)
         print("Refreshed Holder Status")
         print("Accepted status:", status)
         return status
@@ -349,7 +349,7 @@ class NodeContractModel:
         # ownerAddressList = returnVal
         status = transaction_receipt["status"]
         #generate a list of tuples
-        print("Gas",NodeContractModel.w3.eth.gas_price)
+        print("Gas",transaction_receipt["gasUsed"]/10000000000)
         print("Refreshed Status")
         print("Accepted status:", status)
         return status
@@ -368,7 +368,7 @@ class NodeContractModel:
 
         status = transaction_receipt["status"]
         #generate a list of tuples
-        print("Gas",NodeContractModel.w3.eth.gas_price)
+        print("Gas",transaction_receipt["gasUsed"]/10000000000)
         print("Shares distributed:", status)
         return status
      
@@ -386,7 +386,7 @@ class NodeContractModel:
 
         status = transaction_receipt["status"]
         #generate a list of tuples
-        print("Gas",NodeContractModel.w3.eth.gas_price)
+        print("Gas",transaction_receipt["gasUsed"]/10000000000)
         print("Shares requested:", status)
         return status
      
@@ -396,7 +396,7 @@ class NodeContractModel:
         print(owner_addr,"Requesting and getting vault hash  ",nodeContractAddressLocal)
         nonce = NodeContractModel.w3.eth.getTransactionCount(owner_addr)
         vaultHash = c.caller({"from": owner_addr, "nonce": nonce}).requestVaultHashOfSecretOwner(user_name,otp)
-        print("Gas",NodeContractModel.w3.eth.gas_price)
+        #print("Gas",transaction_receipt["gasUsed"]/10000000000)
         print("Vault hash  retrieved")
         print("vault hash:", vaultHash)
         return vaultHash
@@ -408,7 +408,7 @@ class NodeContractModel:
         print(owner_addr,"Getting received shares  ",nodeContractAddressLocal)
         nonce = NodeContractModel.w3.eth.getTransactionCount(owner_addr)
         sharesList = c.caller({"from": owner_addr, "nonce": nonce}).regenerate()
-        print("Gas",NodeContractModel.w3.eth.gas_price)
+        #print("Gas",transaction_receipt["gasUsed"]/10000000000)
         print("Received shares  retrieved")
         print("Shares List:", sharesList)
         return sharesList
@@ -419,7 +419,7 @@ class NodeContractModel:
         print(owner_addr,"Getting my status  ",nodeContractAddressLocal)
         nonce = NodeContractModel.w3.eth.getTransactionCount(owner_addr)
         myState = c.caller({"from": owner_addr, "nonce": nonce}).getMyState()
-        print("Gas",NodeContractModel.w3.eth.gas_price)
+        #print("Gas",transaction_receipt["gasUsed"]/10000000000)
         print("My state  retrieved")
         print("State:", myState)
         return myState
@@ -430,7 +430,7 @@ class NodeContractModel:
         print(owner_addr,"Getting my Contract Address  ",NodeContractModel.defaultContractAddress)
         nonce = NodeContractModel.w3.eth.getTransactionCount(owner_addr)
         contractAddress = c.caller({"from": owner_addr, "nonce": nonce}).getContractAddressOfPublicAddress(owner_addr)
-        print("Gas",NodeContractModel.w3.eth.gas_price)
+        #print("Gas",transaction_receipt["gasUsed"]/10000000000)
         print("My Contract Address  retrieved")
         print("Contract Address:", contractAddress)
         return contractAddress
@@ -441,7 +441,7 @@ class NodeContractModel:
         print(owner_addr,"Getting my userName  ",nodeContractAddressLocal)
         nonce = NodeContractModel.w3.eth.getTransactionCount(owner_addr)
         userName = c.caller({"from": owner_addr, "nonce": nonce}).getUserName()
-        print("Gas",NodeContractModel.w3.eth.gas_price)
+        #print("Gas",transaction_receipt["gasUsed"]/10000000000)
         print("My user name  retrieved")
         print("Contract Address:", userName)
         return userName
