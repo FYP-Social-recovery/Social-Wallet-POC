@@ -18,7 +18,7 @@ from flet import (
     TextAlign,
 )
 
-import state
+from state import GlobalState
 
 class RecoveryRequestScreen(UserControl):
     def __init__(self, on_back_click, on_continue_click):
@@ -37,7 +37,7 @@ class RecoveryRequestScreen(UserControl):
                 OTP_client=OTPController()
                 convertToHash=OTP_client.convert_Hash(self.otp_value.value)
                 otp_hash=str(convertToHash[1])
-                NodeContractController.requestShares(publicKeyLocal=state.PUBLIC_KEY,privateKeyLocal=state.PRIVATE_KEY,nodeContractAddressLocal=state.NODE_CONTRACT_ADDRESS, userName=self.username.value, otp=otp_hash)
+                NodeContractController.requestShares(publicKeyLocal=GlobalState.PUBLIC_KEY,privateKeyLocal=GlobalState.PRIVATE_KEY,nodeContractAddressLocal=GlobalState.NODE_CONTRACT_ADDRESS, userName=self.username.value, otp=otp_hash)
                 self.on_continue_click(self)
             else:
                 self.open_err_dlg_uname()

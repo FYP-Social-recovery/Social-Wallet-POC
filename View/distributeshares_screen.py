@@ -27,7 +27,7 @@ from utils.fuzzy_vault_utils.Constants import *
 from utils.symmetricEncryption import SymmetricEncryption
 from controller.otp_controller import OTPController
 
-import state
+from state import GlobalState
 
 class DistributesharesScreen(UserControl):
     def __init__(self, on_back_click, on_submit_click, page):
@@ -80,7 +80,7 @@ class DistributesharesScreen(UserControl):
                 else:
                     print("Start vault generation")
                     # Generate vault
-                    secret = 81985529216486895
+                    secret = GlobalState.ENTROPHY_VALUE
                     fuzzy_vault = FingerPrintController.enroll_new_fingerprint(FP_TEMP_FOLDER + FP_OUTPUT_NAME + '.xyt', secret)
                     
                     print(fuzzy_vault)
@@ -110,8 +110,8 @@ class DistributesharesScreen(UserControl):
                     shares=VSS_client.get_generated_shares(int(combined_key))
                     print(type(otpHash))
                     print(type(encrypted_fuzzy_vault))
-                    NodeContractController.addMyShares(shares=[shares[0],shares[1],shares[2]],publicKeyLocal=state.PUBLIC_KEY,privateKeyLocal=state.PRIVATE_KEY,nodeContractAddressLocal=state.NODE_CONTRACT_ADDRESS)
-                    NodeContractController.distribute(publicKeyLocal=state.PUBLIC_KEY,privateKeyLocal=state.PRIVATE_KEY,nodeContractAddressLocal=state.NODE_CONTRACT_ADDRESS,otp=otpHash,vault=encrypted_fuzzy_vault)
+                    NodeContractController.addMyShares(shares=[shares[0],shares[1],shares[2]],publicKeyLocal=GlobalState.PUBLIC_KEY,privateKeyLocal=GlobalState.PRIVATE_KEY,nodeContractAddressLocal=GlobalState.NODE_CONTRACT_ADDRESS)
+                    NodeContractController.distribute(publicKeyLocal=GlobalState.PUBLIC_KEY,privateKeyLocal=GlobalState.PRIVATE_KEY,nodeContractAddressLocal=GlobalState.NODE_CONTRACT_ADDRESS,otp=otpHash,vault=encrypted_fuzzy_vault)
                     self.on_submit_click(self)
             else:
                 self.open_err_dlg_email()

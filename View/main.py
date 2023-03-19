@@ -27,10 +27,9 @@ from recovery_request_screen import RecoveryRequestScreen
 from shareholder_accept_recovery_screen import ShareHolderAcceptRecoveryScreen
 from wallet_recovery_screen import WalletRecoveryScreen
 
-import state
+from state import GlobalState
 
 def main(page: Page):
-    state.init()
     
     page.title = "Phoenix Wallet"
     page.horizontal_alignment = "center"
