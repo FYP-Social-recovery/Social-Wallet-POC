@@ -102,7 +102,7 @@ class HomeScreen(UserControl):
                     vertical_alignment= CrossAxisAlignment.CENTER,
                     alignment = MainAxisAlignment.CENTER,
                     controls=[
-                        Text(value=self.public_key[0:5] + "..." + self.public_key[-4:-1], text_align="center",
+                        Text(value=self.public_key[0:5] + "..." + self.public_key[-4:], text_align="center",
                                 size=20, color="Black",tooltip="Public Key"),
                         IconButton(
                             icon=icons.COPY,
