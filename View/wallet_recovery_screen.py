@@ -21,6 +21,7 @@ from controller.email_controller import EmailController
 from controller.fvss_controller import VSS_Controller
 from controller.nodeController import NodeContractController
 from controller.finger_print_controller import FingerPrintController
+from controller.keyGenerationController import KeyGenerationController
 from utils.fuzzy_vault_utils.Strings import *
 from utils.fuzzy_vault_utils.Constants import *
 
@@ -30,11 +31,14 @@ from controller.otp_controller import OTPController
 from state import GlobalState
 
 class WalletRecoveryScreen(UserControl):
+    
+    
     def __init__(self, on_back_click, on_submit_click, page):
         super().__init__()
         self.on_back_click = on_back_click
         self.on_submit_click = on_submit_click
         self.page = page
+        self.mnemonic = ""
         
         self.txt = ""
         
@@ -109,7 +113,9 @@ class WalletRecoveryScreen(UserControl):
                         else:
                             print("Start Verifying")
                             # Reveal Secret
-                            FingerPrintController.verify_fingerprint(FP_TEMP_FOLDER + FP_OUTPUT_NAME + '.xyt')
+                            secret = FingerPrintController.verify_fingerprint(FP_TEMP_FOLDER + FP_OUTPUT_NAME + '.xyt')
+                            mnemonic = KeyGenerationController.generateMnemonic(secret.to_bytes(16, byteorder='big'))
+                            print(mnemonic)
                             self.on_submit_click(self)
                     else:
                         self.open_err_dlg_err()
@@ -120,6 +126,14 @@ class WalletRecoveryScreen(UserControl):
         else:
             self.open_err_dlg_fp()
         
+    # memonic_display = AlertDialog(
+    #     title=Text("Recovered Mnemonic Phrase is\n" + self.mnemonic, text_align=TextAlign.CENTER), on_dismiss=lambda e: print("Dialog dismissed!")
+    # )
+    
+    # def open_memonic_display(self):
+    #     self.page.dialog = self.memonic_display
+    #     self.memonic_display.open = True
+    #     self.page.update()
         
     err_dlg_otp = AlertDialog(
         title=Text("Enter a valid OTP.", text_align=TextAlign.CENTER), on_dismiss=lambda e: print("Dialog dismissed!")

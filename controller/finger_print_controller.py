@@ -207,9 +207,10 @@ class FingerPrintController:
             
             db_vault.clear_vault()
             if success:
-                print("Generated secret is : ", SecretGenerator.extract_secret_from_polynomial_for_predefined_secret(success, CRC_LENGTH, secret_length, POLY_DEGREE, min_size=128))
+                secret = SecretGenerator.extract_secret_from_polynomial_for_predefined_secret(success, CRC_LENGTH, secret_length, POLY_DEGREE, min_size=128)
+                print("Generated secret is : ", secret)
                 print(APP_VERIFY_SUCCESS)
-                return True
+                return secret
             else:
                 print("Secret generation failed!")
                 print(APP_VERIFY_FAILURE)
