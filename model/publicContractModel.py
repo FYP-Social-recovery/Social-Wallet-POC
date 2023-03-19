@@ -3,11 +3,7 @@ from solcx import compile_standard, install_solc
 import json 
 from View.state import GlobalState
 
-class PublicContractModel:
-    defaultContractAddress="0x7b6850c89316f3e4812499FF062A276c59b160E1" #"0xAa17E248D5e3d27d04e614B6628Dc5Ba73388a26"
-
-    publicContractABI='[ { "inputs": [ { "internalType": "address", "name": "requseterAddress", "type": "address" }, { "internalType": "address", "name": "secretOwnerAddress", "type": "address" } ], "name": "deleteShareRequest", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "address", "name": "secretOwner", "type": "address" } ], "name": "getRequestAcceptedHoldersList", "outputs": [ { "internalType": "address[]", "name": "", "type": "address[]" } ], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "address", "name": "secretOwner", "type": "address" } ], "name": "getRequestRejectedHoldersList", "outputs": [ { "internalType": "address[]", "name": "", "type": "address[]" } ], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "address", "name": "secretOwner", "type": "address" }, { "internalType": "address", "name": "holder", "type": "address" } ], "name": "makeARequestToBeAShareHolder", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "string", "name": "name", "type": "string" }, { "internalType": "address", "name": "requesterAddress", "type": "address" }, { "internalType": "string", "name": "tempOtp", "type": "string" } ], "name": "makeARequestToGetShares", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "address", "name": "secretOwner", "type": "address" }, { "internalType": "address", "name": "holder", "type": "address" }, { "internalType": "string", "name": "sharedString", "type": "string" } ], "name": "makeSharesAccessibleToTheHolders", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "string", "name": "name", "type": "string" }, { "internalType": "address", "name": "publicAddress", "type": "address" }, { "internalType": "address", "name": "myContractAddress", "type": "address" } ], "name": "register", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "address", "name": "secretOwner", "type": "address" }, { "internalType": "string", "name": "sharedString", "type": "string" } ], "name": "releaseTheSecret", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "uint256", "name": "index", "type": "uint256" } ], "name": "removeFromHolderRequestList", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "address", "name": "shareHolder", "type": "address" }, { "internalType": "address", "name": "secretOwner", "type": "address" }, { "internalType": "bool", "name": "acceptance", "type": "bool" } ], "name": "respondToBeShareHolder", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "address", "name": "secretOwner", "type": "address" }, { "internalType": "address", "name": "shareHolder", "type": "address" } ], "name": "updateOwnersAcceptedToReleaseList", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "address", "name": "holderAddress", "type": "address" } ], "name": "checkRequestsByShareholder", "outputs": [ { "internalType": "address[]", "name": "", "type": "address[]" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "address[]", "name": "secretOwners", "type": "address[]" } ], "name": "checkRequestsForTheSeceret", "outputs": [ { "internalType": "address[]", "name": "", "type": "address[]" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "string", "name": "name", "type": "string" } ], "name": "getContractAddressByName", "outputs": [ { "components": [ { "internalType": "address", "name": "publicAddress", "type": "address" }, { "internalType": "address", "name": "contractAddress", "type": "address" } ], "internalType": "struct PublicContract.SampleNode", "name": "", "type": "tuple" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "address", "name": "publicAddress", "type": "address" } ], "name": "getContractAddressByPublicAddress", "outputs": [ { "internalType": "address", "name": "", "type": "address" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "address", "name": "ownerAddress", "type": "address" } ], "name": "getSecretHolderAddressesCountInAcceptedHoldersList", "outputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "address", "name": "ownerAddress", "type": "address" } ], "name": "getSecretHolderAddressesCountInRejectedHoldersList", "outputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "address", "name": "holderAddress", "type": "address" } ], "name": "getSecretOwnerAddressesCountInHolderRequests", "outputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "address[]", "name": "secretOwners", "type": "address[]" } ], "name": "getSecretOwnerAddressesCountInSecretRequests", "outputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "string", "name": "name", "type": "string" } ], "name": "isExists", "outputs": [ { "internalType": "bool", "name": "", "type": "bool" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "string", "name": "name", "type": "string" }, { "internalType": "string", "name": "tempOtp", "type": "string" } ], "name": "makeARequestToGetVaultHash", "outputs": [ { "internalType": "string", "name": "", "type": "string" } ], "stateMutability": "view", "type": "function" } ]'
-    
+class PublicContractModel:    
     w3 = Web3(Web3.HTTPProvider(GlobalState.RPC_URL))
 
 #establish the connection to call the smart contract functions 
@@ -17,8 +13,6 @@ class PublicContractModel:
 
  # deploy the node smart contract
     def deployPublicContract():
-        publicContractPrivateAddress= "0fb2d8b9f63f925112d1158f13248a96f73f025a765666e1264da14006b339ed"#"58d0efedba9a8a61b2ac3f188dd079782e07aed904cdbc0e3340e073e85c7655"
-        publicContractPublicAddress="0x2F547E73aB2D578F92328ADBA7f6DEb8aAD02aa9"#"0x20543FD8D854d500121215Abc542531987f6bc2e"
 
         ## Windows - ../contract/compiled_code.json
         ## Linux - contract/compiled_code.json
@@ -29,15 +23,15 @@ class PublicContractModel:
         bytecode = compiled_sol["contracts"]["PublicContract.sol"]["PublicContract"]["evm"]["bytecode"]["object"]
         # get abi
         abi = json.loads(compiled_sol["contracts"]["PublicContract.sol"]["PublicContract"]["metadata"])["output"]["abi"]
-        PublicContractModel.publicContractABI=abi
+        GlobalState.PUBLIC_CONTRACT_ABI=abi
 
         w3 = Web3(Web3.HTTPProvider(GlobalState.RPC_URL))
 
         chain_id = GlobalState.CHAIN_ID
         
-        address = publicContractPublicAddress
+        address = GlobalState.PUBLIC_CONTRACT_OWNER_PUBLIC_KEY
         # leaving the private key like this is very insecure if you are working on real world project
-        private_key = publicContractPrivateAddress
+        private_key = GlobalState.PUBLIC_CONTRACT_OWNER_PRIVATE_KEY
         # Create the contract in Python
         ContactList = w3.eth.contract(abi=abi, bytecode=bytecode)
         # Get the number of latest transaction
@@ -68,8 +62,8 @@ class PublicContractModel:
     
     #get a contract address if already registered
     def getContractAddressFromPublicKey(owner_addr,private_addr):
-        c= PublicContractModel.connection(PublicContractModel.publicContractABI,PublicContractModel.defaultContractAddress,owner_addr,private_addr)
-        print(owner_addr,"Checking contracts for ",PublicContractModel.defaultContractAddress)
+        c= PublicContractModel.connection(GlobalState.PUBLIC_CONTRACT_ABI,GlobalState.PUBLIC_CONTRACT_ADDRESS,owner_addr,private_addr)
+        print(owner_addr,"Checking contracts for ",GlobalState.PUBLIC_CONTRACT_ADDRESS)
         nonce = PublicContractModel.w3.eth.getTransactionCount(owner_addr)
         contract = c.caller({"from": owner_addr, "nonce": nonce}).getContractAddressByPublicAddress(owner_addr)
        
@@ -78,8 +72,8 @@ class PublicContractModel:
         return contract
 #check the username is exists 
     def checkUserNameExist(userName,owner_addr,private_addr):
-        c= PublicContractModel.connection(PublicContractModel.publicContractABI,PublicContractModel.defaultContractAddress,owner_addr,private_addr)
-        print(owner_addr,"checking user name validity for ",PublicContractModel.defaultContractAddress)
+        c= PublicContractModel.connection(GlobalState.PUBLIC_CONTRACT_ABI,GlobalState.PUBLIC_CONTRACT_ADDRESS,owner_addr,private_addr)
+        print(owner_addr,"checking user name validity for ",GlobalState.PUBLIC_CONTRACT_ADDRESS)
         nonce = PublicContractModel.w3.eth.getTransactionCount(owner_addr)
         result = c.caller({"from": owner_addr,"nonce":nonce}).isExists(userName)
         print("UserName  checked")
