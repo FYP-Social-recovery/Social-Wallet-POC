@@ -339,8 +339,8 @@ contract Node {
     }
 
 //request the owner's vault hash
-    function requestVaultHashOfSecretOwner(string memory name,string memory otp)public view checkIsRegistered returns(string memory) {
-        string memory tempVault =defaultPublicContract.makeARequestToGetVaultHash(name,otp);
+    function requestVaultHashOfSecretOwner(string memory name,bytes32 msgh1, uint8 v, bytes32 r, bytes32 s,bytes32 msgh2)public view checkIsRegistered returns(string memory) {
+        string memory tempVault =defaultPublicContract.makeARequestToGetVaultHash(name,msgh1,v,r,s,msgh2);
         return tempVault;
     }
 

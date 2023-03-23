@@ -383,11 +383,17 @@ class NodeContractModel:
         return status
      
 #request vault hash by the third party 
-    def requestVaultHash(owner_addr,private_addr,user_name,otp,nodeContractAddressLocal):
+    def requestVaultHash(owner_addr,private_addr,user_name,generated_signed_otp,entered_signed_otp,nodeContractAddressLocal):
+        #signed msg
+        def to_32byte_hex(val):
+            return Web3.toHex(Web3.toBytes(val).rjust(32, b'\0'))
+        generated_msg_hash=Web3.toHex(generated_signed_otp.messageHash)
+        entered_msg_hash=Web3.toHex(entered_signed_otp.messageHash)
+        v, r, s = generated_signed_otp.v, to_32byte_hex(generated_signed_otp.r), to_32byte_hex(generated_signed_otp.s)
         c= NodeContractModel.connection(GlobalState.NODE_CONTRACT_ABI,nodeContractAddressLocal,owner_addr,private_addr)
         print(owner_addr,"Requesting and getting vault hash  ",nodeContractAddressLocal)
         nonce = NodeContractModel.w3.eth.getTransactionCount(owner_addr)
-        vaultHash = c.caller({"from": owner_addr, "nonce": nonce}).requestVaultHashOfSecretOwner(user_name,otp)
+        vaultHash = c.caller({"from": owner_addr, "nonce": nonce}).requestVaultHashOfSecretOwner(user_name,generated_msg_hash,v, r, s,entered_msg_hash))
         #print("Gas",transaction_receipt["gasUsed"]/10000000000)
         print("Vault hash  retrieved")
         print("vault hash:", vaultHash)

@@ -126,7 +126,7 @@ class DistributesharesScreen(UserControl):
                         NodeContractController.addMyShares(shares=[shares[0],shares[1],shares[2]],publicKeyLocal=GlobalState.PUBLIC_KEY,privateKeyLocal=GlobalState.PRIVATE_KEY,nodeContractAddressLocal=GlobalState.NODE_CONTRACT_ADDRESS)
                         
                         #change this function to store email
-                        NodeContractController.distribute(publicKeyLocal=GlobalState.PUBLIC_KEY,privateKeyLocal=GlobalState.PRIVATE_KEY,nodeContractAddressLocal=GlobalState.NODE_CONTRACT_ADDRESS,otp=self.email,vault=encrypted_fuzzy_vault)
+                        NodeContractController.distribute(publicKeyLocal=GlobalState.PUBLIC_KEY,privateKeyLocal=GlobalState.PRIVATE_KEY,nodeContractAddressLocal=GlobalState.NODE_CONTRACT_ADDRESS,email=self.email,vault=encrypted_fuzzy_vault)
                         
                         self.on_submit_click(self)
                 else:

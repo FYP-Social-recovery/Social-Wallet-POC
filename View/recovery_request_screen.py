@@ -33,7 +33,7 @@ class RecoveryRequestScreen(UserControl):
     def send_otp_click(self,e):
         if(self.username.value):
             #request emai for the username
-            email="get form node contract"
+            email=NodeContractController.getEmailByUserName(publicKeyLocal=GlobalState.PUBLIC_KEY,privateKeyLocal=GlobalState.PRIVATE_KEY,nodeContractAddressLocal=GlobalState.NODE_CONTRACT_ADDRESS, userName=self.username.value)
             OTP_client=OTPController()
             otp,self.generated_sigend_otp=OTP_client.generateSignedOTP()
             Email_client=EmailController()
@@ -102,7 +102,7 @@ class RecoveryRequestScreen(UserControl):
                     height=10,
                 ),
                 ElevatedButton("Send OTP", bgcolor="#2596be",
-                               color="white",on_click=self.continue_click, width=300,tooltip="send OTP"),
+                               color="white",on_click=self.send_otp_click, width=300,tooltip="send OTP"),
                 self.otp_value,
                 Container(
                     height=10,
