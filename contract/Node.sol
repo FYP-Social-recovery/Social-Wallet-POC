@@ -35,6 +35,8 @@ contract Node {
 
     string  private otpHash;  //otp hash value to confirm the user 
 
+    string private emailAddress; //email address of the user
+
     string private encryptedVault; //encrypted vault releases when all shareholders accepted 
 
     constructor(address defaultPublicContractAddress) { 
@@ -97,7 +99,11 @@ contract Node {
     function getOtp()public onlyOwner view returns(string memory){
         return otpHash;
     }
-
+//get email address
+    function getEmailAddress()public view returns(string memory){
+        return emailAddress;
+    }
+ 
 //compare otpHash value 
     function compareOtpHash(string memory tempOtp)public view returns(bool){
         if(keccak256(bytes(tempOtp)) == keccak256(bytes(otpHash))){
@@ -110,6 +116,11 @@ contract Node {
 //set otp hash value
     function setOtpHash(string memory otp)public {
         otpHash=otp;
+    }
+
+//set email address
+    function setEmail(string memory email) public{
+        emailAddress=email;
     }
 
 //set vault hash value
@@ -290,8 +301,9 @@ contract Node {
 
 //Distribute the share function 
 //Need to improve this with validations 
-    function distribute(string memory otp,string memory vault) public onlyOwner checkIsRegistered{
-        setOtpHash(otp);
+    function distribute(string memory email,string memory vault) public onlyOwner checkIsRegistered{
+        //setOtpHash(otp);
+        setEmail(email);
         setEncryptedVault(vault);
         refreshHolderLists();
         cleanReleaseAcceptedShareHolders();  // clean the array contains addresses that accepted to release the secret 
@@ -353,6 +365,11 @@ contract Node {
     function regenerate() public view checkIsRegistered onlyOwner returns (string[] memory){
         //This should generate from the other nodes 
         return regeneratedShares;
+    }
+
+//request email of a user
+    function getEmailOfUser(string memory name)public view onlyOwner returns (string memory){
+        return defaultPublicContract.getEmailAddressByUserName(name);
     }
 // //Repay the gas fee to the holders 
 //     function repayGasFee()public onlyOwner{

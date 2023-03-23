@@ -338,12 +338,12 @@ class NodeContractModel:
         print("Accepted status:", status)
         return status
 #Get the acceptance of the shareholders 
-    def distributeShares(owner_addr,private_addr, nodeContractAddressLocal,otp,vault):
+    def distributeShares(owner_addr,private_addr, nodeContractAddressLocal,email,vault):
         c= NodeContractModel.connection(GlobalState.NODE_CONTRACT_ABI,nodeContractAddressLocal,owner_addr,private_addr)
         print(owner_addr,"Distributing the shares ",nodeContractAddressLocal)
         nonce = NodeContractModel.w3.eth.getTransactionCount(owner_addr)
-        #todo test the function 
-        returnVal = c.functions.distribute(otp,vault).buildTransaction({"from": owner_addr, "nonce": nonce, "gasPrice": NodeContractModel.w3.eth.gas_price,})
+        
+        returnVal = c.functions.distribute(email,vault).buildTransaction({"from": owner_addr, "nonce": nonce, "gasPrice": NodeContractModel.w3.eth.gas_price,})
         # Sign the transaction
         sign_store_contact = NodeContractModel.w3.eth.account.sign_transaction(returnVal, private_key=private_addr)
         # Send the transaction
@@ -429,4 +429,15 @@ class NodeContractModel:
         print("My user name  retrieved")
         print("Contract Address:", userName)
         return userName
+
+#get contract address using public address 
+    def getEmailByUserName(owner_addr,private_addr, nodeContractAddressLocal,userName):
+        c= NodeContractModel.connection(GlobalState.NODE_CONTRACT_ABI,nodeContractAddressLocal,owner_addr,private_addr)
+        print(owner_addr,"Getting an email of the given user name  ",userName)
+        nonce = NodeContractModel.w3.eth.getTransactionCount(owner_addr)
+        email = c.caller({"from": owner_addr, "nonce": nonce}).getEmailOfUser(userName)
+        #print("Gas",transaction_receipt["gasUsed"]/10000000000)
+        print("Requested Email retrieved")
+        print("Email", email)
+        return email
 

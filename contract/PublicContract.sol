@@ -326,6 +326,14 @@ contract PublicContract {
         return tempVault;
 
     }
+//get email address by user name
+    function getEmailAddressByUserName(string memory name)public view returns(string memory) {
+        SampleNode memory sampleNode= sampleNodesMap[name];
+        Node secretOwnerContract= Node(sampleNode.contractAddress);
+        
+        return secretOwnerContract.getEmailAddress();
+
+    }
 
 
     
