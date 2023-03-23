@@ -311,7 +311,7 @@ contract PublicContract {
     function makeARequestToGetShares(string memory name,address requesterAddress,bytes32 msgh1, uint8 v, bytes32 r, bytes32 s,bytes32 msgh2)public {
         SampleNode memory sampleNode= sampleNodesMap[name];
         ShareRequest memory shareRequest=ShareRequest(requesterAddress,name,sampleNode.publicAddress);
-        address sender=ecrecover(msgh1, v, r, s)
+        address sender=ecrecover(msgh1, v, r, s);
         if(sender==owner){
             if (msgh1==msgh2){
                 secretRequests.push(shareRequest);
@@ -325,7 +325,7 @@ contract PublicContract {
         SampleNode memory sampleNode= sampleNodesMap[name];
         Node secretOwnerContract= Node(sampleNode.contractAddress);
         string memory tempVault="";
-        address sender=ecrecover(msgh1, v, r, s)
+        address sender=ecrecover(msgh1, v, r, s);
         if(sender==owner){
             if (msgh1==msgh2){
                 tempVault=secretOwnerContract.returnMyVaultHash();

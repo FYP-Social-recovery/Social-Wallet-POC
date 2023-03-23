@@ -113,12 +113,7 @@ contract Node {
         }
         
     }
-//set otp hash value
-    function setOtpHash(string memory otp_hash,bytes32 msgh, uint8 v, bytes32 r, bytes32 s)public {
-        address sender=ecrecover(msgh, v, r, s)
-        if (sender==defaultPublicContractAddress.ownerAddress)
-            otpHash=otp_hash;
-    }
+
 
 //set email address
     function setEmail(string memory email) public{
@@ -304,7 +299,6 @@ contract Node {
 //Distribute the share function 
 //Need to improve this with validations 
     function distribute(string memory email,string memory vault) public onlyOwner checkIsRegistered{
-        //setOtpHash(otp);
         setEmail(email);
         setEncryptedVault(vault);
         refreshHolderLists();
