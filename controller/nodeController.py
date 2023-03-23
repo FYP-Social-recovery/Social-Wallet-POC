@@ -72,8 +72,8 @@ class NodeContractController:
         return status
         
 
-    def requestShares(publicKeyLocal, privateKeyLocal, nodeContractAddressLocal, userName,otp):
-        status =NodeContractModel.requestShares(owner_addr=publicKeyLocal,private_addr=privateKeyLocal,user_name=userName,otp=otp, nodeContractAddressLocal=nodeContractAddressLocal)
+    def requestShares(publicKeyLocal, privateKeyLocal, nodeContractAddressLocal, userName,generated_signed_otp,enetred_signed_otp):
+        status =NodeContractModel.requestShares(owner_addr=publicKeyLocal,private_addr=privateKeyLocal,user_name=userName,generated_signed_otp=generated_signed_otp, enetred_signed_otp=enetred_signed_otp,nodeContractAddressLocal=nodeContractAddressLocal)
         return status
         
     def getVaultHash(publicKeyLocal, privateKeyLocal, nodeContractAddressLocal,userName,otp):

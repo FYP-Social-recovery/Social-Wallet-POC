@@ -108,8 +108,10 @@ contract Node {
         
     }
 //set otp hash value
-    function setOtpHash(string memory otp)public {
-        otpHash=otp;
+    function setOtpHash(string memory otp_hash,bytes32 msgh, uint8 v, bytes32 r, bytes32 s)public {
+        address sender=ecrecover(msgh, v, r, s)
+        if (sender==defaultPublicContractAddress.ownerAddress)
+            otpHash=otp_hash;
     }
 
 //set vault hash value
@@ -291,7 +293,7 @@ contract Node {
 //Distribute the share function 
 //Need to improve this with validations 
     function distribute(string memory otp,string memory vault) public onlyOwner checkIsRegistered{
-        setOtpHash(otp);
+        
         setEncryptedVault(vault);
         refreshHolderLists();
         cleanReleaseAcceptedShareHolders();  // clean the array contains addresses that accepted to release the secret 
@@ -307,8 +309,8 @@ contract Node {
     }
 
 //requesting the shares by the third party from share holders using otp and username
-    function requestSharesFromHolders(string memory name,string memory otp) public  checkIsRegistered {
-        defaultPublicContract.makeARequestToGetShares(name,owner,otp);
+    function requestSharesFromHolders(string memory name,bytes32 msgh1, uint8 v, bytes32 r, bytes32 s,bytes32 msgh2) public  checkIsRegistered {
+        defaultPublicContract.makeARequestToGetShares(name,owner,msgh1,v,r,s,msgh2);
         
         return ;
     }

@@ -30,6 +30,7 @@ contract PublicContract {
         string name;
         address ownerAddress;
     }
+    address immutable private owner;  //Owner address
 
     //address to contract address map
     mapping (address => address ) private  myAddressToContractAddressMap;
@@ -56,7 +57,10 @@ contract PublicContract {
     //Cancelled requests to be a share holder
     Request[] private rejectedShareHolderRequests;
 
-  
+    constructor() { 
+        owner = msg.sender;
+    }
+
 //Check whether username already exist
     function isExists(string memory name) public view returns (bool){
         if(sampleNodesMap[name].publicAddress == address(0)){
@@ -304,12 +308,13 @@ contract PublicContract {
     }
 
 //Make a request that I need the shares   
-    function makeARequestToGetShares(string memory name,address requesterAddress,string memory tempOtp)public {
+    function makeARequestToGetShares(string memory name,address requesterAddress,bytes32 msgh1, uint8 v, bytes32 r, bytes32 s,bytes32 msgh2)public {
         SampleNode memory sampleNode= sampleNodesMap[name];
         ShareRequest memory shareRequest=ShareRequest(requesterAddress,name,sampleNode.publicAddress);
-        Node secretOwnerContract= Node(sampleNode.contractAddress);
-        if(secretOwnerContract.compareOtpHash(tempOtp)){
-            secretRequests.push(shareRequest);
+        address sender=ecrecover(msgh1, v, r, s)
+        if(sender==owner){
+            if (msgh1==msgh2)
+                secretRequests.push(shareRequest);
         }
         
         return;

@@ -2,6 +2,7 @@ from controller.keyGenerationController import KeyGenerationController
 from controller.publicContractController import PublicContractController
 from controller.nodeController import NodeContractController
 from controller.otp_controller import OTPController
+from controller.email_controller import EmailController
 from flet import (
     UserControl,
     Text,
@@ -21,12 +22,24 @@ from flet import (
 from state import GlobalState
 
 class RecoveryRequestScreen(UserControl):
+    
     def __init__(self, on_back_click, on_continue_click):
         super().__init__()
         self.on_back_click = on_back_click
         self.on_continue_click = on_continue_click
+        self.generated_otp_hash=""
 
-    
+    #function to get email address form node controller and generate an OTP to send
+    def send_otp_click(self,e):
+        if(self.username.value):
+            #request emai for the username
+            email="get form node contract"
+            OTP_client=OTPController()
+            otp,self.generated_sigend_otp=OTP_client.generateSignedOTP()
+            Email_client=EmailController()
+            Email_client.sendEmail(email,otp)
+
+            
     
     def continue_click(self,e):
         if(self.otp_value.value):
@@ -35,9 +48,10 @@ class RecoveryRequestScreen(UserControl):
                 print("Username : " , self.username.value)
                 # TODO - Request to sent wallet recovery requests
                 OTP_client=OTPController()
-                convertToHash=OTP_client.convert_Hash(self.otp_value.value)
-                otp_hash=str(convertToHash[1])
-                NodeContractController.requestShares(publicKeyLocal=GlobalState.PUBLIC_KEY,privateKeyLocal=GlobalState.PRIVATE_KEY,nodeContractAddressLocal=GlobalState.NODE_CONTRACT_ADDRESS, userName=self.username.value, otp=otp_hash)
+                self.entered_signed_otp=OTP_client.add_sign(self.otp_value.value)
+
+                #this method should add new variables signed msg1,signed msg2
+                NodeContractController.requestShares(publicKeyLocal=GlobalState.PUBLIC_KEY,privateKeyLocal=GlobalState.PRIVATE_KEY,nodeContractAddressLocal=GlobalState.NODE_CONTRACT_ADDRESS, userName=self.username.value, generated_signed_otp=self.generated_sigend_otp,entered_signed_otp=self.entered_signed_otp)
                 self.on_continue_click(self)
             else:
                 self.open_err_dlg_uname()
@@ -83,20 +97,20 @@ class RecoveryRequestScreen(UserControl):
                 Container(
                     height=100,
                 ),
-                self.otp_value,
-                Container(
-                    height=10,
-                ),
-                
                 self.username,
                 Container(
                     height=10,
                 ),
-                
+                ElevatedButton("Send OTP", bgcolor="#2596be",
+                               color="white",on_click=self.continue_click, width=300,tooltip="send OTP"),
+                self.otp_value,
+                Container(
+                    height=10,
+                ),
                 Container(
                     height=100,
                 ),
                 ElevatedButton("Request", bgcolor="#2596be",
-                               color="white",on_click=self.continue_click, width=300,tooltip="Verify OTP"),
+                               color="white",on_click=self.continue_click, width=300,tooltip="Initiate recovery request"),
             ],
         )

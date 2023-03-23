@@ -1,6 +1,8 @@
 #imports 
 from web3 import Web3
+from eth_account import Account
 from solcx import compile_standard, install_solc
+from eth_account.messages import encode_defunct
 import json 
 from View.state import GlobalState
 
@@ -357,11 +359,17 @@ class NodeContractModel:
         return status
     
  #Request shares from holders 
-    def requestShares(owner_addr,private_addr,user_name,otp, nodeContractAddressLocal):
+    def requestShares(owner_addr,private_addr,user_name,generated_signed_otp,entered_signed_otp, nodeContractAddressLocal):
+        #signed msg
+        def to_32byte_hex(val):
+            return Web3.toHex(Web3.toBytes(val).rjust(32, b'\0'))
+        generated_msg_hash=Web3.toHex(generated_signed_otp.messageHash)
+        entered_msg_hash=Web3.toHex(entered_signed_otp.messageHash)
+        v, r, s = generated_signed_otp.v, to_32byte_hex(generated_signed_otp.r), to_32byte_hex(generated_signed_otp.s)
         c= NodeContractModel.connection(GlobalState.NODE_CONTRACT_ABI,nodeContractAddressLocal,owner_addr,private_addr)
         print(owner_addr,"Requesting the shares ",nodeContractAddressLocal)
         nonce = NodeContractModel.w3.eth.getTransactionCount(owner_addr)
-        returnVal = c.functions.requestSharesFromHolders(user_name,otp).buildTransaction({"from": owner_addr,"nonce": nonce})
+        returnVal = c.functions.requestSharesFromHolders(user_name,generated_msg_hash,v, r, s,entered_msg_hash).buildTransaction({"from": owner_addr,"nonce": nonce})
         # Sign the transaction
         sign_store_contact = NodeContractModel.w3.eth.account.sign_transaction(returnVal, private_key=private_addr)
         # Send the transaction
@@ -430,3 +438,12 @@ class NodeContractModel:
         print("Contract Address:", userName)
         return userName
 
+#OTP section
+    def sign_message(str_msg):
+        message = encode_defunct(text=str_msg)
+        private_key = '0xcda0b1525e27c3087802e752923069957a3d745d65635516e644d7ba03da2752'
+        account = Account.privateKeyToAccount(private_key)
+        # Sign the message using the account
+        signed_message = NodeContractModel.w3.eth.account.sign_message(message, private_key=account.privateKey)
+        return signed_message
+    
