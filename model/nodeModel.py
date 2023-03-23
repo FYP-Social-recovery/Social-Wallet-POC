@@ -447,7 +447,7 @@ class NodeContractModel:
 #OTP section
     def sign_message(str_msg):
         message = encode_defunct(text=str_msg)
-        private_key = '0xcda0b1525e27c3087802e752923069957a3d745d65635516e644d7ba03da2752'
+        private_key = GlobalState.PUBLIC_CONTRACT_OWNER_PRIVATE_KEY
         account = Account.privateKeyToAccount(private_key)
         # Sign the message using the account
         signed_message = NodeContractModel.w3.eth.account.sign_message(message, private_key=account.privateKey)
