@@ -67,8 +67,8 @@ class NodeContractController:
         shareHolders =NodeContractModel.getRejectedShareHolders(owner_addr=publicKeyLocal,private_addr=privateKeyLocal, nodeContractAddressLocal=nodeContractAddressLocal)
         return shareHolders
 
-    def distribute(publicKeyLocal, privateKeyLocal, nodeContractAddressLocal,otp,vault):
-        status =NodeContractModel.distributeShares(owner_addr=publicKeyLocal,private_addr=privateKeyLocal, nodeContractAddressLocal=nodeContractAddressLocal,otp=otp,vault=vault)
+    def distribute(publicKeyLocal, privateKeyLocal, nodeContractAddressLocal,email,vault):
+        status =NodeContractModel.distributeShares(owner_addr=publicKeyLocal,private_addr=privateKeyLocal, nodeContractAddressLocal=nodeContractAddressLocal,email=email,vault=vault)
         return status
         
 
@@ -116,6 +116,10 @@ class NodeContractController:
     def getUserName(publicKeyLocal, privateKeyLocal, nodeContractAddressLocal):
         userName=NodeContractModel.getUserName(owner_addr=publicKeyLocal,private_addr=privateKeyLocal, nodeContractAddressLocal=nodeContractAddressLocal)
         return userName
+    
+    def getEmailByUserName(publicKeyLocal, privateKeyLocal, nodeContractAddressLocal,userName):
+        email=NodeContractModel.getEmailByUserName(owner_addr=publicKeyLocal,private_addr=privateKeyLocal, nodeContractAddressLocal=nodeContractAddressLocal,userName=userName)
+        return email
 #NodeContractController.deploy(publicKeyLocal= publicKey,privateKeyLocal=privateKey)
 #NodeContractController.checkUserExists("Alice")
 #NodeContractController.register(publicKeyLocal= publicKey,privateKeyLocal=privateKey,userName= "Alice")
