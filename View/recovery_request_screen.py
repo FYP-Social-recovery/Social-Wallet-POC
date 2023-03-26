@@ -113,5 +113,10 @@ class RecoveryRequestScreen(UserControl):
                 ),
                 ElevatedButton("Request", bgcolor="#2596be",
                                color="white",on_click=self.continue_click, width=300,tooltip="Initiate recovery request"),
+                
+                Container(
+                    height=20,
+                ),
+                Text(value="Note* : \nBefore pressing 'Request' button enter the Username\nin the Username text field and press 'Send OTP' button.\nAfter that enter the OTP received to the email address in the OTP text field.\nThen press 'Request' button.", text_align="center", size=14, color="0xFF000000",tooltip="Wallet Public Key", italic=True)
             ],
         )

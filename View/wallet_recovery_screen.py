@@ -222,5 +222,10 @@ class WalletRecoveryScreen(UserControl):
                 
                 ElevatedButton("Recover", bgcolor="#2596be",
                                color="white",on_click=self.on_submit_click_fn, width=300,tooltip="Distribute Shares"),
+                
+                Container(
+                    height=20,
+                ),
+                Text(value="Note* : \nBefore pressing 'Recover' button enter the Username\nin the Username text field and press 'Send OTP' button.\nAfter that enter the OTP received to the email address in the OTP text field.\nThen select a fingerprint and press 'Recover' button.", text_align="center", size=14, color="0xFF000000",tooltip="Wallet Public Key", italic=True)
             ],
         )
