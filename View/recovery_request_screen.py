@@ -95,7 +95,7 @@ class RecoveryRequestScreen(UserControl):
                 Text(value="Recovery Request", text_align="center",
                      size=24, color="#2596be"),
                 Container(
-                    height=100,
+                    height=20,
                 ),
                 self.username,
                 Container(
@@ -103,12 +103,13 @@ class RecoveryRequestScreen(UserControl):
                 ),
                 ElevatedButton("Send OTP", bgcolor="#2596be",
                                color="white",on_click=self.send_otp_click, width=300,tooltip="send OTP"),
+                
+                Container(
+                    height=70,
+                ),
                 self.otp_value,
                 Container(
                     height=10,
-                ),
-                Container(
-                    height=100,
                 ),
                 ElevatedButton("Request", bgcolor="#2596be",
                                color="white",on_click=self.continue_click, width=300,tooltip="Initiate recovery request"),
