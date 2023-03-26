@@ -393,7 +393,7 @@ class NodeContractModel:
         c= NodeContractModel.connection(GlobalState.NODE_CONTRACT_ABI,nodeContractAddressLocal,owner_addr,private_addr)
         print(owner_addr,"Requesting and getting vault hash  ",nodeContractAddressLocal)
         nonce = NodeContractModel.w3.eth.getTransactionCount(owner_addr)
-        vaultHash = c.caller({"from": owner_addr, "nonce": nonce}).requestVaultHashOfSecretOwner(user_name,generated_msg_hash,v, r, s,entered_msg_hash))
+        vaultHash = c.caller({"from": owner_addr, "nonce": nonce}).requestVaultHashOfSecretOwner(user_name,generated_msg_hash,v, r, s,entered_msg_hash)
         #print("Gas",transaction_receipt["gasUsed"]/10000000000)
         print("Vault hash  retrieved")
         print("vault hash:", vaultHash)
