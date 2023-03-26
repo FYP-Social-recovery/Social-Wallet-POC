@@ -26,6 +26,7 @@ from shareholder_request_screen import ShareHolderScreen
 from recovery_request_screen import RecoveryRequestScreen
 from shareholder_accept_recovery_screen import ShareHolderAcceptRecoveryScreen
 from wallet_recovery_screen import WalletRecoveryScreen
+from recovered_screen import RecoveredScreen
 
 from state import GlobalState
 
@@ -100,6 +101,10 @@ def main(page: Page):
     # RecoveryHomeScreen "Wallet recovery" button click action 
     def on_wallet_recovery_click(self):
         self.page.go("/recovery/home/walletRecovery")
+        
+    # WalletReoveryScreev to RecoveredWallet Data Screen 
+    def on_submit_click_wallet_recovery_screen(self):
+        self.page.go("/recovery/home/walletRecovery/recovered")
 
     def route_change(route):
         page.views.clear()
@@ -263,7 +268,19 @@ def main(page: Page):
                 View(
                     "/recovery/home/walletRecovery",
                     [
-                        WalletRecoveryScreen(on_back_click=lambda _: page.go("/recovery/home"), on_submit_click=on_submit_click, page=page),
+                        WalletRecoveryScreen(on_back_click=lambda _: page.go("/recovery/home"), on_submit_click_wallet_recovery_screen=on_submit_click_wallet_recovery_screen, page=page),
+                    ],
+                    bgcolor="0xFFFFF9F2",
+                    vertical_alignment=MainAxisAlignment.CENTER,
+                    horizontal_alignment=CrossAxisAlignment.CENTER,
+                )
+            )
+        if page.route == "/recovery/home/walletRecovery/recovered":
+            page.views.append(
+                View(
+                    "/recovery/home/walletRecovery/recovered",
+                    [
+                        RecoveredScreen(on_back_click=lambda _: page.go("/recovery/home"), on_submit_click=on_submit_click, page=page),
                     ],
                     bgcolor="0xFFFFF9F2",
                     vertical_alignment=MainAxisAlignment.CENTER,

@@ -192,10 +192,10 @@ class DistributesharesScreen(UserControl):
                     height=10,
                 ),
                 #sending an OTP email to verify the email
-                ElevatedButton("Send email verification", bgcolor="#2596be",
+                ElevatedButton("Send OTP", bgcolor="#2596be",
                                color="white",on_click=self.on_verify_email_click_fn, width=300,tooltip="Sending an OTP to verify the email"),
                 Container(
-                    height=10,
+                    height=70,
                 ),
                 self.otp,
                 Container(
@@ -209,56 +209,11 @@ class DistributesharesScreen(UserControl):
                 ),
                 ElevatedButton("Distribute", bgcolor="#2596be",
                                color="white",on_click=self.on_submit_click_fn, width=300,tooltip="Distribute Shares"),
+
+                Container(
+                    height=20,
+                ),
+                Text(value="Note* : \nBefore pressing 'Distribute' button enter a valid email address\nin the email text field and press 'Send OTP' button.\nAfter that enter the OTP received to the email address in the OTP text field.\nThen select a fingerprint and press 'Distribute' button.", text_align="center", size=14, color="0xFF000000",tooltip="Wallet Public Key", italic=True)
             ],
         )
-
-# if __name__ == '__main__':
-#     print("Start Enrolling")
-#     # Capture Enrolling fingerprint template
-#     original_image_path = "../data/Original_fp.BMP"
-#     original_image_template = FingerPrintController.read_image(original_image_path)
-    
-#     # Preprocessing Fingerprint
-#     preprocessed_image_output_path = "../data/Preprocessed_fp.jpg"
-
-#     preprocessed_image = FingerPrintController.fingerprint_pipline(original_image_template, save_image=True, save_path=preprocessed_image_output_path)
-    
-#     # Extract minutiea
-#     print("Start minutiae extraction")
-#     good_fp = False
-    
-#     good_fp = FingerPrintController.capture_new_fp_xyt(preprocessed_image_output_path)
-    
-#     ## If good fp enroll
-#     ## else error
-#     if not good_fp:
-#         print(APP_RETRY_FP)
-#     else:
-#         print("Start vault generation")
-#         # Generate vault
-#         secret = 81985529216486895
-#         fuzzy_vault = FingerPrintController.enroll_new_fingerprint(FP_TEMP_FOLDER + FP_OUTPUT_NAME + '.xyt', secret)
-        
-#         print(fuzzy_vault)
-#         print("\n\n")
-        
-#         fuzzy_vault_bytes_object = SymmetricEncryption.convertStringToBytesObject(fuzzy_vault)
-        
-#         print(fuzzy_vault_bytes_object)
-#         print("\n\n")
-        
-#         encrypted_fuzzy_vault,key,iv = SymmetricEncryption.encrypt_vault_256_bit_key(fuzzy_vault_bytes_object)
-        
-#         print(encrypted_fuzzy_vault)
-#         print("\n\n")
-        
-#         combined_key_bytes = SymmetricEncryption.concatanate2BytesObject(key,iv)
-        
-#         combined_key = SymmetricEncryption.convertBytesObjectToInteger(combined_key_bytes)
-
-#         print(combined_key)
-        
-#         # print("Start Verifying")
-#         # # Reveal Secret
-#         # FingerPrintController.verify_fingerprint(FP_TEMP_FOLDER + FP_OUTPUT_NAME + '.xyt')
     

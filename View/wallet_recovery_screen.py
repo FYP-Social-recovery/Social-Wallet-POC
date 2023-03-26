@@ -33,10 +33,10 @@ from state import GlobalState
 class WalletRecoveryScreen(UserControl):
     
     
-    def __init__(self, on_back_click, on_submit_click, page):
+    def __init__(self, on_back_click, on_submit_click_wallet_recovery_screen, page):
         super().__init__()
         self.on_back_click = on_back_click
-        self.on_submit_click = on_submit_click
+        self.on_submit_click = on_submit_click_wallet_recovery_screen
         self.page = page
         self.mnemonic = ""
         
@@ -120,6 +120,7 @@ class WalletRecoveryScreen(UserControl):
                             print("Start Verifying")
                             # Reveal Secret
                             secret = FingerPrintController.verify_fingerprint(FP_TEMP_FOLDER + FP_OUTPUT_NAME + '.xyt')
+                            GlobalState.RECOVERED_ENTROPHY_VALUE = secret
                             mnemonic = KeyGenerationController.generateMnemonic(secret.to_bytes(16, byteorder='big'))
                             print(mnemonic)
                             self.on_submit_click(self)
@@ -184,7 +185,6 @@ class WalletRecoveryScreen(UserControl):
         
         self.otp_value = TextField(label="Enter OTP", hint_text="Please enter Your OTP",color="0xFF000000",width=300,tooltip="Enter the OTP in your email")
         self.username = TextField(label="Enter Username", hint_text="Please enter Your Username",color="0xFF000000",width=300,tooltip="Enter the Username")
-                        
         return Column(
             horizontal_alignment=CrossAxisAlignment.CENTER,
             controls=[
@@ -200,18 +200,21 @@ class WalletRecoveryScreen(UserControl):
                 Container(
                     height=20,
                 ),
-                ElevatedButton("Choose finger print image...",
-                    on_click=lambda _: self.file_picker.pick_files(allow_multiple=False)),
-                # self.biometric,
-                Container(
-                    height=10,
-                ),
                 self.username,
                 Container(
                     height=10,
                 ),
                 ElevatedButton("Send OTP", bgcolor="#2596be",
                                color="white",on_click=self.send_otp_click, width=300,tooltip="send OTP"),
+                
+                Container(
+                    height=50,
+                ),
+                ElevatedButton("Choose finger print image...",
+                    on_click=lambda _: self.file_picker.pick_files(allow_multiple=False)),
+                Container(
+                    height=10,
+                ),
                 self.otp_value,
                 Container(
                     height=10,
@@ -219,55 +222,10 @@ class WalletRecoveryScreen(UserControl):
                 
                 ElevatedButton("Recover", bgcolor="#2596be",
                                color="white",on_click=self.on_submit_click_fn, width=300,tooltip="Distribute Shares"),
+                
+                Container(
+                    height=20,
+                ),
+                Text(value="Note* : \nBefore pressing 'Recover' button enter the Username\nin the Username text field and press 'Send OTP' button.\nAfter that enter the OTP received to the email address in the OTP text field.\nThen select a fingerprint and press 'Recover' button.", text_align="center", size=14, color="0xFF000000",tooltip="Wallet Public Key", italic=True)
             ],
         )
-
-# if __name__ == '__main__':
-    # print("Start Enrolling")
-    # # Capture Enrolling fingerprint template
-    # original_image_path = "../data/Original_fp.BMP"
-    # original_image_template = FingerPrintController.read_image(original_image_path)
-    
-    # # Preprocessing Fingerprint
-    # preprocessed_image_output_path = "../data/Preprocessed_fp.jpg"
-
-    # preprocessed_image = FingerPrintController.fingerprint_pipline(original_image_template, save_image=True, save_path=preprocessed_image_output_path)
-    
-    # # Extract minutiea
-    # print("Start minutiae extraction")
-    # good_fp = False
-    
-    # good_fp = FingerPrintController.capture_new_fp_xyt(preprocessed_image_output_path)
-    
-    # ## If good fp enroll
-    # ## else error
-    # if not good_fp:
-    #     print(APP_RETRY_FP)
-    # else:
-    #     print("Start vault generation")
-    #     # Generate vault
-    #     secret = 81985529216486895
-    #     fuzzy_vault = FingerPrintController.enroll_new_fingerprint(FP_TEMP_FOLDER + FP_OUTPUT_NAME + '.xyt', secret)
-        
-    #     print(fuzzy_vault)
-    #     print("\n\n")
-        
-    #     fuzzy_vault_bytes_object = SymmetricEncryption.convertStringToBytesObject(fuzzy_vault)
-        
-    #     print(fuzzy_vault_bytes_object)
-    #     print("\n\n")
-        
-    #     encrypted_fuzzy_vault,key,iv = SymmetricEncryption.encrypt_vault_256_bit_key(fuzzy_vault_bytes_object)
-        
-    #     print(encrypted_fuzzy_vault)
-    #     print("\n\n")
-        
-    #     combined_key_bytes = SymmetricEncryption.concatanate2BytesObject(key,iv)
-        
-    #     combined_key = SymmetricEncryption.convertBytesObjectToInteger(combined_key_bytes)
-
-    #     print(combined_key)
-        
-    #     # print("Start Verifying")
-    #     # # Reveal Secret
-    #     # FingerPrintController.verify_fingerprint(FP_TEMP_FOLDER + FP_OUTPUT_NAME + '.xyt')

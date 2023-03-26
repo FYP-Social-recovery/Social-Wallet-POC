@@ -11,7 +11,7 @@ class GlobalState:
     # global NETWORK_CURRENCY_SYMBOL
     # global BLOCK_EXPLORER_URL
     
-    PUBLIC_CONTRACT_ADDRESS = "0x2b20DE55198373fC9b080f2c2194c953Ad104b1B" 
+    PUBLIC_CONTRACT_ADDRESS = "0xaec9f292F5BC6438a3865e2ff696D4046927B040" 
     # "0xd9f3d30F70ee09BDd90d849Ed6b281Ad778BD9e6" # Arbitrum Goerli test network
     # "0xa867C53C919A0898FcD0B113BE6A8b3FADE0050e" - Local host
     # "a0dc1ea77cb68f16abb1671b44048c6a9f7822676d841f4a9908a5a981871fce" - Goerli
@@ -32,6 +32,8 @@ class GlobalState:
     PUBLIC_KEY = ""
     USERNAME = ""
     NODE_CONTRACT_ADDRESS = ""
+    
+    RECOVERED_ENTROPHY_VALUE = ""
     
 ## Goerli test network
     # NETWORK_TYPE = "Goerli test network"
