@@ -192,10 +192,10 @@ class DistributesharesScreen(UserControl):
                     height=10,
                 ),
                 #sending an OTP email to verify the email
-                ElevatedButton("Send email verification", bgcolor="#2596be",
+                ElevatedButton("Send OTP", bgcolor="#2596be",
                                color="white",on_click=self.on_verify_email_click_fn, width=300,tooltip="Sending an OTP to verify the email"),
                 Container(
-                    height=10,
+                    height=70,
                 ),
                 self.otp,
                 Container(
