@@ -54,7 +54,14 @@ class WalletRecoveryScreen(UserControl):
         self.page.overlay.append(self.file_picker)
         self.page.update()
 
-    
+    def send_otp_click(self,e):
+        if(self.username.value):
+            #request emai for the username
+            email=NodeContractController.getEmailByUserName(publicKeyLocal=GlobalState.PUBLIC_KEY,privateKeyLocal=GlobalState.PRIVATE_KEY,nodeContractAddressLocal=GlobalState.NODE_CONTRACT_ADDRESS, userName=self.username.value)
+            OTP_client=OTPController()
+            otp,self.generated_sigend_otp=OTP_client.generateSignedOTP()
+            Email_client=EmailController()
+            Email_client.sendEmail(email,otp)
     
     def on_submit_click_fn(self,e):
         if(self.biometric.value):
@@ -62,9 +69,8 @@ class WalletRecoveryScreen(UserControl):
                 if(self.username.value):
                     shares = NodeContractController.getReceivedShares(publicKeyLocal=GlobalState.PUBLIC_KEY,privateKeyLocal=GlobalState.PRIVATE_KEY,nodeContractAddressLocal=GlobalState.NODE_CONTRACT_ADDRESS)
                     OTP_client=OTPController()
-                    convertToHash=OTP_client.convert_Hash(self.otp_value.value)
-                    otp_hash=str(convertToHash[1])
-                    encryptedVault = NodeContractController.getVaultHash(publicKeyLocal=GlobalState.PUBLIC_KEY,privateKeyLocal=GlobalState.PRIVATE_KEY,nodeContractAddressLocal=GlobalState.NODE_CONTRACT_ADDRESS,otp=otp_hash,userName=self.username.value)
+                    self.entered_signed_otp=OTP_client.add_sign(self.otp_value.value)
+                    encryptedVault = NodeContractController.getVaultHash(publicKeyLocal=GlobalState.PUBLIC_KEY,privateKeyLocal=GlobalState.PRIVATE_KEY,nodeContractAddressLocal=GlobalState.NODE_CONTRACT_ADDRESS,userName=self.username.value,generated_signed_otp=self.generated_sigend_otp,entered_signed_otp=self.entered_signed_otp)
                     print(shares)
                     print("encryptedVault")
                     print(encryptedVault)
@@ -200,12 +206,13 @@ class WalletRecoveryScreen(UserControl):
                 Container(
                     height=10,
                 ),
-                self.otp_value,
+                self.username,
                 Container(
                     height=10,
                 ),
-                
-                self.username,
+                ElevatedButton("Send OTP", bgcolor="#2596be",
+                               color="white",on_click=self.send_otp_click, width=300,tooltip="send OTP"),
+                self.otp_value,
                 Container(
                     height=10,
                 ),

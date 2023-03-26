@@ -53,7 +53,7 @@ class WalletImportScreen(UserControl):
             GlobalState.ENTROPHY_VALUE = 81985529216486895        
         else:
             privateKey,publicKey = KeyGenerationController.importWalletFromMnemonic(self.mnemonic_phrase.value)
-            GlobalState.ENTROPHY_VALUE = KeyGenerationController.mnemonicToEntropy(self.mnemonic_phrase.value)
+            GlobalState.ENTROPHY_VALUE = int.from_bytes(KeyGenerationController.mnemonicToEntropy(self.mnemonic_phrase.value), byteorder='big')
         
         print(self.mnemonic_phrase.value)
         print("privatekey: ",privateKey)

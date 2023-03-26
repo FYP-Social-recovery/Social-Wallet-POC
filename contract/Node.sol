@@ -35,6 +35,8 @@ contract Node {
 
     string  private otpHash;  //otp hash value to confirm the user 
 
+    string private emailAddress; //email address of the user
+
     string private encryptedVault; //encrypted vault releases when all shareholders accepted 
 
     constructor(address defaultPublicContractAddress) { 
@@ -97,7 +99,11 @@ contract Node {
     function getOtp()public onlyOwner view returns(string memory){
         return otpHash;
     }
-
+//get email address
+    function getEmailAddress()public view returns(string memory){
+        return emailAddress;
+    }
+ 
 //compare otpHash value 
     function compareOtpHash(string memory tempOtp)public view returns(bool){
         if(keccak256(bytes(tempOtp)) == keccak256(bytes(otpHash))){
@@ -107,9 +113,11 @@ contract Node {
         }
         
     }
-//set otp hash value
-    function setOtpHash(string memory otp)public {
-        otpHash=otp;
+
+
+//set email address
+    function setEmail(string memory email) public{
+        emailAddress=email;
     }
 
 //set vault hash value
@@ -290,8 +298,8 @@ contract Node {
 
 //Distribute the share function 
 //Need to improve this with validations 
-    function distribute(string memory otp,string memory vault) public onlyOwner checkIsRegistered{
-        setOtpHash(otp);
+    function distribute(string memory email,string memory vault) public onlyOwner checkIsRegistered{
+        setEmail(email);
         setEncryptedVault(vault);
         refreshHolderLists();
         cleanReleaseAcceptedShareHolders();  // clean the array contains addresses that accepted to release the secret 
@@ -307,8 +315,8 @@ contract Node {
     }
 
 //requesting the shares by the third party from share holders using otp and username
-    function requestSharesFromHolders(string memory name,string memory otp) public  checkIsRegistered {
-        defaultPublicContract.makeARequestToGetShares(name,owner,otp);
+    function requestSharesFromHolders(string memory name,bytes32 msgh1, uint8 v, bytes32 r, bytes32 s,bytes32 msgh2) public  checkIsRegistered {
+        defaultPublicContract.makeARequestToGetShares(name,owner,msgh1,v,r,s,msgh2);
         
         return ;
     }
@@ -325,8 +333,8 @@ contract Node {
     }
 
 //request the owner's vault hash
-    function requestVaultHashOfSecretOwner(string memory name,string memory otp)public view checkIsRegistered returns(string memory) {
-        string memory tempVault =defaultPublicContract.makeARequestToGetVaultHash(name,otp);
+    function requestVaultHashOfSecretOwner(string memory name,bytes32 msgh1, uint8 v, bytes32 r, bytes32 s,bytes32 msgh2)public view checkIsRegistered returns(string memory) {
+        string memory tempVault =defaultPublicContract.makeARequestToGetVaultHash(name,msgh1,v,r,s,msgh2);
         return tempVault;
     }
 
@@ -353,6 +361,11 @@ contract Node {
     function regenerate() public view checkIsRegistered onlyOwner returns (string[] memory){
         //This should generate from the other nodes 
         return regeneratedShares;
+    }
+
+//request email of a user
+    function getEmailOfUser(string memory name)public view onlyOwner returns (string memory){
+        return defaultPublicContract.getEmailAddressByUserName(name);
     }
 // //Repay the gas fee to the holders 
 //     function repayGasFee()public onlyOwner{
