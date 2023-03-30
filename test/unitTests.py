@@ -163,14 +163,14 @@ class Test:
         return
     def distribute(contract):
         start=timer()
-        NodeContractController.distribute(publicKeyLocal=Test.publicKeySecretOwner, privateKeyLocal=Test.privateKeySecretOwner, nodeContractAddressLocal=contract,otp="1234",vault="TestvaultHash")
+        NodeContractController.distribute(publicKeyLocal=Test.publicKeySecretOwner, privateKeyLocal=Test.privateKeySecretOwner, nodeContractAddressLocal=contract,email="1234",vault="TestvaultHash")
         end=timer()
         time=end-start
         Test.writeFle("Distribute the shares ",time)
         return
     def thirdPartyRequestShares(contract):
         start=timer()
-        NodeContractController.requestShares(publicKeyLocal=Test.publicKeyThirdParty, privateKeyLocal=Test.privateKeyThirdParty, nodeContractAddressLocal=contract, userName="Alice",otp="1234")
+        NodeContractController.requestShares(publicKeyLocal=Test.publicKeyThirdParty, privateKeyLocal=Test.privateKeyThirdParty, nodeContractAddressLocal=contract, userName="Alice",generated_signed_otp="1234",entered_signed_otp="1234")
         end=timer()
         time=end-start
         Test.writeFle("Third Party request the shares ",time)
@@ -207,7 +207,7 @@ class Test:
         return shares
     def getVaultHash(contract):
         start=timer()
-        vault=NodeContractController.getVaultHash(publicKeyLocal=Test.publicKeyThirdParty, privateKeyLocal=Test.privateKeyThirdParty, nodeContractAddressLocal=contract,userName="Alice",otp="1234")
+        vault=NodeContractController.getVaultHash(publicKeyLocal=Test.publicKeyThirdParty, privateKeyLocal=Test.privateKeyThirdParty, nodeContractAddressLocal=contract,userName="Alice",generated_signed_otp="1234",entered_signed_otp="1234")
         end=timer()
         time=end-start
         Test.writeFle("Third Party get vault Hash",time)
