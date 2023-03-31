@@ -13,10 +13,10 @@ def convert():
             
             
             # Calculate the result
-            result = gas * gas_per_gwei * price_of_ether / 1000000000
+            result = float(gas * gas_per_gwei * price_of_ether / 1000000000)
             
             # Write the result to the output file
-            result_file.write(str(result) + '\n')
+            result_file.write(f'${result:.2f}'+" USD" + '\n')
 
 def getGasPrice():
 
