@@ -15,8 +15,8 @@ class NodeContractModel:
         # NodeContractModel.defaultPrivateAddress=privateAddress
         # NodeContractModel.defaultPublicAddress=publicAddress
         
-        # with open(r"contract/compiled_code.json","r") as file: # for windows
-        with open("../contract/compiled_code.json","r") as file: # for ubuntu
+        with open(r"contract/compiled_code.json","r") as file: # for windows
+        #with open("../contract/compiled_code.json","r") as file: # for ubuntu
             compiled_sol = json.loads(file.read())
 
         # get bytecode
@@ -57,7 +57,7 @@ class NodeContractModel:
         # Wait for the transaction to be mined, and get the transaction receipt
         print("Waiting for transaction to finish...")
         transaction_receipt = w3.eth.wait_for_transaction_receipt(transaction_hash)
-        print("Gas",transaction_receipt["gasUsed"]/10000000000)
+        print("Gas",transaction_receipt["gasUsed"] )
         print(f"Done! Contract deployed to {transaction_receipt.contractAddress}")
 
         #setting my contract address to deployed address  
@@ -74,7 +74,7 @@ class NodeContractModel:
         print(owner_addr,"checking user name validity for ",GlobalState.NODE_CONTRACT_ADDRESS)
         nonce = NodeContractModel.w3.eth.getTransactionCount(owner_addr)
         result = c.caller({"from": owner_addr,"nonce":nonce}).isUserNameExist(userName)
-        #print("Gas",transaction_receipt["gasUsed"]/10000000000)
+        #print("Gas",transaction_receipt["gasUsed"] )
         print("UserName  checked")
         print("Value:", result)
         return result
@@ -89,7 +89,7 @@ class NodeContractModel:
         # Send the transaction
         send_store_contact = NodeContractModel.w3.eth.send_raw_transaction(sign_store_contact.rawTransaction)
         transaction_receipt = NodeContractModel.w3.eth.wait_for_transaction_receipt(send_store_contact)
-        print("Gas",transaction_receipt["gasUsed"]/10000000000)
+        print("Gas",transaction_receipt["gasUsed"] )
         print("Successfully registered to the public contract!!")
         return
 #Share holder's role ----------------------------------------------------------------------
@@ -100,7 +100,7 @@ class NodeContractModel:
         print(owner_addr,"checking Requests for ",nodeContractAddressLocal)
         nonce = NodeContractModel.w3.eth.getTransactionCount(owner_addr)
         ownersList = c.caller({"from": owner_addr, "nonce": nonce}).checkRequestsForBeAHolder()
-        #print("Gas",transaction_receipt["gasUsed"]/10000000000)
+        #print("Gas",transaction_receipt["gasUsed"] )
         print("Addresses retrieved")
         print("OwnersList:", ownersList)
         return ownersList
@@ -120,7 +120,7 @@ class NodeContractModel:
         # ownerAddressList = returnVal
         status = transaction_receipt["status"]
         #generate a list of tuples
-        print("Gas",transaction_receipt["gasUsed"]/10000000000)
+        print("Gas",transaction_receipt["gasUsed"] )
         print("Successfully  accepted",status)
         
         return status
@@ -142,7 +142,7 @@ class NodeContractModel:
         # ownerAddressList = returnVal
         status = transaction_receipt["status"]
         #generate a list of tuples
-        print("Gas",transaction_receipt["gasUsed"]/10000000000)
+        print("Gas",transaction_receipt["gasUsed"] )
         print("Successfully  rejected",status)
         
         return status
@@ -154,7 +154,7 @@ class NodeContractModel:
         nonce = NodeContractModel.w3.eth.getTransactionCount(owner_addr)
         ownersList = c.caller({"from": owner_addr, "nonce": nonce}).checkRequestsForShare()
         #generate a list of tuples
-        #print("Gas",transaction_receipt["gasUsed"]/10000000000)
+        #print("Gas",transaction_receipt["gasUsed"] )
         print("Addresses retrieved")
         print("OwnersList:", ownersList)
         return ownersList
@@ -174,7 +174,7 @@ class NodeContractModel:
         # ownerAddressList = returnVal
         status = transaction_receipt["status"]
         #generate a list of tuples
-        print("Gas",transaction_receipt["gasUsed"]/10000000000)
+        print("Gas",transaction_receipt["gasUsed"] )
         print("Successfully  released",status)
         
         return status
@@ -196,7 +196,7 @@ class NodeContractModel:
         # ownerAddressList = returnVal
         status = transaction_receipt["status"]
         #generate a list of tuples
-        print("Gas",transaction_receipt["gasUsed"]/10000000000)
+        print("Gas",transaction_receipt["gasUsed"] )
         print("Successfully  added",status)
         
         return status
@@ -215,7 +215,7 @@ class NodeContractModel:
         # ownerAddressList = returnVal
         status = transaction_receipt["status"]
         #generate a list of tuples
-        print("Gas",transaction_receipt["gasUsed"]/10000000000)
+        print("Gas",transaction_receipt["gasUsed"] )
         print("Successfully  removed",status)
         
         return status
@@ -234,7 +234,7 @@ class NodeContractModel:
         # ownerAddressList = returnVal
         status = transaction_receipt["status"]
         #generate a list of tuples
-        print("Gas",transaction_receipt["gasUsed"]/10000000000)
+        print("Gas",transaction_receipt["gasUsed"] )
         print("Successfully  requested from the temporary holders",status)
         
         return status
@@ -253,7 +253,7 @@ class NodeContractModel:
         # ownerAddressList = returnVal
         status = transaction_receipt["status"]
         #generate a list of tuples
-        print("Gas",transaction_receipt["gasUsed"]/10000000000)
+        print("Gas",transaction_receipt["gasUsed"] )
         print("Successfully  added shares",status)
         
         return status
@@ -274,7 +274,7 @@ class NodeContractModel:
         nonce = NodeContractModel.w3.eth.getTransactionCount(owner_addr)
         holdersList = c.caller({"from": owner_addr, "nonce": nonce}).getRequestedShareHolders()
         #generate a list of tuples
-        #print("Gas",transaction_receipt["gasUsed"]/10000000000)
+        #print("Gas",transaction_receipt["gasUsed"] )
         print("Addresses retrieved")
         print("Requested holdersList:", holdersList)
         return holdersList
@@ -285,7 +285,7 @@ class NodeContractModel:
         nonce = NodeContractModel.w3.eth.getTransactionCount(owner_addr)
         holdersList = c.caller({"from": owner_addr, "nonce": nonce}).getShareHolders()
         #generate a list of tuples
-        #print("Gas",transaction_receipt["gasUsed"]/10000000000)
+        #print("Gas",transaction_receipt["gasUsed"] )
         print("Addresses retrieved")
         print("accepted holdersList:", holdersList)
         return holdersList
@@ -296,7 +296,7 @@ class NodeContractModel:
         nonce = NodeContractModel.w3.eth.getTransactionCount(owner_addr)
         holdersList = c.caller({"from": owner_addr, "nonce": nonce}).getRejectedShareHolders()
         #generate a list of tuples
-        #print("Gas",transaction_receipt["gasUsed"]/10000000000)
+        #print("Gas",transaction_receipt["gasUsed"] )
         print("Addresses retrieved")
         print("Rejected holdersList:", holdersList)
         return holdersList
@@ -315,7 +315,7 @@ class NodeContractModel:
         # ownerAddressList = returnVal
         status = transaction_receipt["status"]
         #generate a list of tuples
-        print("Gas",transaction_receipt["gasUsed"]/10000000000)
+        print("Gas",transaction_receipt["gasUsed"] )
         print("Refreshed Holder Status")
         print("Accepted status:", status)
         return status
@@ -335,7 +335,7 @@ class NodeContractModel:
         # ownerAddressList = returnVal
         status = transaction_receipt["status"]
         #generate a list of tuples
-        print("Gas",transaction_receipt["gasUsed"]/10000000000)
+        print("Gas",transaction_receipt["gasUsed"] )
         print("Refreshed Status")
         print("Accepted status:", status)
         return status
@@ -354,7 +354,7 @@ class NodeContractModel:
 
         status = transaction_receipt["status"]
         #generate a list of tuples
-        print("Gas",transaction_receipt["gasUsed"]/10000000000)
+        print("Gas",transaction_receipt["gasUsed"] )
         print("Shares distributed:", status)
         return status
     
@@ -378,7 +378,7 @@ class NodeContractModel:
 
         status = transaction_receipt["status"]
         #generate a list of tuples
-        print("Gas",transaction_receipt["gasUsed"]/10000000000)
+        print("Gas",transaction_receipt["gasUsed"] )
         print("Shares requested:", status)
         return status
      
@@ -394,7 +394,7 @@ class NodeContractModel:
         print(owner_addr,"Requesting and getting vault hash  ",nodeContractAddressLocal)
         nonce = NodeContractModel.w3.eth.getTransactionCount(owner_addr)
         vaultHash = c.caller({"from": owner_addr, "nonce": nonce}).requestVaultHashOfSecretOwner(user_name,generated_msg_hash,v, r, s,entered_msg_hash)
-        #print("Gas",transaction_receipt["gasUsed"]/10000000000)
+        #print("Gas",transaction_receipt["gasUsed"] )
         print("Vault hash  retrieved")
         print("vault hash:", vaultHash)
         return vaultHash
@@ -406,7 +406,7 @@ class NodeContractModel:
         print(owner_addr,"Getting received shares  ",nodeContractAddressLocal)
         nonce = NodeContractModel.w3.eth.getTransactionCount(owner_addr)
         sharesList = c.caller({"from": owner_addr, "nonce": nonce}).regenerate()
-        #print("Gas",transaction_receipt["gasUsed"]/10000000000)
+        #print("Gas",transaction_receipt["gasUsed"] )
         print("Received shares  retrieved")
         print("Shares List:", sharesList)
         return sharesList
@@ -417,7 +417,7 @@ class NodeContractModel:
         print(owner_addr,"Getting my status  ",nodeContractAddressLocal)
         nonce = NodeContractModel.w3.eth.getTransactionCount(owner_addr)
         myState = c.caller({"from": owner_addr, "nonce": nonce}).getMyState()
-        #print("Gas",transaction_receipt["gasUsed"]/10000000000)
+        #print("Gas",transaction_receipt["gasUsed"] )
         print("My state  retrieved")
         print("State:", myState)
         return myState
@@ -428,7 +428,7 @@ class NodeContractModel:
         print(owner_addr,"Getting my Contract Address  ",GlobalState.NODE_CONTRACT_ADDRESS)
         nonce = NodeContractModel.w3.eth.getTransactionCount(owner_addr)
         contractAddress = c.caller({"from": owner_addr, "nonce": nonce}).getContractAddressOfPublicAddress(owner_addr)
-        #print("Gas",transaction_receipt["gasUsed"]/10000000000)
+        #print("Gas",transaction_receipt["gasUsed"] )
         print("My Contract Address  retrieved")
         print("Contract Address:", contractAddress)
         return contractAddress
@@ -439,7 +439,7 @@ class NodeContractModel:
         print(owner_addr,"Getting my userName  ",nodeContractAddressLocal)
         nonce = NodeContractModel.w3.eth.getTransactionCount(owner_addr)
         userName = c.caller({"from": owner_addr, "nonce": nonce}).getUserName()
-        #print("Gas",transaction_receipt["gasUsed"]/10000000000)
+        #print("Gas",transaction_receipt["gasUsed"] )
         print("My user name  retrieved")
         print("Contract Address:", userName)
         return userName
@@ -459,7 +459,7 @@ class NodeContractModel:
         print(owner_addr,"Getting an email of the given user name  ",userName)
         nonce = NodeContractModel.w3.eth.getTransactionCount(owner_addr)
         email = c.caller({"from": owner_addr, "nonce": nonce}).getEmailOfUser(userName)
-        #print("Gas",transaction_receipt["gasUsed"]/10000000000)
+        #print("Gas",transaction_receipt["gasUsed"] )
         print("Requested Email retrieved")
         print("Email", email)
         return email

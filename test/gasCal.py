@@ -11,12 +11,13 @@ def convert():
             
             # Define the other variables
             
-            
+            #For arbitrum goerli 
+            result_eth=float(gas/10000000000)
             # Calculate the result
-            result = float(gas * gas_per_gwei * price_of_ether / 1000000000)
+            result = float(result_eth * price_of_ether )
             
             # Write the result to the output file
-            result_file.write(f'${result:.2f}'+" USD" + '\n')
+            result_file.write(f'{result_eth:.7f}'+"ETH"+" "+f'{result:.2f}'+" USD" + '\n')
 
 def getGasPrice():
 
