@@ -42,3 +42,10 @@ Accept the holder Request By Share Holder One 3.4294176000000007
 Accept The holder request by share Holder two3.639508899999999
 Accept The holder request by share Holder Three3.314624000000002
 Refresh The state5.6491174000000015
+Distribute the shares 5.938416299999998
+Third Party request the shares 6.0555436
+Release the share By share holder one5.248417
+Release the share By share holder two4.0947397
+Release the share By share holder three3.8688077000000014
+Third Party get the released shares1.5728485999999995
+Third Party get vault Hash1.6223049999999999
