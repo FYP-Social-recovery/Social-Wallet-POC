@@ -57,7 +57,7 @@ class PublicContractModel:
         # Wait for the transaction to be mined, and get the transaction receipt
         print("Waiting for transaction to finish...")
         transaction_receipt = w3.eth.wait_for_transaction_receipt(transaction_hash)
-        print("Gas",transaction_receipt["gasUsed"]/10000000000)
+        print("Gas",transaction_receipt["gasUsed"])
         print(f"Done! Public Contract deployed to {transaction_receipt.contractAddress}")
         #setting my contract address to deployed address  
         return 

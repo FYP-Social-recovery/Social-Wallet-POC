@@ -1,6 +1,14 @@
 from controller.nodeController import NodeContractController
 from controller.publicContractController import PublicContractController
 from timeit import default_timer as timer
+
+from eth_account import Account
+from web3 import Web3, HTTPProvider
+from eth_account.messages import encode_defunct                                                                                                                                        
+
+
+
+
 class Test:
     publicKeyPublicContract="0x20543FD8D854d500121215Abc542531987f6bc2e"
     privateKeyPublicContract="58d0efedba9a8a61b2ac3f188dd079782e07aed904cdbc0e3340e073e85c7655"
@@ -163,14 +171,21 @@ class Test:
         return
     def distribute(contract):
         start=timer()
-        NodeContractController.distribute(publicKeyLocal=Test.publicKeySecretOwner, privateKeyLocal=Test.privateKeySecretOwner, nodeContractAddressLocal=contract,otp="1234",vault="TestvaultHash")
+        NodeContractController.distribute(publicKeyLocal=Test.publicKeySecretOwner, privateKeyLocal=Test.privateKeySecretOwner, nodeContractAddressLocal=contract,email="1234",vault="TestvaultHash")
         end=timer()
         time=end-start
         Test.writeFle("Distribute the shares ",time)
         return
     def thirdPartyRequestShares(contract):
         start=timer()
-        NodeContractController.requestShares(publicKeyLocal=Test.publicKeyThirdParty, privateKeyLocal=Test.privateKeyThirdParty, nodeContractAddressLocal=contract, userName="Alice",otp="1234")
+        private_key = '0xcda0b1525e27c3087802e752923069957a3d745d65635516e644d7ba03da2752'
+
+        account = Account.privateKeyToAccount(private_key) 
+        message_text = '1234'
+        message = encode_defunct(text=message_text)  
+        web3 = Web3(HTTPProvider('https://arb-goerli.g.alchemy.com/v2/kmaQkTzL0jVfzpP6t9J1R04Y0hr9GGJE'))      
+        signed_message = web3.eth.account.sign_message(message, private_key=account.privateKey)
+        NodeContractController.requestShares(publicKeyLocal=Test.publicKeyThirdParty, privateKeyLocal=Test.privateKeyThirdParty, nodeContractAddressLocal=contract, userName="Alice",generated_signed_otp=signed_message,entered_signed_otp=signed_message)
         end=timer()
         time=end-start
         Test.writeFle("Third Party request the shares ",time)
@@ -207,7 +222,14 @@ class Test:
         return shares
     def getVaultHash(contract):
         start=timer()
-        vault=NodeContractController.getVaultHash(publicKeyLocal=Test.publicKeyThirdParty, privateKeyLocal=Test.privateKeyThirdParty, nodeContractAddressLocal=contract,userName="Alice",otp="1234")
+        private_key = '0xcda0b1525e27c3087802e752923069957a3d745d65635516e644d7ba03da2752'
+
+        account = Account.privateKeyToAccount(private_key) 
+        message_text = '1234'
+        message = encode_defunct(text=message_text) 
+        web3 = Web3(HTTPProvider('https://arb-goerli.g.alchemy.com/v2/kmaQkTzL0jVfzpP6t9J1R04Y0hr9GGJE'))        
+        signed_message = web3.eth.account.sign_message(message, private_key=account.privateKey)
+        vault=NodeContractController.getVaultHash(publicKeyLocal=Test.publicKeyThirdParty, privateKeyLocal=Test.privateKeyThirdParty, nodeContractAddressLocal=contract,userName="Alice",generated_signed_otp=signed_message,entered_signed_otp=signed_message)
         end=timer()
         time=end-start
         Test.writeFle("Third Party get vault Hash",time)
@@ -215,40 +237,40 @@ class Test:
 
 
 #Test.deployPublicContract()
-secretOwnerContract=Test.deploySecretOwner()
-shareHolderOneContract=Test.deployShareHolderOne()
-shareHolderTwoContract=Test.deployShareHolderTwo()
-shareHolderThreeContract=Test.deployShareHolderThree()
-thirdPartyContract=Test.deployThirdParty()
+#secretOwnerContract=Test.deploySecretOwner()
+#shareHolderOneContract=Test.deployShareHolderOne()
+#shareHolderTwoContract=Test.deployShareHolderTwo()
+#shareHolderThreeContract=Test.deployShareHolderThree()
+#thirdPartyContract=Test.deployThirdParty()
 
-# secretOwnerContract="0xb9a04778058f4c00C0F7164Bb9b3159b98Dc07FF"
-# shareHolderOneContract="0xA220553859477e8DF0b5140e6D8Af67bAFd6B546"
-# shareHolderTwoContract="0x2C5cDe621f5cDabF418C51e745f0bAc99c2ee9aA"
-# shareHolderThreeContract="0x1B83B0013A952686d44ebcaAc13d221a46A9Ac7e"
-# thirdPartyContract="0xCD7A136D402e325B083E5c3d3289E7dd29F83308"
+secretOwnerContract="0x58809886077E1844Ca9905E0c522871b0aec417f"
+shareHolderOneContract="0x2b8Ef5ad3ed9550DC0C9f3f72ca2236750A1B3Ad"
+shareHolderTwoContract="0x1c9E76C892285F759e94c234BC987De1d1581Cf2"
+shareHolderThreeContract="0x805A29eF483595a6FAe0C08F7629ac0011C6e705"
+thirdPartyContract="0x6700d66e6c443E62e006fFedf165ce631B082fE6"
 
-Test.registerSecretOwner(secretOwnerContract)
-Test.registerShareHolderOne(shareHolderOneContract)
-Test.registerShareHolderTwo(shareHolderTwoContract)
-Test.registerShareHolderThree(shareHolderThreeContract)
-Test.registerThirdParty(thirdPartyContract)
+# Test.registerSecretOwner(secretOwnerContract)
+# Test.registerShareHolderOne(shareHolderOneContract)
+# Test.registerShareHolderTwo(shareHolderTwoContract)
+# Test.registerShareHolderThree(shareHolderThreeContract)
+# Test.registerThirdParty(thirdPartyContract)
 
-Test.addTempShareHolders(secretOwnerContract)
-Test.addMyShares(secretOwnerContract)
-Test.makeHolderRequests(secretOwnerContract)
+# Test.addTempShareHolders(secretOwnerContract)
+# Test.addMyShares(secretOwnerContract)
+# Test.makeHolderRequests(secretOwnerContract)
 
-Test.acceptBeAHolderRequestBySHOne(shareHolderOneContract)
-Test.acceptBeAHolderRequestBySHTwo(shareHolderTwoContract)
-Test.acceptBeAHolderRequestBySHThree(shareHolderThreeContract)
+# Test.acceptBeAHolderRequestBySHOne(shareHolderOneContract)
+# Test.acceptBeAHolderRequestBySHTwo(shareHolderTwoContract)
+# Test.acceptBeAHolderRequestBySHThree(shareHolderThreeContract)
 
-Test.refreshState(secretOwnerContract)
-Test.distribute(secretOwnerContract)
+# Test.refreshState(secretOwnerContract)
+#Test.distribute(secretOwnerContract)
 
-Test.thirdPartyRequestShares(thirdPartyContract)
-Test.releaseSecretBySHOne(shareHolderOneContract)
-Test.releaseSecretBySHTwo(shareHolderTwoContract)
-Test.releaseSecretBySHThree(shareHolderThreeContract)
-shares=Test.getReleasedShares(thirdPartyContract)
-vault=Test.getVaultHash(thirdPartyContract)
-print(shares)
-print(vault)
+# Test.thirdPartyRequestShares(thirdPartyContract)
+# Test.releaseSecretBySHOne(shareHolderOneContract)
+# Test.releaseSecretBySHTwo(shareHolderTwoContract)
+# Test.releaseSecretBySHThree(shareHolderThreeContract)
+# shares=Test.getReleasedShares(thirdPartyContract)
+# vault=Test.getVaultHash(thirdPartyContract)
+# print(shares)
+# print(vault)
