@@ -61,3 +61,6 @@ Versions
 0.0.4- Screens and backend completed until the distribution eliminated vulnerabilities -name convention,immutable variables,redundant statements
 1.0.0- Completed wallet release for layer 1
 2.0.0- Completed wallet release for layer 2
+2.1.0- Otp logic changed
+2.1.1-
+2.1.2- Vault hash returning bug fixed
