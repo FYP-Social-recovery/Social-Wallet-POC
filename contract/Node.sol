@@ -39,6 +39,8 @@ contract Node {
 
     string private encryptedVault; //encrypted vault releases when all shareholders accepted 
 
+    address private requester;   //unique requester
+
     constructor(address defaultPublicContractAddress) { 
         owner = msg.sender;
         //Hard coded deployment of the public contract
@@ -321,11 +323,20 @@ contract Node {
         return ;
     }
 
+//update the requster 
+    function setRequester(address requestingParty)public checkIsRegistered{
+        requester=requestingParty;
+        return;
+    }
+
 //return the vaultHash to the third party
     function returnMyVaultHash() public view checkIsRegistered returns(string memory){  
         if(keccak256(bytes(myState)) == keccak256(bytes("READY_TO_RELEASE"))){
             //make the vaultHash accessible to the third party
-            return encryptedVault;
+            if (msg.sender==requester || msg.sender==owner){
+                return encryptedVault;
+            }
+            
         }
         return "";
     

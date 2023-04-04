@@ -1,7 +1,7 @@
 from solcx import compile_standard, install_solc
 def compile():
     # location for the contracts 
-    with open("./Node.sol","r") as file:
+    with open("./Node.sol","r") as file:   #for windows  with open("contract/Node.sol","r") as file:
         node_file = file.read()
 
     with open("./PublicContract.sol","r") as file:
