@@ -16,6 +16,10 @@ Step 3 : Run flutter-python desktop app
 Go to view folder : cd View/
 Run main file :  flet main.py -d
 
+Step :Start server
+Goto api folder : cd api/
+Run nodeAPI.py file : python nodeAPI.py
+
 ========================================================================================================
 Default values for testing 
 ========================================================================================================

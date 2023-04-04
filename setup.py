@@ -27,3 +27,5 @@ setup(name = 'symmetricEncryption', packages = find_packages())
 setup(name = 'otp_controller', packages = find_packages())
 setup(name = 'email_controller', packages = find_packages())
 setup(name = 'fvss_controller', packages = find_packages())
+
+setup(name='nodeAPI', packages=find_packages())
