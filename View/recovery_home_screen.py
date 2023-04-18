@@ -64,8 +64,8 @@ class RecoveryHomeScreen(UserControl):
                     width=300,
                     content=Divider(height=9, thickness=3),
                 ),
-                ElevatedButton(text="registration", on_click=self.on_registration_click,bgcolor="#2596be",
-                                color="white",tooltip="social recovery registration"),
+                ElevatedButton(text="Registration", on_click=self.on_registration_click,bgcolor="#2596be",
+                                color="white",tooltip="Social wallet registration"),
                 Container(
                     height=10,
                 ),
@@ -77,12 +77,12 @@ class RecoveryHomeScreen(UserControl):
                     content=Divider(height=9, thickness=3),
                 ),
                 ElevatedButton(text="Add Shareholders", on_click=self.on_add_shareholders_click,bgcolor="#2596be",
-                                color="white",tooltip="Requst to add shareholders"),
+                                color="white",tooltip="Add requsts for shareholders"),
                 Container(
                     height=10,
                 ),
                 ElevatedButton(text="Shareholder Status", on_click=self.on_shareholders_status_click,bgcolor="#2596be",
-                                color="white",tooltip="view accept/reject status of shareholders"),
+                                color="white",tooltip="View accept/reject status of shareholders"),
                 Container(
                     height=10,
                 ),
@@ -99,7 +99,7 @@ class RecoveryHomeScreen(UserControl):
                     content=Divider(height=9, thickness=3),
                 ),
                 ElevatedButton(text="Accept Shareholder Requests", on_click=self.on_request_view_click,bgcolor="#2596be",
-                                color="white",tooltip=""),
+                                color="white",tooltip="Accept/reject shareholder requests"),
                 Container(
                     height=10,
                 ),
@@ -110,18 +110,18 @@ class RecoveryHomeScreen(UserControl):
                     width=300,
                     content=Divider(height=9, thickness=3),
                 ),
-                ElevatedButton(text="Request for Wallet recovery", on_click=self.on_wallet_recovery_request_click,bgcolor="#2596be",
-                                color="white",tooltip=""),
+                ElevatedButton(text="Request for Wallet Recovery", on_click=self.on_wallet_recovery_request_click,bgcolor="#2596be",
+                                color="white",tooltip="Send request for for shareholders for wallet recovery"),
                 Container(
                     height=10,
                 ),
                 ElevatedButton(text="Recovery request view", on_click=self.on_wallet_recovery_request_view_click,bgcolor="#2596be",
-                                color="white",tooltip=""),
+                                color="white",tooltip="View requests to recover wallets"),
                 Container(
                     height=10,
                 ),
                 ElevatedButton(text="Recover wallet", on_click=self.on_wallet_recovery_click,bgcolor="#2596be",
-                                color="white",tooltip=""),
+                                color="white",tooltip="Recover wallet after shareholders' acceptance"),
                 Container(
                     height=10,
                 ),
