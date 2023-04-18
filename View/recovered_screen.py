@@ -32,7 +32,8 @@ class RecoveredScreen(UserControl):
         self.on_submit_click = on_submit_click
         self.page = page
         
-        secret = GlobalState.RECOVERED_ENTROPHY_VALUE
+        
+        secret = GlobalState.RECOVERED_ENTROPHY_VALUE #13752494869314140060429097156721397907 - for testing mid
         self.mnemonic = KeyGenerationController.generateMnemonic(secret.to_bytes(16, byteorder='big'))
         privateKey,publicKey=KeyGenerationController.importWalletFromMnemonic(self.mnemonic)
         self.privateKey = privateKey
@@ -78,7 +79,7 @@ class RecoveredScreen(UserControl):
                                 icon_color=colors.BLACK38,
                                 on_click=self.copyToClipboardMP,
                                 icon_size=20,
-                                tooltip="Back",
+                                tooltip="Copy to clipboard",
                             ),
                         ],
                     ),
@@ -95,7 +96,7 @@ class RecoveredScreen(UserControl):
                                 icon_color=colors.BLACK38,
                                 on_click=self.copyToClipboardSK,
                                 icon_size=20,
-                                tooltip="Back",
+                                tooltip="Copy to clipboard",
                             ),
                         ],
                     ),
@@ -112,7 +113,7 @@ class RecoveredScreen(UserControl):
                                 icon_color=colors.BLACK38,
                                 on_click=self.copyToClipboardPK,
                                 icon_size=20,
-                                tooltip="Back",
+                                tooltip="Copy to clipboard",
                             ),
                         ],
                     ),

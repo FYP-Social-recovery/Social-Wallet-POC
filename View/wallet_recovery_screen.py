@@ -205,7 +205,7 @@ class WalletRecoveryScreen(UserControl):
                     height=10,
                 ),
                 ElevatedButton("Send OTP", bgcolor="#2596be",
-                               color="white",on_click=self.send_otp_click, width=300,tooltip="send OTP"),
+                               color="white",on_click=self.send_otp_click, width=300,tooltip="Send OTP"),
                 
                 Container(
                     height=50,
@@ -221,7 +221,7 @@ class WalletRecoveryScreen(UserControl):
                 ),
                 
                 ElevatedButton("Recover", bgcolor="#2596be",
-                               color="white",on_click=self.on_submit_click_fn, width=300,tooltip="Distribute Shares"),
+                               color="white",on_click=self.on_submit_click_fn, width=300,tooltip="Recover the wallet"),
                 
                 Container(
                     height=20,

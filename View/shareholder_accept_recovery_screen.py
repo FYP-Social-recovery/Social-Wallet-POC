@@ -80,13 +80,13 @@ class ShareHolderAcceptRecoveryScreen(UserControl):
                 Container(
                     height=10,
                 ),
-                self.TextArray[1],
-                Container(
-                    height=10,
-                ),
-                self.TextArray[2],
-                Container(
-                    height=10,
-                ),
+                # self.TextArray[1],
+                # Container(
+                #     height=10,
+                # ),
+                # self.TextArray[2],
+                # Container(
+                #     height=10,
+                # ),
             ],
         )

@@ -112,7 +112,7 @@ class RegistrationScreen(UserControl):
                                 icon_color=colors.BLACK38,
                                 on_click=self.copyToClipboard,
                                 icon_size=20,
-                                tooltip="Back",
+                                tooltip="Copy to clipboard",
                             ),
                         ],
                     ),
