@@ -98,6 +98,69 @@ class Test:
         time=end-start
         Test.writeFle("Share Holder Three Deploy",time)
         return contract
+    def deployShareHolderFour():
+        start=timer()
+        contract =NodeContractController.deploy(publicKeyLocal=Test.publicKeyHolderFour,privateKeyLocal=Test.privateKeyHolderFour)
+        end=timer()
+        time=end-start
+        Test.writeFle("Share Holder Four Deploy",time)
+        return contract
+    def deployShareHolderFive():
+        start=timer()
+        contract =NodeContractController.deploy(publicKeyLocal=Test.publicKeyHolderFive,privateKeyLocal=Test.privateKeyHolderFive)
+        end=timer()
+        time=end-start
+        Test.writeFle("Share Holder Five deploy",time)
+        return contract
+    def deployShareHolderSix():
+        start=timer()
+        contract =NodeContractController.deploy(publicKeyLocal=Test.publicKeyHolderSix,privateKeyLocal=Test.privateKeyHolderSix)
+        end=timer()
+        time=end-start
+        Test.writeFle("Share Holder Six Deploy",time)
+        return contract
+    def deployShareHolderSeven():
+        start=timer()
+        contract =NodeContractController.deploy(publicKeyLocal=Test.publicKeyHolderSeven,privateKeyLocal=Test.privateKeyHolderSeven)
+        end=timer()
+        time=end-start
+        Test.writeFle("Share Holder Seven Deploy",time)
+        return contract
+    def deployShareHolderEight():
+        start=timer()
+        contract =NodeContractController.deploy(publicKeyLocal=Test.publicKeyHolderEight,privateKeyLocal=Test.privateKeyHolderEight)
+        end=timer()
+        time=end-start
+        Test.writeFle("Share Holder Eight deploy",time)
+        return contract
+    def deployShareHolderNine():
+        start=timer()
+        contract =NodeContractController.deploy(publicKeyLocal=Test.publicKeyHolderNine,privateKeyLocal=Test.privateKeyHolderNine)
+        end=timer()
+        time=end-start
+        Test.writeFle("Share Holder Nine Deploy",time)
+        return contract
+    def deployShareHolderTen():
+        start=timer()
+        contract =NodeContractController.deploy(publicKeyLocal=Test.publicKeyHolderTen,privateKeyLocal=Test.privateKeyHolderTen)
+        end=timer()
+        time=end-start
+        Test.writeFle("Share Holder Ten Deploy",time)
+        return contract
+    def deployShareHolderEleven():
+        start=timer()
+        contract =NodeContractController.deploy(publicKeyLocal=Test.publicKeyHolderEleven,privateKeyLocal=Test.privateKeyHolderEleven)
+        end=timer()
+        time=end-start
+        Test.writeFle("Share Holder Eleven deploy",time)
+        return contract
+    def deployShareHolderTwelve():
+        start=timer()
+        contract =NodeContractController.deploy(publicKeyLocal=Test.publicKeyHolderTwelve,privateKeyLocal=Test.privateKeyHolderTwelve)
+        end=timer()
+        time=end-start
+        Test.writeFle("Share Holder Twelve Deploy",time)
+        return contract
     def deployThirdParty():
         start=timer()
         contract =NodeContractController.deploy(publicKeyLocal=Test.publicKeyThirdParty,privateKeyLocal=Test.privateKeyThirdParty)
@@ -135,6 +198,78 @@ class Test:
         end=timer()
         time=end-start
         Test.writeFle("Share Holder Three register ",time)
+        return
+    def registerShareHolderFour(contract):
+        start=timer()
+        NodeContractController.register(userName="Bob", publicKeyLocal=Test.publicKeyHolderFour, privateKeyLocal=Test.privateKeyHolderFour, nodeContractAddressLocal=contract)
+
+        end=timer()
+        time=end-start
+        Test.writeFle("Share holder Four Register ",time)
+        return
+    def registerShareHolderFive(contract):
+        start=timer()
+        NodeContractController.register(userName="Charlie", publicKeyLocal=Test.publicKeyHolderFive, privateKeyLocal=Test.privateKeyHolderFive, nodeContractAddressLocal=contract)
+
+        end=timer()
+        time=end-start
+        Test.writeFle("Share holder Five Register",time)
+        return
+    def registerShareHolderSix(contract):
+        start=timer()
+        NodeContractController.register(userName="David", publicKeyLocal=Test.publicKeyHolderSix, privateKeyLocal=Test.privateKeyHolderSix, nodeContractAddressLocal=contract)
+
+        end=timer()
+        time=end-start
+        Test.writeFle("Share Holder Six register ",time)
+        return
+    def registerShareHolderSeven(contract):
+        start=timer()
+        NodeContractController.register(userName="Bob", publicKeyLocal=Test.publicKeyHolderSeven, privateKeyLocal=Test.privateKeyHolderSeven, nodeContractAddressLocal=contract)
+
+        end=timer()
+        time=end-start
+        Test.writeFle("Share holder Seven Register ",time)
+        return
+    def registerShareHolderEight(contract):
+        start=timer()
+        NodeContractController.register(userName="Charlie", publicKeyLocal=Test.publicKeyHolderEight, privateKeyLocal=Test.privateKeyHolderEight, nodeContractAddressLocal=contract)
+
+        end=timer()
+        time=end-start
+        Test.writeFle("Share holder Eight Register",time)
+        return
+    def registerShareHolderNine(contract):
+        start=timer()
+        NodeContractController.register(userName="David", publicKeyLocal=Test.publicKeyHolderNine, privateKeyLocal=Test.privateKeyHolderNine, nodeContractAddressLocal=contract)
+
+        end=timer()
+        time=end-start
+        Test.writeFle("Share Holder Nine register ",time)
+        return
+    def registerShareHolderTen(contract):
+        start=timer()
+        NodeContractController.register(userName="Bob", publicKeyLocal=Test.publicKeyHolderTen, privateKeyLocal=Test.privateKeyHolderTen, nodeContractAddressLocal=contract)
+
+        end=timer()
+        time=end-start
+        Test.writeFle("Share holder Ten Register ",time)
+        return
+    def registerShareHolderEleven(contract):
+        start=timer()
+        NodeContractController.register(userName="Charlie", publicKeyLocal=Test.publicKeyHolderEleven, privateKeyLocal=Test.privateKeyHolderEleven, nodeContractAddressLocal=contract)
+
+        end=timer()
+        time=end-start
+        Test.writeFle("Share holder Eleven Register",time)
+        return
+    def registerShareHolderTwelve(contract):
+        start=timer()
+        NodeContractController.register(userName="David", publicKeyLocal=Test.publicKeyHolderTwelve, privateKeyLocal=Test.privateKeyHolderTwelve, nodeContractAddressLocal=contract)
+
+        end=timer()
+        time=end-start
+        Test.writeFle("Share Holder Twelve register ",time)
         return
     def registerThirdParty(contract):
         start=timer()
