@@ -603,6 +603,9 @@ def sixHolders():
     # shareHolderOneContract="0x2b8Ef5ad3ed9550DC0C9f3f72ca2236750A1B3Ad"
     # shareHolderTwoContract="0x1c9E76C892285F759e94c234BC987De1d1581Cf2"
     # shareHolderThreeContract="0x805A29eF483595a6FAe0C08F7629ac0011C6e705"
+    # shareHolderFourContract="0x2b8Ef5ad3ed9550DC0C9f3f72ca2236750A1B3Ad"
+    # shareHolderFiveContract="0x1c9E76C892285F759e94c234BC987De1d1581Cf2"
+    # shareHolderSixContract="0x805A29eF483595a6FAe0C08F7629ac0011C6e705"
     # thirdPartyContract="0x6700d66e6c443E62e006fFedf165ce631B082fE6"
 
     Test.registerSecretOwner(secretOwnerContract)
@@ -668,6 +671,12 @@ def nineHolders():
     # shareHolderOneContract="0x2b8Ef5ad3ed9550DC0C9f3f72ca2236750A1B3Ad"
     # shareHolderTwoContract="0x1c9E76C892285F759e94c234BC987De1d1581Cf2"
     # shareHolderThreeContract="0x805A29eF483595a6FAe0C08F7629ac0011C6e705"
+    # shareHolderFourContract="0x2b8Ef5ad3ed9550DC0C9f3f72ca2236750A1B3Ad"
+    # shareHolderFiveContract="0x1c9E76C892285F759e94c234BC987De1d1581Cf2"
+    # shareHolderSixContract="0x805A29eF483595a6FAe0C08F7629ac0011C6e705"
+    # shareHolderSevenContract="0x2b8Ef5ad3ed9550DC0C9f3f72ca2236750A1B3Ad"
+    # shareHolderEightContract="0x1c9E76C892285F759e94c234BC987De1d1581Cf2"
+    # shareHolderNineContract="0x805A29eF483595a6FAe0C08F7629ac0011C6e705"
     # thirdPartyContract="0x6700d66e6c443E62e006fFedf165ce631B082fE6"
 
     Test.registerSecretOwner(secretOwnerContract)
@@ -751,6 +760,15 @@ def twelveHolders():
     # shareHolderOneContract="0x2b8Ef5ad3ed9550DC0C9f3f72ca2236750A1B3Ad"
     # shareHolderTwoContract="0x1c9E76C892285F759e94c234BC987De1d1581Cf2"
     # shareHolderThreeContract="0x805A29eF483595a6FAe0C08F7629ac0011C6e705"
+    # shareHolderFourContract="0x2b8Ef5ad3ed9550DC0C9f3f72ca2236750A1B3Ad"
+    # shareHolderFiveContract="0x1c9E76C892285F759e94c234BC987De1d1581Cf2"
+    # shareHolderSixContract="0x805A29eF483595a6FAe0C08F7629ac0011C6e705"
+    # shareHolderSevenContract="0x2b8Ef5ad3ed9550DC0C9f3f72ca2236750A1B3Ad"
+    # shareHolderEightContract="0x1c9E76C892285F759e94c234BC987De1d1581Cf2"
+    # shareHolderNineContract="0x805A29eF483595a6FAe0C08F7629ac0011C6e705"
+    # shareHolderTenContract="0x2b8Ef5ad3ed9550DC0C9f3f72ca2236750A1B3Ad"
+    # shareHolderElevenContract="0x1c9E76C892285F759e94c234BC987De1d1581Cf2"
+    # shareHolderTwelveContract="0x805A29eF483595a6FAe0C08F7629ac0011C6e705"
     # thirdPartyContract="0x6700d66e6c443E62e006fFedf165ce631B082fE6"
 
     Test.registerSecretOwner(secretOwnerContract)
