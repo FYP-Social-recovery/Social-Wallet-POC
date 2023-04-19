@@ -376,6 +376,75 @@ class Test:
         time=end-start
         Test.writeFle("Release the share By share holder three",time)
         return
+    def releaseSecretBySHFour(contract):
+        start=timer()
+        NodeContractController.releaseShare(address=Test.publicKeySecretOwner,publicKeyLocal=Test.publicKeyHolderFour, privateKeyLocal=Test.privateKeyHolderFour, nodeContractAddressLocal=contract)
+        end=timer()
+        time=end-start
+        Test.writeFle("Release the share By share holder Four",time)
+        return
+    def releaseSecretBySHFive(contract):
+        start=timer()
+        NodeContractController.releaseShare(address=Test.publicKeySecretOwner,publicKeyLocal=Test.publicKeyHolderFive, privateKeyLocal=Test.privateKeyHolderFive, nodeContractAddressLocal=contract)
+
+        end=timer()
+        time=end-start
+        Test.writeFle("Release the share By share holder Five",time)
+        return
+    def releaseSecretBySHSix(contract):
+        start=timer()
+        NodeContractController.releaseShare(address=Test.publicKeySecretOwner,publicKeyLocal=Test.publicKeyHolderSix, privateKeyLocal=Test.privateKeyHolderSix, nodeContractAddressLocal=contract)
+
+        end=timer()
+        time=end-start
+        Test.writeFle("Release the share By share holder Six",time)
+        return
+    def releaseSecretBySHSeven(contract):
+        start=timer()
+        NodeContractController.releaseShare(address=Test.publicKeySecretOwner,publicKeyLocal=Test.publicKeyHolderSeven, privateKeyLocal=Test.privateKeyHolderSeven, nodeContractAddressLocal=contract)
+        end=timer()
+        time=end-start
+        Test.writeFle("Release the share By share holder Seven",time)
+        return
+    def releaseSecretBySHEight(contract):
+        start=timer()
+        NodeContractController.releaseShare(address=Test.publicKeySecretOwner,publicKeyLocal=Test.publicKeyHolderEight, privateKeyLocal=Test.privateKeyHolderEight, nodeContractAddressLocal=contract)
+
+        end=timer()
+        time=end-start
+        Test.writeFle("Release the share By share holder Eight",time)
+        return
+    def releaseSecretBySHNine(contract):
+        start=timer()
+        NodeContractController.releaseShare(address=Test.publicKeySecretOwner,publicKeyLocal=Test.publicKeyHolderNine, privateKeyLocal=Test.privateKeyHolderNine, nodeContractAddressLocal=contract)
+
+        end=timer()
+        time=end-start
+        Test.writeFle("Release the share By share holder Nine",time)
+        return
+    def releaseSecretBySHTen(contract):
+        start=timer()
+        NodeContractController.releaseShare(address=Test.publicKeySecretOwner,publicKeyLocal=Test.publicKeyHolderTen, privateKeyLocal=Test.privateKeyHolderTen, nodeContractAddressLocal=contract)
+        end=timer()
+        time=end-start
+        Test.writeFle("Release the share By share holder Ten",time)
+        return
+    def releaseSecretBySHEleven(contract):
+        start=timer()
+        NodeContractController.releaseShare(address=Test.publicKeySecretOwner,publicKeyLocal=Test.publicKeyHolderEleven, privateKeyLocal=Test.privateKeyHolderEleven, nodeContractAddressLocal=contract)
+
+        end=timer()
+        time=end-start
+        Test.writeFle("Release the share By share holder Eleven",time)
+        return
+    def releaseSecretBySHTwelve(contract):
+        start=timer()
+        NodeContractController.releaseShare(address=Test.publicKeySecretOwner,publicKeyLocal=Test.publicKeyHolderTwelve, privateKeyLocal=Test.privateKeyHolderTwelve, nodeContractAddressLocal=contract)
+
+        end=timer()
+        time=end-start
+        Test.writeFle("Release the share By share holder twelve",time)
+        return
     def getReleasedShares(contract):
         start=timer()
         shares =NodeContractController.getReceivedShares(publicKeyLocal=Test.publicKeyThirdParty, privateKeyLocal=Test.privateKeyThirdParty, nodeContractAddressLocal=contract)
