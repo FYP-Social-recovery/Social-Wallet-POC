@@ -28,9 +28,37 @@ class Test:
     publicKeyHolderThree="0xc1dc99853409Cdf40F0CD1657749aA601B9827Df"
     privateKeyHolderThree="3fdec33da5e0e37bff512e6234c0ab0f38710161057afcf9123a74deba75b236"
 
+    publicKeyHolderFour="0x799fe4A6cb83c817ada12258fb3B3864Fb2B5027"
+    privateKeyHolderFour="7e67ba86219723f80c27e55d90c34eab27afe92d092da6eb4c05b3bbd49914c4"
+
+    publicKeyHolderFive="0xdDCED81E6D27C0C4EAEf81485661c81AC979399C"
+    privateKeyHolderFive="874a1cef37dee7bf7494da0c77dc2dc942ffca517be583408a639da347f961d4"
+
+    publicKeyHolderSix="0xc1dc99853409Cdf40F0CD1657749aA601B9827Df"
+    privateKeyHolderSix="3fdec33da5e0e37bff512e6234c0ab0f38710161057afcf9123a74deba75b236"
+
+    publicKeyHolderSeven="0x799fe4A6cb83c817ada12258fb3B3864Fb2B5027"
+    privateKeyHolderSeven="7e67ba86219723f80c27e55d90c34eab27afe92d092da6eb4c05b3bbd49914c4"
+
+    publicKeyHolderEight="0xdDCED81E6D27C0C4EAEf81485661c81AC979399C"
+    privateKeyHolderEight="874a1cef37dee7bf7494da0c77dc2dc942ffca517be583408a639da347f961d4"
+
+    publicKeyHolderNine="0xc1dc99853409Cdf40F0CD1657749aA601B9827Df"
+    privateKeyHolderNine="3fdec33da5e0e37bff512e6234c0ab0f38710161057afcf9123a74deba75b236"
+
+    publicKeyHolderTen="0xdDCED81E6D27C0C4EAEf81485661c81AC979399C"
+    privateKeyHolderTen="874a1cef37dee7bf7494da0c77dc2dc942ffca517be583408a639da347f961d4"
+
+    publicKeyHolderEleven="0x799fe4A6cb83c817ada12258fb3B3864Fb2B5027"
+    privateKeyHolderEleven="7e67ba86219723f80c27e55d90c34eab27afe92d092da6eb4c05b3bbd49914c4"
+
+    publicKeyHolderTwelve="0xc1dc99853409Cdf40F0CD1657749aA601B9827Df"
+    privateKeyHolderTwelve="3fdec33da5e0e37bff512e6234c0ab0f38710161057afcf9123a74deba75b236"
+
+
     def writeFle(data,time):
         print("Writing ",data,str(time))
-        f = open("./test/result.txt", "a")
+        f = open("./evaluation/result.txt", "a")
         f.write(data+str(time)+"\n")
         f.close()
         return
@@ -236,41 +264,275 @@ class Test:
         return vault
 
 
-#Test.deployPublicContract()
-#secretOwnerContract=Test.deploySecretOwner()
-#shareHolderOneContract=Test.deployShareHolderOne()
-#shareHolderTwoContract=Test.deployShareHolderTwo()
-#shareHolderThreeContract=Test.deployShareHolderThree()
-#thirdPartyContract=Test.deployThirdParty()
 
-secretOwnerContract="0x58809886077E1844Ca9905E0c522871b0aec417f"
-shareHolderOneContract="0x2b8Ef5ad3ed9550DC0C9f3f72ca2236750A1B3Ad"
-shareHolderTwoContract="0x1c9E76C892285F759e94c234BC987De1d1581Cf2"
-shareHolderThreeContract="0x805A29eF483595a6FAe0C08F7629ac0011C6e705"
-thirdPartyContract="0x6700d66e6c443E62e006fFedf165ce631B082fE6"
+def threeHolders():
+    Test.deployPublicContract()
+    secretOwnerContract=Test.deploySecretOwner()
+    shareHolderOneContract=Test.deployShareHolderOne()
+    shareHolderTwoContract=Test.deployShareHolderTwo()
+    shareHolderThreeContract=Test.deployShareHolderThree()
+    thirdPartyContract=Test.deployThirdParty()
 
-# Test.registerSecretOwner(secretOwnerContract)
-# Test.registerShareHolderOne(shareHolderOneContract)
-# Test.registerShareHolderTwo(shareHolderTwoContract)
-# Test.registerShareHolderThree(shareHolderThreeContract)
-# Test.registerThirdParty(thirdPartyContract)
+    # secretOwnerContract="0x58809886077E1844Ca9905E0c522871b0aec417f"
+    # shareHolderOneContract="0x2b8Ef5ad3ed9550DC0C9f3f72ca2236750A1B3Ad"
+    # shareHolderTwoContract="0x1c9E76C892285F759e94c234BC987De1d1581Cf2"
+    # shareHolderThreeContract="0x805A29eF483595a6FAe0C08F7629ac0011C6e705"
+    # thirdPartyContract="0x6700d66e6c443E62e006fFedf165ce631B082fE6"
 
-# Test.addTempShareHolders(secretOwnerContract)
-# Test.addMyShares(secretOwnerContract)
-# Test.makeHolderRequests(secretOwnerContract)
+    Test.registerSecretOwner(secretOwnerContract)
+    Test.registerShareHolderOne(shareHolderOneContract)
+    Test.registerShareHolderTwo(shareHolderTwoContract)
+    Test.registerShareHolderThree(shareHolderThreeContract)
+    Test.registerThirdParty(thirdPartyContract)
 
-# Test.acceptBeAHolderRequestBySHOne(shareHolderOneContract)
-# Test.acceptBeAHolderRequestBySHTwo(shareHolderTwoContract)
-# Test.acceptBeAHolderRequestBySHThree(shareHolderThreeContract)
+    Test.addTempShareHolders(secretOwnerContract)
+    Test.addMyShares(secretOwnerContract)
+    Test.makeHolderRequests(secretOwnerContract)
 
-# Test.refreshState(secretOwnerContract)
-#Test.distribute(secretOwnerContract)
+    Test.acceptBeAHolderRequestBySHOne(shareHolderOneContract)
+    Test.acceptBeAHolderRequestBySHTwo(shareHolderTwoContract)
+    Test.acceptBeAHolderRequestBySHThree(shareHolderThreeContract)
 
-# Test.thirdPartyRequestShares(thirdPartyContract)
-# Test.releaseSecretBySHOne(shareHolderOneContract)
-# Test.releaseSecretBySHTwo(shareHolderTwoContract)
-# Test.releaseSecretBySHThree(shareHolderThreeContract)
-# shares=Test.getReleasedShares(thirdPartyContract)
-# vault=Test.getVaultHash(thirdPartyContract)
-# print(shares)
-# print(vault)
+    Test.refreshState(secretOwnerContract)
+    Test.distribute(secretOwnerContract)
+
+    Test.thirdPartyRequestShares(thirdPartyContract)
+    Test.releaseSecretBySHOne(shareHolderOneContract)
+    Test.releaseSecretBySHTwo(shareHolderTwoContract)
+    Test.releaseSecretBySHThree(shareHolderThreeContract)
+    shares=Test.getReleasedShares(thirdPartyContract)
+    vault=Test.getVaultHash(thirdPartyContract)
+    print(shares)
+    print(vault)
+    return
+
+def sixHolders():
+    Test.deployPublicContract()
+    secretOwnerContract=Test.deploySecretOwner()
+
+    shareHolderOneContract=Test.deployShareHolderOne()
+    shareHolderTwoContract=Test.deployShareHolderTwo()
+    shareHolderThreeContract=Test.deployShareHolderThree()
+
+    shareHolderFourContract=Test.deployShareHolderFour()
+    shareHolderFiveContract=Test.deployShareHolderFive()
+    shareHolderSixContract=Test.deployShareHolderSix()
+
+
+
+    thirdPartyContract=Test.deployThirdParty()
+
+    # secretOwnerContract="0x58809886077E1844Ca9905E0c522871b0aec417f"
+    # shareHolderOneContract="0x2b8Ef5ad3ed9550DC0C9f3f72ca2236750A1B3Ad"
+    # shareHolderTwoContract="0x1c9E76C892285F759e94c234BC987De1d1581Cf2"
+    # shareHolderThreeContract="0x805A29eF483595a6FAe0C08F7629ac0011C6e705"
+    # thirdPartyContract="0x6700d66e6c443E62e006fFedf165ce631B082fE6"
+
+    Test.registerSecretOwner(secretOwnerContract)
+
+    Test.registerShareHolderOne(shareHolderOneContract)
+    Test.registerShareHolderTwo(shareHolderTwoContract)
+    Test.registerShareHolderThree(shareHolderThreeContract)
+
+    Test.registerShareHolderFour(shareHolderFourContract)
+    Test.registerShareHolderFive(shareHolderFiveContract)
+    Test.registerShareHolderSix(shareHolderSixContract)
+
+    Test.registerThirdParty(thirdPartyContract)
+
+    Test.addTempShareHolders(secretOwnerContract)
+    Test.addMyShares(secretOwnerContract)
+    Test.makeHolderRequests(secretOwnerContract)
+
+    Test.acceptBeAHolderRequestBySHOne(shareHolderOneContract)
+    Test.acceptBeAHolderRequestBySHTwo(shareHolderTwoContract)
+    Test.acceptBeAHolderRequestBySHThree(shareHolderThreeContract)
+
+    Test.acceptBeAHolderRequestBySHFour(shareHolderFourContract)
+    Test.acceptBeAHolderRequestBySHFive(shareHolderFiveContract)
+    Test.acceptBeAHolderRequestBySHSix(shareHolderSixContract)
+
+    Test.refreshState(secretOwnerContract)
+    Test.distribute(secretOwnerContract)
+
+    Test.thirdPartyRequestShares(thirdPartyContract)
+    Test.releaseSecretBySHOne(shareHolderOneContract)
+    Test.releaseSecretBySHTwo(shareHolderTwoContract)
+    Test.releaseSecretBySHThree(shareHolderThreeContract)
+    Test.releaseSecretBySHFour(shareHolderFourContract)
+    Test.releaseSecretBySHFive(shareHolderFiveContract)
+    Test.releaseSecretBySHSix(shareHolderSixContract)
+    shares=Test.getReleasedShares(thirdPartyContract)
+    vault=Test.getVaultHash(thirdPartyContract)
+    print(shares)
+    print(vault)
+    return
+
+def nineHolders():
+    Test.deployPublicContract()
+    secretOwnerContract=Test.deploySecretOwner()
+
+    shareHolderOneContract=Test.deployShareHolderOne()
+    shareHolderTwoContract=Test.deployShareHolderTwo()
+    shareHolderThreeContract=Test.deployShareHolderThree()
+
+    shareHolderFourContract=Test.deployShareHolderFour()
+    shareHolderFiveContract=Test.deployShareHolderFive()
+    shareHolderSixContract=Test.deployShareHolderSix()
+
+    shareHolderSevenContract=Test.deployShareHolderSeven()
+    shareHolderEightContract=Test.deployShareHolderEight()
+    shareHolderNineContract=Test.deployShareHolderNine()
+
+
+    thirdPartyContract=Test.deployThirdParty()
+
+    # secretOwnerContract="0x58809886077E1844Ca9905E0c522871b0aec417f"
+    # shareHolderOneContract="0x2b8Ef5ad3ed9550DC0C9f3f72ca2236750A1B3Ad"
+    # shareHolderTwoContract="0x1c9E76C892285F759e94c234BC987De1d1581Cf2"
+    # shareHolderThreeContract="0x805A29eF483595a6FAe0C08F7629ac0011C6e705"
+    # thirdPartyContract="0x6700d66e6c443E62e006fFedf165ce631B082fE6"
+
+    Test.registerSecretOwner(secretOwnerContract)
+
+    Test.registerShareHolderOne(shareHolderOneContract)
+    Test.registerShareHolderTwo(shareHolderTwoContract)
+    Test.registerShareHolderThree(shareHolderThreeContract)
+
+    Test.registerShareHolderFour(shareHolderFourContract)
+    Test.registerShareHolderFive(shareHolderFiveContract)
+    Test.registerShareHolderSix(shareHolderSixContract)
+
+    Test.registerShareHolderSeven(shareHolderSevenContract)
+    Test.registerShareHolderEight(shareHolderEightContract)
+    Test.registerShareHolderNine(shareHolderNineContract)
+
+
+    Test.registerThirdParty(thirdPartyContract)
+
+    Test.addTempShareHolders(secretOwnerContract)
+    Test.addMyShares(secretOwnerContract)
+    Test.makeHolderRequests(secretOwnerContract)
+
+    Test.acceptBeAHolderRequestBySHOne(shareHolderOneContract)
+    Test.acceptBeAHolderRequestBySHTwo(shareHolderTwoContract)
+    Test.acceptBeAHolderRequestBySHThree(shareHolderThreeContract)
+
+    Test.acceptBeAHolderRequestBySHFour(shareHolderFourContract)
+    Test.acceptBeAHolderRequestBySHFive(shareHolderFiveContract)
+    Test.acceptBeAHolderRequestBySHSix(shareHolderSixContract)
+
+    Test.acceptBeAHolderRequestBySHSeven(shareHolderSevenContract)
+    Test.acceptBeAHolderRequestBySHEight(shareHolderEightContract)
+    Test.acceptBeAHolderRequestBySHNine(shareHolderNineContract)
+
+    Test.refreshState(secretOwnerContract)
+    Test.distribute(secretOwnerContract)
+
+    Test.thirdPartyRequestShares(thirdPartyContract)
+    Test.releaseSecretBySHOne(shareHolderOneContract)
+    Test.releaseSecretBySHTwo(shareHolderTwoContract)
+    Test.releaseSecretBySHThree(shareHolderThreeContract)
+    Test.releaseSecretBySHFour(shareHolderFourContract)
+    Test.releaseSecretBySHFive(shareHolderFiveContract)
+    Test.releaseSecretBySHSix(shareHolderSixContract)
+    Test.releaseSecretBySHSeven(shareHolderSevenContract)
+    Test.releaseSecretBySHEight(shareHolderEightContract)
+    Test.releaseSecretBySHNine(shareHolderNineContract)
+    shares=Test.getReleasedShares(thirdPartyContract)
+    vault=Test.getVaultHash(thirdPartyContract)
+    print(shares)
+    print(vault)
+    return
+def twelveHolders():
+    Test.deployPublicContract()
+    secretOwnerContract=Test.deploySecretOwner()
+
+    shareHolderOneContract=Test.deployShareHolderOne()
+    shareHolderTwoContract=Test.deployShareHolderTwo()
+    shareHolderThreeContract=Test.deployShareHolderThree()
+
+    shareHolderFourContract=Test.deployShareHolderFour()
+    shareHolderFiveContract=Test.deployShareHolderFive()
+    shareHolderSixContract=Test.deployShareHolderSix()
+
+    shareHolderSevenContract=Test.deployShareHolderSeven()
+    shareHolderEightContract=Test.deployShareHolderEight()
+    shareHolderNineContract=Test.deployShareHolderNine()
+
+    shareHolderSevenContract=Test.deployShareHolderSeven()
+    shareHolderEightContract=Test.deployShareHolderEight()
+    shareHolderNineContract=Test.deployShareHolderNine()
+
+    shareHolderTenContract=Test.deployShareHolderTen()
+    shareHolderElevenContract=Test.deployShareHolderEleven()
+    shareHolderTwelveContract=Test.deployShareHolderTwelve()
+
+    thirdPartyContract=Test.deployThirdParty()
+
+    # secretOwnerContract="0x58809886077E1844Ca9905E0c522871b0aec417f"
+    # shareHolderOneContract="0x2b8Ef5ad3ed9550DC0C9f3f72ca2236750A1B3Ad"
+    # shareHolderTwoContract="0x1c9E76C892285F759e94c234BC987De1d1581Cf2"
+    # shareHolderThreeContract="0x805A29eF483595a6FAe0C08F7629ac0011C6e705"
+    # thirdPartyContract="0x6700d66e6c443E62e006fFedf165ce631B082fE6"
+
+    Test.registerSecretOwner(secretOwnerContract)
+
+    Test.registerShareHolderOne(shareHolderOneContract)
+    Test.registerShareHolderTwo(shareHolderTwoContract)
+    Test.registerShareHolderThree(shareHolderThreeContract)
+
+    Test.registerShareHolderFour(shareHolderFourContract)
+    Test.registerShareHolderFive(shareHolderFiveContract)
+    Test.registerShareHolderSix(shareHolderSixContract)
+
+    Test.registerShareHolderSeven(shareHolderSevenContract)
+    Test.registerShareHolderEight(shareHolderEightContract)
+    Test.registerShareHolderNine(shareHolderNineContract)
+
+    Test.registerShareHolderTen(shareHolderTenContract)
+    Test.registerShareHolderEleven(shareHolderElevenContract)
+    Test.registerShareHolderTwelve(shareHolderTwelveContract)
+
+    Test.registerThirdParty(thirdPartyContract)
+
+    Test.addTempShareHolders(secretOwnerContract)
+    Test.addMyShares(secretOwnerContract)
+    Test.makeHolderRequests(secretOwnerContract)
+
+    Test.acceptBeAHolderRequestBySHOne(shareHolderOneContract)
+    Test.acceptBeAHolderRequestBySHTwo(shareHolderTwoContract)
+    Test.acceptBeAHolderRequestBySHThree(shareHolderThreeContract)
+
+    Test.acceptBeAHolderRequestBySHFour(shareHolderFourContract)
+    Test.acceptBeAHolderRequestBySHFive(shareHolderFiveContract)
+    Test.acceptBeAHolderRequestBySHSix(shareHolderSixContract)
+
+    Test.acceptBeAHolderRequestBySHSeven(shareHolderSevenContract)
+    Test.acceptBeAHolderRequestBySHEight(shareHolderEightContract)
+    Test.acceptBeAHolderRequestBySHNine(shareHolderNineContract)
+
+    Test.acceptBeAHolderRequestBySHTen(shareHolderTenContract)
+    Test.acceptBeAHolderRequestBySHEleven(shareHolderElevenContract)
+    Test.acceptBeAHolderRequestBySHTwelve(shareHolderTwelveContract)
+    Test.refreshState(secretOwnerContract)
+    Test.distribute(secretOwnerContract)
+
+    Test.thirdPartyRequestShares(thirdPartyContract)
+    Test.releaseSecretBySHOne(shareHolderOneContract)
+    Test.releaseSecretBySHTwo(shareHolderTwoContract)
+    Test.releaseSecretBySHThree(shareHolderThreeContract)
+    Test.releaseSecretBySHFour(shareHolderFourContract)
+    Test.releaseSecretBySHFive(shareHolderFiveContract)
+    Test.releaseSecretBySHSix(shareHolderSixContract)
+    Test.releaseSecretBySHSeven(shareHolderSevenContract)
+    Test.releaseSecretBySHEight(shareHolderEightContract)
+    Test.releaseSecretBySHNine(shareHolderNineContract)
+    Test.releaseSecretBySHTen(shareHolderTenContract)
+    Test.releaseSecretBySHEleven(shareHolderElevenContract)
+    Test.releaseSecretBySHTwelve(shareHolderTwelveContract)
+    shares=Test.getReleasedShares(thirdPartyContract)
+    vault=Test.getVaultHash(thirdPartyContract)
+    print(shares)
+    print(vault)
+    return
