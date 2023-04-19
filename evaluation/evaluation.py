@@ -279,11 +279,11 @@ class Test:
         time=end-start
         Test.writeFle("Third Party Register ",time)
         return
-    def addTempShareHolders(contract):
+    def addTempShareHolders(contract,count):
         start=timer()
-        li=[Test.publicKeyHolderOne,Test.publicKeyHolderTwo,Test.publicKeyHolderThree]
-        for i in li:
-            NodeContractController.addTemporaryShareHolder(share_holder=i, publicKeyLocal=Test.publicKeySecretOwner, privateKeyLocal=Test.privateKeySecretOwner, nodeContractAddressLocal=contract)
+        li=[Test.publicKeyHolderOne,Test.publicKeyHolderTwo,Test.publicKeyHolderThree,Test.publicKeyHolderFour,Test.publicKeyHolderFive,Test.publicKeyHolderSix,Test.publicKeyHolderSeven,Test.publicKeyHolderEight,Test.publicKeyHolderNine,Test.publicKeyHolderTen,Test.publicKeyHolderEleven,Test.publicKeyHolderTwelve]
+        for i in range(0,count):
+            NodeContractController.addTemporaryShareHolder(share_holder=li[i], publicKeyLocal=Test.publicKeySecretOwner, privateKeyLocal=Test.privateKeySecretOwner, nodeContractAddressLocal=contract)
         end=timer()
         time=end-start
         Test.writeFle("Add temporary Share Holders ",time)
@@ -394,9 +394,13 @@ class Test:
         time=end-start
         Test.writeFle("Refresh The state",time)
         return
-    def addMyShares(contract):
+    def addMyShares(contract,count):
+        li=[]
+        for i in range(0,count):
+            li.append(str(i))
+         
         start=timer()
-        NodeContractController.addMyShares(publicKeyLocal=Test.publicKeySecretOwner, privateKeyLocal=Test.privateKeySecretOwner, nodeContractAddressLocal=contract,shares=["1","2","3"])
+        NodeContractController.addMyShares(publicKeyLocal=Test.publicKeySecretOwner, privateKeyLocal=Test.privateKeySecretOwner, nodeContractAddressLocal=contract,shares=li)
         end=timer()
         time=end-start
         Test.writeFle("Adding My shares  ",time)
@@ -558,8 +562,8 @@ def threeHolders():
     Test.registerShareHolderThree(shareHolderThreeContract)
     Test.registerThirdParty(thirdPartyContract)
 
-    Test.addTempShareHolders(secretOwnerContract)
-    Test.addMyShares(secretOwnerContract)
+    Test.addTempShareHolders(secretOwnerContract,3)
+    Test.addMyShares(secretOwnerContract,3)
     Test.makeHolderRequests(secretOwnerContract)
 
     Test.acceptBeAHolderRequestBySHOne(shareHolderOneContract)
@@ -613,8 +617,8 @@ def sixHolders():
 
     Test.registerThirdParty(thirdPartyContract)
 
-    Test.addTempShareHolders(secretOwnerContract)
-    Test.addMyShares(secretOwnerContract)
+    Test.addTempShareHolders(secretOwnerContract,6)
+    Test.addMyShares(secretOwnerContract,6)
     Test.makeHolderRequests(secretOwnerContract)
 
     Test.acceptBeAHolderRequestBySHOne(shareHolderOneContract)
@@ -683,8 +687,8 @@ def nineHolders():
 
     Test.registerThirdParty(thirdPartyContract)
 
-    Test.addTempShareHolders(secretOwnerContract)
-    Test.addMyShares(secretOwnerContract)
+    Test.addTempShareHolders(secretOwnerContract,9)
+    Test.addMyShares(secretOwnerContract,9)
     Test.makeHolderRequests(secretOwnerContract)
 
     Test.acceptBeAHolderRequestBySHOne(shareHolderOneContract)
@@ -769,8 +773,8 @@ def twelveHolders():
 
     Test.registerThirdParty(thirdPartyContract)
 
-    Test.addTempShareHolders(secretOwnerContract)
-    Test.addMyShares(secretOwnerContract)
+    Test.addTempShareHolders(secretOwnerContract,12)
+    Test.addMyShares(secretOwnerContract,12)
     Test.makeHolderRequests(secretOwnerContract)
 
     Test.acceptBeAHolderRequestBySHOne(shareHolderOneContract)
