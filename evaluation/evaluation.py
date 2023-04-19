@@ -318,6 +318,75 @@ class Test:
         time=end-start
         Test.writeFle("Accept The holder request by share Holder Three",time)
         return
+    def acceptBeAHolderRequestBySHFour(contract):
+        start=timer()
+        NodeContractController.acceptInvitation(address=Test.publicKeySecretOwner,publicKeyLocal=Test.publicKeyHolderFour, privateKeyLocal=Test.privateKeyHolderFour, nodeContractAddressLocal=contract)
+        end=timer()
+        time=end-start
+        Test.writeFle("Accept the holder Request By Share Holder Four ",time)
+        return
+    def acceptBeAHolderRequestBySHFive(contract):
+        start=timer()
+        NodeContractController.acceptInvitation(address=Test.publicKeySecretOwner,publicKeyLocal=Test.publicKeyHolderFive, privateKeyLocal=Test.privateKeyHolderFive, nodeContractAddressLocal=contract)
+
+        end=timer()
+        time=end-start
+        Test.writeFle("Accept The holder request by share Holder Five",time)
+        return
+    def acceptBeAHolderRequestBySHSix(contract):
+        start=timer()
+        NodeContractController.acceptInvitation(address=Test.publicKeySecretOwner,publicKeyLocal=Test.publicKeyHolderSix, privateKeyLocal=Test.privateKeyHolderSix, nodeContractAddressLocal=contract)
+
+        end=timer()
+        time=end-start
+        Test.writeFle("Accept The holder request by share Holder Six",time)
+        return
+    def acceptBeAHolderRequestBySHSeven(contract):
+        start=timer()
+        NodeContractController.acceptInvitation(address=Test.publicKeySecretOwner,publicKeyLocal=Test.publicKeyHolderSeven, privateKeyLocal=Test.privateKeyHolderSeven, nodeContractAddressLocal=contract)
+        end=timer()
+        time=end-start
+        Test.writeFle("Accept the holder Request By Share Holder Seven ",time)
+        return
+    def acceptBeAHolderRequestBySHEight(contract):
+        start=timer()
+        NodeContractController.acceptInvitation(address=Test.publicKeySecretOwner,publicKeyLocal=Test.publicKeyHolderEight, privateKeyLocal=Test.privateKeyHolderEight, nodeContractAddressLocal=contract)
+
+        end=timer()
+        time=end-start
+        Test.writeFle("Accept The holder request by share Holder Eight",time)
+        return
+    def acceptBeAHolderRequestBySHNine(contract):
+        start=timer()
+        NodeContractController.acceptInvitation(address=Test.publicKeySecretOwner,publicKeyLocal=Test.publicKeyHolderNine, privateKeyLocal=Test.privateKeyHolderNine, nodeContractAddressLocal=contract)
+
+        end=timer()
+        time=end-start
+        Test.writeFle("Accept The holder request by share Holder Nine",time)
+        return
+    def acceptBeAHolderRequestBySHTen(contract):
+        start=timer()
+        NodeContractController.acceptInvitation(address=Test.publicKeySecretOwner,publicKeyLocal=Test.publicKeyHolderTen, privateKeyLocal=Test.privateKeyHolderTen, nodeContractAddressLocal=contract)
+        end=timer()
+        time=end-start
+        Test.writeFle("Accept the holder Request By Share Holder Ten ",time)
+        return
+    def acceptBeAHolderRequestBySHEleven(contract):
+        start=timer()
+        NodeContractController.acceptInvitation(address=Test.publicKeySecretOwner,publicKeyLocal=Test.publicKeyHolderEleven, privateKeyLocal=Test.privateKeyHolderEleven, nodeContractAddressLocal=contract)
+
+        end=timer()
+        time=end-start
+        Test.writeFle("Accept The holder request by share Holder Eleven",time)
+        return
+    def acceptBeAHolderRequestBySHTwelve(contract):
+        start=timer()
+        NodeContractController.acceptInvitation(address=Test.publicKeySecretOwner,publicKeyLocal=Test.publicKeyHolderTwelve, privateKeyLocal=Test.privateKeyHolderTwelve, nodeContractAddressLocal=contract)
+
+        end=timer()
+        time=end-start
+        Test.writeFle("Accept The holder request by share Holder Twelve",time)
+        return
     def refreshState(contract):
         start=timer()
         NodeContractController.getMyState(publicKeyLocal=Test.publicKeySecretOwner, privateKeyLocal=Test.privateKeySecretOwner, nodeContractAddressLocal=contract)
