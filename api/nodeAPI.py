@@ -12,9 +12,6 @@ app.config["DEBUG"] = True
 def home():
     return "<h1>Distant Reading Archive</h1><p>This site is a prototype API for distant reading of science fiction novels.</p>"
 
-@app.route('/first', methods=['GET'])
-def first():
-    return {"msg":"Hi"},200
 
 @app.route('/test', methods=['POST'])
 def test():
@@ -24,12 +21,51 @@ def test():
    # return {'message': f'Test successful! Received data: {data["name"]}'}, 200
 
 #started POC API
-
-#public contract controller APIs
+#public contract  APIs
 @app.route('/public-contract/deploy',methods=['GET'])
 def deployPublicContract():
     PublicContractController.deploy()
     return {"Deploy":"True"},200
+
+#Node contract APIs
+
+#/node-contract/deploy
+#/node-contract/register
+#node-contract/be-holder-requests
+#node=-contract/accept-invitation
+#node-contract/reject-invitation
+#node-contract/share-requests
+#node-contract/release-share
+#node-contract/add-temp-shareholder
+#node-contract/make-holder-requests
+#node-contract/add-shares
+#node-contract/share-holders
+#node-contract/requested-share-holders
+#node-contract/rejected-share-holders
+#node-contract/distribute
+#node-contract/request-shares
+#node-contract/vault-hash
+#node-contract/received-shares
+#node-contract/check-user-exists
+#node-contract/my-state
+#node-contract/holder-status
+#node-contract/contract-address-by-public-address
+#node-contract/user-name
+#node-contract/email-by-user-name
+
+
+#fingerprint APIs
+
+#fvss APIs
+
+#otp APIs 
+
+
+
+
+
+
+
 
 @app.route('/public-contract/get-contract-address', methods=['GET'])
 def getContractAddress():
