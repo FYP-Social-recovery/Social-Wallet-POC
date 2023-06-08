@@ -30,6 +30,19 @@ def deployPublicContract():
     PublicContractController.deploy()
     return {"Deploy":"True"},200
 
+@app.route('/public-contract/check-user-exists',methods=['GET'])
+def checkUserExists():
+    res=PublicContractController.checkUserExists()
+    return {"result":res},200
+
+
+@app.route('/public-contract/get-contract-by-public-key',methods=['GET'])
+def getContractAddressByPublicKey():
+    publicKey=request.form['publicKey']
+    privateKey=request.form['privateKey']
+    contractAddress=PublicContractController.getContractAddressByPublicAddress(publicKeyLocal=publicKey,privateKeyLocal=privateKey)
+    return {"contractAddress":contractAddress},200
+
 #Node contract APIs
 
 #/node-contract/deploy
