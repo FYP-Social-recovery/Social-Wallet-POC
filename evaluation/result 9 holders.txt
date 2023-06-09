@@ -1,0 +1,48 @@
+Public Contract Deploy0.29041665299155284
+Secret Owner Deploy0.4566383240016876
+Share Holder One Deploy0.4177087569987634
+Share Holder Two deploy0.47523449201253243
+Share Holder Three Deploy0.3774648859980516
+Share Holder Four Deploy0.36510991500108503
+Share Holder Five deploy0.3260649269941496
+Share Holder Six Deploy0.41777022600581404
+Share Holder Seven Deploy0.4429976550018182
+Share Holder Eight deploy0.38920479999796953
+Share Holder Nine Deploy0.3547004879947053
+Secret Owner Register0.4211448779969942
+Share holder One Register 0.4548482850077562
+Share holder Two Register0.3843960619997233
+Share Holder Three register 0.43117893299495336
+Share holder Four Register 0.3981849690026138
+Share holder Five Register0.42539347999263555
+Share Holder Six register 0.41443263000110164
+Share holder Seven Register 0.5243116510100663
+Share holder Eight Register0.4312054990004981
+Share Holder Nine register 0.44888856398756616
+Third Party Register 0.4545465920091374
+Add temporary Share Holders 3.224815036999644
+Adding My shares  0.5887395019963151
+Make Be a shareHolder requests  1.2064210480020847
+Accept the holder Request By Share Holder One 0.6764271949941758
+Accept The holder request by share Holder two0.7310136900050566
+Accept The holder request by share Holder Three0.8354570650117239
+Accept the holder Request By Share Holder Four 0.7058168520015897
+Accept The holder request by share Holder Five0.6252638090081746
+Accept The holder request by share Holder Six0.5857751750008902
+Accept the holder Request By Share Holder Seven 0.6715644509968115
+Accept The holder request by share Holder Eight0.5888237880135421
+Accept The holder request by share Holder Nine0.6079103049996775
+Refresh The state1.6894910910050385
+Distribute the shares 2.437148449011147
+Third Party request the shares 0.5182770719984546
+Release the share By share holder one0.6681858389929403
+Release the share By share holder two0.6584132049902109
+Release the share By share holder three0.6998381470039021
+Release the share By share holder Four0.6312251719937194
+Release the share By share holder Five0.7138066040060949
+Release the share By share holder Six0.6700715990009485
+Release the share By share holder Seven0.7155257239937782
+Release the share By share holder Eight0.6962804259965196
+Release the share By share holder Nine0.6585787650110433
+Third Party get the released shares0.1395437510072952
+Third Party get vault Hash0.3445157659880351

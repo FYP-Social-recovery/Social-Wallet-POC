@@ -11,15 +11,15 @@ class GlobalState:
     # global NETWORK_CURRENCY_SYMBOL
     # global BLOCK_EXPLORER_URL
     
-    PUBLIC_CONTRACT_ADDRESS = "0x4D1B2AD715789b0f36D77cC736352b16BD326a10" 
+    PUBLIC_CONTRACT_ADDRESS = "0xD681E826C0bC33C7281C593D4E5cCB9170b68173" 
     # "0xd9f3d30F70ee09BDd90d849Ed6b281Ad778BD9e6" # Arbitrum Goerli test network
     # "0xa867C53C919A0898FcD0B113BE6A8b3FADE0050e" - Local host
     # "a0dc1ea77cb68f16abb1671b44048c6a9f7822676d841f4a9908a5a981871fce" - Goerli
-    PUBLIC_CONTRACT_OWNER_PRIVATE_KEY = "58d0efedba9a8a61b2ac3f188dd079782e07aed904cdbc0e3340e073e85c7655" 
+    PUBLIC_CONTRACT_OWNER_PRIVATE_KEY = "0fb2d8b9f63f925112d1158f13248a96f73f025a765666e1264da14006b339ed" 
     # "a0dc1ea77cb68f16abb1671b44048c6a9f7822676d841f4a9908a5a981871fce" # Arbitrum Goerli test network
     # "0fb2d8b9f63f925112d1158f13248a96f73f025a765666e1264da14006b339ed" - Local host
     # "58d0efedba9a8a61b2ac3f188dd079782e07aed904cdbc0e3340e073e85c7655" - Goerli
-    PUBLIC_CONTRACT_OWNER_PUBLIC_KEY = "0x20543FD8D854d500121215Abc542531987f6bc2e" 
+    PUBLIC_CONTRACT_OWNER_PUBLIC_KEY = "0x2F547E73aB2D578F92328ADBA7f6DEb8aAD02aa9" 
     # "0x4A04D4fB008dceAA7Ff212f296Cd9F82874cEAff" # Arbitrum Goerli test network
     # "0x2F547E73aB2D578F92328ADBA7f6DEb8aAD02aa9" - Local host
     # "0x4A04D4fB008dceAA7Ff212f296Cd9F82874cEAff" - Goerli
@@ -42,16 +42,16 @@ class GlobalState:
     # NETWORK_CURRENCY_SYMBOL = "GoerliETH"
     # BLOCK_EXPLORER_URL = "https://goerli.etherscan.io"
 
-## Local host - Ganache Ethereum mainnet Node
-    # NETWORK_TYPE = "Etherrum - Local mainnet"
-    # RPC_URL = "HTTP://127.0.0.1:7545"
-    # CHAIN_ID = 1337
-    # NETWORK_CURRENCY_SYMBOL = "ETH"
-    # BLOCK_EXPLORER_URL = "NONE"
-    
-## Arbitrum Goerli test network
-    NETWORK_TYPE = "Arbitrum Goerli test network"
-    RPC_URL = "https://arb-goerli.g.alchemy.com/v2/kmaQkTzL0jVfzpP6t9J1R04Y0hr9GGJE"
-    CHAIN_ID = 421613
+# Local host - Ganache Ethereum mainnet Node
+    NETWORK_TYPE = "Etherrum - Local mainnet"
+    RPC_URL = "HTTP://127.0.0.1:7545"
+    CHAIN_ID = 1337
     NETWORK_CURRENCY_SYMBOL = "ETH"
     BLOCK_EXPLORER_URL = "NONE"
+    
+# ## Arbitrum Goerli test network
+#     NETWORK_TYPE = "Arbitrum Goerli test network"
+#     RPC_URL = "https://arb-goerli.g.alchemy.com/v2/kmaQkTzL0jVfzpP6t9J1R04Y0hr9GGJE"
+#     CHAIN_ID = 421613
+#     NETWORK_CURRENCY_SYMBOL = "ETH"
+#     BLOCK_EXPLORER_URL = "NONE"

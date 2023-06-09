@@ -1,0 +1,36 @@
+Public Contract Deploy0.2462391549925087
+Secret Owner Deploy0.32895004299643915
+Share Holder One Deploy0.46400286800053436
+Share Holder Two deploy0.5219538889941759
+Share Holder Three Deploy0.4815460129902931
+Share Holder Four Deploy0.3870165169937536
+Share Holder Five deploy0.4177963050024118
+Share Holder Six Deploy0.4709039430017583
+Secret Owner Register0.4850447609933326
+Share holder One Register 0.550709346003714
+Share holder Two Register0.5127147430030163
+Share Holder Three register 0.4938373280019732
+Share holder Four Register 0.5067601549963001
+Share holder Five Register0.5076643339998554
+Share Holder Six register 0.44045218599785585
+Third Party Register 0.42205657399608754
+Add temporary Share Holders 2.4485923729953356
+Adding My shares  0.6650733260030393
+Make Be a shareHolder requests  0.9583779740059981
+Accept the holder Request By Share Holder One 0.7756999809935223
+Accept The holder request by share Holder two0.6391124020010466
+Accept The holder request by share Holder Three0.5774160909932107
+Accept the holder Request By Share Holder Four 0.6034786749951309
+Accept The holder request by share Holder Five0.570546454997384
+Accept The holder request by share Holder Six0.7682435260066995
+Refresh The state1.4299394539993955
+Distribute the shares 1.8974648669973249
+Third Party request the shares 0.5271819079935085
+Release the share By share holder one0.619614189999993
+Release the share By share holder two0.6443571889976738
+Release the share By share holder three0.6545418210007483
+Release the share By share holder Four0.6845512970030541
+Release the share By share holder Five0.715047374003916
+Release the share By share holder Six0.7078053500008537
+Third Party get the released shares0.15827029298816342
+Third Party get vault Hash0.22738178899453487

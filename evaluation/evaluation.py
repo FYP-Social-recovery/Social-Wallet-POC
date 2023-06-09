@@ -10,41 +10,43 @@ from eth_account.messages import encode_defunct
 
 
 class Test:
-    publicKeyPublicContract="0x20543FD8D854d500121215Abc542531987f6bc2e"
-    privateKeyPublicContract="58d0efedba9a8a61b2ac3f188dd079782e07aed904cdbc0e3340e073e85c7655"
+    publicKeyPublicContract="0x2F547E73aB2D578F92328ADBA7f6DEb8aAD02aa9"
+    privateKeyPublicContract="0fb2d8b9f63f925112d1158f13248a96f73f025a765666e1264da14006b339ed"
 
-    publicKeySecretOwner="0x1c36c98DC9b260564F17817241fED3BBA1402059"
-    privateKeySecretOwner="ec754553254fd6b9bcfa929e27d378b648b4ac8adf926b0663e41e13c03c174d"
+    publicKeySecretOwner="0x2F547E73aB2D578F92328ADBA7f6DEb8aAD02aa9"
+    privateKeySecretOwner="0fb2d8b9f63f925112d1158f13248a96f73f025a765666e1264da14006b339ed"
 
-    publicKeyThirdParty="0x4A04D4fB008dceAA7Ff212f296Cd9F82874cEAff"
-    privateKeyThirdParty="a0dc1ea77cb68f16abb1671b44048c6a9f7822676d841f4a9908a5a981871fce"
+    publicKeyThirdParty="0x2F547E73aB2D578F92328ADBA7f6DEb8aAD02aa9"
+    privateKeyThirdParty="0fb2d8b9f63f925112d1158f13248a96f73f025a765666e1264da14006b339ed"
 
-    publicKeyHolderOne="0x799fe4A6cb83c817ada12258fb3B3864Fb2B5027"
-    privateKeyHolderOne="7e67ba86219723f80c27e55d90c34eab27afe92d092da6eb4c05b3bbd49914c4"
+    publicKeyHolderOne="0xF4d86E60b3fA7f1fD4AD2b41205D52b57Ce68905"
+    privateKeyHolderOne="635692a5b8c388a50c4d2c4987426a7c7b7cc9fa1815aed74e52d192244aad1a"
 
-    publicKeyHolderTwo="0xdDCED81E6D27C0C4EAEf81485661c81AC979399C"
-    privateKeyHolderTwo="874a1cef37dee7bf7494da0c77dc2dc942ffca517be583408a639da347f961d4"
+    publicKeyHolderTwo="0xA21831e3493CfAaA6f23b0efBa00B5F47A59bb34"
+    privateKeyHolderTwo="7a032b39be8f54d44000fe9f7f8bb157f06a37ef1b08c6bed91d209a3202cf61"
 
-    publicKeyHolderThree="0xc1dc99853409Cdf40F0CD1657749aA601B9827Df"
-    privateKeyHolderThree="3fdec33da5e0e37bff512e6234c0ab0f38710161057afcf9123a74deba75b236"
+    publicKeyHolderThree="0x3B413d6f4b7d69E05707Db0E29bE01BcFB774F85"
+    privateKeyHolderThree="9e0b07d20ad817db8705c10db5323b4a74dda1b07c32f931e140b5c5ef2d9a85"
 
-    publicKeyHolderFour="0x799fe4A6cb83c817ada12258fb3B3864Fb2B5027"
-    privateKeyHolderFour="7e67ba86219723f80c27e55d90c34eab27afe92d092da6eb4c05b3bbd49914c4"
+    publicKeyHolderFour="0x635fA2a24282B5a157401592f39356866643125C"
+    privateKeyHolderFour="17f5a80058fa4b52f6d73a339f03aaf4d0959435a31a31946061a6ecb4049e9b"
 
-    publicKeyHolderFive="0xdDCED81E6D27C0C4EAEf81485661c81AC979399C"
-    privateKeyHolderFive="874a1cef37dee7bf7494da0c77dc2dc942ffca517be583408a639da347f961d4"
+    publicKeyHolderFive="0x8DFA4358CE13dB53c466D6eABDC40439B8950d0c"
+    privateKeyHolderFive="ffc73e77bef189de26c48729532ca156e15a68d65c857689392eb3090a9d5a03"
 
-    publicKeyHolderSix="0xc1dc99853409Cdf40F0CD1657749aA601B9827Df"
-    privateKeyHolderSix="3fdec33da5e0e37bff512e6234c0ab0f38710161057afcf9123a74deba75b236"
+    publicKeyHolderSix="0x5F683F6c267085FF7d36D33db17dD4e42E9357C0"
+    privateKeyHolderSix="a0b48f8fa21b0c23d9f2fd6454f228c021e74da5b01a57e465944015d84cd9cf"
 
-    publicKeyHolderSeven="0x799fe4A6cb83c817ada12258fb3B3864Fb2B5027"
-    privateKeyHolderSeven="7e67ba86219723f80c27e55d90c34eab27afe92d092da6eb4c05b3bbd49914c4"
+    publicKeyHolderSeven="0xE9631EBEfb9A49c8cA4245F2b776ad2824eEDbBF"
+    privateKeyHolderSeven="050f52af3003a5224bb196bd292ea5782e48c67c398bdb9ec3a719406d973506"
 
-    publicKeyHolderEight="0xdDCED81E6D27C0C4EAEf81485661c81AC979399C"
-    privateKeyHolderEight="874a1cef37dee7bf7494da0c77dc2dc942ffca517be583408a639da347f961d4"
+    publicKeyHolderEight="0x239Dd98C5C29FD035D84c9e96a8ed745fC9ED221"
+    privateKeyHolderEight="1b944979262dd32b85f8f821e46f7f5f34488bc6cdf4495e9f2478e105ac14f9"
 
-    publicKeyHolderNine="0xc1dc99853409Cdf40F0CD1657749aA601B9827Df"
-    privateKeyHolderNine="3fdec33da5e0e37bff512e6234c0ab0f38710161057afcf9123a74deba75b236"
+    publicKeyHolderNine="0xff272227758400790b6C68A5e5cfF85eCDc45c41"
+    privateKeyHolderNine="aad9028d7e80c2150fe3d457706f400a47719f0d20e6aa82216088123b6559eb"
+
+# --------------------------------------------------------------------------------------------
 
     publicKeyHolderTen="0xdDCED81E6D27C0C4EAEf81485661c81AC979399C"
     privateKeyHolderTen="874a1cef37dee7bf7494da0c77dc2dc942ffca517be583408a639da347f961d4"
@@ -201,7 +203,7 @@ class Test:
         return
     def registerShareHolderFour(contract):
         start=timer()
-        NodeContractController.register(userName="Bob", publicKeyLocal=Test.publicKeyHolderFour, privateKeyLocal=Test.privateKeyHolderFour, nodeContractAddressLocal=contract)
+        NodeContractController.register(userName="Bob 1", publicKeyLocal=Test.publicKeyHolderFour, privateKeyLocal=Test.privateKeyHolderFour, nodeContractAddressLocal=contract)
 
         end=timer()
         time=end-start
@@ -209,7 +211,7 @@ class Test:
         return
     def registerShareHolderFive(contract):
         start=timer()
-        NodeContractController.register(userName="Charlie", publicKeyLocal=Test.publicKeyHolderFive, privateKeyLocal=Test.privateKeyHolderFive, nodeContractAddressLocal=contract)
+        NodeContractController.register(userName="Charlie 1", publicKeyLocal=Test.publicKeyHolderFive, privateKeyLocal=Test.privateKeyHolderFive, nodeContractAddressLocal=contract)
 
         end=timer()
         time=end-start
@@ -217,7 +219,7 @@ class Test:
         return
     def registerShareHolderSix(contract):
         start=timer()
-        NodeContractController.register(userName="David", publicKeyLocal=Test.publicKeyHolderSix, privateKeyLocal=Test.privateKeyHolderSix, nodeContractAddressLocal=contract)
+        NodeContractController.register(userName="David 1", publicKeyLocal=Test.publicKeyHolderSix, privateKeyLocal=Test.privateKeyHolderSix, nodeContractAddressLocal=contract)
 
         end=timer()
         time=end-start
@@ -225,7 +227,7 @@ class Test:
         return
     def registerShareHolderSeven(contract):
         start=timer()
-        NodeContractController.register(userName="Bob", publicKeyLocal=Test.publicKeyHolderSeven, privateKeyLocal=Test.privateKeyHolderSeven, nodeContractAddressLocal=contract)
+        NodeContractController.register(userName="Bob 2", publicKeyLocal=Test.publicKeyHolderSeven, privateKeyLocal=Test.privateKeyHolderSeven, nodeContractAddressLocal=contract)
 
         end=timer()
         time=end-start
@@ -233,7 +235,7 @@ class Test:
         return
     def registerShareHolderEight(contract):
         start=timer()
-        NodeContractController.register(userName="Charlie", publicKeyLocal=Test.publicKeyHolderEight, privateKeyLocal=Test.privateKeyHolderEight, nodeContractAddressLocal=contract)
+        NodeContractController.register(userName="Charlie 2", publicKeyLocal=Test.publicKeyHolderEight, privateKeyLocal=Test.privateKeyHolderEight, nodeContractAddressLocal=contract)
 
         end=timer()
         time=end-start
@@ -241,7 +243,7 @@ class Test:
         return
     def registerShareHolderNine(contract):
         start=timer()
-        NodeContractController.register(userName="David", publicKeyLocal=Test.publicKeyHolderNine, privateKeyLocal=Test.privateKeyHolderNine, nodeContractAddressLocal=contract)
+        NodeContractController.register(userName="David 2", publicKeyLocal=Test.publicKeyHolderNine, privateKeyLocal=Test.privateKeyHolderNine, nodeContractAddressLocal=contract)
 
         end=timer()
         time=end-start
@@ -249,7 +251,7 @@ class Test:
         return
     def registerShareHolderTen(contract):
         start=timer()
-        NodeContractController.register(userName="Bob", publicKeyLocal=Test.publicKeyHolderTen, privateKeyLocal=Test.privateKeyHolderTen, nodeContractAddressLocal=contract)
+        NodeContractController.register(userName="Bob 3", publicKeyLocal=Test.publicKeyHolderTen, privateKeyLocal=Test.privateKeyHolderTen, nodeContractAddressLocal=contract)
 
         end=timer()
         time=end-start
@@ -257,7 +259,7 @@ class Test:
         return
     def registerShareHolderEleven(contract):
         start=timer()
-        NodeContractController.register(userName="Charlie", publicKeyLocal=Test.publicKeyHolderEleven, privateKeyLocal=Test.privateKeyHolderEleven, nodeContractAddressLocal=contract)
+        NodeContractController.register(userName="Charlie 3", publicKeyLocal=Test.publicKeyHolderEleven, privateKeyLocal=Test.privateKeyHolderEleven, nodeContractAddressLocal=contract)
 
         end=timer()
         time=end-start
@@ -265,7 +267,7 @@ class Test:
         return
     def registerShareHolderTwelve(contract):
         start=timer()
-        NodeContractController.register(userName="David", publicKeyLocal=Test.publicKeyHolderTwelve, privateKeyLocal=Test.privateKeyHolderTwelve, nodeContractAddressLocal=contract)
+        NodeContractController.register(userName="David 3", publicKeyLocal=Test.publicKeyHolderTwelve, privateKeyLocal=Test.privateKeyHolderTwelve, nodeContractAddressLocal=contract)
 
         end=timer()
         time=end-start
@@ -543,18 +545,18 @@ class Test:
 
 
 def threeHolders():
-    Test.deployPublicContract()
-    secretOwnerContract=Test.deploySecretOwner()
-    shareHolderOneContract=Test.deployShareHolderOne()
-    shareHolderTwoContract=Test.deployShareHolderTwo()
-    shareHolderThreeContract=Test.deployShareHolderThree()
-    thirdPartyContract=Test.deployThirdParty()
+    # Test.deployPublicContract()
+    # secretOwnerContract=Test.deploySecretOwner()
+    # shareHolderOneContract=Test.deployShareHolderOne()
+    # shareHolderTwoContract=Test.deployShareHolderTwo()
+    # shareHolderThreeContract=Test.deployShareHolderThree()
+    # thirdPartyContract=Test.deployThirdParty()
 
-    # secretOwnerContract="0x58809886077E1844Ca9905E0c522871b0aec417f"
-    # shareHolderOneContract="0x2b8Ef5ad3ed9550DC0C9f3f72ca2236750A1B3Ad"
-    # shareHolderTwoContract="0x1c9E76C892285F759e94c234BC987De1d1581Cf2"
-    # shareHolderThreeContract="0x805A29eF483595a6FAe0C08F7629ac0011C6e705"
-    # thirdPartyContract="0x6700d66e6c443E62e006fFedf165ce631B082fE6"
+    secretOwnerContract="0x89910b7BD652aA67231633F8750d3dc60B854847"
+    shareHolderOneContract="0xcFfAc21C427a8B3252Dd76E837c77179642eaD97"
+    shareHolderTwoContract="0x84c45eA721e84108574b45E4d142F9585224F2fF"
+    shareHolderThreeContract="0x694ab6D02CB44D9D57e7CF1BA66752d74d5D3E83"
+    thirdPartyContract="0x89910b7BD652aA67231633F8750d3dc60B854847"
 
     Test.registerSecretOwner(secretOwnerContract)
     Test.registerShareHolderOne(shareHolderOneContract)
@@ -583,36 +585,38 @@ def threeHolders():
     print(vault)
     return
 
+# threeHolders()
+
 def sixHolders():
-    Test.deployPublicContract()
-    secretOwnerContract=Test.deploySecretOwner()
+    # Test.deployPublicContract()
+    # secretOwnerContract=Test.deploySecretOwner()
 
-    shareHolderOneContract=Test.deployShareHolderOne()
-    shareHolderTwoContract=Test.deployShareHolderTwo()
-    shareHolderThreeContract=Test.deployShareHolderThree()
+    # shareHolderOneContract=Test.deployShareHolderOne()
+    # shareHolderTwoContract=Test.deployShareHolderTwo()
+    # shareHolderThreeContract=Test.deployShareHolderThree()
 
-    shareHolderFourContract=Test.deployShareHolderFour()
-    shareHolderFiveContract=Test.deployShareHolderFive()
-    shareHolderSixContract=Test.deployShareHolderSix()
+    # shareHolderFourContract=Test.deployShareHolderFour()
+    # shareHolderFiveContract=Test.deployShareHolderFive()
+    # shareHolderSixContract=Test.deployShareHolderSix()
 
 
 
-    thirdPartyContract=Test.deployThirdParty()
+    # thirdPartyContract=Test.deployThirdParty()
 
-    # secretOwnerContract="0x58809886077E1844Ca9905E0c522871b0aec417f"
-    # shareHolderOneContract="0x2b8Ef5ad3ed9550DC0C9f3f72ca2236750A1B3Ad"
-    # shareHolderTwoContract="0x1c9E76C892285F759e94c234BC987De1d1581Cf2"
-    # shareHolderThreeContract="0x805A29eF483595a6FAe0C08F7629ac0011C6e705"
-    # shareHolderFourContract="0x2b8Ef5ad3ed9550DC0C9f3f72ca2236750A1B3Ad"
-    # shareHolderFiveContract="0x1c9E76C892285F759e94c234BC987De1d1581Cf2"
-    # shareHolderSixContract="0x805A29eF483595a6FAe0C08F7629ac0011C6e705"
-    # thirdPartyContract="0x6700d66e6c443E62e006fFedf165ce631B082fE6"
+    secretOwnerContract="0x073726879D28Daea12E1c56Ddd82D025b0Ab7BCe"
+    shareHolderOneContract="0x2E82679fA57AEa2e345788533D44d804C7262Ee7"
+    shareHolderTwoContract="0x33c818103523b97cBfEc6c6316936AcAbd39e1e2"
+    shareHolderThreeContract="0xB5bD42AA65BfA0986855a1C9953552139556A925"
+    shareHolderFourContract="0xd2441cf289D3E01753313e81B4016877Be4e0a52"
+    shareHolderFiveContract="0xF7cF45aB6D41fc87298C88C1b17Fde2B70EE2eEa"
+    shareHolderSixContract="0x2E43Cee07BB41C2BC137798674B9694204a47a7D"
+    thirdPartyContract="0x073726879D28Daea12E1c56Ddd82D025b0Ab7BCe"
 
-    Test.registerSecretOwner(secretOwnerContract)
+    # Test.registerSecretOwner(secretOwnerContract)
 
-    Test.registerShareHolderOne(shareHolderOneContract)
-    Test.registerShareHolderTwo(shareHolderTwoContract)
-    Test.registerShareHolderThree(shareHolderThreeContract)
+    # Test.registerShareHolderOne(shareHolderOneContract)
+    # Test.registerShareHolderTwo(shareHolderTwoContract)
+    # Test.registerShareHolderThree(shareHolderThreeContract)
 
     Test.registerShareHolderFour(shareHolderFourContract)
     Test.registerShareHolderFive(shareHolderFiveContract)
@@ -648,36 +652,38 @@ def sixHolders():
     print(vault)
     return
 
+# sixHolders()
+
 def nineHolders():
-    Test.deployPublicContract()
-    secretOwnerContract=Test.deploySecretOwner()
+    # Test.deployPublicContract()
+    # secretOwnerContract=Test.deploySecretOwner()
 
-    shareHolderOneContract=Test.deployShareHolderOne()
-    shareHolderTwoContract=Test.deployShareHolderTwo()
-    shareHolderThreeContract=Test.deployShareHolderThree()
+    # shareHolderOneContract=Test.deployShareHolderOne()
+    # shareHolderTwoContract=Test.deployShareHolderTwo()
+    # shareHolderThreeContract=Test.deployShareHolderThree()
 
-    shareHolderFourContract=Test.deployShareHolderFour()
-    shareHolderFiveContract=Test.deployShareHolderFive()
-    shareHolderSixContract=Test.deployShareHolderSix()
+    # shareHolderFourContract=Test.deployShareHolderFour()
+    # shareHolderFiveContract=Test.deployShareHolderFive()
+    # shareHolderSixContract=Test.deployShareHolderSix()
 
-    shareHolderSevenContract=Test.deployShareHolderSeven()
-    shareHolderEightContract=Test.deployShareHolderEight()
-    shareHolderNineContract=Test.deployShareHolderNine()
+    # shareHolderSevenContract=Test.deployShareHolderSeven()
+    # shareHolderEightContract=Test.deployShareHolderEight()
+    # shareHolderNineContract=Test.deployShareHolderNine()
 
 
-    thirdPartyContract=Test.deployThirdParty()
+    # thirdPartyContract=Test.deployThirdParty()
 
-    # secretOwnerContract="0x58809886077E1844Ca9905E0c522871b0aec417f"
-    # shareHolderOneContract="0x2b8Ef5ad3ed9550DC0C9f3f72ca2236750A1B3Ad"
-    # shareHolderTwoContract="0x1c9E76C892285F759e94c234BC987De1d1581Cf2"
-    # shareHolderThreeContract="0x805A29eF483595a6FAe0C08F7629ac0011C6e705"
-    # shareHolderFourContract="0x2b8Ef5ad3ed9550DC0C9f3f72ca2236750A1B3Ad"
-    # shareHolderFiveContract="0x1c9E76C892285F759e94c234BC987De1d1581Cf2"
-    # shareHolderSixContract="0x805A29eF483595a6FAe0C08F7629ac0011C6e705"
-    # shareHolderSevenContract="0x2b8Ef5ad3ed9550DC0C9f3f72ca2236750A1B3Ad"
-    # shareHolderEightContract="0x1c9E76C892285F759e94c234BC987De1d1581Cf2"
-    # shareHolderNineContract="0x805A29eF483595a6FAe0C08F7629ac0011C6e705"
-    # thirdPartyContract="0x6700d66e6c443E62e006fFedf165ce631B082fE6"
+    secretOwnerContract="0x9979c1aCEDc13Ae3d0626BA34b5982719AE77E38"
+    shareHolderOneContract="0x3e6E31C96644a797E8c18284FA5EbB0A4cd1c094"
+    shareHolderTwoContract="0xfCa46E3573F94Ada643762382049c76C6126F62D"
+    shareHolderThreeContract="0x7D8d1952b6F12C077708A4978699A0B7bF764B21"
+    shareHolderFourContract="0xA414fa41C4356128A53fB9FEf79bf9e28Fb757e9"
+    shareHolderFiveContract="0x8ed14103bB3C0E032937FFe2f96843CeCa325094"
+    shareHolderSixContract="0x30A1EE4cAd077f6982D0726044CA524f7b816c01"
+    shareHolderSevenContract="0xAE505F8F8f28371BB05c350BEf0B8612243a063B"
+    shareHolderEightContract="0x4438FF1c3f4Fc422cC4Ec57D776357544ee05146"
+    shareHolderNineContract="0x1eDb1DF7D383b0241Fb12bcB0eD85D72fE3431aB"
+    thirdPartyContract="0x9979c1aCEDc13Ae3d0626BA34b5982719AE77E38"
 
     Test.registerSecretOwner(secretOwnerContract)
 
@@ -730,6 +736,9 @@ def nineHolders():
     print(shares)
     print(vault)
     return
+
+nineHolders()
+
 def twelveHolders():
     Test.deployPublicContract()
     secretOwnerContract=Test.deploySecretOwner()
